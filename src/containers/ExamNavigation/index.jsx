@@ -1,4 +1,5 @@
 import './ExamNavigation.css';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
 import { makeSelectNBack } from './selectors';
@@ -8,15 +9,37 @@ const actionDispatch = (dispatch) => ({
     newNBackState: (users) => dispatch(newNBackState(users)),
 });
 
+
+
+
 const ExamNavigation = () => {
 
 
-    console.log('the thing:',useSelector(state => state.examNavigationReducer.newNBackState));
+    
 
     const NBackState = useSelector(state => state.examNavigationReducer.newNBackState);
     const { newNBackState } = actionDispatch(useDispatch())
+    
+    
+    const keyStrokeListener = (event) => {
+        /*
+        *  Listens for the keystoke and updates the NBackState
+        * ISSUE:  IT repeats all previous keystrokes for some reason, making the process increasingly slower
+        */
+        console.log('HIT',event.keyCode)
+           switch (event.keyCode) {
+            case 87:
+                return console.log('W key, Log the Result, Run Next Image Function',newNBackState(NBackState+1));
+            case 79:
+                return console.log('O Key, Log the Result, Run Next Image Function',newNBackState(NBackState+1));
 
-    //newNBackState(112)
+        }
+    }
+
+    React.useEffect(() => {
+    document.addEventListener('keyup', keyStrokeListener);
+      
+      });
     
 
     return (

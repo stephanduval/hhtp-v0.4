@@ -12,20 +12,6 @@ function App() {
 
 console.log('store:',{store});
 
-  const keyStrokeListener = (event) => {
-    console.log('hit',event.keyCode)
-    if(event.keyCode === 87) {
-      console.log('W key, Log the Result, Run Next Image Function') 
-      }
-   if(event.keyCode === 79) {
-        console.log('O Key, Log the Result, Run Next Image Function')
-      }
-    }
-
-  React.useEffect(() => {
-  document.addEventListener('keydown', keyStrokeListener);
-
-});
 
 
   
