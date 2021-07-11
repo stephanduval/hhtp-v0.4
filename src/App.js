@@ -4,15 +4,13 @@ import Photospace from './containers/PhotoSpace';
 import ExamNavigation from './containers/ExamNavigation';
 import store from "./store";
 
-function logKey(e) {
-  
-}
+
 
 
 function App() {
 
 
-
+console.log('store:',{store});
 
   const keyStrokeListener = (event) => {
     console.log('hit',event.keyCode)
