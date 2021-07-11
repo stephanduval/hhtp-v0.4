@@ -2,7 +2,7 @@
 import { ActionTypes } from "./constants";
 
 const defaultState = {
-    newNBackState: 11,
+    newNBackState: 0,
 
 };
 

@@ -4,18 +4,20 @@ import { createSelector } from 'reselect';
 import { makeSelectNBack } from './selectors';
 import { newNBackState } from './actions';
 
+const actionDispatch = (dispatch) => ({
+    newNBackState: (users) => dispatch(newNBackState(users)),
+});
 
 const ExamNavigation = () => {
 
 
     console.log('the thing:',useSelector(state => state.examNavigationReducer.newNBackState));
 
-    const NBackPlusOne = (NBackState) => {
-       // newNBackState(NBackState + 1);
-       NBackState++
-    }
     const NBackState = useSelector(state => state.examNavigationReducer.newNBackState);
-    const updateNBackState = useDispatch(NBackPlusOne)
+    const { newNBackState } = actionDispatch(useDispatch())
+
+    //newNBackState(112)
+    
 
     return (
 
@@ -28,7 +30,8 @@ const ExamNavigation = () => {
 
         <button variant="contained">"R" - Does not repeat
         </button>
-        <button onClick={{updateNBackState}}>ADDs</button>
+    const NBackState = useSelector(state => state.examNavigationReducer.newNBackState);
+        <button onClick={()=>{newNBackState(NBackState+1)}}>ADDs</button>
  
         { NBackState }
         </div>
