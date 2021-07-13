@@ -20,7 +20,7 @@ export const setnBackDegree = (nBackDegree) => ({
     payload: nBackDegree
 })
 
-export const settimerSeconds = (timerSeconds) => ({
+export const setTimerSeconds = (timerSeconds) => ({
     type: ActionTypes.TIMER_SECONDS,  // from the constants file
     payload: timerSeconds
 })
