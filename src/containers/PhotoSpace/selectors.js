@@ -6,16 +6,20 @@ const photoSpaceState = (state) => state.photoSpace;  // state.name matches the 
 // export const makeSelectUsers = homePage(state).user
 // but we will use the reselector library module
 // this will bind homePageUSers and return the users variable in the homePage part of the store
-export const makeselectUserResponseArray = createSelector(  //'make* is a naming convention for selectors
+export const makeSelectUserResponseArray = createSelector(  //'make* is a naming convention for selectors
 photoSpaceState,  // get the global store state for state.homepage
-    photoSpace => photoSpace.makeselectUserResponseArray //find the data within the store.js reducer name (homePage) and users within that: homePage.users
+    photoSpace => photoSpace.makeSelectUserResponseArray //find the data within the store.js reducer name (homePage) and users within that: homePage.users
      );
 
-export const makeselectUserResponseArray = createSelector(  //'make* is a naming convention for selectors
+export const makesSelectCorrectResponseArray = createSelector(  //'make* is a naming convention for selectors
 photoSpaceState,  // get the global store state for state.homepage
-    photoSpace => photoSpace.makeselectUserResponseArray //find the data within the store.js reducer name (homePage) and users within that: homePage.users
+    photoSpace => photoSpace.makeSelectCorrectResponseArrayy //find the data within the store.js reducer name (homePage) and users within that: homePage.users
      );
 
 
-//     userResponseArray
-//     correctResponseArray
+export const makesSelectImageFilenameArray = createSelector(  //'make* is a naming convention for selectors
+photoSpaceState,  // get the global store state for state.homepage
+photoSpace => photoSpace.makeSelectImageFilenameArray //find the data within the store.js reducer name (homePage) and users within that: homePage.users
+);
+
+     
