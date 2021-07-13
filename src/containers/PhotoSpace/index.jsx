@@ -2,7 +2,7 @@ import React from 'react';
 import './PhotoSpace.css';
 import { filesToPhotosObject } from './../../functions.js';
 import { useSelector } from 'react-redux';
-
+import { setCorrectResponseArray, setUserResponseArray } from './actions';
      
 const images = filesToPhotosObject(require.context('./../../../public/images/FeeliePhotos/', false, /\.(png|jpe?g|svg)$/));
 let imageFileNameArray = Object.keys(images);
