@@ -1,0 +1,8 @@
+
+.nBackSettings {
+    display: flex;
+    flex-wrap:nowrap;
+    height: 150px;
+    background-color: var(--grey2);
+    justify-content: center;
+    }

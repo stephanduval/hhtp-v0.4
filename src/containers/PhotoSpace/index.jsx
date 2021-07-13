@@ -25,23 +25,24 @@ const imageArrayactionDispatch = (dispatch) => ({
 
 const Photospace = () => {  // this destructing allows us to use onInputChange instead of props.onInputChange
 
-    const NBackState = useSelector(state => state.examNavigationReducer.newNBackState);
-    const { newNBackState } = NBackactionDispatch(useDispatch())
-
+    const { setImageFileNameArray } = imageArrayactionDispatch(useDispatch()) // how does this work?  It creates an object
+    // Functions are objects that take a parameter  
+    setImageFileNameArray(imageFileNameArray);  // Assigns the imageFileNameArray to the Store!!!
+    const NBackState = useSelector(state => state.examNavigationReducer.newNBackState); // gets the NBack state from the store
+    
 
     const fileNameArray = useSelector(state => state.photoSpaceReducer.imageFileNameArray);
     const { newImageFileNameArray } = imageArrayactionDispatch(useDispatch());
-    const { setImageFileNameArray } = imageArrayactionDispatch(useDispatch())
-    setImageFileNameArray(imageFileNameArray);
+   
+   
     console.log("the array baby",setImageFileNameArray(imageFileNameArray));
     console.log("the Store",fileNameArray);
     return (
         
 <div className="photospace">
        <img src={process.env.PUBLIC_URL + './images/FeeliePhotos/'+imageFileNameArray[NBackState]} alt='Current nBack'/>;
-       Count from Hook in App.js:  
 
-       <button onClick={()=>setImageFileNameArray(imageFileNameArray)}>set file name array</button>
+
   </div>
     )
 

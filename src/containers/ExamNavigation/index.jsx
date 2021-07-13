@@ -53,7 +53,6 @@ const ExamNavigation = () => {
 
         <button variant="contained">"R" - Does not repeat
         </button>
-    const NBackState = useSelector(state => state.examNavigationReducer.newNBackState);
         <button onClick={()=>{newNBackState(NBackState+1)}}>ADDs</button>
  
         { NBackState }
