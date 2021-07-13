@@ -2,7 +2,7 @@ import React from 'react';
 import './PhotoSpace.css';
 import { filesToPhotosObject } from './../../functions.js';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCorrectResponseArray, setUserResponseArray, setimageFileNameArray } from './actions';
+import { setCorrectResponseArray, setUserResponseArray, setImageFileNameArray } from './actions';
 import { newNBackState } from './../ExamNavigation/actions';
 import photoSpace from './reducers';
      
@@ -14,7 +14,7 @@ const NBackactionDispatch = (dispatch) => ({
 });
 
 const imageArrayactionDispatch = (dispatch) => ({
-    setimageFileNameArray: (array) => dispatch(setimageFileNameArray(array)),
+    setImageFileNameArray: (array) => dispatch(setImageFileNameArray(array)),
 });
 
 
@@ -28,15 +28,20 @@ const Photospace = () => {  // this destructing allows us to use onInputChange i
     const NBackState = useSelector(state => state.examNavigationReducer.newNBackState);
     const { newNBackState } = NBackactionDispatch(useDispatch())
 
+
     const fileNameArray = useSelector(state => state.photoSpaceReducer.imageFileNameArray);
     const { newImageFileNameArray } = imageArrayactionDispatch(useDispatch());
-
-    console.log("the array baby",setimageFileNameArray(imageFileNameArray));
+    const { setImageFileNameArray } = imageArrayactionDispatch(useDispatch())
+    setImageFileNameArray(imageFileNameArray);
+    console.log("the array baby",setImageFileNameArray(imageFileNameArray));
+    console.log("the Store",fileNameArray);
     return (
         
 <div className="photospace">
        <img src={process.env.PUBLIC_URL + './images/FeeliePhotos/'+imageFileNameArray[NBackState]} alt='Current nBack'/>;
-       Count from Hook in App.js:  {fileNameArray} {newImageFileNameArray} 
+       Count from Hook in App.js:  
+
+       <button onClick={()=>setImageFileNameArray(imageFileNameArray)}>set file name array</button>
   </div>
     )
 

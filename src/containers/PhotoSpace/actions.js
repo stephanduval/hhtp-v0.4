@@ -10,7 +10,7 @@ export const setUserResponseArray = (userResponseArray) => ({
     payload: userResponseArray
 })
 
-export const setimageFileNameArray = (imageFileNameArray) => ({
+export const setImageFileNameArray = (imageFileNameArray) => ({
     type: ActionTypes.IMAGE_FILENAME_ARRAY,  // from the constants file
     payload: imageFileNameArray
 })

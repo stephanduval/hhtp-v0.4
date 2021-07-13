@@ -18,6 +18,7 @@ const ExamNavigation = () => {
     
 
     const NBackState = useSelector(state => state.examNavigationReducer.newNBackState);
+    const { newNBackState } = actionDispatch(useDispatch())
     
     
     const keyStrokeListener = (event) => {
