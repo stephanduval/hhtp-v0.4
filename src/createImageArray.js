@@ -1,7 +1,3 @@
-// main.js
-
-// Modules to control application life and create native browser window
-
 // Set path of photo folder here
 
 const testFolder = './images/FeeliePhotos/';

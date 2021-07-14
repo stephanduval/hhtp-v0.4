@@ -1,4 +1,11 @@
 import { ActionTypes } from "./constants";
+import { filesToPhotosObject } from './../../functions.js';
+
+
+const images = filesToPhotosObject(require.context('./../../../public/images/FeeliePhotos/', false, /\.(png|jpe?g|svg)$/));
+let imageFileNameArray = Object.keys(images);
+let imageFileNameArrayLength = imageFileNameArray.length
+
 
 export const setNumberofPhotos = (numberOfPhotos) => ({
     type: ActionTypes.NUMBER_OF_PHOTOS,  // from the constants file

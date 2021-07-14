@@ -1,10 +1,11 @@
 
 import { ActionTypes } from "./constants";
-//import React from 'react';
-//import { useSelector } from "react-redux";
+import { filesToPhotosObject } from './../../functions.js';
 
 
-//const imageFileNameArrayLength = useSelector(state => state.photoSpaceReducer.imageFileNameArrayLength);
+const images = filesToPhotosObject(require.context('./../../../public/images/FeeliePhotos/', false, /\.(png|jpe?g|svg)$/));
+let imageFileNameArray = Object.keys(images);
+let imageFileNameArrayLength = imageFileNameArray.length
 
 
 const defaultState = {
@@ -18,12 +19,20 @@ const defaultState = {
 export default function nBackSettings(state = defaultState, action) { 
     switch (action.type) {
         case ActionTypes.NUMBER_OF_PHOTOS:
-                if (action.payload > 0 /*&& action.payload <= imageFileNameArrayLength*/){
-            return { ...state, numberOfPhotos: action.payload }};
+            return { ...state, numberOfPhotos: action.payload };
         case ActionTypes.NUMBER_OF_PREDICTIVE_PHOTOS:
             return { ...state, numberOfPredictivePhotos: action.payload };
         case ActionTypes.NUMBER_OF_NBACK_MATCHES:
-            return { ...state, NumberofnBackMatches: action.payload };
+            if (action.payload < 0){
+                return { ...state, NumberofnBackMatches: 0 };
+            }
+            if (action.payload > imageFileNameArrayLength/4){
+                return { ...state, NumberofnBackMatches: imageFileNameArrayLength/4 };
+            } 
+            else {
+                return { ...state, NumberofnBackMatches: action.payload };
+            }         
+
         case ActionTypes.NBACK_DEGREE:
             return { ...state, nBackDegree: action.payload };
         case ActionTypes.TIMER_SECONDS:

@@ -2,25 +2,13 @@ import React from 'react';
 import './nBackSettings.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setNumberofPhotos, setNumberOfPredictivePhotos, setNumberofnBackMatches, setnBackDegree, setTimerSeconds } from './actions';
+import { filesToPhotosObject } from '../../functions';
 
 
- /*  VARIABLES:
 
-let numberOfPhotos = 126;
-let numberOfPredictivePhotos = 12;
-let NumberofnBackMatches = 26;
-let nBackDegree = 2;
-let  = 5;
 
-export const ActionTypes = {  
-    NUMBER_OF_PHOTOS: "app/containers/Settings/NUMBER_OF_PHOTOS",
-    NUMBER_OF_PREDICTIVE_PHOTOS: "app/containers/Settings/NUMBER_OF_PREDICTIVE_PHOTOS",
-    NUMBER_OF_NBACK_MATCHES: "app/containers/Settings/NUMBER_OF_NBACK_MATCHES",
-    NBACK_DEGREE: "app/containers/Settings/NBACK_DEGREE",
-    TIMER_SECONDS: "app/containers/Settings/TIMER_SECONDS",
-    
+//-------------------- CONTSTANTS FOR REDUX TO DISPATCH ACTIONS: 
 
-*/
 
 const numberOfPhotosDispatch = (dispatch) => ({
   setNumberofPhotos: (numberOfPhotos) => dispatch(setNumberofPhotos(numberOfPhotos)),
@@ -38,6 +26,10 @@ const timerSecondsDispatch = (dispatch) => ({
   setTimerSeconds: (timerSeconds) => dispatch(setTimerSeconds(timerSeconds)),
 });
 
+//-------------------- END OF CONTSTANTS FOR REDUX TO DISPATCH ACTIONS: 
+
+//-------------------- Function that will render the Settings Page:
+
 
 const Settings = () => { 
 
@@ -54,8 +46,88 @@ const Settings = () => {
     const { setnBackDegree } = nBackDegreeDispatch(useDispatch());
     const { setTimerSeconds } = timerSecondsDispatch(useDispatch());
 
+      //------ FUNCTIONS TO VALIDATE DATA BEFORE IT IS SENT TO STORE:
+
+const validateNumberOfPhotos = (numberOfPhotos) => {
+          if (numberOfPhotos < 0){
+              return 0;
+          }
+          if (numberOfPhotos > imageFileNameArrayLength){
+              return imageFileNameArrayLength;
+          } 
+          else {
+            return numberOfPhotos;      
+    }
+  }
+
+const validateNumberOfPredictivePhotos = (numberOfPredictivePhotos) => {
+        if (numberOfPredictivePhotos < 0){
+            return 0;
+        }
+        if (numberOfPredictivePhotos > numberOfPhotos){
+            return numberOfPhotos;
+        } 
+        else {
+          return numberOfPredictivePhotos;      
+      }
+    }
     
+const validatesetNumberofnBackMatches = (setNumberofnBackMatches) => {
+          if (setNumberofnBackMatches < 0){
+              return 0;
+          }
+          if (setNumberofnBackMatches > numberOfPhotos/5){
+              return Math.ceil(numberOfPhotos/5);
+          } 
+          else {
+            return setNumberofnBackMatches;      
+        }
+      }
+
+const validatesetnBackDegree = (nBackDegree) => {
+          if (nBackDegree < 0){
+              return 0;
+          }
+          if (nBackDegree > 11){
+              return 11;
+          } 
+          else {
+            return nBackDegree;      
+        }
+      }
+  
+
+const validatesetTimerSeconds = (setTimerSeconds) => {        
+          if (setTimerSeconds < 0){
+              return 0;
+          }
+          if (setTimerSeconds > 15000){
+              return 15000;
+          } 
+          else {
+            return setTimerSeconds;      
+        }
+      }
+        
+  
+
+      //------ END OF FUNCTIONS TO VALIDATE DATA BEFORE IT IS SENT TO STORE
+
+
+//-------------------- Settings Form Event Handlers:
+
+const setNumberofPhotosFormEventHandler = () => {
+  setNumberOfPredictivePhotos(validateNumberOfPredictivePhotos(numberOfPredictivePhotos));
+  setNumberofnBackMatches(validatesetNumberofnBackMatches(NumberofnBackMatches));
+}
+//-------------------- End Settings Event Handlers
+
 (useDispatch());
+
+//-------------------- End of Functions that will render the Settings Page
+
+//-------------------- Rendered Website
+
 
     return (
         
@@ -66,27 +138,27 @@ settings bar
 <ul>
   <li><label>
     numberOfPhotos:  
-    <input type="number" name="numberOfPhotos" onChange={(e) => {setNumberofPhotos(e.target.value)}}/>  {numberOfPhotos}
+    <input type="number" name="numberOfPhotos" onChange={(e) => {setNumberofPhotos(validateNumberOfPhotos(e.target.value));setNumberofPhotosFormEventHandler()}}/>  {numberOfPhotos}
   </label>
   </li>
   <li><label>
   numberOfPredictivePhotos:
-    <input type="number" name="numberOfPredictivePhotos" onChange={(e) => {setNumberOfPredictivePhotos(e.target.value)}}/> {numberOfPredictivePhotos}
+    <input type="number" name="numberOfPredictivePhotos" onChange={(e) => {setNumberOfPredictivePhotos(validateNumberOfPredictivePhotos(e.target.value))}}/> {numberOfPredictivePhotos}
   </label>
   </li>
   <li><label>
-  NumberofnBackMatches:
-    <input type="number" name="NumberofnBackMatches" onChange={(e) => {setNumberofnBackMatches(e.target.value)}}/> {NumberofnBackMatches}
+  NumberofnBackMatches: (Capped at 1/5 the Image Set Size)
+    <input type="number" name="NumberofnBackMatches" onChange={(e) => {setNumberofnBackMatches(validatesetNumberofnBackMatches(e.target.value))}}/> {NumberofnBackMatches}
   </label>
   </li>
   <li><label>
-  nBackDegree:
-    <input type="number" name="nBackDegree" onChange={(e) => {setnBackDegree(e.target.value)}}/> {nBackDegree}
+  nBackDegree: (Capped at 11)
+    <input type="number" name="nBackDegree" onChange={(e) => {setnBackDegree(validatesetnBackDegree(e.target.value))}}/> {nBackDegree}
   </label>
   </li>
   <li><label>
-  timerSeconds:
-    <input type="number" name="timerSeconds" onChange={(e) => {setTimerSeconds(e.target.value)}}/> {timerSeconds}
+  timerSeconds: (capped at 15 seconds)
+    <input type="number" name="timerSeconds" onChange={(e) => {setTimerSeconds(validatesetTimerSeconds(e.target.value))}}/> {timerSeconds}
   </label>
   </li>
 
@@ -99,6 +171,9 @@ Total Number of images in array: {imageFileNameArrayLength}
  
     )
     }
+//-------------------- End of Rendered Website
+
+
 
 export default Settings;
 
