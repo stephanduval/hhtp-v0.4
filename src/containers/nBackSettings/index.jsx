@@ -31,10 +31,10 @@ const numberOfPredictivePhotosDispatch = (dispatch) => ({
 const NumberofnBackMatchesDispatch = (dispatch) => ({
   setNumberofnBackMatches: (NumberofnBackMatches) => dispatch(setNumberofnBackMatches(NumberofnBackMatches)),
 });
-const nBackDegree = (dispatch) => ({
+const nBackDegreeDispatch = (dispatch) => ({
   setnBackDegree: (nBackDegree) => dispatch(setnBackDegree(nBackDegree)),
 });
-const timerSeconds = (dispatch) => ({
+const timerSecondsDispatch = (dispatch) => ({
   setTimerSeconds: (timerSeconds) => dispatch(setTimerSeconds(timerSeconds)),
 });
 
@@ -46,12 +46,16 @@ const Settings = () => {
     const NumberofnBackMatches = useSelector(state => state.nBackSettingsReducer.NumberofnBackMatches);
     const nBackDegree = useSelector(state => state.nBackSettingsReducer.nBackDegree);
     const timerSeconds = useSelector(state => state.nBackSettingsReducer.timerSeconds);
+    const imageFileNameArrayLength = useSelector(state => state.photoSpaceReducer.imageFileNameArrayLength);
 
     const { setNumberofPhotos } = numberOfPhotosDispatch(useDispatch());
     const { setNumberOfPredictivePhotos } = numberOfPredictivePhotosDispatch(useDispatch());
     const { setNumberofnBackMatches } = NumberofnBackMatchesDispatch(useDispatch());
-   // const { setnBackDegree } = nBackDegree(useDispatch());
-  //  const { setTimerSeconds } = timerSeconds(useDispatch());
+    const { setnBackDegree } = nBackDegreeDispatch(useDispatch());
+    const { setTimerSeconds } = timerSecondsDispatch(useDispatch());
+
+    
+(useDispatch());
 
     return (
         
@@ -62,34 +66,34 @@ settings bar
 <ul>
   <li><label>
     numberOfPhotos:  
-    <input type="text" name="name" />  {numberOfPhotos}
+    <input type="number" name="numberOfPhotos" onChange={(e) => {setNumberofPhotos(e.target.value)}}/>  {numberOfPhotos}
   </label>
   </li>
   <li><label>
   numberOfPredictivePhotos:
-    <input type="text" name="name" /> {numberOfPredictivePhotos}
+    <input type="number" name="numberOfPredictivePhotos" onChange={(e) => {setNumberOfPredictivePhotos(e.target.value)}}/> {numberOfPredictivePhotos}
   </label>
   </li>
   <li><label>
   NumberofnBackMatches:
-    <input type="text" name="name" /> {NumberofnBackMatches}
+    <input type="number" name="NumberofnBackMatches" onChange={(e) => {setNumberofnBackMatches(e.target.value)}}/> {NumberofnBackMatches}
   </label>
   </li>
   <li><label>
   nBackDegree:
-    <input type="text" name="name" /> {nBackDegree}
+    <input type="number" name="nBackDegree" onChange={(e) => {setnBackDegree(e.target.value)}}/> {nBackDegree}
   </label>
   </li>
   <li><label>
   timerSeconds:
-    <input type="text" name="name" /> {timerSeconds}
+    <input type="number" name="timerSeconds" onChange={(e) => {setTimerSeconds(e.target.value)}}/> {timerSeconds}
   </label>
   </li>
 
-  <input type="submit" value="Submit" />
+  <input type="submit" value="Reset to Defaults" />
 </ul>
 </form>
-
+Total Number of images in array: {imageFileNameArrayLength}
 
   </div>
  

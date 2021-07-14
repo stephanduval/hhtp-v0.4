@@ -1,5 +1,11 @@
 
 import { ActionTypes } from "./constants";
+//import React from 'react';
+//import { useSelector } from "react-redux";
+
+
+//const imageFileNameArrayLength = useSelector(state => state.photoSpaceReducer.imageFileNameArrayLength);
+
 
 const defaultState = {
     numberOfPhotos: 126,
@@ -12,7 +18,8 @@ const defaultState = {
 export default function nBackSettings(state = defaultState, action) { 
     switch (action.type) {
         case ActionTypes.NUMBER_OF_PHOTOS:
-            return { ...state, numberOfPhotos: action.payload };
+                if (action.payload > 0 /*&& action.payload <= imageFileNameArrayLength*/){
+            return { ...state, numberOfPhotos: action.payload }};
         case ActionTypes.NUMBER_OF_PREDICTIVE_PHOTOS:
             return { ...state, numberOfPredictivePhotos: action.payload };
         case ActionTypes.NUMBER_OF_NBACK_MATCHES:

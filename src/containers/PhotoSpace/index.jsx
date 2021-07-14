@@ -30,7 +30,7 @@ const Photospace = () => {  // this destructing allows us to use onInputChange i
     setImageFileNameArray(imageFileNameArray);  // Assigns the imageFileNameArray to the Store!!!
     const NBackState = useSelector(state => state.examNavigationReducer.newNBackState); // gets the NBack state from the store
     
-
+    
     const fileNameArray = useSelector(state => state.photoSpaceReducer.imageFileNameArray);
     const { newImageFileNameArray } = imageArrayactionDispatch(useDispatch());
    
@@ -41,7 +41,6 @@ const Photospace = () => {  // this destructing allows us to use onInputChange i
         
 <div className="photospace">
        <img src={process.env.PUBLIC_URL + './images/FeeliePhotos/'+imageFileNameArray[NBackState]} alt='Current nBack'/>;
-
 
   </div>
     )

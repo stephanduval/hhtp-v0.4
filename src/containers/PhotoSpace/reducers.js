@@ -1,10 +1,16 @@
 
 import { ActionTypes } from "./constants";
+import { filesToPhotosObject } from './../../functions.js';
+
+const images = filesToPhotosObject(require.context('./../../../public/images/FeeliePhotos/', false, /\.(png|jpe?g|svg)$/));
+let imageFileNameArray = Object.keys(images);
+let imageFileNameArrayLength = imageFileNameArray.length;
 
 const defaultState = {
     correctResponseArray: [],
     userResponseArray: [],
     imageFileNameArray: [],
+    imageFileNameArrayLength: imageFileNameArrayLength,
 
 };
 
