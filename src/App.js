@@ -3,6 +3,7 @@ import React from 'react';
 import Photospace from './containers/PhotoSpace';
 import ExamNavigation from './containers/ExamNavigation';
 import Settings from './containers/nBackSettings';
+import ImageArray from './containers/ImageArray/';
 import store from "./store";
 
 
@@ -28,6 +29,7 @@ console.log('store:',{store});
     <div className="App">
        <div className="headerBar">
         <div align="center">This is a Header (class topBar)
+        <ImageArray></ImageArray>
         </div>
     </div>
      <div className="navBarWrapper">

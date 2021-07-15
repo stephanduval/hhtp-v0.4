@@ -2,7 +2,7 @@ import React from 'react';
 import './nBackSettings.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setNumberofPhotos, setNumberOfPredictivePhotos, setNumberofnBackMatches, setnBackDegree, setTimerSeconds } from './actions';
-import { filesToPhotosObject } from '../../functions';
+
 
 
 

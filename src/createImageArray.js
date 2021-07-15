@@ -26,12 +26,15 @@ let timerSeconds = 5;
 returns an array consisting of filenames.
 */
 
+const testFolder = './images/FeeliePhotos/';
 var files = fs.readdirSync(testFolder);
 
 // CONSOLE TESTING
+/*
 console.log("first item in the array",files[0]);
 console.log("second item in the",files[1]);
 console.log("all files",files);
+*/
 // END OF CONSOLE TESTING
 
 /* Shuffle the array function (randomizes it) by using the array.sort(compareFunction)
@@ -45,7 +48,9 @@ console.log(files.sort(function(){return 0.5 - Math.random()}));
 let randomizedImageArray = files.sort(()=> 0.5 - Math.random())
 
 // CONSOLE TESTING
+/*
 console.log("randomizedImageArray",randomizedImageArray)
+*/
 // END OF CONSOLE TESTING
 
 
@@ -54,13 +59,14 @@ console.log("randomizedImageArray",randomizedImageArray)
 let slicedRandomizedImageArray = randomizedImageArray.slice((numberOfPhotos) => 0, numberOfPhotos);
 
 
-
 // CONSOLE TESTING
+/*
 console.log("slicedRandomizedImageArray",slicedRandomizedImageArray);
 console.log("slicedRandomizedImageArray length:",slicedRandomizedImageArray.length);
+*/
 // END OF CONSOLE TESTING
 
-// Create an array of the indexes of numbers to select the predictive values
+// Create an array of random indexes corresponding to the photo array to select the predictive values
 
 function predictiveSet() {
   var arr = [];
@@ -117,7 +123,7 @@ if (!(excluded.includes(num))
     && !(excluded.includes(num-nBackDegree))
       ) 
       {
-        console.log["Match",num];
+        //console.log["Match",num];
         excluded.push(num,num-nBackDegree);
         slicedRandomizedImageArray.splice(num+nBackDegree,1,slicedRandomizedImageArray[num] + " MATCH " + num + !(excluded.includes(slicedRandomizedImageArray[num])) );
         }
@@ -125,7 +131,7 @@ if (!(excluded.includes(num))
  i++   
   }
 
-  j = 0
+  let j = 0
    while (j < slicedRandomizedImageArray.length) {
      
     if (predictiveSetOfImages.includes(slicedRandomizedImageArray[j])) 
