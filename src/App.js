@@ -29,7 +29,7 @@ console.log('store:',{store});
     <div className="App">
        <div className="headerBar">
         <div align="center">This is a Header (class topBar)
-        <ImageArray></ImageArray>
+  
         </div>
     </div>
      <div className="navBarWrapper">

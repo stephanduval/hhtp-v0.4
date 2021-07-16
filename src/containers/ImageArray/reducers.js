@@ -1,10 +1,10 @@
 import { ActionTypes } from "./constants";
 
 const defaultState = {
-    nBackArray: [],
+   // nBackArray: [],
 
 };
-
+/*
 export default function ImageArray(state = defaultState, action) { 
     switch (action.type) {
         case ActionTypes.ADVANCE_IMAGE:
@@ -12,4 +12,6 @@ export default function ImageArray(state = defaultState, action) {
         default:
             return state;
     }
+    
 }
+*/

@@ -4,14 +4,15 @@ import { filesToPhotosObject } from './../../functions.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCorrectResponseArray, setUserResponseArray, setImageFileNameArray } from './actions';
 import { newNBackState } from './../ExamNavigation/actions';
-import photoSpace from './reducers';
+
      
+
+//--------------------  Create an object of the photo file names
+
 const images = filesToPhotosObject(require.context('./../../../public/images/FeeliePhotos/', false, /\.(png|jpe?g|svg)$/));
 let imageFileNameArray = Object.keys(images);
 
-const NBackactionDispatch = (dispatch) => ({
-    newNBackState: (users) => dispatch(newNBackState(users)),
-});
+//-------------------- End of Create an object of the photo file names
 
 const imageArrayactionDispatch = (dispatch) => ({
     setImageFileNameArray: (array) => dispatch(setImageFileNameArray(array)),
@@ -30,7 +31,6 @@ const Photospace = () => {  // this destructing allows us to use onInputChange i
     setImageFileNameArray(imageFileNameArray);  // Assigns the imageFileNameArray to the Store!!!
     const NBackState = useSelector(state => state.examNavigationReducer.newNBackState); // gets the NBack state from the store
     
-    const nBackArray = useSelector(state => state.ImageArrayReducer.nBackArray);
     const fileNameArray = useSelector(state => state.photoSpaceReducer.imageFileNameArray);
     const { newImageFileNameArray } = imageArrayactionDispatch(useDispatch());
    
@@ -41,7 +41,7 @@ const Photospace = () => {  // this destructing allows us to use onInputChange i
         
 <div className="photospace">
        <img src={process.env.PUBLIC_URL + './images/FeeliePhotos/'+imageFileNameArray[NBackState]} alt='Current nBack'/>
-        {imageFileNameArray}
+        First item in image FileArray: {imageFileNameArray[0]}
   </div>
     )
 
