@@ -9,8 +9,8 @@ import { setCorrectResponseArray, setUserResponseArray, setImageFileNameArray, s
 // ======= Functions that will go into their own components eventually:
     
     const randomizeArray = (array) => {array.sort(()=> 0.5 - Math.random())};
-    const arrayLength = (array) => array.length;
-
+    const arrayLength = (array) => array.length;  
+  
 // ======= Constants:
 
 
@@ -57,14 +57,38 @@ const ImageArray = () => {  // this destructing allows us to use onInputChange i
     const nBackDegree = useSelector(state => state.nBackSettingsReducer.nBackDegree);
     const timerSeconds = useSelector(state => state.nBackSettingsReducer.timerSeconds);
     const imageFileNameLength = arrayLength(ReduxStorefileNameArray)
-    const slicedRandomizedImageArray = imageFileNameArray.slice((numberOfPhotos) => 0, numberOfPhotos); 
+    const slicedRandomizedImageArray = imageFileNameArray.slice((numberOfPhotos, numberOfPredictivePhotos) => 0, numberOfPhotos-numberOfPredictivePhotos); 
+    const PredictiveFileNameArrayLength = arrayLength(PredictiveFileNameArray)
     const NBackState = useSelector(state => state.examNavigationReducer.newNBackState); // gets the NBack state from the store
    // const randomizedPredictiveImageArrayLength = arrayLength(ReduxStorePredictiveFileNameArray);
+    const ReduxPredictiveFileNameArrayLength = useSelector(state => state.imageArrayReducer.predictiveImageFileNameLength)
 
     const { setImageFileNameArray } = imageArrayDispatch(useDispatch()); // how does this work?  It creates an object
     const { setImageFileNameLength } = imageFileNameLengthDispatch(useDispatch());
     const { setPredictiveImageFileNameArray } = PredictveImageArrayDispatch(useDispatch()); // how does this work?  It creates an object
     const { setPredictiveImageFileNameLength } = PredictiveImageFileNameLengthDispatch(useDispatch());
+
+    const predictiveSet = (array) => {
+        /*
+        *  This Function takes an array and 
+        *
+        */
+        let RandomPredictiveFileNameArray = randomizeArray(PredictiveFileNameArray);
+        let arr = [...array];
+        let predictIndex = 0;
+        while(arr.length < numberOfPhotos){
+         var r = Math.floor(Math.random() * (array.length - 0 + 1) + 0);
+         arr.splice(r,0,PredictiveFileNameArray[predictIndex]); 
+         predictIndex++;
+
+         //if(arr.indexOf(r) === -1) arr.push(array[r]);
+      
+    }
+    return arr;
+    } 
+
+  const arraywithPredictives = predictiveSet(slicedRandomizedImageArray) 
+
 
      /*
     useEffect(() => {
@@ -91,7 +115,7 @@ const ImageArray = () => {  // this destructing allows us to use onInputChange i
     setImageFileNameArray(imageFileNameArray);
     setImageFileNameLength(imageFileNameLength);
     setPredictiveImageFileNameArray(PredictiveFileNameArray);
-    //setPredictiveImageFileNameLength(randomizedPredictiveImageArrayLength);
+    setPredictiveImageFileNameLength(PredictiveFileNameArrayLength);
 
     return (
         
@@ -108,6 +132,12 @@ Sliced array: {slicedRandomizedImageArray}
 </p>
 <p>
 Number of Photos {numberOfPhotos}    length: {imageFileNameLength}  ... {ReduxStorePredictiveFileNameArray}
+</p>
+<p>
+setPredictiveImageFileNameLength: {ReduxPredictiveFileNameArrayLength} 
+</p>
+<p>
+  arraywithPredictives: {arraywithPredictives}
 </p>
 </div>
     )

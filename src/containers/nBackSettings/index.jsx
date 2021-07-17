@@ -38,6 +38,7 @@ const Settings = () => {
     const nBackDegree = useSelector(state => state.nBackSettingsReducer.nBackDegree);
     const timerSeconds = useSelector(state => state.nBackSettingsReducer.timerSeconds);
     const imageFileNameArrayLength = useSelector(state => state.imageArrayReducer.imageFileNameLength);  // This is not the real value
+    const ReduxPredictiveFileNameArrayLength = useSelector(state => state.imageArrayReducer.predictiveImageFileNameLength)
 
     const { setNumberofPhotos } = numberOfPhotosDispatch(useDispatch());
     const { setNumberOfPredictivePhotos } = numberOfPredictivePhotosDispatch(useDispatch());
@@ -56,20 +57,24 @@ const validateNumberOfPhotos = (numberOfPhotos) => {
           } 
           else {
             return numberOfPhotos;      
+      }
     }
-  }
 
 const validateNumberOfPredictivePhotos = (numberOfPredictivePhotos) => {
         if (numberOfPredictivePhotos < 0){
             return 0;
         }
+        if (numberOfPredictivePhotos > ReduxPredictiveFileNameArrayLength){
+          return ReduxPredictiveFileNameArrayLength;
+        }
         if (numberOfPredictivePhotos > numberOfPhotos){
-            return numberOfPhotos;
+          return numberOfPhotos;  
         } 
+
         else {
           return numberOfPredictivePhotos;      
+        }
       }
-    }
     
 const validatesetNumberofnBackMatches = (setNumberofnBackMatches) => {
           if (setNumberofnBackMatches < 0){
