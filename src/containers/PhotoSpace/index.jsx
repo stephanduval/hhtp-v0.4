@@ -15,7 +15,7 @@ const Photospace = () => {  // this destructing allows us to use onInputChange i
     return (
         
 <div className="photospace">
-       <img src={process.env.PUBLIC_URL + './images/FeeliePhotos/'+imageFileNameArray[NBackState]} alt='Current nBack'/>
+       <img src={process.env.PUBLIC_URL + './images/FeeliePhotos/RandomLot/'+imageFileNameArray[NBackState]} alt='Current nBack'/>
         First item in image FileArray: {imageFileNameArray[0]}  nBack State: {NBackState}
   </div>
     )

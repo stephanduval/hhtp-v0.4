@@ -14,3 +14,18 @@ export const setImageFileNameArray = (imageFileNameArray) => ({
     type: ActionTypes.IMAGE_FILENAME_ARRAY,  // from the constants file
     payload: imageFileNameArray
 })
+
+export const setImageFileNameLength = (imageFileNameLength) => ({
+    type: ActionTypes.IMAGE_FILENAME_LENGTH,  // from the constants file
+    payload: imageFileNameLength
+})
+
+export const setPredictiveImageFileNameArray = (PredictiveImageFileNameArray) => ({
+    type: ActionTypes.PREDICTIVE_IMAGE_FILENAME_ARRAY,  // from the constants file
+    payload: PredictiveImageFileNameArray
+})
+
+export const setPredictiveImageFileNameLength = (predictiveImageFileNameLength) => ({
+    type: ActionTypes.PREDICTIVE_IMAGE_FILENAME_LENGTH,  // from the constants file
+    payload: predictiveImageFileNameLength
+})

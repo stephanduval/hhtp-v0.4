@@ -9,17 +9,11 @@ const actionDispatch = (dispatch) => ({
     newNBackState: (users) => dispatch(newNBackState(users)),
 });
 
-
-
-
 const ExamNavigation = () => {
-
-
-    
-
+ 
     const NBackState = useSelector(state => state.examNavigationReducer.newNBackState);
     const { newNBackState } = actionDispatch(useDispatch())
-    
+
     
     const keyStrokeListener = (event) => {
         /*
@@ -27,25 +21,27 @@ const ExamNavigation = () => {
         * ISSUE:  IT repeats all previous keystrokes for some reason, making the process increasingly slower
         */
         console.log('HIT',event.keyCode)
+        const buttonNBackState = NBackState;
            switch (event.keyCode) {
             case 87:
-                return console.log('W key, Log the Result, Run Next Image Function',newNBackState(NBackState+1));
+                return console.log('W key, Log the Result, Run Next Image Function',newNBackState(NBackState));
             case 79:
-                return console.log('O Key, Log the Result, Run Next Image Function',newNBackState(NBackState+1));
+                return console.log('O Key, Log the Result, Run Next Image Function',newNBackState(NBackState));
 
         }
     }
 
     React.useEffect(() => {
     document.addEventListener('keyup', keyStrokeListener);
-      
-      });
+    console.log("RAN useEFFECT");
+    return function cleanup() {
+        document.removeEventListener('keyup', keyStrokeListener);
+    };
+     });
     
 
     return (
-
-    
-        
+            
         <div className="buttonSpace">
            
     <button variant="contained" intValue={10} stringValue={"Hello"}>"W" - Same as *n* photos Back
@@ -53,7 +49,7 @@ const ExamNavigation = () => {
 
         <button variant="contained">"R" - Does not repeat
         </button>
-        <button onClick={()=>{newNBackState(NBackState+1)}}>ADDs</button>
+        <button onClick={()=>{newNBackState(NBackState)}}>ADDs</button>
  
         { NBackState }
         </div>

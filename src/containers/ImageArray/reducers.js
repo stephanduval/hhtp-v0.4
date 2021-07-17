@@ -16,6 +16,15 @@ export default function imageArray(state = defaultState, action) {
             return { ...state, userResponseArray: action.payload };
         case ActionTypes.IMAGE_FILENAME_ARRAY:
             return { ...state, imageFileNameArray: action.payload };
+        case ActionTypes.IMAGE_FILENAME_LENGTH:
+            return { ...state, imageFileNameLength: action.payload };
+        case ActionTypes.PREDICTIVE_IMAGE_FILENAME_ARRAY:
+            return { ...state, PredictiveImageFileNameArray: action.payload };
+        case ActionTypes.PREDICTIVE_IMAGE_FILENAME_LENGTH:
+            return { ...state, predictiveImageFileNameLength: action.payload };
+
+
+
         default:
             return state;
     }

@@ -26,10 +26,9 @@ const timerSecondsDispatch = (dispatch) => ({
   setTimerSeconds: (timerSeconds) => dispatch(setTimerSeconds(timerSeconds)),
 });
 
-//-------------------- END OF CONTSTANTS FOR REDUX TO DISPATCH ACTIONS: 
+//-------------------- END OF CONTSTANTS FOR REDUX TO DISPATCH ACTIONS
 
 //-------------------- Function that will render the Settings Page:
-
 
 const Settings = () => { 
 
@@ -38,7 +37,7 @@ const Settings = () => {
     const NumberofnBackMatches = useSelector(state => state.nBackSettingsReducer.NumberofnBackMatches);
     const nBackDegree = useSelector(state => state.nBackSettingsReducer.nBackDegree);
     const timerSeconds = useSelector(state => state.nBackSettingsReducer.timerSeconds);
-    const imageFileNameArrayLength = useSelector(state => state.photoSpaceReducer.imageFileNameArrayLength);
+    const imageFileNameArrayLength = useSelector(state => state.imageArrayReducer.imageFileNameLength);  // This is not the real value
 
     const { setNumberofPhotos } = numberOfPhotosDispatch(useDispatch());
     const { setNumberOfPredictivePhotos } = numberOfPredictivePhotosDispatch(useDispatch());
@@ -128,7 +127,6 @@ const setNumberofPhotosFormEventHandler = () => {
 
 //-------------------- Rendered Website
 
-
     return (
         
 <div className="nBackSettings">
@@ -142,7 +140,7 @@ settings bar
   </label>
   </li>
   <li><label>
-  numberOfPredictivePhotos:
+  numberOfPredictivePhotos: (should also be limited by number of photos in folder)
     <input type="number" name="numberOfPredictivePhotos" onChange={(e) => {setNumberOfPredictivePhotos(validateNumberOfPredictivePhotos(e.target.value))}}/> {numberOfPredictivePhotos}
   </label>
   </li>
