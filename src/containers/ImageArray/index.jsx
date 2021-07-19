@@ -3,14 +3,10 @@ import './imageArray.css';
 import { filesToPhotosObject } from './../../functions.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCorrectResponseArray, setUserResponseArray, setImageFileNameArray, setImageFileNameLength, setPredictiveImageFileNameArray, setPredictiveImageFileNameLength } from './actions';
-    
+import { randomizeArray, arrayLength } from './../../functions'; 
+
 //import { setNumberofPhotos, setNumberOfPredictivePhotos, setNumberofnBackMatches, setnBackDegree, setTimerSeconds } from './../nBackSettings/actions';
 
-// ======= Functions that will go into their own components eventually:
-    
-    const randomizeArray = (array) => {array.sort(()=> 0.5 - Math.random())};
-    const arrayLength = (array) => array.length;  
-  
 // ======= Constants:
 
 
@@ -29,7 +25,7 @@ import { setCorrectResponseArray, setUserResponseArray, setImageFileNameArray, s
 const numberOfPhotosDispatch = (dispatch) => ({
     setNumberofPhotos: (numberOfPhotos) => dispatch(setNumberofPhotos(numberOfPhotos)),
   });
- */
+ */ 
 
 const imageArrayDispatch = (dispatch) => ({
     setImageFileNameArray: (array) => dispatch(setImageFileNameArray(array)),
@@ -70,7 +66,7 @@ const ImageArray = () => {  // this destructing allows us to use onInputChange i
 
     const predictiveSet = (array) => {
         /*
-        *  This Function takes an array and 
+        *  This Function takes an array and adds the predictive images into it at random places 
         *
         */
         let RandomPredictiveFileNameArray = randomizeArray(PredictiveFileNameArray);
@@ -90,6 +86,67 @@ const ImageArray = () => {  // this destructing allows us to use onInputChange i
   const arraywithPredictives = predictiveSet(slicedRandomizedImageArray) 
 
 
+/*
+function spliceNBacksIntoArray(array) {
+    /*
+    *  Function: spliceNBacksIntoArray
+  
+    *  Purpose: It creates a list of unique random integers and uses that to decide which images
+    *  In the array will be duplicated for the purpose of creating the n-back test
+    * 
+    * It also marks each file name as "predictive or matching" for testing purposes
+    * 
+    *  Parameters: None
+    * 
+    *  Returns: A modified array of the image list with the n-back matches inserted
+    * 
+    */ 
+  /*
+  let excluded = [];
+  
+  // Map each index of items that match the predictiveSetOfImages //arraywithPredictives
+  array.map(x => excluded.push(slicedRandomizedImageArray.indexOf(x)));
+  excluded.sort((a,b)=>a-b);
+  console.log(excluded);
+  
+  // adds values that will protect the predictive set of images 
+  excluded.map((element) => excluded.push(element+nBackDegree));
+  excluded.sort((a,b)=>a-b);
+  console.log(excluded);
+  
+  let i = 0;
+  while (i < NumberofnBackMatches) {
+  let num = Math.floor(Math.random() * (numberOfPhotos + 1) + 0);
+  
+  if (!(excluded.includes(num))
+      //&& !(excluded.includes(num+nBackDegree))
+      && !(excluded.includes(num-nBackDegree))
+        ) 
+        {
+          //console.log["Match",num];
+          excluded.push(num,num-nBackDegree);
+          slicedRandomizedImageArray.splice(num+nBackDegree,1,slicedRandomizedImageArray[num] + " MATCH " + num + !(excluded.includes(slicedRandomizedImageArray[num])) );
+          }
+  
+   i++   
+    }
+  
+    let j = 0
+     while (j < slicedRandomizedImageArray.length) {
+       
+      if (predictiveSetOfImages.includes(slicedRandomizedImageArray[j])) 
+       //slicedRandomizedImageArray[j])) 
+       {
+     //    console.log("FLAG");
+      slicedRandomizedImageArray[j] = slicedRandomizedImageArray[j] + " predictive";
+       }
+       j++
+     }
+  
+    excluded.sort((a,b)=>a-b);
+    console.log(excluded);
+  }
+*/
      /*
     useEffect(() => {
         const images = filesToPhotosObject(require.context('./../../../public/images/FeeliePhotos/', false, /\.(png|jpe?g|svg)$/));

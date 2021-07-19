@@ -12,7 +12,72 @@ export const filesToPhotosObject = (r) => {
        }
 
 
+  export const validateNumberOfPhotos = (numberOfPhotos, imageFileNameArrayLength) => {
+        if (numberOfPhotos < 0){
+            return 0;
+        }
+        if (numberOfPhotos > imageFileNameArrayLength){
+            return imageFileNameArrayLength;
+        } 
+        else {
+          return numberOfPhotos;      
+    }
+  }
+
+  
+export const validateNumberOfPredictivePhotos = (numberOfPredictivePhotos, ReduxPredictiveFileNameArrayLength, numberOfPhotos) => {
+  if (numberOfPredictivePhotos < 0){
+      return 0;
+  }
+  if (numberOfPredictivePhotos > ReduxPredictiveFileNameArrayLength){
+    return ReduxPredictiveFileNameArrayLength;
+  }
+  if (numberOfPredictivePhotos > numberOfPhotos){
+    return numberOfPhotos;  
+  } 
+
+  else {
+    return numberOfPredictivePhotos;      
+  }
+}
+
+export const validatesetNumberofnBackMatches = (NumberofnBackMatches, numberOfPhotos) => {
+  if (NumberofnBackMatches < 0){
+      return 0;
+  }
+  if (NumberofnBackMatches > numberOfPhotos/5){
+      return Math.ceil(numberOfPhotos/5);
+  } 
+  else {
+    return NumberofnBackMatches;      
+}
+}
+
+export const validatesetnBackDegree = (nBackDegree) => {
+  if (nBackDegree < 0){
+      return 0;
+  }
+  if (nBackDegree > 11){
+      return 11;
+  } 
+  else {
+    return nBackDegree;      
+}
+}
 
 
+export const validatesetTimerSeconds = (setTimerSeconds) => {        
+  if (setTimerSeconds < 0){
+      return 0;
+  }
+  if (setTimerSeconds > 15000){
+      return 15000;
+  } 
+  else {
+    return setTimerSeconds;      
+}
+}
 
-    
+export const randomizeArray = (array) => {array.sort(()=> 0.5 - Math.random())};
+
+export const arrayLength = (array) => array.length;  

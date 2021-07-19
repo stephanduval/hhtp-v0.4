@@ -2,10 +2,7 @@ import React from 'react';
 import './nBackSettings.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setNumberofPhotos, setNumberOfPredictivePhotos, setNumberofnBackMatches, setnBackDegree, setTimerSeconds } from './actions';
-
-
-
-
+import { validateNumberOfPhotos, validateNumberOfPredictivePhotos, validatesetNumberofnBackMatches, validatesetnBackDegree, validatesetTimerSeconds } from './../../functions';
 
 //-------------------- CONTSTANTS FOR REDUX TO DISPATCH ACTIONS: 
 
@@ -28,9 +25,11 @@ const timerSecondsDispatch = (dispatch) => ({
 
 //-------------------- END OF CONTSTANTS FOR REDUX TO DISPATCH ACTIONS
 
-//-------------------- Function that will render the Settings Page:
 
 const Settings = () => { 
+
+  //-------------------- Functions Fetch and Store Data for the Settings Page:
+
 
     const numberOfPhotos = useSelector(state => state.nBackSettingsReducer.numberOfPhotos);
     const numberOfPredictivePhotos = useSelector(state => state.nBackSettingsReducer.numberOfPredictivePhotos);
@@ -46,91 +45,17 @@ const Settings = () => {
     const { setnBackDegree } = nBackDegreeDispatch(useDispatch());
     const { setTimerSeconds } = timerSecondsDispatch(useDispatch());
 
-      //------ FUNCTIONS TO VALIDATE DATA BEFORE IT IS SENT TO STORE:
-
-const validateNumberOfPhotos = (numberOfPhotos) => {
-          if (numberOfPhotos < 0){
-              return 0;
-          }
-          if (numberOfPhotos > imageFileNameArrayLength){
-              return imageFileNameArrayLength;
-          } 
-          else {
-            return numberOfPhotos;      
-      }
-    }
-
-const validateNumberOfPredictivePhotos = (numberOfPredictivePhotos) => {
-        if (numberOfPredictivePhotos < 0){
-            return 0;
-        }
-        if (numberOfPredictivePhotos > ReduxPredictiveFileNameArrayLength){
-          return ReduxPredictiveFileNameArrayLength;
-        }
-        if (numberOfPredictivePhotos > numberOfPhotos){
-          return numberOfPhotos;  
-        } 
-
-        else {
-          return numberOfPredictivePhotos;      
-        }
-      }
-    
-const validatesetNumberofnBackMatches = (setNumberofnBackMatches) => {
-          if (setNumberofnBackMatches < 0){
-              return 0;
-          }
-          if (setNumberofnBackMatches > numberOfPhotos/5){
-              return Math.ceil(numberOfPhotos/5);
-          } 
-          else {
-            return setNumberofnBackMatches;      
-        }
-      }
-
-const validatesetnBackDegree = (nBackDegree) => {
-          if (nBackDegree < 0){
-              return 0;
-          }
-          if (nBackDegree > 11){
-              return 11;
-          } 
-          else {
-            return nBackDegree;      
-        }
-      }
-  
-
-const validatesetTimerSeconds = (setTimerSeconds) => {        
-          if (setTimerSeconds < 0){
-              return 0;
-          }
-          if (setTimerSeconds > 15000){
-              return 15000;
-          } 
-          else {
-            return setTimerSeconds;      
-        }
-      }
-        
-  
-
-      //------ END OF FUNCTIONS TO VALIDATE DATA BEFORE IT IS SENT TO STORE
-
+//-------------------- End of Functions to Fetch and Store Data for the Settings Page:
 
 //-------------------- Settings Form Event Handlers:
 
 const setNumberofPhotosFormEventHandler = () => {
-  setNumberOfPredictivePhotos(validateNumberOfPredictivePhotos(numberOfPredictivePhotos));
-  setNumberofnBackMatches(validatesetNumberofnBackMatches(NumberofnBackMatches));
+  setNumberOfPredictivePhotos(validateNumberOfPredictivePhotos(numberOfPredictivePhotos, ReduxPredictiveFileNameArrayLength, numberOfPhotos));
+  setNumberofnBackMatches(validatesetNumberofnBackMatches(NumberofnBackMatches, numberOfPhotos));
 }
 //-------------------- End Settings Event Handlers
 
-(useDispatch());
-
-//-------------------- End of Functions that will render the Settings Page
-
-//-------------------- Rendered Website
+//-------------------- Rendered Website:
 
     return (
         
@@ -141,12 +66,12 @@ settings bar
 <ul>
   <li><label>
     numberOfPhotos:  
-    <input type="number" name="numberOfPhotos" onChange={(e) => {setNumberofPhotos(validateNumberOfPhotos(e.target.value));setNumberofPhotosFormEventHandler()}}/>  {numberOfPhotos}
+    <input type="number" name="numberOfPhotos" onChange={(e) => {setNumberofPhotos(validateNumberOfPhotos(e.target.value, imageFileNameArrayLength));setNumberofPhotosFormEventHandler()}}/>  {numberOfPhotos}
   </label>
   </li>
   <li><label>
   numberOfPredictivePhotos: (should also be limited by number of photos in folder)
-    <input type="number" name="numberOfPredictivePhotos" onChange={(e) => {setNumberOfPredictivePhotos(validateNumberOfPredictivePhotos(e.target.value))}}/> {numberOfPredictivePhotos}
+    <input type="number" name="numberOfPredictivePhotos" onChange={(e) => {setNumberOfPredictivePhotos(validateNumberOfPredictivePhotos(e.target.value, ReduxPredictiveFileNameArrayLength, numberOfPhotos))}}/> {numberOfPredictivePhotos}
   </label>
   </li>
   <li><label>

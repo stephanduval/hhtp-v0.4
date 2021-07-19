@@ -71,7 +71,7 @@ console.log("slicedRandomizedImageArray length:",slicedRandomizedImageArray.leng
 function predictiveSet() {
   var arr = [];
 while(arr.length < numberOfPredictivePhotos){
-    var r = Math.floor(Math.random() * (slicedRandomizedImageArray.length - 0 + 1) + 0);
+    var r = Math.floor(Math.random() * (slicedRandomizedImageArray.length - 0 + 1) + 0); // returns a random integer between  array length and 0
     if(arr.indexOf(r) === -1) arr.push(slicedRandomizedImageArray[r]);
     
 }
