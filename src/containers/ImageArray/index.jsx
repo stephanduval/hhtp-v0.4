@@ -84,29 +84,10 @@ const ImageArray = () => {  // this destructing allows us to use onInputChange i
     } 
 
   const arraywithPredictives = predictiveSet(slicedRandomizedImageArray) 
-/**
-  function ImageArrayCorrectAnswersPreNBack(arraywithPredictives,PredictiveFileNameArray) {
-    let arr = [];
-    arraywithPredictives.forEach(item)
-    if((PredictiveFileNameArray.includes(item))
-    {
-      arr.push('p');
-    }
-    else {
-      arr.push('o');
-    })
-    return arr;
-      ;
 
+ 
 
-
-  }
-
-  
-  const testingArray = ImageArrayCorrectAnswersPreNBack(arraywithPredictives,PredictiveFileNameArray);
-*/
-/*
-function spliceNBacksIntoArray(array) {
+function spliceNBacksIntoArray(arraywithPredictives,numberOfPhotos,PredictiveFileNameArray) {
     /*
     *  Function: spliceNBacksIntoArray
   
@@ -120,11 +101,11 @@ function spliceNBacksIntoArray(array) {
     *  Returns: A modified array of the image list with the n-back matches inserted
     * 
     */ 
-  /*
-  let excluded = [];
   
+  let excluded = [];
+  let finalArray =[...arraywithPredictives]
   // Map each index of items that match the predictiveSetOfImages //arraywithPredictives
-  array.map(x => excluded.push(slicedRandomizedImageArray.indexOf(x)));
+  PredictiveFileNameArray.map(x => excluded.push(arraywithPredictives.indexOf(x)));
   excluded.sort((a,b)=>a-b);
   console.log(excluded);
   
@@ -144,7 +125,7 @@ function spliceNBacksIntoArray(array) {
         {
           //console.log["Match",num];
           excluded.push(num,num-nBackDegree);
-          slicedRandomizedImageArray.splice(num+nBackDegree,1,slicedRandomizedImageArray[num] + " MATCH " + num + !(excluded.includes(slicedRandomizedImageArray[num])) );
+          finalArray.splice(num+nBackDegree,1,finalArray[num] + !(excluded.includes(finalArray[num])) );
           }
   
    i++   
@@ -153,19 +134,47 @@ function spliceNBacksIntoArray(array) {
     let j = 0
      while (j < slicedRandomizedImageArray.length) {
        
-      if (predictiveSetOfImages.includes(slicedRandomizedImageArray[j])) 
+      if (PredictiveFileNameArray.includes(finalArray[j])) 
        //slicedRandomizedImageArray[j])) 
        {
      //    console.log("FLAG");
-      slicedRandomizedImageArray[j] = slicedRandomizedImageArray[j] + " predictive";
+     finalArray[j] = finalArray[j];
        }
        j++
      }
   
     excluded.sort((a,b)=>a-b);
     console.log(excluded);
+    return finalArray;
   }
-*/
+
+
+  function createScoringArray(finalArray,PredictiveFileNameArray,nBackDegree) {
+    let arr = [...finalArray];
+    let n = 0;
+    arr.forEach(item =>{ 
+    if(PredictiveFileNameArray.includes(item)){
+    {
+      arr.splice(n,1,'P');
+    }
+    if(arr[n] == arr[n+2])
+    {
+      arr.splice(n,1,'{=N'+arr[n] + 'N=}');
+      arr.splice(n+nBackDegree,1,'{=N'+arr[n+2] + 'N=}');
+
+    }
+    else {
+      arr.splice(n,1,'O');
+    };
+    n++
+  };
+  })
+
+  return arr;
+};
+
+  
+
      /*
     useEffect(() => {
         const images = filesToPhotosObject(require.context('./../../../public/images/FeeliePhotos/', false, /\.(png|jpe?g|svg)$/));
@@ -192,6 +201,8 @@ function spliceNBacksIntoArray(array) {
     setImageFileNameLength(imageFileNameLength);
     setPredictiveImageFileNameArray(PredictiveFileNameArray);
     setPredictiveImageFileNameLength(PredictiveFileNameArrayLength);
+    let finalArray = spliceNBacksIntoArray(arraywithPredictives,numberOfPhotos,PredictiveFileNameArray)
+    let scoringArray = createScoringArray(finalArray,PredictiveFileNameArray,nBackDegree)
 
     return (
         
@@ -213,10 +224,20 @@ Number of Photos {numberOfPhotos}    length: {imageFileNameLength}  ... {ReduxSt
 setPredictiveImageFileNameLength: {ReduxPredictiveFileNameArrayLength} 
 </p>
 <p>
-  arraywithPredictives: {arraywithPredictives}
+  arraywithPredictives: 
+</p>
+<p>{arraywithPredictives}</p>
+<p>
+Scoring Array: 
+<p>
+{scoringArray}
+</p>
 </p>
 <p>
-  {testingArray}
+  final array:
+</p>
+<p>
+{finalArray}
 </p>
 </div>
     )
