@@ -152,6 +152,7 @@ function spliceNBacksIntoArray(arraywithPredictives,numberOfPhotos,PredictiveFil
 
   function createScoringArray(finalArray,PredictiveFileNameArray,nBackDegree) {
     let arr = [...finalArray];
+    let arr2 = [...finalArray];
     let n = 0;
     let j = 0;
     arr.forEach(item =>{ 
@@ -169,12 +170,13 @@ if(PredictiveFileNameArray.includes(arr[n]))
   });
 
   arr.forEach(item =>{ 
-if(arr[3] == arr[3])
-  {
-    arr.splice(n,1,'=N=');
-  }
-  j++
-});
+    if(arr[j] == arr2[j+nBackDegree])
+      {
+        arr.splice(j,1,'N=>');
+        arr.splice(j+2,1,'<=N');
+}
+j++
+})
 /*
     else {
      // arr.splice(n,1,'O');
@@ -187,7 +189,24 @@ if(arr[3] == arr[3])
   return arr;
 };
 
+  function checkArrayValues (array) {
+    let j = 0;
+    let arr = [...array];
+    let arr2 = [...array];
+    arr.forEach(item =>{ 
+      if(arr[j] == arr2[j+2])
+        {
+          arr.splice(j,1,'N=>');
+          arr.splice(j+2,1,'<=N');
+  }
+  j++
+  })
+
+    return arr;
   
+  }
+
+    let checkArrayValue = checkArrayValues([1,1,1,2,3,2,3,5,6,7,8,7])
 
      /*
     useEffect(() => {
@@ -217,7 +236,7 @@ if(arr[3] == arr[3])
     setPredictiveImageFileNameLength(PredictiveFileNameArrayLength);
     let finalArray = spliceNBacksIntoArray(arraywithPredictives,numberOfPhotos,PredictiveFileNameArray)
     let scoringArray = createScoringArray(finalArray,PredictiveFileNameArray,nBackDegree)
-
+    
     return (
         
 <div className="imageArray">Image Array Info
@@ -252,6 +271,9 @@ Scoring Array:
 </p>
 <p>
 {finalArray}
+</p>
+<p>
+  Check Array Value: {checkArrayValue} 
 </p>
 </div>
     )
