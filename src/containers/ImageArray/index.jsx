@@ -103,7 +103,8 @@ function spliceNBacksIntoArray(arraywithPredictives,numberOfPhotos,PredictiveFil
     */ 
   
   let excluded = [];
-  let finalArray =[...arraywithPredictives]
+  let finalArray =[...arraywithPredictives];
+  let scoreArray = [];
   // Map each index of items that match the predictiveSetOfImages //arraywithPredictives
   PredictiveFileNameArray.map(x => excluded.push(arraywithPredictives.indexOf(x)));
   excluded.sort((a,b)=>a-b);
@@ -152,23 +153,36 @@ function spliceNBacksIntoArray(arraywithPredictives,numberOfPhotos,PredictiveFil
   function createScoringArray(finalArray,PredictiveFileNameArray,nBackDegree) {
     let arr = [...finalArray];
     let n = 0;
+    let j = 0;
     arr.forEach(item =>{ 
-    if(PredictiveFileNameArray.includes(item)){
+/*  if(arr[n] == arr[n+nBackDegree])
     {
-      arr.splice(n,1,'P');
-    }
-    if(arr[n] == arr[n+2])
-    {
-      arr.splice(n,1,'{=N'+arr[n] + 'N=}');
-      arr.splice(n+nBackDegree,1,'{=N'+arr[n+2] + 'N=}');
+      arr.splice(n,1,'{=N=}');
+      arr.splice(n+nBackDegree,1,'{=N=}');
 
+    }*/
+if(PredictiveFileNameArray.includes(arr[n]))
+    {
+      arr.splice(n,1,'=P=');
     }
+    n++
+  });
+
+  arr.forEach(item =>{ 
+if(arr[3] == arr[3])
+  {
+    arr.splice(n,1,'=N=');
+  }
+  j++
+});
+/*
     else {
-      arr.splice(n,1,'O');
+     // arr.splice(n,1,'O');
     };
     n++
-  };
-  })
+  }
+  */
+  
 
   return arr;
 };
