@@ -84,7 +84,7 @@ const ImageArray = () => {  // this destructing allows us to use onInputChange i
     } 
 
   const arraywithPredictives = predictiveSet(slicedRandomizedImageArray) 
-/*
+/**
   function ImageArrayCorrectAnswersPreNBack(arraywithPredictives,PredictiveFileNameArray) {
     let arr = [];
     arraywithPredictives.forEach(item)
