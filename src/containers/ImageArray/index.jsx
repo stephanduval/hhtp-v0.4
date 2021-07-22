@@ -80,13 +80,11 @@ const ImageArray = () => {  // this destructing allows us to use onInputChange i
         var r = Math.floor(Math.random() * (imageSetStageOne.length - 0 + 1) + 0);
         indexOfPredictivePhotos.push(r); 
     }
+    indexOfPredictivePhotos.sort((a,b)=>a-b);
     return indexOfPredictivePhotos;
     } 
 
     const predictiveIndex = predictiveIndexes(imageSetStageOne,numberOfPredictivePhotos)
-
- 
-
 
     
     const imageSetStageTwo = (imageSetStageOne,predictiveIndex,PredictiveFileNameArray) => {
@@ -112,25 +110,54 @@ const ImageArray = () => {  // this destructing allows us to use onInputChange i
   return setStageOne;
   } 
     
-  const ImageSetStageTwo = imageSetStageTwo(imageSetStageOne,predictiveIndex,PredictiveFileNameArray)
+  const imageStageTwo = imageSetStageTwo(imageSetStageOne,predictiveIndex,PredictiveFileNameArray)
 
-  const nBackPredictiveIndexes = (ImageSetStageTwo) => {
+  const nBackPredictiveIndexes = (predictiveIndex,NumberofnBackMatches,nBackDegree) => {
     /*
     *  Takes the Image Array called ImageSetStageTwo and returns an array of the indexes where the nback values
     * Will replace the array values
+    * 
     */
+
+    let nBackIndex = [];
+
+    let i = 0;
+  while (nBackIndex.length < NumberofnBackMatches) {
+  let num = Math.floor(Math.random() * (numberOfPhotos + 1) + nBackDegree);
+  
+  if (!(predictiveIndex.includes(num))
+      && !(predictiveIndex.includes(num-nBackDegree))
+      && !(predictiveIndex.includes(num+nBackDegree))
+      && !(nBackIndex.includes(num))
+      && !(nBackIndex.includes(num-nBackDegree))
+      && !(nBackIndex.includes(num+nBackDegree))
+        ) 
+        {
+          //console.log["Match",num];
+          nBackIndex.push(num,num-nBackDegree);
+        }
+     i++   
+    }
+    nBackIndex.sort((a,b)=>a-b);
+    return nBackIndex;
   }
-  const ImageSetStateThree = () => {
+
+  const nBackPredictiveIndex = nBackPredictiveIndexes(predictiveIndex,NumberofnBackMatches,nBackDegree);
+
+  const imageSetStageThree = (nBackPredictiveIndex, nBackDegree, imageStageTwo) => {
     /*
       *  This Function takes an array and adds the nback images into it
       * at the places where the result of the predictiveIndexes() and nBackIndexes() functions define it
       *
       */
 
+    nBackPredictiveIndex.forEach(element => imageStageTwo.splice(element-nBackDegree,1,imageStageTwo[element]));
+   
+    return imageStageTwo;
 
   }
 
- 
+ const imageStageThree = imageSetStageThree(nBackPredictiveIndex, nBackDegree, imageStageTwo);
 
 
 // function spliceNBacksIntoArray(arraywithPredictives,numberOfPhotos,PredictiveFileNameArray) {
@@ -374,28 +401,32 @@ Number of Photos {numberOfPhotos}
 setPredictiveImageFileNameLength: {ReduxPredictiveFileNameArrayLength} 
 </p>
 <p>
-imageSetStageTwo:  
+image Stage Two:  
 </p>
-<p>{ImageSetStageTwo.toString()} Length: {ImageSetStageTwo.length}</p>
-<p>
+<p>{imageStageTwo.toString()} Length: {imageStageTwo.length}</p>
+
 
 <p>
+nBackPredictiveIndex: 
+</p>
+
+<p>
+{nBackPredictiveIndex.toString()} Length: {nBackPredictiveIndex.length}
+</p>
+<p>
+ImageStateThree: 
+</p>
+<p>
+{imageStageThree.toString()}  Length: {imageStageThree.length}
+</p>
+<p>
 
 </p>
+<p>
+nBackPredictiveIndex: {nBackPredictiveIndex.toString()}  Length: {nBackPredictiveIndex.length}
 </p>
 <p>
-
-</p>
-<p>
-
-</p>
-<p>
-
-</p>
-<p>
-</p>
-<p>
-predictiveIndex: {predictiveIndex.toString()}
+predictiveIndex: {predictiveIndex.toString()} Length: {predictiveIndex.length}
  
 </p>
 </div>

@@ -26,10 +26,7 @@ export default function nBackSettings(state = defaultState, action) {
             if (action.payload < 0){
                 return { ...state, NumberofnBackMatches: 0 };
             }
-            if (action.payload > imageFileNameArrayLength/4){
-                return { ...state, NumberofnBackMatches: imageFileNameArrayLength/4 };
-            } 
-            else {
+        else {
                 return { ...state, NumberofnBackMatches: action.payload };
             }         
 

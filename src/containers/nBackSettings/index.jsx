@@ -75,7 +75,7 @@ settings bar
   </label>
   </li>
   <li><label>
-  NumberofnBackMatches: (Capped at 1/5 the Image Set Size)
+  NumberofnBackMatches: (higher numbers will crash the program)
     <input type="number" name="NumberofnBackMatches" onChange={(e) => {setNumberofnBackMatches(validatesetNumberofnBackMatches(e.target.value))}}/> {NumberofnBackMatches}
   </label>
   </li>
