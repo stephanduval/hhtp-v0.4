@@ -53,7 +53,7 @@ const ImageArray = () => {  // this destructing allows us to use onInputChange i
     const nBackDegree = useSelector(state => state.nBackSettingsReducer.nBackDegree);
     const timerSeconds = useSelector(state => state.nBackSettingsReducer.timerSeconds);
     const imageFileNameLength = arrayLength(ReduxStorefileNameArray)
-    const slicedRandomizedImageArray = imageFileNameArray.slice((numberOfPhotos, numberOfPredictivePhotos) => 0, numberOfPhotos-numberOfPredictivePhotos); 
+    const imageSetStageOne = imageFileNameArray.slice((numberOfPhotos, numberOfPredictivePhotos) => 0, numberOfPhotos-numberOfPredictivePhotos); 
     const PredictiveFileNameArrayLength = arrayLength(PredictiveFileNameArray)
     const NBackState = useSelector(state => state.examNavigationReducer.newNBackState); // gets the NBack state from the store
    // const randomizedPredictiveImageArrayLength = arrayLength(ReduxStorePredictiveFileNameArray);
@@ -64,149 +64,262 @@ const ImageArray = () => {  // this destructing allows us to use onInputChange i
     const { setPredictiveImageFileNameArray } = PredictveImageArrayDispatch(useDispatch()); // how does this work?  It creates an object
     const { setPredictiveImageFileNameLength } = PredictiveImageFileNameLengthDispatch(useDispatch());
 
-    const predictiveSet = (array) => {
-        /*
-        *  This Function takes an array and adds the predictive images into it at random places 
-        *
-        */
-        let RandomPredictiveFileNameArray = randomizeArray(PredictiveFileNameArray);
-        let arr = [...array];
-        let predictIndex = 0;
-        while(arr.length < numberOfPhotos){
-         var r = Math.floor(Math.random() * (array.length - 0 + 1) + 0);
-         arr.splice(r,0,PredictiveFileNameArray[predictIndex]); 
-         predictIndex++;
+ 
+    setImageFileNameArray(imageFileNameArray);
+    setImageFileNameLength(imageFileNameLength);
+    setPredictiveImageFileNameArray(PredictiveFileNameArray);
+    setPredictiveImageFileNameLength(PredictiveFileNameArrayLength);
 
-         //if(arr.indexOf(r) === -1) arr.push(array[r]);
-      
+    const predictiveIndexes = (imageSetStageOne,numberOfPredictivePhotos) => {
+        /*
+        *  Takes the Image Array stage one and returns an array of the indexes where the predictive values
+        * Will replace the array values
+        */
+        let indexOfPredictivePhotos = [];
+        while(indexOfPredictivePhotos.length < numberOfPredictivePhotos){
+        var r = Math.floor(Math.random() * (imageSetStageOne.length - 0 + 1) + 0);
+        indexOfPredictivePhotos.push(r); 
     }
-    return arr;
+    return indexOfPredictivePhotos;
     } 
 
-  const arraywithPredictives = predictiveSet(slicedRandomizedImageArray) 
+    const predictiveIndex = predictiveIndexes(imageSetStageOne,numberOfPredictivePhotos)
 
  
 
-function spliceNBacksIntoArray(arraywithPredictives,numberOfPhotos,PredictiveFileNameArray) {
+
+    
+    const imageSetStageTwo = (imageSetStageOne,predictiveIndex,PredictiveFileNameArray) => {
+      /*
+      *  This Function takes an array and adds the predictive images into it
+      * at the places where the result of the predictiveIndexes() function defines it
+      *
+      */
+      let reduxPredictive = PredictiveFileNameArray;
+      
+      let predictive = [...predictiveIndex];
+      let setStageOne = [...imageSetStageOne];
+      let PredictiveIndexValue = 0;
+      const iteratePredictiveIndex = () => PredictiveIndexValue++;
+      let PredictiveReduxValue = 0;
+      const iteratePredictiveReduxValue = () => PredictiveReduxValue++;
+
+
+    predictive.forEach(element => setStageOne.splice(predictive[iteratePredictiveIndex()],0,reduxPredictive[iteratePredictiveReduxValue()]))
+    //reduxPredictive[PredictiveIndexValue])
+      //predictive.forEach(element => setStageOne.splice(1,0,setStageOne[element]))
+      
+  return setStageOne;
+  } 
+    
+  const ImageSetStageTwo = imageSetStageTwo(imageSetStageOne,predictiveIndex,PredictiveFileNameArray)
+
+  const nBackPredictiveIndexes = (ImageSetStageTwo) => {
     /*
-    *  Function: spliceNBacksIntoArray
+    *  Takes the Image Array called ImageSetStageTwo and returns an array of the indexes where the nback values
+    * Will replace the array values
+    */
+  }
+  const ImageSetStateThree = () => {
+    /*
+      *  This Function takes an array and adds the nback images into it
+      * at the places where the result of the predictiveIndexes() and nBackIndexes() functions define it
+      *
+      */
+
+
+  }
+
+ 
+
+
+// function spliceNBacksIntoArray(arraywithPredictives,numberOfPhotos,PredictiveFileNameArray) {
+//     /*
+//     *  Function: spliceNBacksIntoArray
   
-    *  Purpose: It creates a list of unique random integers and uses that to decide which images
-    *  In the array will be duplicated for the purpose of creating the n-back test
-    * 
-    * It also marks each file name as "predictive or matching" for testing purposes
-    * 
-    *  Parameters: None
-    * 
-    *  Returns: A modified array of the image list with the n-back matches inserted
-    * 
-    */ 
+//     *  Purpose: It creates a list of unique random integers and uses that to decide which images
+//     *  In the array will be duplicated for the purpose of creating the n-back test
+//     * 
+//     * It also marks each file name as "predictive or matching" for testing purposes
+//     * 
+//     *  Parameters: None
+//     * 
+//     *  Returns: A modified array of the image list with the n-back matches inserted
+//     * 
+//     */ 
   
-  let excluded = [];
-  let finalArray =[...arraywithPredictives];
-  let scoreArray = [];
-  // Map each index of items that match the predictiveSetOfImages //arraywithPredictives
-  PredictiveFileNameArray.map(x => excluded.push(arraywithPredictives.indexOf(x)));
-  excluded.sort((a,b)=>a-b);
-  console.log(excluded);
+//   let excluded = [];
+//   let finalArray =[...arraywithPredictives];
+//   let scoreArray = [];
+//   // Map each index of items that match the items in PredictiveFileNameArray //arraywithPredictives
+//   PredictiveFileNameArray.map(x => excluded.push(arraywithPredictives.indexOf(x)));
+//   excluded.sort((a,b)=>a-b);
+
+//   // eliminate indexOf() values that indicate the element was not found (result for that is -1)
+//   /*while (excluded[0] < 0) 
+//     {
+//     excluded.shift();
+//     }
+// */
+
+//   // adds values that will protect the predictive set of images 
+//   /*excluded.map((element) => excluded.push(element+nBackDegree));
+//   excluded.sort((a,b)=>a-b);
+//   while (excluded[0] < 0) 
+//     {
+//     excluded.shift();
+//     }
+// */
+
+//   let i = 0;
+//   while (i < NumberofnBackMatches) {
+//   let num = Math.floor(Math.random() * (numberOfPhotos + 1) + 0);
   
-  // adds values that will protect the predictive set of images 
-  excluded.map((element) => excluded.push(element+nBackDegree));
-  excluded.sort((a,b)=>a-b);
-  console.log(excluded);
+//   if (!(excluded.includes(num))
+//       //&& !(excluded.includes(num+nBackDegree))
+//       && !(excluded.includes(num-nBackDegree))
+//         ) 
+//         {
+//           //console.log["Match",num];
+//           excluded.push(num,num-nBackDegree);
+//           finalArray.splice(num+nBackDegree,1,finalArray[num]);
+//           }
   
-  let i = 0;
-  while (i < NumberofnBackMatches) {
-  let num = Math.floor(Math.random() * (numberOfPhotos + 1) + 0);
-  
-  if (!(excluded.includes(num))
-      //&& !(excluded.includes(num+nBackDegree))
-      && !(excluded.includes(num-nBackDegree))
-        ) 
-        {
-          //console.log["Match",num];
-          excluded.push(num,num-nBackDegree);
-          finalArray.splice(num+nBackDegree,1,finalArray[num] + !(excluded.includes(finalArray[num])) );
-          }
-  
-   i++   
-    }
-  
-    let j = 0
-     while (j < slicedRandomizedImageArray.length) {
+//    i++   
+//     }
+//   /*
+//     let j = 0
+//      while (j < finalArray.length) {
        
-      if (PredictiveFileNameArray.includes(finalArray[j])) 
-       //slicedRandomizedImageArray[j])) 
-       {
-     //    console.log("FLAG");
-     finalArray[j] = finalArray[j];
-       }
-       j++
-     }
+//       if (PredictiveFileNameArray.includes(finalArray[j])) 
+//        //slicedRandomizedImageArray[j])) 
+//        {
+//        console.log("FLAG");
+//      finalArray[j] = "===FLAG===";
+//        }
+//        j++
+//      }
+//   */
+//     excluded.sort((a,b)=>a-b);
+
+//     return finalArray;
+//   }
+
+
+//   function excludedValuesForSpliceNBacksIntoArray(arraywithPredictives,numberOfPhotos,PredictiveFileNameArray) {
+//     /*
+//     *  Function: spliceNBacksIntoArray
   
-    excluded.sort((a,b)=>a-b);
-    console.log(excluded);
-    return finalArray;
-  }
-
-
-  function createScoringArray(finalArray,PredictiveFileNameArray,nBackDegree) {
-    let arr = [...finalArray];
-    let arr2 = [...finalArray];
-    let n = 0;
-    let j = 0;
-    arr.forEach(item =>{ 
-/*  if(arr[n] == arr[n+nBackDegree])
-    {
-      arr.splice(n,1,'{=N=}');
-      arr.splice(n+nBackDegree,1,'{=N=}');
-
-    }*/
-if(PredictiveFileNameArray.includes(arr[n]))
-    {
-      arr.splice(n,1,'=P=');
-    }
-    n++
-  });
-
-  arr.forEach(item =>{ 
-    if(arr[j] == arr2[j+nBackDegree])
-      {
-        arr.splice(j,1,'N=>');
-        arr.splice(j+2,1,'<=N');
-}
-j++
-})
-/*
-    else {
-     // arr.splice(n,1,'O');
-    };
-    n++
-  }
-  */
+//     *  Purpose: It creates a list of unique random integers and uses that to decide which images
+//     *  In the array will be duplicated for the purpose of creating the n-back test
+//     * 
+//     * It also marks each file name as "predictive or matching" for testing purposes
+//     * 
+//     *  Parameters: None
+//     * 
+//     *  Returns: A modified array of the image list with the n-back matches inserted
+//     * 
+//     */ 
   
+//   let excluded = [];
+//   let finalArray =[...arraywithPredictives];
+//   let scoreArray = [];
+//   // Map each index of items that match the items in PredictiveFileNameArray //arraywithPredictives
+//   PredictiveFileNameArray.map(x => excluded.push(arraywithPredictives.indexOf(x)));
+//   excluded.sort((a,b)=>a-b);
 
-  return arr;
-};
+//   // eliminate indexOf() values that indicate the element was not found (result for that is -1)
+//   /*while (excluded[0] < 0) 
+//     {
+//     excluded.shift();
+//     }
+// */
 
-  function checkArrayValues (array) {
-    let j = 0;
-    let arr = [...array];
-    let arr2 = [...array];
-    arr.forEach(item =>{ 
-      if(arr[j] == arr2[j+2])
-        {
-          arr.splice(j,1,'N=>');
-          arr.splice(j+2,1,'<=N');
-  }
-  j++
-  })
+//   // adds values that will protect the predictive set of images 
+//   /*excluded.map((element) => excluded.push(element+nBackDegree));
+//   excluded.sort((a,b)=>a-b);
+//   while (excluded[0] < 0) 
+//     {
+//     excluded.shift();
+//     }
+// */
 
-    return arr;
+//   let i = 0;
+//   while (i < NumberofnBackMatches) {
+//   let num = Math.floor(Math.random() * (numberOfPhotos + 1) + 0);
   
-  }
+//   if (!(excluded.includes(num))
+//       //&& !(excluded.includes(num+nBackDegree))
+//       && !(excluded.includes(num-nBackDegree))
+//         ) 
+//         {
+//           //console.log["Match",num];
+//           excluded.push(num,num-nBackDegree);
+//           finalArray.splice(num+nBackDegree,0,"MATCH"/*finalArray[num]*/);
+//           }
+  
+//    i++   
+//     }
+//   /*
+//     let j = 0
+//      while (j < finalArray.length) {
+       
+//       if (PredictiveFileNameArray.includes(finalArray[j])) 
+//        //slicedRandomizedImageArray[j])) 
+//        {
+//        console.log("FLAG");
+//      finalArray[j] = "===FLAG===";
+//        }
+//        j++
+//      }
+//   */
+//     excluded.sort((a,b)=>a-b);
 
-    let checkArrayValue = checkArrayValues([1,1,1,2,3,2,3,5,6,7,8,7])
+//     return excluded;
+//   }
+
+
+//   function createScoringArray(finalArray,PredictiveFileNameArray,nBackDegree) {
+    
+//     let arr = [...finalArray];
+//     let arr2 = [...finalArray];
+//     let n = 0;
+//     let j = 0;
+//     arr.forEach(item =>{ 
+// /*  if(arr[n] == arr[n+nBackDegree])
+//     {
+//       arr.splice(n,1,'{=N=}');
+//       arr.splice(n+nBackDegree,1,'{=N=}');
+
+//     }*/
+// if(PredictiveFileNameArray.includes(arr[n]))
+//     {
+//       arr.splice(n,1,'=P=');
+//     }
+//     n++
+//   });
+
+//   return arr;
+// };
+
+//   function checkArrayValues (array) {
+//     let j = 0;
+//     let arr = [...array];
+//     let arr2 = [...array];
+//     arr.forEach(item =>{ 
+//       if(arr[j] == arr2[j+2])
+//         {
+//           arr.splice(j,1,'N=>');
+//           arr.splice(j+2,1,'<=N');
+//   }
+//   j++
+//   })
+
+//     return arr;
+  
+//   }
+
+//     let checkArrayValue = checkArrayValues([1,1,1,2,3,2,3,5,6,7,8,7])
 
      /*
     useEffect(() => {
@@ -230,13 +343,11 @@ j++
 
 
     //  Send the image FileNameArray to the store:
-    setImageFileNameArray(imageFileNameArray);
-    setImageFileNameLength(imageFileNameLength);
-    setPredictiveImageFileNameArray(PredictiveFileNameArray);
-    setPredictiveImageFileNameLength(PredictiveFileNameArrayLength);
-    let finalArray = spliceNBacksIntoArray(arraywithPredictives,numberOfPhotos,PredictiveFileNameArray)
-    let scoringArray = createScoringArray(finalArray,PredictiveFileNameArray,nBackDegree)
-    
+  
+    //let finalArray = spliceNBacksIntoArray(imageSetStageTwo,numberOfPhotos,PredictiveFileNameArray);
+    //let scoringArray = createScoringArray(finalArray,PredictiveFileNameArray,nBackDegree);
+    //let excluded = excludedValuesForSpliceNBacksIntoArray(imageSetStageTwo,numberOfPhotos,PredictiveFileNameArray);
+
     return (
         
 <div className="imageArray">Image Array Info
@@ -248,32 +359,44 @@ Image File at nBack: {NBackState} array from store:  {ReduxStorefileNameArray[NB
 Image File at nBack: {NBackState} array from Component:  {randomizedImageArray}
 </p>
 <p>
-Sliced array: {slicedRandomizedImageArray}    
+imageSetStageOne: {imageSetStageOne}    
 </p>
 <p>
-Number of Photos {numberOfPhotos}    length: {imageFileNameLength}  ... {ReduxStorePredictiveFileNameArray}
+Number of Photos {numberOfPhotos}
+<p>
+
+</p>   length: {imageFileNameLength}  ...  ReduxStorePredictiveFileNameArray: {ReduxStorePredictiveFileNameArray}
+<p>
+
+</p>
 </p>
 <p>
 setPredictiveImageFileNameLength: {ReduxPredictiveFileNameArrayLength} 
 </p>
 <p>
-  arraywithPredictives: 
+imageSetStageTwo:  
 </p>
-<p>{arraywithPredictives}</p>
+<p>{ImageSetStageTwo.toString()} Length: {ImageSetStageTwo.length}</p>
 <p>
-Scoring Array: 
+
 <p>
-{scoringArray}
+
 </p>
-</p>
-<p>
-  final array:
 </p>
 <p>
-{finalArray}
+
 </p>
 <p>
-  Check Array Value: {checkArrayValue} 
+
+</p>
+<p>
+
+</p>
+<p>
+</p>
+<p>
+predictiveIndex: {predictiveIndex.toString()}
+ 
 </p>
 </div>
     )
