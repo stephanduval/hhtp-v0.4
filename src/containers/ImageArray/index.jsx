@@ -111,8 +111,8 @@ const ImageArray = () => {  // this destructing allows us to use onInputChange i
   } 
     
   const imageStageTwo = imageSetStageTwo(imageSetStageOne,predictiveIndex,PredictiveFileNameArray)
-
-  const nBackPredictiveIndexes = (predictiveIndex,NumberofnBackMatches,nBackDegree) => {
+ 
+  const nBackIndexes = (predictiveIndex,NumberofnBackMatches,nBackDegree) => {
     /*
     *  Takes the Image Array called ImageSetStageTwo and returns an array of the indexes where the nback values
     * Will replace the array values
@@ -142,7 +142,7 @@ const ImageArray = () => {  // this destructing allows us to use onInputChange i
     return nBackIndex;
   }
 
-  const nBackPredictiveIndex = nBackPredictiveIndexes(predictiveIndex,NumberofnBackMatches,nBackDegree);
+  const nBackIndex = nBackIndexes(predictiveIndex,NumberofnBackMatches,nBackDegree);
 
   const imageSetStageThree = (nBackPredictiveIndex, nBackDegree, imageStageTwo) => {
     /*
@@ -154,10 +154,9 @@ const ImageArray = () => {  // this destructing allows us to use onInputChange i
     nBackPredictiveIndex.forEach(element => imageStageTwo.splice(element-nBackDegree,1,imageStageTwo[element]));
    
     return imageStageTwo;
-
   }
 
- const imageStageThree = imageSetStageThree(nBackPredictiveIndex, nBackDegree, imageStageTwo);
+ const imageStageThree = imageSetStageThree(nBackIndex, nBackDegree, imageStageTwo);
 
 //
 // function spliceNBacksIntoArray(arraywithPredictives,numberOfPhotos,PredictiveFileNameArray) {
@@ -375,6 +374,42 @@ const ImageArray = () => {  // this destructing allows us to use onInputChange i
     //let scoringArray = createScoringArray(finalArray,PredictiveFileNameArray,nBackDegree);
     //let excluded = excludedValuesForSpliceNBacksIntoArray(imageSetStageTwo,numberOfPhotos,PredictiveFileNameArray);
 
+//  ===============TESTING FUNCTIONS
+const checkForEmptyinArray = (array) => {
+  /*
+  *  A test function that takes an array and tests if it has an empty element
+  *
+  */ 
+
+  let arr = [...array].map((_, i) => i);
+  let flag = false;
+  let n=0
+  arr.map(element => {if (array[element] == undefined) {flag = true; console.log(element, n)}else{ console.log("PASS")}n++});
+  return flag.toString();
+}
+
+const showMatchesOnly = (array,matchIndex) => {
+/*
+  *  A test function that returns only the matching nback indices of the cards array 
+  * 
+  */ 
+ let nBackValueTest = []; 
+ matchIndex.forEach(element => nBackValueTest.push(array[element]));
+
+ return nBackValueTest;
+
+ };
+
+const predictiveMatches = showMatchesOnly(imageStageTwo,predictiveIndex)
+const nBackMatches = showMatchesOnly(imageStageTwo,nBackIndex)
+ 
+  //let testarr = [1,2,3,,5,6,7,8,"a"]
+  //const emptyArrayCheck = checkForEmptyinArray(testarr);
+  const emptyArrayCheck = checkForEmptyinArray(imageStageTwo);
+
+//  ===============TESTING FUNCTIONS
+
+
     return (
         
 <div className="imageArray">Image Array Info
@@ -386,7 +421,10 @@ Image File at nBack: {NBackState} array from store:  {ReduxStorefileNameArray[NB
 Image File at nBack: {NBackState} array from Component:  {randomizedImageArray}
 </p>
 <p>
-imageSetStageOne: {imageSetStageOne}    
+imageSetStageOne:     
+</p>
+<p>
+{imageSetStageOne.toString()}
 </p>
 <p>
 Number of Photos {numberOfPhotos}
@@ -411,7 +449,7 @@ nBackPredictiveIndex:
 </p>
 
 <p>
-{nBackPredictiveIndex.toString()} Length: {nBackPredictiveIndex.length}
+{nBackIndex.toString()} Length: {nBackIndex.length}
 </p>
 <p>
 ImageStateThree: 
@@ -423,11 +461,23 @@ ImageStateThree:
 
 </p>
 <p>
-nBackPredictiveIndex: {nBackPredictiveIndex.toString()}  Length: {nBackPredictiveIndex.length}
+nBackPredictiveIndex: {nBackIndex.toString()}  Length: {nBackIndex.length}
 </p>
 <p>
 predictiveIndex: {predictiveIndex.toString()} Length: {predictiveIndex.length}
  
+</p>
+
+<p>
+Is there an empty part in the imageStageTwo array? 
+</p>
+<p>emptyArrayCheck: {emptyArrayCheck}
+</p>
+<p>
+nBackMatches: {nBackMatches.toString()}  Length: {nBackMatches.length} 
+</p>
+<p>
+predictiveMatches: {predictiveMatches.toString()}  Length: {predictiveMatches.length} 
 </p>
 </div>
     )
