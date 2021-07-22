@@ -159,7 +159,7 @@ const ImageArray = () => {  // this destructing allows us to use onInputChange i
 
  const imageStageThree = imageSetStageThree(nBackPredictiveIndex, nBackDegree, imageStageTwo);
 
-
+//
 // function spliceNBacksIntoArray(arraywithPredictives,numberOfPhotos,PredictiveFileNameArray) {
 //     /*
 //     *  Function: spliceNBacksIntoArray
