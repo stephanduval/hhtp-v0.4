@@ -29,3 +29,5 @@ export const setPredictiveImageFileNameLength = (predictiveImageFileNameLength) 
     type: ActionTypes.PREDICTIVE_IMAGE_FILENAME_LENGTH,  // from the constants file
     payload: predictiveImageFileNameLength
 })
+
+
