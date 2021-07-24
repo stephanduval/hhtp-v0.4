@@ -12,13 +12,14 @@ export const checkForEmptyinArray = (array) => {
     return flag.toString();
   }
   
-  export const showMatchesOnly = (array,matchIndex) => {
+  export const showMatchesOnly = (array,matchIndex,nBackDegree) => {
   /*
     *  A test function that returns only the matching nback indices of the cards array 
     * 
     */ 
    let nBackValueTest = []; 
    matchIndex.forEach(element => nBackValueTest.push(array[element]));
+
   
    return nBackValueTest;
   

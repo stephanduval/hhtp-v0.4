@@ -22,8 +22,10 @@ export default function imageArray(state = defaultState, action) {
             return { ...state, PredictiveImageFileNameArray: action.payload };
         case ActionTypes.PREDICTIVE_IMAGE_FILENAME_LENGTH:
             return { ...state, predictiveImageFileNameLength: action.payload };
-
-
+        case ActionTypes.IMAGE_SET:
+            return { ...state, imageSet: action.payload };
+        case ActionTypes.SCORING_ARRAY:
+            return { ...state, scoringArray: action.payload };
 
         default:
             return state;

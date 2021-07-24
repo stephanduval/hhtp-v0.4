@@ -3,7 +3,7 @@ import './imageArray.css';
 import { checkForEmptyinArray, showMatchesOnly } from './functions'
 import { filesToPhotosObject } from './../../functions.js';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCorrectResponseArray, setUserResponseArray, setImageFileNameArray, setImageFileNameLength, setPredictiveImageFileNameArray, setPredictiveImageFileNameLength } from './actions';
+import { setCorrectResponseArray, setUserResponseArray, setImageFileNameArray, setImageFileNameLength, setPredictiveImageFileNameArray, setPredictiveImageFileNameLength, setImageSet, setScoringArray} from './actions';
 import { randomizeArray, arrayLength } from './../../functions'; 
 import { render } from '@testing-library/react';
 
@@ -32,6 +32,12 @@ const PredictveImageArrayDispatch = (dispatch) => ({
 const PredictiveImageFileNameLengthDispatch = (dispatch) => ({
     setPredictiveImageFileNameLength: (array) => dispatch(setPredictiveImageFileNameLength(array)),
 });
+const imageSetDispatch = (dispatch) => ({
+  setImageSet: (array) => dispatch(setImageSet(array)),
+});
+const scoringArrayDispatch = (dispatch) => ({
+  setScoringArray: (array) => dispatch(setScoringArray(array)),
+});
 
 //-------------------- END OF CONTSTANTS FOR REDUX TO DISPATCH ACTIONS
 
@@ -56,29 +62,31 @@ const ImageArray = () => {  // this destructing allows us to use onInputChange i
     const { setImageFileNameLength } = imageFileNameLengthDispatch(useDispatch());
     const { setPredictiveImageFileNameArray } = PredictveImageArrayDispatch(useDispatch()); // how does this work?  It creates an object
     const { setPredictiveImageFileNameLength } = PredictiveImageFileNameLengthDispatch(useDispatch());
-
+    const { setImageSet } = imageSetDispatch(useDispatch());
+    const { setScoringArray } = scoringArrayDispatch(useDispatch());
  
     setImageFileNameArray(imageFileNameArray);
     setImageFileNameLength(imageFileNameLength);
     setPredictiveImageFileNameArray(PredictiveFileNameArray);
     setPredictiveImageFileNameLength(PredictiveFileNameArrayLength);
 
-    const predictiveIndexes = (imageSetStageOne,numberOfPredictivePhotos) => {
+    const predictiveIndexes = (imageSetStageOne,numberOfPredictivePhotos,nBackDegree) => {
         /*
         *  Takes the Image Array stage one and returns an array of the indexes where the predictive values
         * Will replace the array values
         */
         let indexOfPredictivePhotos = [];
         while(indexOfPredictivePhotos.length < numberOfPredictivePhotos){
-        var r = Math.floor(Math.random() * (imageSetStageOne.length - 0 + 1) + 0);
-        indexOfPredictivePhotos.push(r); 
+        var r = Math.floor(Math.random() * (imageSetStageOne.length - nBackDegree) + 0);
+        if (!indexOfPredictivePhotos.includes(r)) {indexOfPredictivePhotos.push(r)}; 
     }
     indexOfPredictivePhotos.sort((a,b)=>a-b);
     return indexOfPredictivePhotos;
     } 
 
-    const predictiveIndex = predictiveIndexes(imageSetStageOne,numberOfPredictivePhotos)
+    const predictiveIndex = predictiveIndexes(imageSetStageOne,numberOfPredictivePhotos,nBackDegree)
       
+    const earlyPredictiveIndex = [...predictiveIndex];
     const imageSetStageTwo = (imageSetStageOne,predictiveIndex,PredictiveFileNameArray) => {
       /*
       *  This Function takes an array and adds the predictive images into it
@@ -94,7 +102,7 @@ const ImageArray = () => {  // this destructing allows us to use onInputChange i
       let PredictiveReduxValue = 0;
       const iteratePredictiveReduxValue = () => PredictiveReduxValue++;
 
-      predictive.forEach(element => setStageOne.splice(predictiveIndex[iteratePredictiveIndex()],1,PredictiveFileNameArray[iteratePredictiveReduxValue()]),console.log("PD"))
+      predictive.forEach(element => setStageOne.splice(predictiveIndex[iteratePredictiveIndex()],1,PredictiveFileNameArray[iteratePredictiveReduxValue()]))
     return setStageOne;
     } 
     
@@ -113,7 +121,7 @@ const ImageArray = () => {  // this destructing allows us to use onInputChange i
 
     let i = 0;
   while (nBackIndex.length < NumberofnBackMatches) {
-  let num = Math.floor(Math.random() * (numberOfPhotos + 1) + nBackDegree);
+  let num = Math.floor(Math.random() * (numberOfPhotos - nBackDegree) + nBackDegree,);
   
   if (!(predictiveIndex.includes(num))
       && !(predictiveIndex.includes(num-nBackDegree))
@@ -125,7 +133,7 @@ const ImageArray = () => {  // this destructing allows us to use onInputChange i
         {
           //console.log["Match",num];
           nBackIndex.push(num);
-          nBackIndex.push (num-nBackDegree)
+          //nBackIndex.push(num+nBackDegree)
         }
      i++   
     }
@@ -142,14 +150,17 @@ const ImageArray = () => {  // this destructing allows us to use onInputChange i
       *
       */
 
-    nBackIndex.forEach(element => imageStageTwo.splice(element-nBackDegree,1,imageStageTwo[element]));
+    let stage2 = [...imageStageTwo];
+
+    nBackIndex.forEach(element => stage2.splice(element-nBackDegree,1,stage2[element]));
    
-    return imageStageTwo;
+    return stage2;
   }
 
  const imageStageThree = imageSetStageThree(nBackIndex, nBackDegree, imageStageTwo);
  //const imageStageFour = imageSetStageFour(imageStageThree,predictiveIndex,PredictiveFileNameArray)
-
+ setImageSet (imageStageThree);
+ 
 
 const nBackMatches2 = showMatchesOnly(imageStageTwo,nBackIndex);
 const predictiveMatches2 = showMatchesOnly(imageStageTwo,predictiveIndex);
@@ -178,24 +189,7 @@ const scoringArray = (imageStageTwo,predictiveIndex,nBackIndex) => {
 
 const correctScoresrray = scoringArray(imageStageTwo,predictiveIndex,nBackIndex,PredictiveFileNameArray);
 
- const renderArrayAsTable = (array) => {
-  return (
-      <>
-          <thead>
-              <tr><th>File Name </th><th> ..Index</th></tr>
-          </thead>
-          <tbody>
-              {array.map(item => 
-                  <tr>
-                      {array.map(col => <th >{col}</th>)}
-                  </tr>
-              )}
-          </tbody>
-      </>
-  );
-};
-
-
+setScoringArray(correctScoresrray);
  
 // ======= VALIDATE DATA 
 function arrayEquals(a, b) {
@@ -216,6 +210,14 @@ Number of Photos {numberOfPhotos}
 <p>
 setPredictiveImageFileNameLength: {ReduxPredictiveFileNameArrayLength} 
 </p>
+
+
+
+<p>
+imageSetStageOne:
+</p>
+<p>{imageSetStageOne.toString()} Length: {imageSetStageOne.length}</p>
+
 <p>
 image Stage Three:  
 </p>
@@ -241,10 +243,13 @@ predictiveMatches2: {predictiveMatches2.toString()}  Length: {predictiveMatches2
 </p>
 
 <p>
-  Predictives the same? {(arrayEquals(nBackMatches3,nBackMatches2)).toString()}
+  Predictives the same? {(arrayEquals(predictiveMatchesEarly,predictiveMatches3)).toString()}
 </p>
 <p>
- nBacks the same? {(arrayEquals(predictiveMatches2,predictiveMatches3)).toString()} 
+ nBacks the same? {(arrayEquals(nBackMatches3,nBackMatches2)).toString()} 
+</p>
+<p>
+ Stage 2 and 3 the same? {(arrayEquals(imageStageTwo,imageStageThree)).toString()} 
 </p>
 {/*
 nBackPredictiveIndex: 
@@ -274,6 +279,10 @@ imageSetStagefour:
 */}
 <p>
 nBackPredictiveIndex: {nBackIndex.toString()}  Length: {nBackIndex.length}
+</p>
+<p>
+earlyPredictiveIndex: {predictiveIndex.toString()} Length: {predictiveIndex.length}
+
 </p>
 <p>
 predictiveIndex: {predictiveIndex.toString()} Length: {predictiveIndex.length}
@@ -327,7 +336,7 @@ validateCard: {validateCard.toString()} Length: {validateCard.length}
 
 
 predictiveMatchesEarly: {predictiveMatchesEarly.toString()}
-{renderArrayAsTable(predictiveMatchesEarly)}
+
 </div>
     )
 }

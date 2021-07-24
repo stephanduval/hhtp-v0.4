@@ -30,4 +30,13 @@ export const setPredictiveImageFileNameLength = (predictiveImageFileNameLength) 
     payload: predictiveImageFileNameLength
 })
 
+export const setImageSet = (imageSet) => ({
+    type: ActionTypes.IMAGE_SET,  // from the constants file
+    payload: imageSet
+})
+
+export const setScoringArray = (scoringArray) => ({
+    type: ActionTypes.SCORING_ARRAY,  // from the constants file
+    payload: scoringArray
+})
 
