@@ -8,7 +8,7 @@ import { randomizeArray, arrayLength } from './../../functions';
 import { render } from '@testing-library/react';
 
 // ======= Constants:
-
+//
 //--------------------  Create an object of the photo file names
     const images = filesToPhotosObject(require.context('./../../../public/images/FeeliePhotos/RandomLot/', false, /\.(png|jpe?g|svg)$/));
     const imageFileNameArray = Object.keys(images);
