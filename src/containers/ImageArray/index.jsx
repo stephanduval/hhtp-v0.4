@@ -9,14 +9,19 @@ import { render } from '@testing-library/react';
 
 // ======= Constants:
 //
+
+
+      const images = filesToPhotosObject(require.context('./../../../public/images/FeeliePhotos/RandomLot/', false, /\.(png|jpe?g|svg)$/));
+      const imageFileNameArray = Object.keys(images);
+      //-------------------- End of Create an object of the photo file names
+      const randomizedImageArray = randomizeArray(imageFileNameArray); // spread operator didn't work with the randomizeArray Function
+      const predictiveImages = filesToPhotosObject(require.context('./../../../public/images/FeeliePhotos/Predictive/', false, /\.(png|jpe?g|svg)$/));
+      const PredictiveFileNameArray = Object.keys(predictiveImages);
+
+
+const randomizedPredictiveImageArray = randomizeArray(PredictiveFileNameArray);
 //--------------------  Create an object of the photo file names
-    const images = filesToPhotosObject(require.context('./../../../public/images/FeeliePhotos/RandomLot/', false, /\.(png|jpe?g|svg)$/));
-    const imageFileNameArray = Object.keys(images);
-    //-------------------- End of Create an object of the photo file names
-    const randomizedImageArray = randomizeArray(imageFileNameArray); // spread operator didn't work with the randomizeArray Function
-    const predictiveImages = filesToPhotosObject(require.context('./../../../public/images/FeeliePhotos/Predictive/', false, /\.(png|jpe?g|svg)$/));
-    const PredictiveFileNameArray = Object.keys(predictiveImages);
-    const randomizedPredictiveImageArray = randomizeArray(PredictiveFileNameArray);
+
 
 //-------------------- CONTSTANTS FOR REDUX TO DISPATCH ACTIONS: 
 
@@ -42,7 +47,8 @@ const scoringArrayDispatch = (dispatch) => ({
 //-------------------- END OF CONTSTANTS FOR REDUX TO DISPATCH ACTIONS
 
 //-------------------- Function that will render the ImageArray Page:
-const ImageArray = () => {  // this destructing allows us to use onInputChange instead of props.onInputChange
+const ImageArray = React.memo( () => {
+
 
     const ReduxStorefileNameArray = useSelector(state => state.imageArrayReducer.imageFileNameArray);
     const ReduxStorePredictiveFileNameArray = useSelector(state => state.imageArrayReducer.PredictiveImageFileNameArray);
@@ -54,8 +60,7 @@ const ImageArray = () => {  // this destructing allows us to use onInputChange i
     const imageFileNameLength = arrayLength(ReduxStorefileNameArray)
     const imageSetStageOne = imageFileNameArray.slice((numberOfPhotos, numberOfPredictivePhotos) => 0, numberOfPhotos); 
     const PredictiveFileNameArrayLength = arrayLength(PredictiveFileNameArray)
-    const NBackState = useSelector(state => state.examNavigationReducer.newNBackState); // gets the NBack state from the store
-   // const randomizedPredictiveImageArrayLength = arrayLength(ReduxStorePredictiveFileNameArray);
+    // const randomizedPredictiveImageArrayLength = arrayLength(ReduxStorePredictiveFileNameArray);
     const ReduxPredictiveFileNameArrayLength = useSelector(state => state.imageArrayReducer.predictiveImageFileNameLength)
 
     const { setImageFileNameArray } = imageArrayDispatch(useDispatch()); // how does this work?  It creates an object
@@ -342,7 +347,7 @@ predictiveMatchesEarly: {predictiveMatchesEarly.toString()}
 
 </div>
     )
-}
+})
 
 //-------------------- End of Function that will render the ImageArray Page
 
