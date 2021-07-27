@@ -91,126 +91,127 @@ const ImageArray =  () => {
     indexOfPredictivePhotos.sort((a,b)=>a-b);
     return indexOfPredictivePhotos;
     } 
-
-    const predictiveIndex = predictiveIndexes(imageSetStageOne,numberOfPredictivePhotos,nBackDegree)
+//This next line causes an issue
+       const predictiveIndex = predictiveIndexes(imageSetStageOne,numberOfPredictivePhotos,nBackDegree)
       
-    const earlyPredictiveIndex = [...predictiveIndex];
-    const imageSetStageTwo = (imageSetStageOne,predictiveIndex,PredictiveFileNameArray) => {
-      /*
-      *  This Function takes an array and adds the predictive images into it
-      * at the places where the result of the predictiveIndexes() function defines it
-      *
-      */
-      let reduxPredictive = PredictiveFileNameArray;
+//     const earlyPredictiveIndex = [...predictiveIndex];
+//     const imageSetStageTwo = (imageSetStageOne,predictiveIndex,PredictiveFileNameArray) => {
+//       /*
+//       *  This Function takes an array and adds the predictive images into it
+//       * at the places where the result of the predictiveIndexes() function defines it
+//       *
+//       */
+//       let reduxPredictive = PredictiveFileNameArray;
       
-      let predictive = [...predictiveIndex];
-      let setStageOne = [...imageSetStageOne];
-      let PredictiveIndexValue = 0;
-      const iteratePredictiveIndex = () => PredictiveIndexValue++;
-      let PredictiveReduxValue = 0;
-      const iteratePredictiveReduxValue = () => PredictiveReduxValue++;
+//       let predictive = [...predictiveIndex];
+//       let setStageOne = [...imageSetStageOne];
+//       let PredictiveIndexValue = 0;
+//       const iteratePredictiveIndex = () => PredictiveIndexValue++;
+//       let PredictiveReduxValue = 0;
+//       const iteratePredictiveReduxValue = () => PredictiveReduxValue++;
 
-      predictive.forEach(element => setStageOne.splice(predictiveIndex[iteratePredictiveIndex()],1,PredictiveFileNameArray[iteratePredictiveReduxValue()]))
-    return setStageOne;
-    } 
+//       predictive.forEach(element => setStageOne.splice(predictiveIndex[iteratePredictiveIndex()],1,PredictiveFileNameArray[iteratePredictiveReduxValue()]))
+//     return setStageOne;
+//     } 
     
-  const imageStageTwo = imageSetStageTwo(imageSetStageOne,predictiveIndex,PredictiveFileNameArray)
+//   const imageStageTwo = imageSetStageTwo(imageSetStageOne,predictiveIndex,PredictiveFileNameArray)
   
-  const predictiveMatchesEarly = showMatchesOnly(imageStageTwo,predictiveIndex);
+//   const predictiveMatchesEarly = showMatchesOnly(imageStageTwo,predictiveIndex);
   
-  const nBackIndexes = (predictiveIndex,NumberofnBackMatches,nBackDegree) => {
-    /*
-    *  Takes the Image Array called ImageSetStageTwo and returns an array of the indexes where the nback values
-    * Will replace the array values
-    * 
-    */
+//   const nBackIndexes = (predictiveIndex,NumberofnBackMatches,nBackDegree) => {
+//     /*
+//     *  Takes the Image Array called ImageSetStageTwo and returns an array of the indexes where the nback values
+//     * Will replace the array values
+//     * 
+//     */
 
-    let nBackIndex = [];
+//     let nBackIndex = [];
 
-    let i = 0;
-  while (nBackIndex.length < NumberofnBackMatches) {
-  let num = Math.floor(Math.random() * (numberOfPhotos - nBackDegree) + nBackDegree,);
+//     let i = 0;
+//   while (nBackIndex.length < NumberofnBackMatches) {
+//   let num = Math.floor(Math.random() * (numberOfPhotos - nBackDegree) + nBackDegree,);
   
-  if (!(predictiveIndex.includes(num))
-      && !(predictiveIndex.includes(num-nBackDegree))
-      && !(predictiveIndex.includes(num+nBackDegree))
-      && !(nBackIndex.includes(num))
-      && !(nBackIndex.includes(num-nBackDegree))
-      && !(nBackIndex.includes(num+nBackDegree))
-        ) 
-        {
-          //console.log["Match",num];
-          nBackIndex.push(num);
-          //nBackIndex.push(num+nBackDegree)
-        }
-     i++   
-    }
-   nBackIndex.sort((a,b)=>a-b);
-    return nBackIndex;
-  }
+//   if (!(predictiveIndex.includes(num))
+//       && !(predictiveIndex.includes(num-nBackDegree))
+//       && !(predictiveIndex.includes(num+nBackDegree))
+//       && !(nBackIndex.includes(num))
+//       && !(nBackIndex.includes(num-nBackDegree))
+//       && !(nBackIndex.includes(num+nBackDegree))
+//         ) 
+//         {
+//           //console.log["Match",num];
+//           nBackIndex.push(num);
+//           //nBackIndex.push(num+nBackDegree)
+//         }
+//      i++   
+//     }
+//    nBackIndex.sort((a,b)=>a-b);
+//     return nBackIndex;
+//   }
 
-  const nBackIndex = nBackIndexes(predictiveIndex,NumberofnBackMatches,nBackDegree);
+//   const nBackIndex = nBackIndexes(predictiveIndex,NumberofnBackMatches,nBackDegree);
 
-  const imageSetStageThree = (nBackIndex, nBackDegree, imageStageTwo) => {
-    /*
-      *  This Function takes an array and adds the nback images into it
-      * at the places where the result of the predictiveIndexes() and nBackIndexes() functions define it
-      *
-      */
+//   const imageSetStageThree = (nBackIndex, nBackDegree, imageStageTwo) => {
+//     /*
+//       *  This Function takes an array and adds the nback images into it
+//       * at the places where the result of the predictiveIndexes() and nBackIndexes() functions define it
+//       *
+//       */
 
-    let stage2 = [...imageStageTwo];
+//     let stage2 = [...imageStageTwo];
 
-    nBackIndex.forEach(element => stage2.splice(element-nBackDegree,1,stage2[element]));
+//     nBackIndex.forEach(element => stage2.splice(element-nBackDegree,1,stage2[element]));
    
-    return stage2;
-  }
+//     return stage2;
+//   }
 
- const imageStageThree = imageSetStageThree(nBackIndex, nBackDegree, imageStageTwo);
- //const imageStageFour = imageSetStageFour(imageStageThree,predictiveIndex,PredictiveFileNameArray)
- //setImageSet(imageStageThree);
+//  const imageStageThree = imageSetStageThree(nBackIndex, nBackDegree, imageStageTwo);
+//  //const imageStageFour = imageSetStageFour(imageStageThree,predictiveIndex,PredictiveFileNameArray)
+//  //setImageSet(imageStageThree);
  
 
-const nBackMatches2 = showMatchesOnly(imageStageTwo,nBackIndex);
-const predictiveMatches2 = showMatchesOnly(imageStageTwo,predictiveIndex);
-const nBackMatches3 = showMatchesOnly(imageStageThree,nBackIndex);
-const predictiveMatches3 = showMatchesOnly(imageStageThree,predictiveIndex);
+// const nBackMatches2 = showMatchesOnly(imageStageTwo,nBackIndex);
+// const predictiveMatches2 = showMatchesOnly(imageStageTwo,predictiveIndex);
+// const nBackMatches3 = showMatchesOnly(imageStageThree,nBackIndex);
+// const predictiveMatches3 = showMatchesOnly(imageStageThree,predictiveIndex);
 
-const scoringArray = (imageStageTwo,predictiveIndex,nBackIndex) => {
-  let scorray = [...imageStageTwo];
+// const scoringArray = (imageStageTwo,predictiveIndex,nBackIndex) => {
+//   let scorray = [...imageStageTwo];
 
-  let predictive = [...predictiveIndex];
-  let nBack = [...nBackIndex];
-  //let setStageOne = [...imageSetStageOne];
-  let PredictiveIndexValue = 0;
-  const iteratePredictiveIndex = () => PredictiveIndexValue++;
-  let PredictiveReduxValue = 0;
-  const iteratePredictiveReduxValue = () => PredictiveReduxValue++;
-  predictive.forEach(element => scorray.splice(predictive[iteratePredictiveIndex()],1,"P"))
+//   let predictive = [...predictiveIndex];
+//   let nBack = [...nBackIndex];
+//   //let setStageOne = [...imageSetStageOne];
+//   let PredictiveIndexValue = 0;
+//   const iteratePredictiveIndex = () => PredictiveIndexValue++;
+//   let PredictiveReduxValue = 0;
+//   const iteratePredictiveReduxValue = () => PredictiveReduxValue++;
+//   predictive.forEach(element => scorray.splice(predictive[iteratePredictiveIndex()],1,"P"))
 
-  let nBackIndexValue = 0;
-  const iteratenBackIndex = () => nBackIndexValue++;
-  let nBackReduxValue = 0;
-  nBack.forEach(element => scorray.splice(nBack[iteratenBackIndex()],1,"N"))
+//   let nBackIndexValue = 0;
+//   const iteratenBackIndex = () => nBackIndexValue++;
+//   let nBackReduxValue = 0;
+//   nBack.forEach(element => scorray.splice(nBack[iteratenBackIndex()],1,"N"))
 
-  return scorray;
-}
+//   return scorray;
+// }
 
-const correctScoresrray = scoringArray(imageStageTwo,predictiveIndex,nBackIndex,PredictiveFileNameArray);
+// const correctScoresrray = scoringArray(imageStageTwo,predictiveIndex,nBackIndex,PredictiveFileNameArray);
 
-//setScoringArray(correctScoresrray);
+// //setScoringArray(correctScoresrray);
  
-// ======= VALIDATE DATA 
-function arrayEquals(a, b) {
-  return Array.isArray(a) &&
-    Array.isArray(b) &&
-    a.length === b.length &&
-    a.every((val, index) => val === b[index]);
-}
-// ======= END VALIDATE DATA 
+// // ======= VALIDATE DATA 
+// function arrayEquals(a, b) {
+//   return Array.isArray(a) &&
+//     Array.isArray(b) &&
+//     a.length === b.length &&
+//     a.every((val, index) => val === b[index]);
+// }
+// // ======= END VALIDATE DATA 
 
     return (
         
 <div className="imageArray">Image Array Info
+{/*
 <p>
 Number of Photos {numberOfPhotos}
 </p>
@@ -285,6 +286,7 @@ imageSetStagefour:
 {imageStageFour.toString()}  Length: {imageStageFour.length}
 </p>
 */}
+{/*
 <p>
 nBackPredictiveIndex: {nBackIndex.toString()}  Length: {nBackIndex.length}
 </p>
@@ -296,6 +298,7 @@ earlyPredictiveIndex: {predictiveIndex.toString()} Length: {predictiveIndex.leng
 predictiveIndex: {predictiveIndex.toString()} Length: {predictiveIndex.length}
  
 </p>
+*/}
 {/*
 <p>
 Is there an empty part in the imageStageTwo array? 
@@ -325,7 +328,7 @@ predictiveMatches4: {predictiveMatches4.toString()}  Length: {predictiveMatches.
 </p>
 
 */}
-
+{/*
 <p>
 predictiveMatchesEarly: {predictiveMatchesEarly.toString()}  Length: {predictiveMatchesEarly.length} 
 </p>
@@ -334,17 +337,17 @@ predictiveMatchesEarly: {predictiveMatchesEarly.toString()}  Length: {predictive
 <p>
 {correctScoresrray.toString()} Length: {correctScoresrray.length};
 </p>
-
+*/}
 {/*
 <p>
 validateCard: {validateCard.toString()} Length: {validateCard.length}
 </p>
 */}
-
+{/*
 
 
 predictiveMatchesEarly: {predictiveMatchesEarly.toString()}
-
+*/}
 </div>
     )
 }

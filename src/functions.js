@@ -25,16 +25,16 @@ export const filesToPhotosObject = (r) => {
   }
 
   
-export const validateNumberOfPredictivePhotos = (numberOfPredictivePhotos, ReduxPredictiveFileNameArrayLength, numberOfPhotos) => {
+export const validateNumberOfPredictivePhotos = (numberOfPredictivePhotos, ReduxPredictiveFileNameArrayLength/*, numberOfPhotos*/) => {
   if (numberOfPredictivePhotos < 0){
       return 0;
   }
   if (numberOfPredictivePhotos > ReduxPredictiveFileNameArrayLength){
     return ReduxPredictiveFileNameArrayLength;
   }
-  if (numberOfPredictivePhotos > numberOfPhotos){
+  /*if (numberOfPredictivePhotos > numberOfPhotos){
     return numberOfPhotos;  
-  } 
+  } */
 
   else {
     return numberOfPredictivePhotos;      
