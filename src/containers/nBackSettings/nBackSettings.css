@@ -2,7 +2,7 @@
 .nBackSettings {
     display: flex;
     flex-wrap:nowrap;
-    height: 150px;
+    height:2000px;
     background-color: var(--grey2);
     justify-content: center;
     }

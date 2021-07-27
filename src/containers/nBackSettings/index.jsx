@@ -38,6 +38,8 @@ const Settings = () => {
     const timerSeconds = useSelector(state => state.nBackSettingsReducer.timerSeconds);
     const imageFileNameArrayLength = useSelector(state => state.imageArrayReducer.imageFileNameLength);  // This is not the real value
     const ReduxPredictiveFileNameArrayLength = useSelector(state => state.imageArrayReducer.predictiveImageFileNameLength)
+    const reduxImageSet = useSelector(state => state.imageArrayReducer.imageSet);
+    const reduxScoringArray = useSelector(state => state.imageArrayReducer.scoringArray);
 
     const { setNumberofPhotos } = numberOfPhotosDispatch(useDispatch());
     const { setNumberOfPredictivePhotos } = numberOfPredictivePhotosDispatch(useDispatch());
@@ -94,7 +96,7 @@ settings bar
 </ul>
 </form>
 Total Number of images in array: {imageFileNameArrayLength}
-
+<p>{reduxImageSet.toString()}</p>
   </div>
  
     )

@@ -65,6 +65,9 @@ const ImageArray = () => {  // this destructing allows us to use onInputChange i
     const { setImageSet } = imageSetDispatch(useDispatch());
     const { setScoringArray } = scoringArrayDispatch(useDispatch());
  
+
+ 
+
     setImageFileNameArray(imageFileNameArray);
     setImageFileNameLength(imageFileNameLength);
     setPredictiveImageFileNameArray(PredictiveFileNameArray);
@@ -159,7 +162,7 @@ const ImageArray = () => {  // this destructing allows us to use onInputChange i
 
  const imageStageThree = imageSetStageThree(nBackIndex, nBackDegree, imageStageTwo);
  //const imageStageFour = imageSetStageFour(imageStageThree,predictiveIndex,PredictiveFileNameArray)
- setImageSet (imageStageThree);
+ setImageSet(imageStageThree);
  
 
 const nBackMatches2 = showMatchesOnly(imageStageTwo,nBackIndex);
