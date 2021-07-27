@@ -17,9 +17,8 @@ import { render } from '@testing-library/react';
       const randomizedImageArray = randomizeArray(imageFileNameArray); // spread operator didn't work with the randomizeArray Function
       const predictiveImages = filesToPhotosObject(require.context('./../../../public/images/FeeliePhotos/Predictive/', false, /\.(png|jpe?g|svg)$/));
       const PredictiveFileNameArray = Object.keys(predictiveImages);
+      const randomizedPredictiveImageArray = randomizeArray(PredictiveFileNameArray);
 
-
-const randomizedPredictiveImageArray = randomizeArray(PredictiveFileNameArray);
 //--------------------  Create an object of the photo file names
 
 
@@ -47,18 +46,19 @@ const scoringArrayDispatch = (dispatch) => ({
 //-------------------- END OF CONTSTANTS FOR REDUX TO DISPATCH ACTIONS
 
 //-------------------- Function that will render the ImageArray Page:
-const ImageArray = React.memo( () => {
-
+const ImageArray =  () => {
 
     const ReduxStorefileNameArray = useSelector(state => state.imageArrayReducer.imageFileNameArray);
     const ReduxStorePredictiveFileNameArray = useSelector(state => state.imageArrayReducer.PredictiveImageFileNameArray);
+    const numberOfPhotosAlt = useSelector(state => state.nBackSettingsReducer.numberOfPhotosAlt);
     const numberOfPhotos = useSelector(state => state.nBackSettingsReducer.numberOfPhotos);
     const numberOfPredictivePhotos = useSelector(state => state.nBackSettingsReducer.numberOfPredictivePhotos);
     const NumberofnBackMatches = useSelector(state => state.nBackSettingsReducer.NumberofnBackMatches);
     const nBackDegree = useSelector(state => state.nBackSettingsReducer.nBackDegree);
     const timerSeconds = useSelector(state => state.nBackSettingsReducer.timerSeconds);
     const imageFileNameLength = arrayLength(ReduxStorefileNameArray)
-    const imageSetStageOne = imageFileNameArray.slice((numberOfPhotos, numberOfPredictivePhotos) => 0, numberOfPhotos); 
+    
+    const imageSetStageOne = imageFileNameArray.slice(0, numberOfPhotos); 
     const PredictiveFileNameArrayLength = arrayLength(PredictiveFileNameArray)
     // const randomizedPredictiveImageArrayLength = arrayLength(ReduxStorePredictiveFileNameArray);
     const ReduxPredictiveFileNameArrayLength = useSelector(state => state.imageArrayReducer.predictiveImageFileNameLength)
@@ -167,7 +167,7 @@ const ImageArray = React.memo( () => {
 
  const imageStageThree = imageSetStageThree(nBackIndex, nBackDegree, imageStageTwo);
  //const imageStageFour = imageSetStageFour(imageStageThree,predictiveIndex,PredictiveFileNameArray)
- setImageSet(imageStageThree);
+ //setImageSet(imageStageThree);
  
 
 const nBackMatches2 = showMatchesOnly(imageStageTwo,nBackIndex);
@@ -197,7 +197,7 @@ const scoringArray = (imageStageTwo,predictiveIndex,nBackIndex) => {
 
 const correctScoresrray = scoringArray(imageStageTwo,predictiveIndex,nBackIndex,PredictiveFileNameArray);
 
-setScoringArray(correctScoresrray);
+//setScoringArray(correctScoresrray);
  
 // ======= VALIDATE DATA 
 function arrayEquals(a, b) {
@@ -347,7 +347,7 @@ predictiveMatchesEarly: {predictiveMatchesEarly.toString()}
 
 </div>
     )
-})
+}
 
 //-------------------- End of Function that will render the ImageArray Page
 

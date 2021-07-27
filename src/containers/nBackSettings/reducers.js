@@ -9,7 +9,8 @@ let imageFileNameArrayLength = imageFileNameArray.length
 
 
 const defaultState = {
-    numberOfPhotos: 126,
+    numberOfPhotosAlt: 100,
+    numberOfPhotos: 122,
     numberOfPredictivePhotos: 12,
     NumberofnBackMatches: 26,
     nBackDegree: 2,
@@ -34,6 +35,8 @@ export default function nBackSettings(state = defaultState, action) {
             return { ...state, nBackDegree: action.payload };
         case ActionTypes.TIMER_SECONDS:
             return { ...state, timerSeconds: action.payload };
+            case ActionTypes.NUMBER_OF_PHOTOS_ALT:
+                return { ...state, numberOfPhotosAlt: action.payload };
         default:
             return state;
     }

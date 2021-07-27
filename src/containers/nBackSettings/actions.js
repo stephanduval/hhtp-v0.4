@@ -32,4 +32,8 @@ export const setTimerSeconds = (timerSeconds) => ({
     payload: timerSeconds
 })
 
+export const setNumberOfPhotosAlt = (numberOfPhotosAlt) => ({
+    type: ActionTypes.NUMBER_OF_PHOTOS_ALT,  // from the constants file
+    payload: numberOfPhotosAlt
+})
 

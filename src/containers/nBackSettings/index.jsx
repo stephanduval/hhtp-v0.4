@@ -1,7 +1,7 @@
 import React from 'react';
 import './nBackSettings.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { setNumberofPhotos, setNumberOfPredictivePhotos, setNumberofnBackMatches, setnBackDegree, setTimerSeconds } from './actions';
+import { setNumberofPhotos, setNumberOfPredictivePhotos, setNumberofnBackMatches, setnBackDegree, setTimerSeconds, setNumberOfPhotosAlt } from './actions';
 import { validateNumberOfPhotos, validateNumberOfPredictivePhotos, validatesetNumberofnBackMatches, validatesetnBackDegree, validatesetTimerSeconds } from './../../functions';
 
 //-------------------- CONTSTANTS FOR REDUX TO DISPATCH ACTIONS: 
@@ -22,7 +22,9 @@ const nBackDegreeDispatch = (dispatch) => ({
 const timerSecondsDispatch = (dispatch) => ({
   setTimerSeconds: (timerSeconds) => dispatch(setTimerSeconds(timerSeconds)),
 });
-
+const numberOfPhotosAltDispatch = (dispatch) => ({
+  setNumberOfPhotosAlt: (numberOfPhotosAlt) => dispatch(setNumberOfPhotosAlt(numberOfPhotosAlt)),
+});
 //-------------------- END OF CONTSTANTS FOR REDUX TO DISPATCH ACTIONS
 
 
@@ -32,6 +34,7 @@ const Settings = () => {
 
 
     const numberOfPhotos = useSelector(state => state.nBackSettingsReducer.numberOfPhotos);
+    const numberOfPhotosAlt = useSelector(state => state.nBackSettingsReducer.numberOfPhotosAlt);
     const numberOfPredictivePhotos = useSelector(state => state.nBackSettingsReducer.numberOfPredictivePhotos);
     const NumberofnBackMatches = useSelector(state => state.nBackSettingsReducer.NumberofnBackMatches);
     const nBackDegree = useSelector(state => state.nBackSettingsReducer.nBackDegree);
@@ -46,6 +49,7 @@ const Settings = () => {
     const { setNumberofnBackMatches } = NumberofnBackMatchesDispatch(useDispatch());
     const { setnBackDegree } = nBackDegreeDispatch(useDispatch());
     const { setTimerSeconds } = timerSecondsDispatch(useDispatch());
+    const { setNumberOfPhotosAlt } = numberOfPhotosAltDispatch(useDispatch());
 
 //-------------------- End of Functions to Fetch and Store Data for the Settings Page:
 
@@ -64,6 +68,15 @@ const setNumberofPhotosFormEventHandler = () => {
 <div className="nBackSettings">
 settings bar
 
+<form>
+<ul>
+  <li><label>
+    numberOfPhotosAlt:  
+    <input type="number" name="numberOfPhotosAlt" onChange={(e) => {setNumberOfPhotosAlt(e.target.value);setNumberofPhotosFormEventHandler()}}/>  {numberOfPhotosAlt}
+  </label>
+  </li>
+</ul>
+</form>
 <form>
 <ul>
   <li><label>
@@ -96,7 +109,7 @@ settings bar
 </ul>
 </form>
 Total Number of images in array: {imageFileNameArrayLength}
-<p>{reduxImageSet.toString()}</p>
+<p>{/*reduxImageSet.toString()*/}</p>
   </div>
  
     )
