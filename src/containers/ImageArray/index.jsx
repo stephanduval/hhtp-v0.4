@@ -70,15 +70,16 @@ const ImageArray =  () => {
     const { setImageSet } = imageSetDispatch(useDispatch());
     const { setScoringArray } = scoringArrayDispatch(useDispatch());
  
-
+    let predictiveIndex = [];
  
 
-    setImageFileNameArray(imageFileNameArray);
-    setImageFileNameLength(imageFileNameLength);
-    setPredictiveImageFileNameArray(PredictiveFileNameArray);
-    setPredictiveImageFileNameLength(PredictiveFileNameArrayLength);
+     setImageFileNameArray(imageFileNameArray);
+     setImageFileNameLength(imageFileNameLength);
+     setPredictiveImageFileNameArray(PredictiveFileNameArray);
+     setPredictiveImageFileNameLength(PredictiveFileNameArrayLength);
 
-    const predictiveIndexes = (imageSetStageOne,numberOfPredictivePhotos,nBackDegree) => {
+     useEffect(() => {
+    const predictiveIndexes = (imageSetStageOne) => {
         /*
         *  Takes the Image Array stage one and returns an array of the indexes where the predictive values
         * Will replace the array values
@@ -87,32 +88,37 @@ const ImageArray =  () => {
         while(indexOfPredictivePhotos.length < numberOfPredictivePhotos){
         var r = Math.floor(Math.random() * (imageSetStageOne.length - nBackDegree) + 0);
         if (!indexOfPredictivePhotos.includes(r)) {indexOfPredictivePhotos.push(r)}; 
+        console.log("index of predictive photos",indexOfPredictivePhotos);
     }
     indexOfPredictivePhotos.sort((a,b)=>a-b);
     return indexOfPredictivePhotos;
-    } 
-//This next line causes an issue
-       const predictiveIndex = predictiveIndexes(imageSetStageOne,numberOfPredictivePhotos,nBackDegree)
-      
-//     const earlyPredictiveIndex = [...predictiveIndex];
-//     const imageSetStageTwo = (imageSetStageOne,predictiveIndex,PredictiveFileNameArray) => {
-//       /*
-//       *  This Function takes an array and adds the predictive images into it
-//       * at the places where the result of the predictiveIndexes() function defines it
-//       *
-//       */
-//       let reduxPredictive = PredictiveFileNameArray;
-      
-//       let predictive = [...predictiveIndex];
-//       let setStageOne = [...imageSetStageOne];
-//       let PredictiveIndexValue = 0;
-//       const iteratePredictiveIndex = () => PredictiveIndexValue++;
-//       let PredictiveReduxValue = 0;
-//       const iteratePredictiveReduxValue = () => PredictiveReduxValue++;
+    }
+    const predictiveIndex = predictiveIndexes(imageSetStageOne) 
 
-//       predictive.forEach(element => setStageOne.splice(predictiveIndex[iteratePredictiveIndex()],1,PredictiveFileNameArray[iteratePredictiveReduxValue()]))
-//     return setStageOne;
-//     } 
+    console.log("USE EFFECT in Image Array RAN!!!!");
+},[]);
+//This next line causes an issue
+   
+      
+    // const earlyPredictiveIndex = [...predictiveIndex];
+    //  const imageSetStageTwo = (imageSetStageOne,predictiveIndex,PredictiveFileNameArray) => {
+    //   /*
+    //   *  This Function takes an array and adds the predictive images into it
+    //   * at the places where the result of the predictiveIndexes() function defines it
+    //   *
+    //   */
+    //   let reduxPredictive = PredictiveFileNameArray;
+      
+    //   let predictive = [...predictiveIndex];
+    //   let setStageOne = [...imageSetStageOne];
+    //   let PredictiveIndexValue = 0;
+    //   const iteratePredictiveIndex = () => PredictiveIndexValue++;
+    //   let PredictiveReduxValue = 0;
+    //   const iteratePredictiveReduxValue = () => PredictiveReduxValue++;
+
+    //   predictive.forEach(element => setStageOne.splice(predictiveIndex[iteratePredictiveIndex()],1,PredictiveFileNameArray[iteratePredictiveReduxValue()]))
+    // return setStageOne;
+    // } 
     
 //   const imageStageTwo = imageSetStageTwo(imageSetStageOne,predictiveIndex,PredictiveFileNameArray)
   
@@ -221,11 +227,14 @@ setPredictiveImageFileNameLength: {ReduxPredictiveFileNameArrayLength}
 </p>
 
 
-
+*/}
 <p>
 imageSetStageOne:
 </p>
-<p>{imageSetStageOne.toString()} Length: {imageSetStageOne.length}</p>
+<p>
+{imageSetStageOne.toString()} Length: {imageSetStageOne.length}
+</p>
+{/*
 
 <p>
 image Stage Three:  
@@ -290,15 +299,17 @@ imageSetStagefour:
 <p>
 nBackPredictiveIndex: {nBackIndex.toString()}  Length: {nBackIndex.length}
 </p>
-<p>
+*/}
+ <p>
 earlyPredictiveIndex: {predictiveIndex.toString()} Length: {predictiveIndex.length}
 
 </p>
+
 <p>
 predictiveIndex: {predictiveIndex.toString()} Length: {predictiveIndex.length}
  
-</p>
-*/}
+</p> 
+
 {/*
 <p>
 Is there an empty part in the imageStageTwo array? 

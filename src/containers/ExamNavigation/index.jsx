@@ -33,7 +33,7 @@ const ExamNavigation = () => {
 
     React.useEffect(() => {
     document.addEventListener('keyup', keyStrokeListener);
-    console.log("RAN useEFFECT");
+    console.log("RAN useEFFECT for keystroke listener and cleanup");
     return function cleanup() {
         document.removeEventListener('keyup', keyStrokeListener);
     };
