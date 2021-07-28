@@ -1,3 +1,5 @@
+
+
 export const filesToPhotosObject = (r) => {
     
     /**
@@ -12,9 +14,10 @@ export const filesToPhotosObject = (r) => {
        }
 
 
-  export const validateNumberOfPhotos = (numberOfPhotos, imageFileNameArrayLength) => {
-        if (numberOfPhotos < 0){
-            return 0;
+  export const validateNumberOfPhotos = (numberOfPhotos, nBackDegree, numberOfPredictivePhotos, imageFileNameArrayLength) => {
+    
+        if (numberOfPhotos < nBackDegree+2*numberOfPredictivePhotos){
+            return nBackDegree+2*numberOfPredictivePhotos;
         }
         if (numberOfPhotos > imageFileNameArrayLength){
             return imageFileNameArrayLength;
