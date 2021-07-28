@@ -1,0 +1,203 @@
+* [33mcommit 81d9aa0ba308652b0915e8d708b6822c73c33eb8[m[33m ([m[1;36mHEAD[m[33m)[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Fri Jul 23 23:08:37 2021 -0600
+[31m|[m 
+[31m|[m     Finished the array issue and moving toward checking if the data is in the store
+[31m|[m 
+* [33mcommit 6ac4c31112a95da3410c33caf789da8bde7ec3e9[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Fri Jul 23 21:07:08 2021 -0600
+[31m|[m 
+[31m|[m     commiting last nights commits
+[31m|[m 
+* [33mcommit 8dfe2e3f05c469d6908b3e37e7e1ce00971eaea7[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Thu Jul 22 11:41:56 2021 -0600
+[31m|[m 
+[31m|[m     There is a problem with the nBackIndex that is causing incorrect values and empty arrays
+[31m|[m 
+* [33mcommit 497eba410c08dfd34c1b2f294c0e1377bf201642[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Thu Jul 22 10:31:25 2021 -0600
+[31m|[m 
+[31m|[m     Start of day commit
+[31m|[m 
+* [33mcommit a01afd213edffd2e7c98ef6f8e59548745bd5d99[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Thu Jul 22 01:54:42 2021 -0600
+[31m|[m 
+[31m|[m     Making Progress on the new Image Array component this version is stable
+[31m|[m 
+* [33mcommit 4ef483e596f539b7a961a39596b9323905809bd3[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Thu Jul 22 00:47:15 2021 -0600
+[31m|[m 
+[31m|[m     Working up to image array stage two
+[31m|[m 
+* [33mcommit dfa1ff0568f1691c037106c3c104eff57b098e87[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Tue Jul 20 08:38:32 2021 -0600
+[31m|[m 
+[31m|[m     Started fixing the comparison issue in the finalArray
+[31m|[m 
+* [33mcommit 1a0f3eff689477e9713f6baa9234a05d60029116[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Tue Jul 20 00:15:40 2021 -0600
+[31m|[m 
+[31m|[m     end of day still having trouble with it
+[31m|[m 
+* [33mcommit b241230d1a659d9265b79ee5594024558410a504[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Mon Jul 19 22:36:52 2021 -0600
+[31m|[m 
+[31m|[m     Problem with the scoring funciton, taking a break
+[31m|[m 
+* [33mcommit 2e395dafed213af81d469ab2a88fdc13e60bd742[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Mon Jul 19 20:10:37 2021 -0600
+[31m|[m 
+[31m|[m     Start of day commit
+[31m|[m 
+* [33mcommit c9e3a38323d1b3ac81a05867b94131565802d8ec[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Mon Jul 19 00:36:53 2021 -0600
+[31m|[m 
+[31m|[m     end of day commit
+[31m|[m 
+* [33mcommit 2e7c754f7dccca3e9e430845a97bef8e2d64896b[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Mon Jul 19 00:01:52 2021 -0600
+[31m|[m 
+[31m|[m     Start of work commiting file
+[31m|[m 
+* [33mcommit 7c0d0e39f659881bbf840c6c894ad6ae4280ec66[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Sat Jul 17 13:02:34 2021 -0600
+[31m|[m 
+[31m|[m      got the function that adds the predictive set working and even sorted out the logic for it
+[31m|[m 
+* [33mcommit 05379d49bd487614f88e4450bd1fdbc5d365e563[m[33m ([m[1;31morigin/InterruptedByMeeting[m[33m, [m[1;32mInterruptedByMeeting[m[33m)[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Sat Jul 17 00:30:57 2021 -0600
+[31m|[m 
+[31m|[m     updated Gitignore
+[31m|[m 
+* [33mcommit e40058f45ad35ab8e57f6458a7c84be8940e2a96[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Sat Jul 17 00:28:22 2021 -0600
+[31m|[m 
+[31m|[m     This branch is working with the new Predictive Array and Folder
+[31m|[m 
+* [33mcommit 86b6073209bc16bef069f0e570110c1b1a164659[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Sat Jul 17 00:14:22 2021 -0600
+[31m|[m 
+[31m|[m     Predictive Set is now in a independent array and files ar and working
+[31m|[m 
+* [33mcommit 82a7c5ef2f40f524a963a675dfb55dfeb3aeb230[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Fri Jul 16 00:39:58 2021 -0600
+[31m|[m 
+[31m|[m     end of day ran into trouble with crating the image Array
+[31m|[m 
+* [33mcommit 2480442bbf55a9ec158cdcd978d2382862773e8a[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Thu Jul 15 20:10:55 2021 -0600
+[31m|[m 
+[31m|[m     Started refactoring ImageArray function out of PhotoSpace conponent
+[31m|[m 
+* [33mcommit b0f17cf5d40ff8bac5003533cceb459e55e2adca[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Thu Jul 15 19:11:59 2021 -0600
+[31m|[m 
+[31m|[m     Starting day's working commiting changes from last night
+[31m|[m 
+* [33mcommit 4a996aad78f88db4ca4169b0b71e0bc67dbfd057[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Wed Jul 14 23:00:30 2021 -0600
+[31m|[m 
+[31m|[m     Trying to implement the nBackArray into the app
+[31m|[m 
+* [33mcommit 4bf5cb1b1b4ace3f52bef64b9fcb875f25adeacb[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Wed Jul 14 16:15:49 2021 -0600
+[31m|[m 
+[31m|[m     Settings are roughly working begging to workm on scoring logic
+[31m|[m 
+* [33mcommit 338da668a4f1c4c77cdc9b78a60497d810da3347[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Tue Jul 13 23:23:42 2021 -0600
+[31m|[m 
+[31m|[m     trying to add parameters for maxiumum and mins for the settings values, consider a slider
+[31m|[m 
+* [33mcommit fe96f99bc57378c3054c695988535689df645b90[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Tue Jul 13 14:59:19 2021 -0600
+[31m|[m 
+[31m|[m      added Redux update logic to settings div
+[31m|[m 
+* [33mcommit 81f4d624d5a9eefe7e786d4cf81a7d5ed9bb9203[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Tue Jul 13 13:13:37 2021 -0600
+[31m|[m 
+[31m|[m     Managed to get a early version of the settings to work with the redux store
+[31m|[m 
+* [33mcommit 3a7ca57a54af44b248c33f2b637923fadc5d824a[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Mon Jul 12 23:58:11 2021 -0600
+[31m|[m 
+[31m|[m      Got the file name image array to store to the redux store
+[31m|[m 
+* [33mcommit be55d6506f6cf727fa76a83e50361cf573fba6e1[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Mon Jul 12 22:24:07 2021 -0600
+[31m|[m 
+[31m|[m     Figured out how to use dispatches to get the array to become an object in the redux store
+[31m|[m 
+* [33mcommit 79f75482515d89d0dfae82d7b0e6faf3543c7c16[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Mon Jul 12 20:49:03 2021 -0600
+[31m|[m 
+[31m|[m     More work on the Photospace section
+[31m|[m 
+* [33mcommit 339a669080ebd10d2f017be56d5faecda39935bb[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Sun Jul 11 23:10:24 2021 -0600
+[31m|[m 
+[31m|[m     End of day commit, added PhotoSpace Redux scaffolding
+[31m|[m 
+* [33mcommit d680762be81ef116ecf065172c36da5201f9c0a7[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Sun Jul 11 16:03:35 2021 -0600
+[31m|[m 
+[31m|[m     started adding reduc functions for the user response and correct response arrays
+[31m|[m 
+* [33mcommit 6dc9490af04d6f70c7e25fb5ba876acc3287d75e[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Sun Jul 11 14:33:08 2021 -0600
+[31m|[m 
+[31m|[m     I actually got the number to advancegit add .! YAY!
+[31m|[m 
+* [33mcommit 79749af37e358ab25ff0fbc1bf6492456d215fb9[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Sun Jul 11 14:11:12 2021 -0600
+[31m|[m 
+[31m|[m     Redux store is working
+[31m|[m 
+* [33mcommit 38cc958c1ce934b76828d7688a803669bfc6e76b[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Sat Jul 10 21:48:58 2021 -0600
+[31m|[m 
+[31m|[m     finally got the redux store working to output a variable to the page
+[31m|[m 
+* [33mcommit daa6d8be76ae220a1dd836910e3604b89f38c556[m
+[31m|[m Author: Stephan DuVal <stephan.duval@gmail.com>
+[31m|[m Date:   Sat Jul 10 20:32:21 2021 -0600
+[31m|[m 
+[31m|[m     Redux store is implemented and event listener is working:
+[31m|[m 
+* [33mcommit 711eed07cd23d651ca01166963e4350982cc16c2[m
+  Author: Stephan DuVal <stephan.duval@gmail.com>
+  Date:   Sat Jul 10 13:43:07 2021 -0600
+  
+      Initialize project using Create React App

@@ -72,7 +72,7 @@ settings bar
 <ul>
   <li><label>
     numberOfPhotosAlt:  
-    <input type="number" name="numberOfPhotosAlt" onChange={(e) => {setNumberOfPhotosAlt(e.target.value);setNumberofPhotosFormEventHandler()}}/>  {numberOfPhotosAlt}
+    <input type="number" name="numberOfPhotosAlt" onChange={(e) => {setNumberOfPhotosAlt(e.currentTarget.value);setNumberofPhotosFormEventHandler();console.log(e.currentTarget)}}/>  {numberOfPhotosAlt}
   </label>
   </li>
 </ul>

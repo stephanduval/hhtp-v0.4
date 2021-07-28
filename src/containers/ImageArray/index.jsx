@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setCorrectResponseArray, setUserResponseArray, setImageFileNameArray, setImageFileNameLength, setPredictiveImageFileNameArray, setPredictiveImageFileNameLength, setImageSet, setScoringArray} from './actions';
 import { randomizeArray, arrayLength } from './../../functions'; 
 import { render } from '@testing-library/react';
-
+import { validateNumberOfPhotos, validateNumberOfPredictivePhotos, validatesetNumberofnBackMatches, validatesetnBackDegree, validatesetTimerSeconds } from './../../functions';
 // ======= Constants:
 //
 
@@ -58,6 +58,8 @@ const ImageArray =  () => {
     const timerSeconds = useSelector(state => state.nBackSettingsReducer.timerSeconds);
     const imageFileNameLength = arrayLength(ReduxStorefileNameArray)
     
+
+    const validPhotos = validateNumberOfPhotos(numberOfPhotos);
     const imageSetStageOne = imageFileNameArray.slice(0, numberOfPhotos); 
     const PredictiveFileNameArrayLength = arrayLength(PredictiveFileNameArray)
     // const randomizedPredictiveImageArrayLength = arrayLength(ReduxStorePredictiveFileNameArray);
@@ -212,7 +214,7 @@ function arrayEquals(a, b) {
         
 <div className="imageArray">Image Array Info
 <p>
-Number of Photos {numberOfPhotos}
+Number of Photos {numberOfPhotos}  {validPhotos}
 </p>
 
 <p>
