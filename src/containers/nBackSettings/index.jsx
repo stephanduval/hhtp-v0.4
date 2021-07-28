@@ -72,7 +72,7 @@ settings bar
 <ul>
   <li><label>
     numberOfPhotosAlt:  
-    <input type="number" name="numberOfPhotosAlt" onChange={(e) => {setNumberOfPhotosAlt(e.target.value);setNumberofPhotosFormEventHandler()}}/>  {numberOfPhotosAlt}
+    <input type="number" name="numberOfPhotosAlt" onChange={(e) => {setNumberOfPhotosAlt(e.target.value)}}/>  {numberOfPhotosAlt}
   </label>
   </li>
 </ul>
@@ -86,7 +86,7 @@ settings bar
   </li>
   <li><label>
   numberOfPredictivePhotos: (should also be limited by number of photos in folder)
-    <input type="number" name="numberOfPredictivePhotos" onChange={(e) => {setNumberOfPredictivePhotos(validateNumberOfPredictivePhotos(e.target.value, ReduxPredictiveFileNameArrayLength, numberOfPhotos))}}/> {numberOfPredictivePhotos}  
+    <input type="number" name="numberOfPredictivePhotos" onChange={(e) => {setNumberOfPredictivePhotos(/*validateNumberOfPredictivePhotos(*/e.target.value/*, ReduxPredictiveFileNameArrayLength, numberOfPhotos)*/)}}/> {numberOfPredictivePhotos}  
   </label>
   </li>
   <li><label>
