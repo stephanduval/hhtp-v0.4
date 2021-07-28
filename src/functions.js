@@ -13,8 +13,8 @@ export const filesToPhotosObject = (r) => {
 
 
   export const validateNumberOfPhotos = (numberOfPhotos, imageFileNameArrayLength) => {
-        if (numberOfPhotos < 88){
-            return 88;
+        if (numberOfPhotos < 0){
+            return 0;
         }
         if (numberOfPhotos > imageFileNameArrayLength){
             return imageFileNameArrayLength;
@@ -29,12 +29,13 @@ export const validateNumberOfPredictivePhotos = (numberOfPredictivePhotos, Redux
   if (numberOfPredictivePhotos < 0){
       return 0;
   }
-  if (numberOfPredictivePhotos > ReduxPredictiveFileNameArrayLength){
-    return ReduxPredictiveFileNameArrayLength;
-  }
   if (numberOfPredictivePhotos > numberOfPhotos){
     return numberOfPhotos;  
   } 
+  if (numberOfPredictivePhotos > ReduxPredictiveFileNameArrayLength){
+    return ReduxPredictiveFileNameArrayLength;
+  }
+
 
   else {
     return numberOfPredictivePhotos;      
