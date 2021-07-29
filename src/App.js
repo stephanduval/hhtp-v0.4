@@ -27,7 +27,7 @@ console.log('store:',{store});
 
   (
     <div className="App">
-    <ImageArray></ImageArray>
+    
        <div className="headerBar">
         <div align="center">This is a Header (class topBar)
   
@@ -49,6 +49,7 @@ console.log('store:',{store});
     
     <ExamNavigation />
     <Settings />
+    <ImageArray></ImageArray>
     </div>
   );
 }

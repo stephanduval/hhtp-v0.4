@@ -91,7 +91,7 @@ settings bar
   </li>
   <li><label>
   NumberofnBackMatches: (higher numbers will crash the program)
-    <input type="number" name="NumberofnBackMatches" onChange={(e) => {setNumberofnBackMatches(validatesetNumberofnBackMatches(e.target.value))}}/> {NumberofnBackMatches}
+    <input type="number" name="NumberofnBackMatches" onChange={(e) => {setNumberofnBackMatches(validatesetNumberofnBackMatches(e.target.value, numberOfPhotos))}}/> {NumberofnBackMatches}
   </label>
   </li>
   <li><label>

@@ -15,9 +15,12 @@ export const filesToPhotosObject = (r) => {
 
 
   export const validateNumberOfPhotos = (numberOfPhotos, nBackDegree, numberOfPredictivePhotos, imageFileNameArrayLength) => {
+        if (numberOfPhotos < 90){
+          return 90;
     
-        if (numberOfPhotos < nBackDegree+2*numberOfPredictivePhotos){
-            return nBackDegree+2*numberOfPredictivePhotos;
+        // if (numberOfPhotos < nBackDegree+2*numberOfPredictivePhotos){
+        //     return nBackDegree+2*numberOfPredictivePhotos;
+
         }
         if (numberOfPhotos > imageFileNameArrayLength){
             return imageFileNameArrayLength;
@@ -32,12 +35,12 @@ export const validateNumberOfPredictivePhotos = (numberOfPredictivePhotos, Redux
   if (numberOfPredictivePhotos < 0){
       return 0;
   }
-  if (numberOfPredictivePhotos > numberOfPhotos){
-    return numberOfPhotos;  
+  if (numberOfPredictivePhotos > numberOfPhotos/5){
+    return Math.floor(numberOfPhotos/5);  
   } 
-  if (numberOfPredictivePhotos > ReduxPredictiveFileNameArrayLength){
-    return ReduxPredictiveFileNameArrayLength;
-  }
+  // if (numberOfPredictivePhotos > ReduxPredictiveFileNameArrayLength){
+  //   return ReduxPredictiveFileNameArrayLength;
+  // }
 
 
   else {
@@ -49,9 +52,15 @@ export const validatesetNumberofnBackMatches = (NumberofnBackMatches, numberOfPh
   if (NumberofnBackMatches < 0){
       return 0;
   }
-  if (NumberofnBackMatches > numberOfPhotos/5){
-      return Math.ceil(numberOfPhotos/5);
-  } 
+  if (NumberofnBackMatches > 25 && numberOfPhotos < 91){
+    return 25;
+} 
+  // if (NumberofnBackMatches > numberOfPhotos/10){
+  //     return Math.floor(numberOfPhotos/10);
+  // } 
+  if (NumberofnBackMatches > (numberOfPhotos/3)){
+    return Math.floor(numberOfPhotos/3);
+} 
   else {
     return NumberofnBackMatches;      
 }
