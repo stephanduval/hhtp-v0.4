@@ -72,7 +72,7 @@ settings bar
 <ul>
   <li><label>
     numberOfPhotosAlt:  
-    <input type="number" name="numberOfPhotosAlt" onChange={(e) => {setNumberOfPhotosAlt(e.target.value)}}/>  {numberOfPhotosAlt}
+    <input type="number" name="numberOfPhotosAlt" onChange={(e) => {setNumberOfPhotosAlt(e.currentTarget.value);setNumberofPhotosFormEventHandler();console.log(e.currentTarget)}}/>  {numberOfPhotosAlt}
   </label>
   </li>
 </ul>
@@ -81,17 +81,17 @@ settings bar
 <ul>
   <li><label>
     numberOfPhotos:  
-    <input type="number" name="numberOfPhotos" onChange={(e) => {setNumberofPhotos(validateNumberOfPhotos(e.target.value, imageFileNameArrayLength));setNumberofPhotosFormEventHandler()}}/>  {numberOfPhotos}
+    <input type="number" name="numberOfPhotos" onChange={(e) => {setNumberofPhotos(validateNumberOfPhotos(e.target.value, nBackDegree, numberOfPredictivePhotos, imageFileNameArrayLength));setNumberofPhotosFormEventHandler()}}/>  {numberOfPhotos}
   </label>
   </li>
   <li><label>
   numberOfPredictivePhotos: (should also be limited by number of photos in folder)
-    <input type="number" name="numberOfPredictivePhotos" onChange={(e) => {setNumberOfPredictivePhotos(/*validateNumberOfPredictivePhotos(*/e.target.value/*, ReduxPredictiveFileNameArrayLength, numberOfPhotos)*/)}}/> {numberOfPredictivePhotos}  
-  </label>
+    <input type="number" name="numberOfPredictivePhotos" onChange={(e) => {setNumberOfPredictivePhotos(validateNumberOfPredictivePhotos(e.target.value, ReduxPredictiveFileNameArrayLength, numberOfPhotos))}}/> {numberOfPredictivePhotos}
+  </label>  
   </li>
   <li><label>
   NumberofnBackMatches: (higher numbers will crash the program)
-    <input type="number" name="NumberofnBackMatches" onChange={(e) => {setNumberofnBackMatches(validatesetNumberofnBackMatches(e.target.value))}}/> {NumberofnBackMatches}
+    <input type="number" name="NumberofnBackMatches" onChange={(e) => {setNumberofnBackMatches(validatesetNumberofnBackMatches(e.target.value, numberOfPhotos))}}/> {NumberofnBackMatches}
   </label>
   </li>
   <li><label>

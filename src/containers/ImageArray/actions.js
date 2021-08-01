@@ -40,3 +40,8 @@ export const setScoringArray = (scoringArray) => ({
     payload: scoringArray
 })
 
+export const setFinalFileNameArray = (finalFileNameArray) => ({
+    type: ActionTypes.FINAL_FILENAME_ARRAY,  // from the constants file
+    payload: finalFileNameArray
+})
+

@@ -6,5 +6,6 @@ export const ActionTypes = {
     PREDICTIVE_IMAGE_FILENAME_ARRAY: "app/containers/ImageArray/PREDCTIVE_IMAGE_FILENAME_ARRAY",
     PREDICTIVE_IMAGE_FILENAME_LENGTH: "app/containers/ImageArray/PREDICTIVE_IMAGE_FILENAME_LENGTH",
     IMAGE_SET: "app/containers/ImageArray/IMAGE_SET",
-    SCORING_ARRAY: "app/containers/ImageArray/SCORING_ARRAY"
+    SCORING_ARRAY: "app/containers/ImageArray/SCORING_ARRAY",
+    FINAL_FILENAME_ARRAY: "app/containers/ImageArray/FINAL_FILENAME_ARRAY"
 }
