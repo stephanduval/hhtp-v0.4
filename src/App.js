@@ -27,13 +27,14 @@ console.log('store:',{store});
 
   (
     <div className="App">
-    
+
        <div className="headerBar">
         <div align="center">This is a Header (class topBar)
   
         </div>
     </div>
      <div className="navBarWrapper">
+
           <ul className="navBar">
           
             <li>one</li>

@@ -13,14 +13,15 @@ import { validateNumberOfPhotos, validateNumberOfPredictivePhotos, validatesetNu
 
     const images = filesToPhotosObject(require.context('./../../../public/images/FeeliePhotos/RandomLot/', false, /\.(png|jpe?g|svg)$/));
     const imageFileNameArray = Object.keys(images);
+    const imageFullFileNameArray = imageFileNameArray.map(e => './images/FeeliePhotos/RandomLot/' + e)
     //-------------------- End of Create an object of the photo file names
-    const randomizedImageArray = randomizeArray(imageFileNameArray); // spread operator didn't work with the randomizeArray Function
+    const randomizedFullFileNameArray = imageFullFileNameArray.sort(()=> 0.5 - Math.random())
     const predictiveImages = filesToPhotosObject(require.context('./../../../public/images/FeeliePhotos/Predictive/', false, /\.(png|jpe?g|svg)$/));
     //const predictiveFullFolderLocation = predictiveImages.map((x) => { + 'x' });
    // const predictiveFileNameArray = Object.keys(predictiveFullFolderLocation);
-   const predictiveFileNameArray = Object.keys(predictiveImages);
-    
-    const randomizedPredictiveImageArray = randomizeArray(predictiveFileNameArray);
+    const predictiveFileNameArray = Object.keys(predictiveImages);
+    const predictiveFullFileNameArray = predictiveFileNameArray.map(e => './images/FeeliePhotos/Predictive/' + e)
+    const randomizedPredictiveImageArray = randomizeArray(predictiveFullFileNameArray);
 
 //--------------------  Create an object of the photo file names
 
@@ -65,15 +66,16 @@ const ImageArray =  () => {
   
   
   const ReduxStorefileNameArray = useSelector(state => state.imageArrayReducer.imageFileNameArray);
+  const ReduxFinalFileNameArray = useSelector(state => state.imageArrayReducer.finalFileNameArray);
   const imageFileNameLength = arrayLength(ReduxStorefileNameArray)
-  const PredictiveFileNameArrayLength = arrayLength(predictiveFileNameArray)
+  const PredictiveFullFileNameArrayLength = arrayLength(predictiveFullFileNameArray)
 
 
 
-  setImageFileNameArray(imageFileNameArray);
+  setImageFileNameArray(randomizedFullFileNameArray);
   setImageFileNameLength(imageFileNameLength);
-  setPredictiveImageFileNameArray(predictiveFileNameArray);
-  setPredictiveImageFileNameLength(PredictiveFileNameArrayLength);
+  setPredictiveImageFileNameArray(predictiveFullFileNameArray);
+  setPredictiveImageFileNameLength(PredictiveFullFileNameArrayLength);
   
     const ReduxStorefileNameArrayLength = ReduxStorefileNameArray.length;
     const ReduxStorePredictiveFileNameArray = useSelector(state => state.imageArrayReducer.PredictiveImageFileNameArray);
@@ -87,7 +89,7 @@ const ImageArray =  () => {
 
     
     const validPhotos = validateNumberOfPhotos(numberOfPhotos);
-    const imageSetStageOne = imageFileNameArray.slice(0, numberOfPhotos);  // when number of photos is removed from here then it works
+    const imageSetStageOne = randomizedFullFileNameArray.slice(0, numberOfPhotos);  // when number of photos is removed from here then it works
     //const imageSetStageOneLength =  imageSetStageOne.length;
     // const randomizedPredictiveImageArrayLength = arrayLength(ReduxStorePredictiveFileNameArray);
     const ReduxPredictiveFileNameArrayLength = useSelector(state => state.imageArrayReducer.predictiveImageFileNameLength)
@@ -123,13 +125,13 @@ const ImageArray =  () => {
     const predictiveIndex = predictiveIndexes();
       
     const earlyPredictiveIndex = [];//[...predictiveIndex];
-    const imageSetStageTwo = (imageSetStageOne,predictiveIndex,PredictiveFileNameArray) => {
+    const imageSetStageTwo = (imageSetStageOne,predictiveIndex,PredictiveFullFileNameArray) => {
       /*
       *  This Function takes an array and adds the predictive images into it
       * at the places where the result of the predictiveIndexes() function defines it
       *
       */
-      let reduxPredictive = PredictiveFileNameArray;
+      let reduxPredictive = PredictiveFullFileNameArray;
       
       let predictive = [...predictiveIndex];
       let setStageOne = [...imageSetStageOne];
@@ -138,11 +140,11 @@ const ImageArray =  () => {
       let PredictiveReduxValue = 0;
       const iteratePredictiveReduxValue = () => PredictiveReduxValue++;
 
-      predictive.forEach(element => setStageOne.splice(predictiveIndex[iteratePredictiveIndex()],1,PredictiveFileNameArray[iteratePredictiveReduxValue()]))
+      predictive.forEach(element => setStageOne.splice(predictiveIndex[iteratePredictiveIndex()],1,PredictiveFullFileNameArray[iteratePredictiveReduxValue()]))
     return setStageOne;
     } 
     
-  const imageStageTwo = imageSetStageTwo(imageSetStageOne,predictiveIndex,predictiveFileNameArray)
+  const imageStageTwo = imageSetStageTwo(imageSetStageOne,predictiveIndex,predictiveFullFileNameArray)
   
   const predictiveMatchesEarly = showMatchesOnly(imageStageTwo,predictiveIndex);
   
@@ -198,6 +200,7 @@ const ImageArray =  () => {
  
 //  //const imageStageFour = imageSetStageFour(imageStageThree,predictiveIndex,PredictiveFileNameArray)
 //  //setImageSet(imageStageThree);
+// useEffect prevents it from looping forever
 useEffect (() => {
 setFinalFileNameArray(imageStageThree)
 },[]
@@ -227,7 +230,7 @@ const scoringArray = (imageStageTwo,predictiveIndex,nBackIndex) => {
   return scorray;
 }
 
-const correctScoresrray = scoringArray(imageStageTwo,predictiveIndex,nBackIndex,predictiveFileNameArray);
+const correctScoresrray = scoringArray(imageStageTwo,predictiveIndex,nBackIndex,predictiveFullFileNameArray);
 
 // //setScoringArray(correctScoresrray);
  
@@ -244,7 +247,7 @@ function arrayEquals(a, b) {
         
 <div className="imageArray">Image Array Info
 <p>
-Number of Photos {numberOfPhotos}  {validPhotos} {finalFileNameArray}
+Number of Photos {numberOfPhotos}  {validPhotos} 
 </p>
 
 <p>
@@ -255,7 +258,7 @@ setPredictiveImageFileNameLength: {ReduxPredictiveFileNameArrayLength}
 predictiveIndex: {predictiveIndex.toString()}  Length: {predictiveIndex.length} 
 </p>
 <p>
-PredictiveFileNameArray: {predictiveFileNameArray.toString()}  Length: {predictiveFileNameArray.length} 
+PredictiveFuFileNameArray: {predictiveFullFileNameArray.toString()}  Length: {predictiveFullFileNameArray.length} 
 </p>
 
 
@@ -263,7 +266,7 @@ PredictiveFileNameArray: {predictiveFileNameArray.toString()}  Length: {predicti
 <p>
 imageSetStageOne:
 </p>
-<p>{imageFileNameArray.toString()} Length: {imageFileNameArray.length}</p>
+<p>{imageSetStageOne.toString()} Length: {imageSetStageOne.length}</p>
 
 <p>
 ImageStateTwo: 
@@ -388,7 +391,15 @@ validateCard: {validateCard.toString()} Length: {validateCard.length}
 
 
 
+<p>ReduxFinalFileNameArray: {ReduxFinalFileNameArray}</p>
+
+
+<p>
 predictiveMatchesEarly: {predictiveMatchesEarly.toString()}
+</p>
+<p>
+randomizedFullFileNameArray: {randomizedFullFileNameArray}
+</p>
 
 </div>
     )
