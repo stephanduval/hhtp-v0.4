@@ -69,7 +69,7 @@ const ImageArray =  () => {
   const ReduxFinalFileNameArray = useSelector(state => state.imageArrayReducer.finalFileNameArray);
   const imageFileNameLength = arrayLength(ReduxStorefileNameArray)
   const PredictiveFullFileNameArrayLength = arrayLength(predictiveFullFileNameArray)
-
+  const userResponseArray = useSelector(state => state.examNavigationReducer.userResponseArray);
 
 
   setImageFileNameArray(randomizedFullFileNameArray);
@@ -247,9 +247,21 @@ function arrayEquals(a, b) {
 // ======= RESULTS CHECKER DATA
 
 const shortenedReduxFinalFileNameArray = ReduxFinalFileNameArray.map(element => element.slice(32));
+const shortenedimageSetStageOne = imageSetStageOne.map(element => element.slice(32));
+const shortenedImageStageTwo = imageStageTwo.map(element => element.slice(32));
+const shortenedImageStageThree = imageStageThree.map(element => element.slice(32));
+const shortenedcorrectScoresrray = correctScoresrray.map(element => element.slice(0,1));
+
+
+//userResponseArray
+
 let resultCheckerArray = [
 {name: "ReduxFinalArray", arrayData: shortenedReduxFinalFileNameArray},
-{name: "ReduxFinalArray", arrayData: shortenedReduxFinalFileNameArray},
+{name: "imageSetStageOne", arrayData: shortenedimageSetStageOne},
+{name: "imageStageTwo", arrayData: shortenedImageStageTwo},
+{name: "imageStageThree", arrayData: shortenedImageStageThree},
+{name: "Correct Score", arrayData: shortenedcorrectScoresrray},
+{name: "User Response", arrayData: userResponseArray},
 {name: "ReduxFinalArray", arrayData: shortenedReduxFinalFileNameArray},
 ];
 
@@ -289,7 +301,7 @@ const tableGenerator = (ReduxArray) => {
     return (
         
 <div className="imageArray">Image Array Info
-
+{userResponseArray.toString()}fsdfsdssqqqqqqqqs
 {tableGenerator(resultCheckerArray)}
 
 
