@@ -4,6 +4,7 @@ import Photospace from './containers/PhotoSpace';
 import ExamNavigation from './containers/ExamNavigation';
 import Settings from './containers/nBackSettings';
 import ImageArray from './containers/ImageArray/';
+import ResultChecker from './containers/ResultChecker';
 import store from "./store";
 
 
@@ -50,6 +51,8 @@ console.log('store:',{store});
     
     <ExamNavigation />
     <Settings />
+    {/* DELETE ALL THE ResultChecker Files (part of Image Array Now) */}
+    {/* <ResultChecker></ResultChecker> */}
     <ImageArray></ImageArray>
     </div>
   );

@@ -243,9 +243,56 @@ function arrayEquals(a, b) {
 }
 // ======= END VALIDATE DATA 
 
+
+// ======= RESULTS CHECKER DATA
+
+const shortenedReduxFinalFileNameArray = ReduxFinalFileNameArray.map(element => element.slice(32));
+let resultCheckerArray = [
+{name: "ReduxFinalArray", arrayData: shortenedReduxFinalFileNameArray},
+{name: "ReduxFinalArray", arrayData: shortenedReduxFinalFileNameArray},
+{name: "ReduxFinalArray", arrayData: shortenedReduxFinalFileNameArray},
+];
+
+
+
+const tableGenerator = (ReduxArray) => {
+    return (
+        <div className="resultsChecker">
+      <table>
+        <thead>
+            
+            <tr>
+              {/*ReduxArray.map(column => <th>{column.name}</th>)*/}
+              
+            </tr>
+        </thead>
+        <body>
+        <tr>  
+        
+        {ReduxArray.map(column => <td><b>{column.name}</b></td>)}
+        </tr>
+        <tr>  
+        {ReduxArray.map(column => <td>{column.arrayData.map(thing => <tr>{thing}</tr>)}</td>)}
+        </tr>
+        
+        </body>
+      </table>
+      </div>
+        )
+        };
+    
+
+// ======= END OF RESULTS CHECKER DATA
+
+
+
     return (
         
 <div className="imageArray">Image Array Info
+
+{tableGenerator(resultCheckerArray)}
+
+
 <p>
 Number of Photos {numberOfPhotos}  {validPhotos} 
 </p>

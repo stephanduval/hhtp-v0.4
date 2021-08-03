@@ -19,11 +19,11 @@ const Photospace = () => {  // this destructing allows us to use onInputChange i
     return (
         
 <div className="photospace">
+    
        <img src={process.env.PUBLIC_URL + finalFileNameArray[NBackState]} alt='Current nBack'/>
-        Current Image: {finalFileNameArray[NBackState]}  nBack State: {NBackState}
-  </div>
+        Current Image: {finalFileNameArray[NBackState]} nBack State: {NBackState}
+</div>
     )
-
     console.log("the array baby",imageFileNameArray);
 }
 

@@ -1,8 +1,16 @@
 
-.nBackSettings {
+.resultsChecker {
     display: flex;
     flex-wrap:nowrap;
-    height:230px;
     background-color: var(--grey2);
     justify-content: center;
+    
+
+
+    }
+
+    .table {
+    background-color: var(--grey2);
+
+
     }

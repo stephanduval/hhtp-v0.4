@@ -19,6 +19,7 @@ const ExamNavigation = () => {
     const { newNBackState } = nBackStateDispatch(useDispatch())
     const userResponseArray = useSelector(state => state.examNavigationReducer.userResponseArray);
     const { newUserResponseArray } = userResponseArrayDispatch(useDispatch())
+    const nBackDegree = useSelector(state => state.nBackSettingsReducer.nBackDegree);
 
     const addPredictiveToUserResponseArray = () => {
         userResponseArray.push('P');
@@ -64,17 +65,17 @@ const ExamNavigation = () => {
             
         <div className="buttonSpace">
            
-    <button variant="contained" intValue={10} stringValue={"Hello"}>"W" - Same as *n* photos Back
+    <button variant="contained" stringValue={"Same as *n* photos Back"} onClick={()=>{newNBackState(NBackState);addNBackToUserResponseArray()}}>"W" - Same as {nBackDegree} photos Back
         </button>
 
-        <button variant="contained">"O" - Predictive - I was told to remember this
+        <button variant="contained" stringValue={"O - Predictive"} onClick={()=>{newNBackState(NBackState);addPredictiveToUserResponseArray()}}>"O" - Predictive - I was told to remember this
         </button>
 
-        <button variant="contained">"S" - Unique Image
+        <button variant="contained" stringValue={"S - Unique Image"} onClick={()=>{newNBackState(NBackState);addSkipToUserResponseArray()}}>"S" - Unique Image
         </button>
-        <button onClick={()=>{newNBackState(NBackState)}}>ADDs</button>
+            
         <p>
-        userResponseArray: (1 render behind) {userResponseArray.toString()}
+        userResponseArray from Redux Store: (1 render behind) {userResponseArray.toString()}
         </p>
  
         { NBackState }
