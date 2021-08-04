@@ -23,6 +23,7 @@ import { validateNumberOfPhotos, validateNumberOfPredictivePhotos, validatesetNu
     const predictiveFullFileNameArray = predictiveFileNameArray.map(e => './images/FeeliePhotos/Predictive/' + e)
     const randomizedPredictiveImageArray = randomizeArray(predictiveFullFileNameArray);
 
+
 //--------------------  Create an object of the photo file names
 
 
@@ -70,6 +71,7 @@ const ImageArray =  () => {
   const imageFileNameLength = arrayLength(ReduxStorefileNameArray)
   const PredictiveFullFileNameArrayLength = arrayLength(predictiveFullFileNameArray)
   const userResponseArray = useSelector(state => state.examNavigationReducer.userResponseArray);
+  const NBackState = useSelector(state => state.examNavigationReducer.newNBackState);
 
   
   setImageFileNameArray(randomizedFullFileNameArray);
@@ -275,7 +277,6 @@ const shortenedcorrectScoresrray = correctScoresrray.map(element => element.slic
 
 let resultCheckerArray = [
 {name: "Index", arrayData: arrayOfIndexes},
-{name: "ReduxFinalArray", arrayData: shortenedReduxFinalFileNameArray},
 {name: "imageSetStageOne", arrayData: shortenedimageSetStageOne},
 {name: "imageStageTwo", arrayData: shortenedImageStageTwo},
 {name: "imageStageThree", arrayData: shortenedImageStageThree},
@@ -346,12 +347,11 @@ const PullUserResponseArray = () => {
         
 <div className="imageArray">
 <p>
-<button variant="contained" stringValue={"O - Predictive"} onClick={()=>{PullUserResponseArray()}}>"O" - Predictive - I was told to remember this
-        </button>
+{NBackState} 
 </p>
 
 Image Array Info
-{userResponseArray.toString()} 
+
 {tableGenerator(resultCheckerArray)}
 
 
@@ -513,16 +513,17 @@ randomizedFullFileNameArray: {randomizedFullFileNameArray}
 </div>
     )
 }
-
+//
 //-------------------- End of Function that will render the ImageArray Page
 
-// const mapStateToProps = (state) => {
-//   console.log("RAN MAP STATE TO PROPS");
-//   return {
-//     userResponseArray: []
-//   };
-// }
+const mapStateToProps = (state) => {
+  console.log("RAN MAP STATE TO PROPS");
+  
+  return {
+    newNBackState: state.examNavigationReducer.userResponseArray
+  };
+}
 
 
-export default /* connect(mapStateToProps)*/(ImageArray);
+export default connect(mapStateToProps)(ImageArray);
 
