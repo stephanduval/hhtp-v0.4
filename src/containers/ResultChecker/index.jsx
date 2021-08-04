@@ -1,10 +1,14 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector} from 'react-redux';
+
 import './ResultChecker.css';
 
 
 
 const ResultChecker = () => {
+
+
+
 
     const reduxFinalFileNameArray = useSelector(state => state.imageArrayReducer.finalFileNameArray);
     const shortenedReduxFinalFileNameArray = reduxFinalFileNameArray.map(element => element.slice(32));
@@ -120,6 +124,15 @@ useEffect(() => {
 
 //console.log("stack return",stack(ReduxFinalFileNameArray));
 
+React.useEffect(() => {
+  document.addEventListener('keyup');
+  console.log("RAN useEffect()");
+  
+  return function cleanup() {
+      document.removeEventListener('keyup');
+  };
+});
+
 return (
 
 
@@ -138,4 +151,5 @@ return (
 }
 
 
-export default ResultChecker;
+
+export default (ResultChecker);

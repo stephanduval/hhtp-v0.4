@@ -27,8 +27,6 @@ export default function imageArray(state = defaultState, action) {
             return { ...state, imageSet: action.payload };
         case ActionTypes.SCORING_ARRAY:
             return { ...state, scoringArray: action.payload };
-        case ActionTypes.SCORING_ARRAY:
-            return { ...state, scoringArray: action.payload };
         case ActionTypes.FINAL_FILENAME_ARRAY:
             return { ...state, finalFileNameArray: action.payload };
           

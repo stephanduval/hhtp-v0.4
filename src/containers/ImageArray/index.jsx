@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import './imageArray.css';
 import { checkForEmptyinArray, showMatchesOnly } from './functions'
 import { filesToPhotosObject } from './../../functions.js';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, connect } from 'react-redux';
 import { setCorrectResponseArray, setUserResponseArray, setImageFileNameArray, setImageFileNameLength, setPredictiveImageFileNameArray, setPredictiveImageFileNameLength, setImageSet, setScoringArray, setFinalFileNameArray} from './actions';
 import { randomizeArray, arrayLength } from './../../functions'; 
 import { render } from '@testing-library/react';
@@ -63,7 +63,7 @@ const ImageArray =  () => {
   const { setImageSet } = imageSetDispatch(useDispatch());
   const { setScoringArray } = scoringArrayDispatch(useDispatch());
   const { setFinalFileNameArray } = finalFileNameArrayDispatch(useDispatch());
-  
+
   
   const ReduxStorefileNameArray = useSelector(state => state.imageArrayReducer.imageFileNameArray);
   const ReduxFinalFileNameArray = useSelector(state => state.imageArrayReducer.finalFileNameArray);
@@ -71,7 +71,7 @@ const ImageArray =  () => {
   const PredictiveFullFileNameArrayLength = arrayLength(predictiveFullFileNameArray)
   const userResponseArray = useSelector(state => state.examNavigationReducer.userResponseArray);
 
-
+  
   setImageFileNameArray(randomizedFullFileNameArray);
   setImageFileNameLength(imageFileNameLength);
   setPredictiveImageFileNameArray(predictiveFullFileNameArray);
@@ -244,8 +244,21 @@ function arrayEquals(a, b) {
 // ======= END VALIDATE DATA 
 
 
+
 // ======= RESULTS CHECKER DATA
 
+const createArrayOfIndexes = (ReduxFinalFileNameArray) => {
+
+  let arrayOfIndexes = [];
+
+  for (let i = 1; i <= ReduxFinalFileNameArray.length; i++) {
+    arrayOfIndexes.push(i);
+  }
+  return arrayOfIndexes;
+}
+
+  
+const arrayOfIndexes = createArrayOfIndexes(ReduxFinalFileNameArray);
 const shortenedReduxFinalFileNameArray = ReduxFinalFileNameArray.map(element => element.slice(32));
 const shortenedimageSetStageOne = imageSetStageOne.map(element => element.slice(32));
 const shortenedImageStageTwo = imageStageTwo.map(element => element.slice(32));
@@ -255,7 +268,13 @@ const shortenedcorrectScoresrray = correctScoresrray.map(element => element.slic
 
 //userResponseArray
 
+
+
+
+
+
 let resultCheckerArray = [
+{name: "Index", arrayData: arrayOfIndexes},
 {name: "ReduxFinalArray", arrayData: shortenedReduxFinalFileNameArray},
 {name: "imageSetStageOne", arrayData: shortenedimageSetStageOne},
 {name: "imageStageTwo", arrayData: shortenedImageStageTwo},
@@ -263,6 +282,7 @@ let resultCheckerArray = [
 {name: "Correct Score", arrayData: shortenedcorrectScoresrray},
 {name: "User Response", arrayData: userResponseArray},
 {name: "ReduxFinalArray", arrayData: shortenedReduxFinalFileNameArray},
+{name: "Index", arrayData: arrayOfIndexes},
 ];
 
 
@@ -296,12 +316,42 @@ const tableGenerator = (ReduxArray) => {
 
 // ======= END OF RESULTS CHECKER DATA
 
+const PullUserResponseArray = () => {
+  userResponseArray = useSelector(state => state.examNavigationReducer.userResponseArray);
+}   
+
+
+// const keyStrokeListener = (event) => {
+//   /*
+//   *  Listens for the keystoke and updates the NBackState
+//   * ISSUE:  IT repeats all previous keystrokes for some reason, making the process increasingly slower
+//   */
+//   console.log('HIT-> Image array',event.keyCode,mapStateToProps())
+
+// //return (array);
+    
+// }
+
+// React.useEffect(() => {
+//   document.addEventListener('keyup',keyStrokeListener);
+//   console.log("RAN useEffect()");
+  
+//   return function cleanup() {
+//       document.removeEventListener('keyup',keyStrokeListener);
+//   };
+// });
 
 
     return (
         
-<div className="imageArray">Image Array Info
-{userResponseArray.toString()}fsdfsdssqqqqqqqqs
+<div className="imageArray">
+<p>
+<button variant="contained" stringValue={"O - Predictive"} onClick={()=>{PullUserResponseArray()}}>"O" - Predictive - I was told to remember this
+        </button>
+</p>
+
+Image Array Info
+{userResponseArray.toString()} 
 {tableGenerator(resultCheckerArray)}
 
 
@@ -340,7 +390,7 @@ ImageStateTwo:
 <p>
 image Stage Three:  
 </p>
-<p>{imageStageThree.toString()} Length: {imageStageThree.length}</p> */}
+<p>{imageStageThree.toString()} Length: {imageStageThree.length}</p>
  
 <p>
 nBackMatches3: {nBackMatches3.toString()}  Length: {nBackMatches3.length} 
@@ -466,5 +516,13 @@ randomizedFullFileNameArray: {randomizedFullFileNameArray}
 
 //-------------------- End of Function that will render the ImageArray Page
 
-export default ImageArray;
+// const mapStateToProps = (state) => {
+//   console.log("RAN MAP STATE TO PROPS");
+//   return {
+//     userResponseArray: []
+//   };
+// }
+
+
+export default /* connect(mapStateToProps)*/(ImageArray);
 
