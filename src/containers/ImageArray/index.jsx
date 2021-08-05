@@ -209,11 +209,6 @@ const ImageArray =  () => {
     setNBackIndex(nBackIndex);
 
 
-
-
-  
-
-
   const imageSetStageThree = (nBackIndex, nBackDegree, imageStageTwo) => {
     /*
       *  This Function takes an array and adds the nback images into it
@@ -230,8 +225,6 @@ const ImageArray =  () => {
 
  const imageStageThree = imageSetStageThree(nBackIndex, nBackDegree, imageStageTwo);
 
- 
- 
 //  //const imageStageFour = imageSetStageFour(imageStageThree,predictiveIndex,PredictiveFileNameArray)
 //  //setImageSet(imageStageThree);
 // useEffect prevents it from looping forever
