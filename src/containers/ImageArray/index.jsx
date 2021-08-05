@@ -77,9 +77,6 @@ const predictiveIndexDispatch = (dispatch) => ({
 //-------------------- Function that will render the ImageArray Page:
 const ImageArray =  () => {
 
-
-
-
   const { setImageFileNameArray } = imageArrayDispatch(useDispatch()); // how does this work?  It creates an object
   const { setImageFileNameLength } = imageFileNameLengthDispatch(useDispatch());
   const { setPredictiveImageFileNameArray } = PredictveImageArrayDispatch(useDispatch()); // how does this work?  It creates an object
@@ -94,7 +91,6 @@ const ImageArray =  () => {
   const imageFileNameLength = arrayLength(ReduxStorefileNameArray)
   const PredictiveFullFileNameArrayLength = arrayLength(predictiveFullFileNameArray)
   const userResponseArray = useSelector(state => state.examNavigationReducer.userResponseArray);
-  const NBackState = useSelector(state => state.examNavigationReducer.newNBackState);
 
   setImageFileNameArray(randomizedFullFileNameArray);
   setImageFileNameLength(imageFileNameLength);
@@ -121,11 +117,6 @@ const ImageArray =  () => {
     const ReduxPredictiveFileNameArrayLength = useSelector(state => state.imageArrayReducer.predictiveImageFileNameLength)
     const imagesFolder = './images/FeeliePhotos/RandomLot/';
     const predictiveImagesFolder = './images/FeeliePhotos/Predictive/';
-
-
- 
-
-
 
     const predictiveIndexes = () => {
         /*
@@ -155,11 +146,7 @@ const ImageArray =  () => {
 
       setPredictiveIndex(predictiveIndex);
  
-    
-
-
-
-      
+          
     const earlyPredictiveIndex = [];//[...predictiveIndex];
     const imageSetStageTwo = (imageSetStageOne,predictiveIndex,PredictiveFullFileNameArray) => {
       /*
@@ -273,7 +260,7 @@ const scoringArray = (imageStageTwo,predictiveIndex,nBackIndex) => {
   return scorray;
 }
 
-const correctScoresrray = scoringArray(ReduxFinalFileNameArray,predictiveIndex,nBackIndex);
+const correctScoresrray = scoringArray(imageStageThree,predictiveIndex,nBackIndex);
 
 
 const nBackMatches2 = showMatchesOnly(imageStageTwo,nBackIndex);
@@ -299,7 +286,7 @@ const createArrayOfIndexes = (ReduxFinalFileNameArray) => {
 
   let arrayOfIndexes = [];
 
-  for (let i = 1; i <= ReduxFinalFileNameArray.length; i++) {
+  for (let i = 1; i <= [...ReduxFinalFileNameArray].length; i++) {
     arrayOfIndexes.push(i);
   }
   return arrayOfIndexes;
@@ -327,7 +314,6 @@ setImageSetStageThree(imageStageThree);
         
 <div className="imageArray">
 <p>
-{NBackState} 
 </p>
 
 

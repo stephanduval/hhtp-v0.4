@@ -46,7 +46,6 @@ const scoringArray = (imageStageTwo,predictiveIndex,nBackIndex) => {
   return scorray;
 }
 
-
 const ReduxFinalFileNameArray = useSelector(state => state.imageArrayReducer.finalFileNameArray);
 const imageSetStageOneFromRedux = useSelector(state => state.imageArrayReducer.imageSetStageOne);
 const imageStageTwoFromRedux = useSelector(state => state.imageArrayReducer.imageSetStageTwo);
@@ -55,6 +54,8 @@ const correctScoresrrayFromRedux = useSelector(state => state.imageArrayReducer.
 const userResponseArray = useSelector(state => state.examNavigationReducer.userResponseArray);
 const nBackIndexFromReduxStore = useSelector(state => state.imageArrayReducer.nBackIndex);
 const predictiveIndexFromReduxStore = useSelector(state => state.imageArrayReducer.predictiveIndex);
+const NBackState = useSelector(state => state.examNavigationReducer.newNBackState);
+
 
 const correctScoresrray = scoringArray(ReduxFinalFileNameArray,predictiveIndexFromReduxStore,nBackIndexFromReduxStore);
 
@@ -62,9 +63,9 @@ const correctScoresrray = scoringArray(ReduxFinalFileNameArray,predictiveIndexFr
 const arrayOfIndexes = createArrayOfIndexes(ReduxFinalFileNameArray);
 const shortenedReduxFinalFileNameArray = ReduxFinalFileNameArray.map(element => element.slice(32));
 const shortenedimageSetStageOne = imageSetStageOneFromRedux.map(element => element.slice(32));
-const shortenedImageStageTwo = imageStageTwoFromRedux.map(element => element.slice(32));
+const shortenedImageStageTwo = imageStageTwoFromRedux.map(element => element.slice(32,));
 const shortenedImageStageThree = imageSetStageThreeFromRedux.map(element => element.slice(32));
-const shortenedcorrectScoresrray = correctScoresrray.map(element => element.slice(0,1));
+const shortenedcorrectScoresrray = correctScoresrray.map(element => element.slice(0,2));
 
 
 
@@ -86,10 +87,8 @@ let resultCheckerArray = [
 {name: "imageStageThree", arrayData: shortenedImageStageThree},
 {name: "Correct Score", arrayData: shortenedcorrectScoresrray},
 {name: "User Response", arrayData: userResponseArray},
-{name: "ReduxFinalArray", arrayData: shortenedReduxFinalFileNameArray},
 {name: "Index", arrayData: arrayOfIndexes},
 ];
-
 
 
 const tableGenerator = (ReduxArray) => {
@@ -128,12 +127,11 @@ return (
 
 
 <div className="resultsChecker">
-Image Array Info (One Step Behind)
+
 
 {tableGenerator(resultCheckerArray)}
 <p></p>
-nBackIndexFromReduxStore:
-{nBackIndexFromReduxStore}
+
 </div>
 
 
