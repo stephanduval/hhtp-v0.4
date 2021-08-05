@@ -45,3 +45,31 @@ export const setFinalFileNameArray = (finalFileNameArray) => ({
     payload: finalFileNameArray
 })
 
+export const setImageSetStageOne = (imageSetStageOne) => ({
+    type: ActionTypes.IMAGE_SET_STAGE_ONE,  // from the constants file
+    payload: imageSetStageOne
+})
+export const setImageSetStageTwo = (imageSetStageTwo) => ({
+    type: ActionTypes.IMAGE_SET_STAGE_TWO,  // from the constants file
+    payload: imageSetStageTwo
+})
+export const setImageSetStageThree = (imageSetStageThree) => ({
+    type: ActionTypes.IMAGE_SET_STAGE_THREE,  // from the constants file
+    payload: imageSetStageThree
+})
+export const setCorrectScoresrray = (correctScoresrray) => ({
+    type: ActionTypes.CORRECT_SCORESRRAY,  // from the constants file
+    payload: correctScoresrray
+})
+export const setNBackIndex = (nBackIndex) => ({
+    type: ActionTypes.NBACK_INDEX,  // from the constants file
+    payload: nBackIndex
+})
+export const setPredictiveIndex = (predictiveIndex) => ({
+    type: ActionTypes.PREDICTIVE_INDEX,  // from the constants file
+    payload: predictiveIndex
+})
+
+
+
+

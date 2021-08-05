@@ -52,8 +52,9 @@ console.log('store:',{store});
     <ExamNavigation />
     <Settings />
     {/* DELETE ALL THE ResultChecker Files (part of Image Array Now) */}
-    {/* <ResultChecker></ResultChecker> */}
+   
     <ImageArray></ImageArray>
+     <ResultChecker></ResultChecker>
     </div>
   );
 }

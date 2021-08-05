@@ -29,7 +29,20 @@ export default function imageArray(state = defaultState, action) {
             return { ...state, scoringArray: action.payload };
         case ActionTypes.FINAL_FILENAME_ARRAY:
             return { ...state, finalFileNameArray: action.payload };
-          
+        case ActionTypes.IMAGE_SET_STAGE_ONE:
+            return { ...state, imageSetStageOne: action.payload };
+        case ActionTypes.IMAGE_SET_STAGE_TWO:
+            return { ...state, imageSetStageTwo: action.payload };
+        case ActionTypes.IMAGE_SET_STAGE_THREE:
+            return { ...state, imageSetStageThree: action.payload };
+        case ActionTypes.CORRECT_SCORESRRAY:
+            return { ...state, correctScoresrray: action.payload };
+        case ActionTypes.NBACK_INDEX:
+            return { ...state, nBackIndex: action.payload };
+        case ActionTypes.PREDICTIVE_INDEX:
+            return { ...state, predictiveIndex: action.payload };
+            
+        
         default:
             return state;
     }

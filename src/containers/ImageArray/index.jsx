@@ -3,7 +3,7 @@ import './imageArray.css';
 import { checkForEmptyinArray, showMatchesOnly } from './functions'
 import { filesToPhotosObject } from './../../functions.js';
 import { useSelector, useDispatch, connect } from 'react-redux';
-import { setCorrectResponseArray, setUserResponseArray, setImageFileNameArray, setImageFileNameLength, setPredictiveImageFileNameArray, setPredictiveImageFileNameLength, setImageSet, setScoringArray, setFinalFileNameArray} from './actions';
+import { setCorrectResponseArray, setUserResponseArray, setImageFileNameArray, setImageFileNameLength, setPredictiveImageFileNameArray, setPredictiveImageFileNameLength, setImageSet, setScoringArray, setFinalFileNameArray, setImageSetStageOne, setImageSetStageTwo, setImageSetStageThree, setCorrectScoresrray, setNBackIndex, setPredictiveIndex} from './actions';
 import { randomizeArray, arrayLength } from './../../functions'; 
 import { render } from '@testing-library/react';
 import { validateNumberOfPhotos, validateNumberOfPredictivePhotos, validatesetNumberofnBackMatches, validatesetnBackDegree, validatesetTimerSeconds } from './../../functions';
@@ -50,12 +50,35 @@ const scoringArrayDispatch = (dispatch) => ({
 const finalFileNameArrayDispatch = (dispatch) => ({
   setFinalFileNameArray: (array) => dispatch(setFinalFileNameArray(array)),
 });
+const imageSetStageOneDispatch = (dispatch) => ({
+  setImageSetStageOne: (array) => dispatch(setImageSetStageOne(array)),
+});
+const imageStageTwoDispatch = (dispatch) => ({
+  setImageSetStageTwo: (array) => dispatch(setImageSetStageTwo(array)),
+});
+const imageSetStageThreeDispatch = (dispatch) => ({
+  setImageSetStageThree: (array) => dispatch(setImageSetStageThree(array)),
+});
+const correctScoresrrayDispatch = (dispatch) => ({
+  setCorrectScoresrray: (array) => dispatch(setCorrectScoresrray(array)),
+});
+const nBackIndexDispatch = (dispatch) => ({
+  setNBackIndex: (array) => dispatch(setNBackIndex(array)),
+});
+const predictiveIndexDispatch = (dispatch) => ({
+  setPredictiveIndex: (array) => dispatch(setPredictiveIndex(array)),
+});
+
+
 
 
 //-------------------- END OF CONTSTANTS FOR REDUX TO DISPATCH ACTIONS
 
 //-------------------- Function that will render the ImageArray Page:
 const ImageArray =  () => {
+
+
+
 
   const { setImageFileNameArray } = imageArrayDispatch(useDispatch()); // how does this work?  It creates an object
   const { setImageFileNameLength } = imageFileNameLengthDispatch(useDispatch());
@@ -65,7 +88,7 @@ const ImageArray =  () => {
   const { setScoringArray } = scoringArrayDispatch(useDispatch());
   const { setFinalFileNameArray } = finalFileNameArrayDispatch(useDispatch());
 
-  
+
   const ReduxStorefileNameArray = useSelector(state => state.imageArrayReducer.imageFileNameArray);
   const ReduxFinalFileNameArray = useSelector(state => state.imageArrayReducer.finalFileNameArray);
   const imageFileNameLength = arrayLength(ReduxStorefileNameArray)
@@ -73,7 +96,6 @@ const ImageArray =  () => {
   const userResponseArray = useSelector(state => state.examNavigationReducer.userResponseArray);
   const NBackState = useSelector(state => state.examNavigationReducer.newNBackState);
 
-  
   setImageFileNameArray(randomizedFullFileNameArray);
   setImageFileNameLength(imageFileNameLength);
   setPredictiveImageFileNameArray(predictiveFullFileNameArray);
@@ -92,6 +114,8 @@ const ImageArray =  () => {
     
     const validPhotos = validateNumberOfPhotos(numberOfPhotos);
     const imageSetStageOne = randomizedFullFileNameArray.slice(0, numberOfPhotos);  // when number of photos is removed from here then it works
+    
+    
     //const imageSetStageOneLength =  imageSetStageOne.length;
     // const randomizedPredictiveImageArrayLength = arrayLength(ReduxStorePredictiveFileNameArray);
     const ReduxPredictiveFileNameArrayLength = useSelector(state => state.imageArrayReducer.predictiveImageFileNameLength)
@@ -125,6 +149,16 @@ const ImageArray =  () => {
     } 
 
     const predictiveIndex = predictiveIndexes();
+
+
+    const { setPredictiveIndex } = predictiveIndexDispatch(useDispatch());
+
+      setPredictiveIndex(predictiveIndex);
+ 
+    
+
+
+
       
     const earlyPredictiveIndex = [];//[...predictiveIndex];
     const imageSetStageTwo = (imageSetStageOne,predictiveIndex,PredictiveFullFileNameArray) => {
@@ -182,6 +216,16 @@ const ImageArray =  () => {
   }
 
   const nBackIndex = nBackIndexes(predictiveIndex,NumberofnBackMatches,nBackDegree,numberOfPhotos);
+  const { setNBackIndex } = nBackIndexDispatch(useDispatch()); // how does this work?  It creates an object
+
+
+    setNBackIndex(nBackIndex);
+
+
+
+
+  
+
 
   const imageSetStageThree = (nBackIndex, nBackDegree, imageStageTwo) => {
     /*
@@ -200,6 +244,7 @@ const ImageArray =  () => {
  const imageStageThree = imageSetStageThree(nBackIndex, nBackDegree, imageStageTwo);
 
  
+ 
 //  //const imageStageFour = imageSetStageFour(imageStageThree,predictiveIndex,PredictiveFileNameArray)
 //  //setImageSet(imageStageThree);
 // useEffect prevents it from looping forever
@@ -207,10 +252,6 @@ useEffect (() => {
 setFinalFileNameArray(imageStageThree)
 },[]
 );
-const nBackMatches2 = showMatchesOnly(imageStageTwo,nBackIndex);
-const predictiveMatches2 = showMatchesOnly(imageStageTwo,predictiveIndex);
-const nBackMatches3 = showMatchesOnly(imageStageThree,nBackIndex);
-const predictiveMatches3 = showMatchesOnly(imageStageThree,predictiveIndex);
 
 const scoringArray = (imageStageTwo,predictiveIndex,nBackIndex) => {
   let scorray = [...imageStageTwo];
@@ -232,9 +273,16 @@ const scoringArray = (imageStageTwo,predictiveIndex,nBackIndex) => {
   return scorray;
 }
 
-const correctScoresrray = scoringArray(imageStageTwo,predictiveIndex,nBackIndex,predictiveFullFileNameArray);
+const correctScoresrray = scoringArray(ReduxFinalFileNameArray,predictiveIndex,nBackIndex);
 
-// //setScoringArray(correctScoresrray);
+
+const nBackMatches2 = showMatchesOnly(imageStageTwo,nBackIndex);
+const predictiveMatches2 = showMatchesOnly(imageStageTwo,predictiveIndex);
+const nBackMatches3 = showMatchesOnly(imageStageThree,nBackIndex);
+const predictiveMatches3 = showMatchesOnly(imageStageThree,predictiveIndex);
+
+
+
  
 // ======= VALIDATE DATA 
 function arrayEquals(a, b) {
@@ -244,8 +292,6 @@ function arrayEquals(a, b) {
     a.every((val, index) => val === b[index]);
 }
 // ======= END VALIDATE DATA 
-
-
 
 // ======= RESULTS CHECKER DATA
 
@@ -259,89 +305,23 @@ const createArrayOfIndexes = (ReduxFinalFileNameArray) => {
   return arrayOfIndexes;
 }
 
-  
-const arrayOfIndexes = createArrayOfIndexes(ReduxFinalFileNameArray);
-const shortenedReduxFinalFileNameArray = ReduxFinalFileNameArray.map(element => element.slice(32));
-const shortenedimageSetStageOne = imageSetStageOne.map(element => element.slice(32));
-const shortenedImageStageTwo = imageStageTwo.map(element => element.slice(32));
-const shortenedImageStageThree = imageStageThree.map(element => element.slice(32));
-const shortenedcorrectScoresrray = correctScoresrray.map(element => element.slice(0,1));
+// ===================== Send Values to Redux Store for ResultChecker to Use
 
-
-//userResponseArray
+const { setImageSetStageOne } = imageSetStageOneDispatch(useDispatch()); 
+const { setImageSetStageTwo } = imageStageTwoDispatch(useDispatch()); 
+const { setImageSetStageThree } = imageSetStageThreeDispatch(useDispatch()); 
+const { setCorrectScoresrray } = correctScoresrrayDispatch(useDispatch()); 
 
 
 
 
+setImageSetStageOne(imageSetStageOne);
+setCorrectScoresrray(correctScoresrray);
+setImageSetStageTwo(imageStageTwo);
+setImageSetStageThree(imageStageThree);
 
 
-let resultCheckerArray = [
-{name: "Index", arrayData: arrayOfIndexes},
-{name: "imageSetStageOne", arrayData: shortenedimageSetStageOne},
-{name: "imageStageTwo", arrayData: shortenedImageStageTwo},
-{name: "imageStageThree", arrayData: shortenedImageStageThree},
-{name: "Correct Score", arrayData: shortenedcorrectScoresrray},
-{name: "User Response", arrayData: userResponseArray},
-{name: "ReduxFinalArray", arrayData: shortenedReduxFinalFileNameArray},
-{name: "Index", arrayData: arrayOfIndexes},
-];
-
-
-
-const tableGenerator = (ReduxArray) => {
-    return (
-        <div className="resultsChecker">
-      <table>
-        <thead>
-            
-            <tr>
-              {/*ReduxArray.map(column => <th>{column.name}</th>)*/}
-              
-            </tr>
-        </thead>
-        <body>
-        <tr>  
-        
-        {ReduxArray.map(column => <td><b>{column.name}</b></td>)}
-        </tr>
-        <tr>  
-        {ReduxArray.map(column => <td>{column.arrayData.map(thing => <tr>{thing}</tr>)}</td>)}
-        </tr>
-        
-        </body>
-      </table>
-      </div>
-        )
-        };
-    
-
-// ======= END OF RESULTS CHECKER DATA
-
-const PullUserResponseArray = () => {
-  userResponseArray = useSelector(state => state.examNavigationReducer.userResponseArray);
-}   
-
-
-// const keyStrokeListener = (event) => {
-//   /*
-//   *  Listens for the keystoke and updates the NBackState
-//   * ISSUE:  IT repeats all previous keystrokes for some reason, making the process increasingly slower
-//   */
-//   console.log('HIT-> Image array',event.keyCode,mapStateToProps())
-
-// //return (array);
-    
-// }
-
-// React.useEffect(() => {
-//   document.addEventListener('keyup',keyStrokeListener);
-//   console.log("RAN useEffect()");
-  
-//   return function cleanup() {
-//       document.removeEventListener('keyup',keyStrokeListener);
-//   };
-// });
-
+// ===================== Send Values to Redux Store for ResultChecker to Use END
 
     return (
         
@@ -349,10 +329,6 @@ const PullUserResponseArray = () => {
 <p>
 {NBackState} 
 </p>
-
-Image Array Info
-
-{tableGenerator(resultCheckerArray)}
 
 
 <p>
@@ -425,7 +401,7 @@ nBackPredictiveIndex:
 <p>
 {nBackIndex.toString()} Length: {nBackIndex.length}
 </p>
-
+nBackIndex:{nBackIndex}
 
 <p>
 ImageStateThree: 
@@ -516,14 +492,14 @@ randomizedFullFileNameArray: {randomizedFullFileNameArray}
 //
 //-------------------- End of Function that will render the ImageArray Page
 
-const mapStateToProps = (state) => {
-  console.log("RAN MAP STATE TO PROPS");
+// const mapStateToProps = (state) => {
+//   console.log("RAN MAP STATE TO PROPS");
   
-  return {
-    newNBackState: state.examNavigationReducer.userResponseArray
-  };
-}
+//   return {
+//     newNBackState: state.examNavigationReducer.userResponseArray
+//   };
+// }
 
 
-export default connect(mapStateToProps)(ImageArray);
+export default /*connect(mapStateToProps)*/(ImageArray);
 
