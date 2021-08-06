@@ -306,7 +306,7 @@ setImageSetStageThree(imageStageThree);
     return (
         
 <div className="imageArray">
-<p>
+{/* <p>
 </p>
 
 
@@ -388,7 +388,7 @@ ImageStateThree:
 
 <p>
 {imageStageThree.toString()}  Length: {imageStageThree.length}
-</p>
+</p> */}
 
 {/*
 <p>
@@ -399,7 +399,7 @@ imageSetStagefour:
 {imageStageFour.toString()}  Length: {imageStageFour.length}
 </p>
 */}
-<p>
+{/* <p>
 nBackPredictiveIndex: {nBackIndex.toString()}  Length: {nBackIndex.length}
 </p>
 <p>
@@ -409,7 +409,7 @@ earlyPredictiveIndex: {predictiveIndex.toString()} Length: {predictiveIndex.leng
 <p>
 predictiveIndex: {predictiveIndex.toString()} Length: {predictiveIndex.length}
  
-</p>
+</p> */}
 {/*
 <p>
 Is there an empty part in the imageStageTwo array? 
@@ -440,12 +440,12 @@ predictiveMatches4: {predictiveMatches4.toString()}  Length: {predictiveMatches.
 
 */}
 
-
+{/* 
 <p>correctScoresrray:</p>
 
 <p>
 {correctScoresrray.toString()} Length: {correctScoresrray.length};
-</p>
+</p> */}
 
 {/*
 <p>
@@ -453,7 +453,7 @@ validateCard: {validateCard.toString()} Length: {validateCard.length}
 </p>
 */}
 
-
+{/* 
 
 <p>ReduxFinalFileNameArray: {ReduxFinalFileNameArray}</p>
 
@@ -463,7 +463,7 @@ predictiveMatchesEarly: {predictiveMatchesEarly.toString()}
 </p>
 <p>
 randomizedFullFileNameArray: {randomizedFullFileNameArray}
-</p>
+</p> */}
 
 </div>
     )

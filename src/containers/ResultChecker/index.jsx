@@ -67,18 +67,7 @@ const shortenedImageStageTwo = imageStageTwoFromRedux.map(element => element.sli
 const shortenedImageStageThree = imageSetStageThreeFromRedux.map(element => element.slice(32));
 const shortenedcorrectScoresrray = correctScoresrray.map(element => element.slice(0,2));
 
-
-
-
-
-
-
 //userResponseArray
-
-
-
-
-
 
 let resultCheckerArray = [
 {name: "Index", arrayData: arrayOfIndexes},

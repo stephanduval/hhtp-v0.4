@@ -34,6 +34,7 @@ console.log('store:',{store});
   
         </div>
     </div>
+    <ImageArray></ImageArray>
      <div className="navBarWrapper">
 
           <ul className="navBar">
@@ -53,7 +54,7 @@ console.log('store:',{store});
     <Settings />
     {/* DELETE ALL THE ResultChecker Files (part of Image Array Now) */}
    
-    <ImageArray></ImageArray>
+    
      <ResultChecker></ResultChecker>
     </div>
   );
