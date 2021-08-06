@@ -70,8 +70,6 @@ const predictiveIndexDispatch = (dispatch) => ({
 });
 
 
-
-
 //-------------------- END OF CONTSTANTS FOR REDUX TO DISPATCH ACTIONS
 
 //-------------------- Function that will render the ImageArray Page:
