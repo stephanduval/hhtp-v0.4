@@ -110,7 +110,7 @@ const ImageArray =  () => {
     const imageSetStageOne = randomizedFullFileNameArray.slice(0, numberOfPhotos);  // when number of photos is removed from here then it works
     
     
-    //const imageSetStageOneLength =  imageSetStageOne.length;
+    // const imageSetStageOneLength =  imageSetStageOne.length;
     // const randomizedPredictiveImageArrayLength = arrayLength(ReduxStorePredictiveFileNameArray);
     const ReduxPredictiveFileNameArrayLength = useSelector(state => state.imageArrayReducer.predictiveImageFileNameLength)
     const imagesFolder = './images/FeeliePhotos/RandomLot/';
