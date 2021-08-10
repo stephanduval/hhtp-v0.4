@@ -20,6 +20,13 @@ const ExamNavigation = () => {
     const userResponseArray = useSelector(state => state.examNavigationReducer.userResponseArray);
     const { newUserResponseArray } = userResponseArrayDispatch(useDispatch())
     const nBackDegree = useSelector(state => state.nBackSettingsReducer.nBackDegree);
+    // 
+    const navigationStateTypes = {  
+        introductionPage: "Has settings, instructions and a start test button",
+        nBackPageTutorial: "nBackTutorialPage, May not be implemented in production version",
+    
+    }
+    //let navigationState = 
 
     const addPredictiveToUserResponseArray = () => {
         userResponseArray.push('P');
