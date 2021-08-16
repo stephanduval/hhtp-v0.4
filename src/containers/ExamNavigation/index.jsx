@@ -20,8 +20,8 @@ const ExamNavigation = () => {
     const userResponseArray = useSelector(state => state.examNavigationReducer.userResponseArray);
     const { newUserResponseArray } = userResponseArrayDispatch(useDispatch())
     const nBackDegree = useSelector(state => state.nBackSettingsReducer.nBackDegree);
-    // 
-    const navigationStateTypes = {  
+    // ==== Creating an Object to determine the different phases (states) the app
+    const navigationPhaseTypes = {  
         introductionPage: "Has settings, instructions and a start test button",
         nBackPageTutorial: "nBackTutorialPage, May not be implemented in production version",
     
