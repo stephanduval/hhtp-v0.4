@@ -1,4 +1,4 @@
-
+import ExamNavigation from './containers/ExamNavigation';
 
 export const filesToPhotosObject = (r) => {
     
@@ -94,3 +94,17 @@ export const validatesetTimerSeconds = (setTimerSeconds) => {
 export const randomizeArray = (array) => {array.sort(()=> 0.5 - Math.random())};
 
 export const arrayLength = (array) => array.length;  
+
+
+export const navigationPhaseTypes = {  
+  introductionPage: "Has settings, instructions and a start test button",
+  nBackPageTutorial: "nBackTutorialPage, May not be implemented in production version",
+}
+
+export const renderState = (navigationPhaseTypesExpression) => {
+  switch (navigationPhaseTypesExpression) {
+      case navigationPhaseTypes.introductionPage:
+          return <div><ExamNavigation /></div>;
+          
+        }
+      };

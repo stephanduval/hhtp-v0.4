@@ -1,11 +1,8 @@
 import './App.css';
 import React from 'react';
-import Photospace from './containers/PhotoSpace';
-import ExamNavigation from './containers/ExamNavigation';
-import Settings from './containers/nBackSettings';
 import ImageArray from './containers/ImageArray/';
-import ResultChecker from './containers/ResultChecker';
 import store from "./store";
+import { renderState, navigationPhaseTypes } from "./renderSwitch";
 
 
 
@@ -35,27 +32,8 @@ console.log('store:',{store});
         </div>
     </div>
     <ImageArray></ImageArray>
-     <div className="navBarWrapper">
-
-          <ul className="navBar">
-          
-            <li>one</li>
-            <li>two</li>
-            <li>three</li>
-            <li>four</li>
-            <li>five</li>
-          </ul>
-          
-    </div>
+    {renderState(navigationPhaseTypes.nBackTest)}
     
-    <Photospace />
-    
-    <ExamNavigation />
-    <Settings />
-    {/* DELETE ALL THE ResultChecker Files (part of Image Array Now) */}
-   
-    
-     <ResultChecker></ResultChecker>
     </div>
   );
 }
