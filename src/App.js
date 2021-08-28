@@ -17,9 +17,10 @@ console.log('store:',{store});
 
   
   return false ?
-  // Dis plays a loading message if the asynchronous call hasn't come back (this.state.robots.lenght is 0)
+  // Displays a loading message if the asynchronous call hasn't come back (this.state.robots.lenght is 0)
   // we no longer need .this so we take it out
   //if (this.state.robots.length === 0) {
+  //
   
   <h1>Loading</h1> :
 
