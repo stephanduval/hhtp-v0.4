@@ -1,8 +1,10 @@
 import './App.css';
 import React from 'react';
 import ImageArray from './containers/ImageArray/';
+import CSVDownloadDiv from './containers/CSVDownloadDiv';
 import store from "./store";
 import { renderState, navigationPhaseTypes } from "./renderSwitch";
+
 
 
 
@@ -33,6 +35,9 @@ console.log('store:',{store});
         </div>
     </div>
     <ImageArray></ImageArray>
+    <CSVDownloadDiv />
+
+
     {renderState(navigationPhaseTypes.nBackTest)}
     
     </div>

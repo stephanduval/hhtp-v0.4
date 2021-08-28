@@ -21,11 +21,14 @@ const ExamNavigation = () => {
     const { newUserResponseArray } = userResponseArrayDispatch(useDispatch())
     const nBackDegree = useSelector(state => state.nBackSettingsReducer.nBackDegree);
     // ==== Creating an Object to determine the different phases (states) the app
-    const navigationPhaseTypes = {  
-        introductionPage: "Has settings, instructions and a start test button",
-        nBackPageTutorial: "nBackTutorialPage, May not be implemented in production version",
     
-    }
+    
+
+    
+    //case ActionTypes.ADVANCE_IMAGE:
+    //    return { ...state, newNBackState: action.payload };
+
+    
     //let navigationState = 
 
     const addPredictiveToUserResponseArray = () => {
