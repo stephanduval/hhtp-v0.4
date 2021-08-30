@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector} from 'react-redux';
+import {scoringArray, createArrayOfIndexes} from './../../functions.js'
 
 import './ResultChecker.css';
 
@@ -7,44 +8,14 @@ import './ResultChecker.css';
 
 
 
-// ======= RESULTS CHECKER DATA
 
-const createArrayOfIndexes = (ReduxFinalFileNameArray) => {
-
-  let arrayOfIndexes = [];
-
-  for (let i = 1; i <= ReduxFinalFileNameArray.length; i++) {
-    arrayOfIndexes.push(i);
-  }
-  return arrayOfIndexes;
-}
-
-// ======= RESULTS CHECKER DATA END
 
 
 
 const ResultChecker = () => {
 
   
-const scoringArray = (imageStageTwo,predictiveIndex,nBackIndex) => {
-  let scorray = [...imageStageTwo];
 
-  let predictive = [...predictiveIndex];
-  let nBack = [...nBackIndex];
-  //let setStageOne = [...imageSetStageOne];
-  let PredictiveIndexValue = 0;
-  const iteratePredictiveIndex = () => PredictiveIndexValue++;
-  let PredictiveReduxValue = 0;
-  const iteratePredictiveReduxValue = () => PredictiveReduxValue++;
-  predictive.forEach(element => scorray.splice(predictive[iteratePredictiveIndex()],1,"P"))
-
-  let nBackIndexValue = 0;
-  const iteratenBackIndex = () => nBackIndexValue++;
-  let nBackReduxValue = 0;
-  nBack.forEach(element => scorray.splice(nBack[iteratenBackIndex()],1,"N"))
-
-  return scorray;
-}
 
 const ReduxFinalFileNameArray = useSelector(state => state.imageArrayReducer.finalFileNameArray);
 const imageSetStageOneFromRedux = useSelector(state => state.imageArrayReducer.imageSetStageOne);
