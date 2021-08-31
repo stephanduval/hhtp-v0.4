@@ -48,12 +48,29 @@ let resultCheckerArray = [
 // {ReduxArray.map(column => <td><b>{column.name}</b></td>)}
 // {ReduxArray.map(column => <td>{column.arrayData.map(thing => <tr>{thing}</tr>)}</td>)}
 
-const csvData = [
-  [resultCheckerArray.map(column => column.name)],
-  ["Ahmed", "Tomi", "ah@smthing.co.com"],
-  ["Raed", "Labes", "rl@smthing.co.com"],
-  ["Yezzi", "Min l3b", "ymin@cocococo.com"]
-];
+// use Array.from()
+
+
+let csvString = "";
+
+// csvString = resultCheckerArray.map(column => csvString.concat(toString(column.name)));
+
+const makeCSVString = (initialString) => { 
+  initialString = initialString.concat(resultCheckerArray.map(column => column.name))
+  initialString = initialString.concat("\n")
+  for (let n = 0; n < resultCheckerArray.length ; n++){
+   ;
+  }
+
+  return initialString;
+
+
+};
+
+
+
+const csvData = makeCSVString(csvString);
+
 
  
     return (
