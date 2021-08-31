@@ -58,8 +58,19 @@ let csvString = "";
 const makeCSVString = (initialString) => { 
   initialString = initialString.concat(resultCheckerArray.map(column => column.name))
   initialString = initialString.concat("\n")
-  for (let n = 0; n < resultCheckerArray.length ; n++){
-   ;
+
+
+  for (let n = 0; n < arrayOfIndexes.length ; n++){
+    initialString = initialString.concat(arrayOfIndexes[n]+",");
+    initialString = initialString.concat(shortenedimageSetStageOne[n]+",");
+    initialString = initialString.concat(shortenedImageStageTwo[n]+",");
+    initialString = initialString.concat(shortenedImageStageThree[n]+",");
+    initialString = initialString.concat(shortenedcorrectScoresrray[n]+",");
+    initialString = initialString.concat(userResponseArray[n]+",");
+    initialString = initialString.concat(arrayOfIndexes[n]+",");
+    initialString = initialString.concat("\n")
+    
+    // initialString
   }
 
   return initialString;
