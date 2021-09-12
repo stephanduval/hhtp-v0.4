@@ -63,6 +63,11 @@ const tableGenerator = (ReduxArray) => {
             </tr>
         </thead>
         <body>
+
+        Current Image: {imageSetStageThreeFromRedux[NBackState]}
+        <p></p> 
+        nBack State: {NBackState}
+        <p></p>
         <tr>  
         
         {ReduxArray.map(column => <td><b>{column.name}</b></td>)}

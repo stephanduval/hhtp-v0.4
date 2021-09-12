@@ -1,8 +1,6 @@
 import './ExamNavigation.css';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createSelector } from 'reselect';
-import { makeSelectNBack } from './selectors';
 import { newNBackState, newUserResponseArray } from './actions';
 
 const nBackStateDispatch = (dispatch) => ({
@@ -83,12 +81,7 @@ const ExamNavigation = () => {
 
         <button variant="contained" stringValue={"S - Unique Image"} onClick={()=>{newNBackState(NBackState);addSkipToUserResponseArray()}}>"S" - Unique Image
         </button>
-            
-        <p>
-        userResponseArray from Redux Store: (1 render behind) {userResponseArray.toString()}
-        </p>
- 
-        { NBackState }
+
         </div>
 
         )

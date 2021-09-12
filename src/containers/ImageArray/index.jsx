@@ -5,7 +5,6 @@ import { filesToPhotosObject } from './../../functions.js';
 import { useSelector, useDispatch, connect } from 'react-redux';
 import { setCorrectResponseArray, setUserResponseArray, setImageFileNameArray, setImageFileNameLength, setPredictiveImageFileNameArray, setPredictiveImageFileNameLength, setImageSet, setScoringArray, setFinalFileNameArray, setImageSetStageOne, setImageSetStageTwo, setImageSetStageThree, setCorrectScoresrray, setNBackIndex, setPredictiveIndex} from './actions';
 import { randomizeArray, arrayLength } from './../../functions'; 
-import { render } from '@testing-library/react';
 import { validateNumberOfPhotos, validateNumberOfPredictivePhotos, validatesetNumberofnBackMatches, validatesetnBackDegree, validatesetTimerSeconds } from './../../functions';
 // ======= Constants:
 //
@@ -290,193 +289,16 @@ const { setImageSetStageTwo } = imageStageTwoDispatch(useDispatch());
 const { setImageSetStageThree } = imageSetStageThreeDispatch(useDispatch()); 
 const { setCorrectScoresrray } = correctScoresrrayDispatch(useDispatch()); 
 
-
-
-
 setImageSetStageOne(imageSetStageOne);
 setCorrectScoresrray(correctScoresrray);
 setImageSetStageTwo(imageStageTwo);
 setImageSetStageThree(imageStageThree);
 
-
-// ===================== Send Values to Redux Store for ResultChecker to Use END
-
     return (
-        
 <div className="imageArray">
-{/* <p>
-</p>
-
-
-<p>
-Number of Photos {numberOfPhotos}  {validPhotos} 
-</p>
-
-<p>
-setPredictiveImageFileNameLength: {ReduxPredictiveFileNameArrayLength} 
-</p>
-
-<p>
-predictiveIndex: {predictiveIndex.toString()}  Length: {predictiveIndex.length} 
-</p>
-<p>
-PredictiveFuFileNameArray: {predictiveFullFileNameArray.toString()}  Length: {predictiveFullFileNameArray.length} 
-</p>
-
-
-
-<p>
-imageSetStageOne:
-</p>
-<p>{imageSetStageOne.toString()} Length: {imageSetStageOne.length}</p>
-
-<p>
-ImageStateTwo: 
-</p>
-
-<p>
-{imageStageTwo.slice(0, numberOfPhotos).toString()}  Length: {imageStageTwo.length}
-</p>
-
-
-
-<p>
-image Stage Three:  
-</p>
-<p>{imageStageThree.toString()} Length: {imageStageThree.length}</p>
- 
-<p>
-nBackMatches3: {nBackMatches3.toString()}  Length: {nBackMatches3.length} 
-</p>
-<p>
-predictiveMatches3: {predictiveMatches3.toString()}  Length: {predictiveMatches3.length} 
-</p>
-
-<p>
-nBackMatches2: {nBackMatches2.toString()}  Length: {nBackMatches2.length} 
-</p>
-
-
-<p>
-predictiveMatches2: {predictiveMatches2.toString()}  Length: {predictiveMatches2.length} 
-</p>
-
-<p>
-  Predictives the same? {(arrayEquals(predictiveMatchesEarly,predictiveMatches3)).toString()}
-</p>
-
-<p>
- nBacks the same? {(arrayEquals(nBackMatches3,nBackMatches2)).toString()} 
-</p>
-<p>
- Stage 2 and 3 the same? {(arrayEquals(imageStageTwo,imageStageThree)).toString()} 
-</p> 
-<p>
-nBackPredictiveIndex: 
-</p>
-
-<p>
-{nBackIndex.toString()} Length: {nBackIndex.length}
-</p>
-nBackIndex:{nBackIndex}
-
-<p>
-ImageStateThree: 
-</p>
-
-<p>
-{imageStageThree.toString()}  Length: {imageStageThree.length}
-</p> */}
-
-{/*
-<p>
-
-imageSetStagefour: 
-</p>
-<p>
-{imageStageFour.toString()}  Length: {imageStageFour.length}
-</p>
-*/}
-{/* <p>
-nBackPredictiveIndex: {nBackIndex.toString()}  Length: {nBackIndex.length}
-</p>
-<p>
-earlyPredictiveIndex: {predictiveIndex.toString()} Length: {predictiveIndex.length}
-
-</p>
-<p>
-predictiveIndex: {predictiveIndex.toString()} Length: {predictiveIndex.length}
- 
-</p> */}
-{/*
-<p>
-Is there an empty part in the imageStageTwo array? 
-</p>
-<p>emptyArrayCheck: {emptyArrayCheck}
-</p>
-<p>
-nBackMatches: {nBackMatches.toString()}  Length: {nBackMatches.length} 
-</p>
-<p>
-predictiveMatches: {predictiveMatches.toString()}  Length: {predictiveMatches.length} 
-</p>
-*/}
-{/*
-<p>
-nBackMatches3: {nBackMatches3.toString()}  Length: {nBackMatches.length} 
-</p>
-<p>
-predictiveMatches3: {predictiveMatches3.toString()}  Length: {predictiveMatches.length} 
-</p>
-
-<p>
-nBackMatches4: {nBackMatches4.toString()}  Length: {nBackMatches.length} 
-</p>
-<p>
-predictiveMatches4: {predictiveMatches4.toString()}  Length: {predictiveMatches.length} 
-</p>
-
-*/}
-
-{/* 
-<p>correctScoresrray:</p>
-
-<p>
-{correctScoresrray.toString()} Length: {correctScoresrray.length};
-</p> */}
-
-{/*
-<p>
-validateCard: {validateCard.toString()} Length: {validateCard.length}
-</p>
-*/}
-
-{/* 
-
-<p>ReduxFinalFileNameArray: {ReduxFinalFileNameArray}</p>
-
-
-<p>
-predictiveMatchesEarly: {predictiveMatchesEarly.toString()}
-</p>
-<p>
-randomizedFullFileNameArray: {randomizedFullFileNameArray}
-</p> */}
-
 </div>
     )
 }
-//
-//-------------------- End of Function that will render the ImageArray Page
 
-// const mapStateToProps = (state) => {
-//   console.log("RAN MAP STATE TO PROPS");
-  
-//   return {
-//     newNBackState: state.examNavigationReducer.userResponseArray
-//   };
-// }
-
-
-export default /*connect(mapStateToProps)*/(ImageArray);
+export default ImageArray;
 

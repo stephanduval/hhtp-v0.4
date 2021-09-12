@@ -1,23 +1,14 @@
 import './App.css';
 import React from 'react';
 import ImageArray from './containers/ImageArray/';
-import CSVDownloadDiv from './containers/CSVDownloadDiv';
 import store from "./store";
-import { renderState, navigationPhaseTypes } from "./renderSwitch";
-
-
-
-
-
+import { renderState, navigationPhaseTypes } from "./containers/renderSwitch/renderSwitch";
 
 function App() {
 
-
-console.log('store:',{store});
-
+  let intro = false;
 
 
-  
   return false ?
   // Displays a loading message if the asynchronous call hasn't come back (this.state.robots.lenght is 0)
   // we no longer need .this so we take it out
@@ -28,18 +19,14 @@ console.log('store:',{store});
 
   (
     <div className="App">
-
-       <div className="headerBar">
-        <div align="center">This is a Header (class topBar)
-  
-        </div>
-    </div>
-    <ImageArray></ImageArray>
-    <CSVDownloadDiv />
-
-
-    {renderState(navigationPhaseTypes.nBackTest)}
     
+
+
+    <ImageArray></ImageArray> 
+
+    { intro ? <div>{renderState(navigationPhaseTypes.introductionPage)}</div> : <div>{renderState(navigationPhaseTypes.nBackTest)}</div>}
+    
+      
     </div>
   );
 }
