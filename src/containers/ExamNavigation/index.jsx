@@ -1,7 +1,7 @@
 import './ExamNavigation.css';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { newNBackState, newUserResponseArray } from './actions';
+import { setRenderState, newNBackState, newUserResponseArray } from './actions';
 
 const nBackStateDispatch = (dispatch) => ({
     newNBackState: (users) => dispatch(newNBackState(users)),
@@ -11,16 +11,30 @@ const userResponseArrayDispatch = (dispatch) => ({
     newUserResponseArray: (array) => dispatch(newUserResponseArray(array)),
 });
 
+const renderViewDispatch = (dispatch) => ({
+    setRenderState: (nameState) => dispatch(setRenderState(nameState)),
+});
+
+
 const ExamNavigation = () => {
  
     const NBackState = useSelector(state => state.examNavigationReducer.newNBackState);
-    const { newNBackState } = nBackStateDispatch(useDispatch())
+    const { newNBackState } = nBackStateDispatch(useDispatch());
     const userResponseArray = useSelector(state => state.examNavigationReducer.userResponseArray);
-    const { newUserResponseArray } = userResponseArrayDispatch(useDispatch())
+    const { newUserResponseArray } = userResponseArrayDispatch(useDispatch());
     const nBackDegree = useSelector(state => state.nBackSettingsReducer.nBackDegree);
-    // ==== Creating an Object to determine the different phases (states) the app
+    const { newViewState } = renderViewDispatch(useDispatch());
+    const renderViewFromReduxStore = useSelector(state => state.examNavigationReducer.renderView);
+       // ==== Creating an Object to determine the different phases (states) the app
     
-    
+       console.log("state renderview 1", renderViewFromReduxStore);
+       //   let aaa = 11;
+      // renderViewDispatch(useDispatch('hi'));
+     
+       console.log(renderViewDispatch(useDispatch(11)));
+
+
+    console.log("state renderview 2", renderViewFromReduxStore);
 
     
     //case ActionTypes.ADVANCE_IMAGE:

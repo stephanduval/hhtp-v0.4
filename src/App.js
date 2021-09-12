@@ -2,7 +2,8 @@ import './App.css';
 import React from 'react';
 import ImageArray from './containers/ImageArray/';
 import store from "./store";
-import { renderState, navigationPhaseTypes } from "./containers/renderSwitch/renderSwitch";
+import { navigationPhaseTypes, renderState } from "./containers/renderSwitch/renderSwitch.js";
+import RenderSwitch from './containers/renderSwitch';
 
 function App() {
 
@@ -14,7 +15,8 @@ function App() {
   // we no longer need .this so we take it out
   //if (this.state.robots.length === 0) {
   //
-  
+
+
   <h1>Loading</h1> :
 
   (
@@ -23,8 +25,10 @@ function App() {
 
 
     <ImageArray></ImageArray> 
-
     { intro ? <div>{renderState(navigationPhaseTypes.introductionPage)}</div> : <div>{renderState(navigationPhaseTypes.nBackTest)}</div>}
+   
+    <renderState />
+   
     
       
     </div>
