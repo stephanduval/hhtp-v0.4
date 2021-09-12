@@ -70,7 +70,7 @@ const makeCSVString = (initialString) => {
     initialString = initialString.concat(arrayOfIndexes[n]+",");
     initialString = initialString.concat("\n")
     
-    // initialString .
+    // initialString ..
   }
 
   return initialString;
