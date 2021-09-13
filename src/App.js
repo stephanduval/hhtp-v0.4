@@ -4,10 +4,14 @@ import ImageArray from './containers/ImageArray/';
 import store from "./store";
 import { navigationPhaseTypes, renderState } from "./containers/renderSwitch/renderSwitch.js";
 import RenderSwitch from './containers/renderSwitch';
+import { useDispatch, useSelector } from 'react-redux';
+import ExamNavigation from './containers/ExamNavigation';
 
 function App() {
 
-  let intro = false;
+  let renderViewFromReduxStore = useSelector(state => state.examNavigationReducer.renderView);
+
+  
 
 
   return false ?
@@ -15,22 +19,17 @@ function App() {
   // we no longer need .this so we take it out
   //if (this.state.robots.length === 0) {
   //
-
+// //{ renderViewFromReduxStore ? <div>{renderState(navigationPhaseTypes.introductionPage)}</div> : <div>{renderState(navigationPhaseTypes.nBackTest)}</div>}
 
   <h1>Loading</h1> :
 
   (
     <div className="App">
-    
-
-
     <ImageArray></ImageArray> 
-    { intro ? <div>{renderState(navigationPhaseTypes.introductionPage)}</div> : <div>{renderState(navigationPhaseTypes.nBackTest)}</div>}
-   
-    <renderState />
-   
     
-      
+    {renderState(renderViewFromReduxStore)}
+    {console.log(renderViewFromReduxStore)}
+
     </div>
   );
 }

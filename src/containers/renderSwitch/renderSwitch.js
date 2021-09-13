@@ -4,6 +4,9 @@ import Photospace from '../PhotoSpace';
 import Settings from '../nBackSettings';
 import ResultChecker from '../ResultChecker';
 import CSVDownloadDiv from '../CSVDownloadDiv';
+import StartTestButton from '../StartTestButton';
+
+
 
 export const navigationPhaseTypes = {  
     introductionPage: "Has settings, instructions and a start test button",
@@ -11,20 +14,29 @@ export const navigationPhaseTypes = {
     nBackTest: "The actual nBack Test, recordning data"
   }
   
+
+
   export const renderState = (navigationPhaseTypesExpression) => {
+      
     switch (navigationPhaseTypesExpression) {
         case navigationPhaseTypes.introductionPage:
-            return <div><Settings />
-            <ResultChecker /></div>;
+            return <div>
+            <Settings />
+                        <StartTestButton/>
+            </div>;
         case navigationPhaseTypes.nBackTest:
             return <div>
                         <Photospace /> 
                         <ExamNavigation />
                 </div>;         
-        case navigationPhaseTypes.nBackComeplete:
+        case navigationPhaseTypes.nBackComplete:
             return <div>
                         <CSVDownloadDiv/>
                         <ResultChecker />
-                </div>;          
+                </div>;
+        default:
+            return <div><Settings />
+            <StartTestButton/>
+</div>;            
     }
         };

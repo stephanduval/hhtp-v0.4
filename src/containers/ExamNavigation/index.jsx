@@ -1,7 +1,10 @@
 import './ExamNavigation.css';
 import React from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setRenderState, newNBackState, newUserResponseArray } from './actions';
+import { navigationPhaseTypes } from '../renderSwitch/renderSwitch';
+
 
 const nBackStateDispatch = (dispatch) => ({
     newNBackState: (users) => dispatch(newNBackState(users)),
@@ -23,20 +26,23 @@ const ExamNavigation = () => {
     const userResponseArray = useSelector(state => state.examNavigationReducer.userResponseArray);
     const { newUserResponseArray } = userResponseArrayDispatch(useDispatch());
     const nBackDegree = useSelector(state => state.nBackSettingsReducer.nBackDegree);
-    const { newViewState } = renderViewDispatch(useDispatch());
+    const { setRenderState } = renderViewDispatch(useDispatch());  
     const renderViewFromReduxStore = useSelector(state => state.examNavigationReducer.renderView);
+    const numberOfPhotos = useSelector(state => state.nBackSettingsReducer.numberOfPhotos);
+
        // ==== Creating an Object to determine the different phases (states) the app
     
        console.log("state renderview 1", renderViewFromReduxStore);
        //   let aaa = 11;
       // renderViewDispatch(useDispatch('hi'));
-     
-       console.log(renderViewDispatch(useDispatch(11)));
 
+       //console.log(renderViewDispatch(useDispatch(11)));
+      // let aaa = 11;
+     //  setRenderState(aaa);
 
     console.log("state renderview 2", renderViewFromReduxStore);
 
-    
+
     //case ActionTypes.ADVANCE_IMAGE:
     //    return { ...state, newNBackState: action.payload };
 
@@ -81,6 +87,10 @@ const ExamNavigation = () => {
     };
      });
  
+     console.log("Nback State and number of pred Photos",NBackState,numberOfPhotos);
+     if (NBackState > numberOfPhotos) {
+        setRenderState(navigationPhaseTypes.nBackComplete);
+     }
 
 
     return (

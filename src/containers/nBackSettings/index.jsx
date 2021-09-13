@@ -64,19 +64,26 @@ const setNumberofPhotosFormEventHandler = () => {
 //-------------------- Rendered Website:
 
     return (
-        
-<div className="nBackSettings">
-settings bar
+<div>
+<div className="header">
+<h2>Welcome to a early version of the n-back test</h2>
+<p></p>
+You will be presented with a number of images.  Follow the instructions given and your responses will be recorded.
+<p></p>
+Following the exam the page will reset and the tester will be able to review the results and download them as a CSV
+<p></p>
+This is an early version for testing and review purposes.
+<p></p>
+This page is designed for the tester to customize the testing parameters.
+<h3>Settings:</h3>
+<h3></h3>
 
-<form>
-<ul>
-  <li><label>
-    numberOfPhotosAlt:  
-    <input type="number" name="numberOfPhotosAlt" onChange={(e) => {setNumberOfPhotosAlt(e.currentTarget.value);setNumberofPhotosFormEventHandler();console.log(e.currentTarget)}}/>  {numberOfPhotosAlt}
-  </label>
-  </li>
-</ul>
-</form>
+</div>
+
+<div className="nBackSettings">
+
+
+
 <form>
 <ul>
   <li><label>
@@ -108,8 +115,10 @@ settings bar
   <input type="submit" value="Reset to Defaults" />
 </ul>
 </form>
+
 Total Number of images in array: {imageFileNameArrayLength}
 <p>{/*reduxImageSet.toString()*/}</p>
+  </div>
   </div>
  
     )

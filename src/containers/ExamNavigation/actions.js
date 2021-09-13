@@ -9,7 +9,7 @@ export const newUserResponseArray = (userResponseArray) => ({
     payload: userResponseArray
 })
 
-export const setRenderState = (stateView) => ({
+export const setRenderState = (renderView) => ({
     type: ActionTypes.RENDER_VIEW,  // from the constants file
-    payload: stateView
+    payload: renderView
 })

@@ -1,8 +1,14 @@
 
 .nBackSettings {
     display: flex;
+    flex-direction: column;
     flex-wrap:nowrap;
-    height:230px;
     background-color: var(--grey2);
     justify-content: center;
+    text-align: justify;
     }
+
+.header {    
+
+
+}

@@ -92,7 +92,9 @@ return (
 
 
 <div className="resultsChecker">
-
+<h2> These are the results of a single examination</h2>
+<h2>You can download the results in CSV format above.</h2>
+<h2>Only columns 4,5 and 6 are relevant to the research, the rest are temporary troubleshooting the program</h2>
 
 {tableGenerator(resultCheckerArray)}
 <p></p>
