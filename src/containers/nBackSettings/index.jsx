@@ -3,6 +3,8 @@ import './nBackSettings.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setNumberofPhotos, setNumberOfPredictivePhotos, setNumberofnBackMatches, setnBackDegree, setTimerSeconds, setNumberOfPhotosAlt } from './actions';
 import { validateNumberOfPhotos, validateNumberOfPredictivePhotos, validatesetNumberofnBackMatches, validatesetnBackDegree, validatesetTimerSeconds } from './../../functions';
+import { FormControl, InputLabel } from '@material-ui/core';
+
 
 //-------------------- CONTSTANTS FOR REDUX TO DISPATCH ACTIONS: 
 
@@ -84,7 +86,7 @@ This page is designed for the tester to customize the testing parameters.
 
 
 
-<form>
+<FormControl>
 <ul>
   <li><label>
     numberOfPhotos:  
@@ -114,7 +116,7 @@ This page is designed for the tester to customize the testing parameters.
 
   <input type="submit" value="Reset to Defaults" />
 </ul>
-</form>
+</FormControl>
 
 Total Number of images in array: {imageFileNameArrayLength}
 <p>{/*reduxImageSet.toString()*/}</p>
