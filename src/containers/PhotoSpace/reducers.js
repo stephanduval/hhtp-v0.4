@@ -2,7 +2,7 @@
 import { ActionTypes } from "./constants";
 import { filesToPhotosObject } from './../../functions.js';
 
-const images = filesToPhotosObject(require.context('./../../../public/images/FeeliePhotos/RandomLot/', false, /\.(png|jpe?g|svg)$/));
+const images = filesToPhotosObject(require.context('./../../../public/images/n-back-photos/RandomLot/', false, /\.(png|jpe?g|svg)$/));
 let imageFileNameArray = Object.keys(images);
 let imageFileNameArrayLength = imageFileNameArray.length;
 
