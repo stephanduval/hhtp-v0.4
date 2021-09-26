@@ -2,10 +2,7 @@ import './CSVDownload.css';
 import React from 'react';
 import { useSelector} from 'react-redux';
 import {scoringArray, createArrayOfIndexes} from './../../functions.js'
-import { CSVLink, CSVDownload } from "react-csv";
-
-
-
+import { CSVLink, CSVDownload, buildURI } from "react-csv";
 
 
 const CSVDownloadDiv = () => {
@@ -79,16 +76,19 @@ const makeCSVString = (initialString) => {
 };
 
 
-
+ 
 const csvData = makeCSVString(csvString);
 
 
+let canvas = 's';
  
+
+
     return (
             
         <div>
-               <CSVLink data={csvData}>Download CSV</CSVLink>
-
+               <CSVLink filename='ID_nBack_CSV..csv' data={csvData}>Download CSV</CSVLink>
+            
   
         </div>
 
