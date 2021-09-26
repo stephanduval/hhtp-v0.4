@@ -3,12 +3,11 @@ import './StartTestButton.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { setRenderState } from '../ExamNavigation/actions';
 import { navigationPhaseTypes } from '../renderSwitch/renderSwitch';
+import { Button } from '@material-ui/core';
      
 const renderViewDispatch = (dispatch) => ({
     setRenderState: (nameState) => dispatch(setRenderState(nameState)),
 });
-
-
 
 
 
@@ -24,8 +23,11 @@ const StartTestButton = () => {  // this destructing allows us to use onInputCha
         
 <div className="startTestButton">
     
-<button variant="contained" stringValue={"Same as *n* photos Back"} onClick={()=>{setRenderState(navigationPhaseTypes.nBackTest);console.log("clicked start button")}}>Start the Test
-        </button>
+
+<Button color ="tertiary" variant="contained" stringValue={"Same as *n* photos Back"} onClick={()=>{setRenderState(navigationPhaseTypes.nBackTest);console.log("clicked start button")}}>Start the Test
+        </Button>
+
+        
         
 </div>
     )

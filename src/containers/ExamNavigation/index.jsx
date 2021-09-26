@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setRenderState, newNBackState, newUserResponseArray } from './actions';
 import { navigationPhaseTypes } from '../renderSwitch/renderSwitch';
+import { Button } from '@material-ui/core';
 
 
 const nBackStateDispatch = (dispatch) => ({
@@ -97,14 +98,14 @@ const ExamNavigation = () => {
             
         <div className="buttonSpace">
            
-    <button variant="contained" stringValue={"Same as *n* photos Back"} onClick={()=>{newNBackState(NBackState);addNBackToUserResponseArray()}}>"W" - Same as {nBackDegree} photos Back
-        </button>
+    <Button color ="primary" variant="contained" stringValue={"Same as *n* photos Back"} onClick={()=>{newNBackState(NBackState);addNBackToUserResponseArray()}}>"W" - Same as {nBackDegree} photos Back
+        </Button>
 
-        <button variant="contained" stringValue={"O - Predictive"} onClick={()=>{newNBackState(NBackState);addPredictiveToUserResponseArray()}}>"O" - Predictive - I was told to remember this
-        </button>
+        <Button color ="quaternary" variant="contained" stringValue={"O - Predictive"} onClick={()=>{newNBackState(NBackState);addPredictiveToUserResponseArray()}}>"O" - Predictive - I was told to remember this
+        </Button>
 
-        <button variant="contained" stringValue={"S - Unique Image"} onClick={()=>{newNBackState(NBackState);addSkipToUserResponseArray()}}>"S" - Unique Image
-        </button>
+        <Button color ="secondary" variant="contained" stringValue={"S - Unique Image"} onClick={()=>{newNBackState(NBackState);addSkipToUserResponseArray()}}>"S" - Unique Image
+        </Button>
 
         </div>
 
