@@ -2,7 +2,8 @@ import './CSVDownload.css';
 import React from 'react';
 import { useSelector} from 'react-redux';
 import {scoringArray, createArrayOfIndexes} from './../../functions.js'
-import { CSVLink, CSVDownload, buildURI } from "react-csv";
+import { CSVLink } from 'react-csv';
+import { ExpansionPanelDetails } from '@material-ui/core';
 
 
 const CSVDownloadDiv = () => {

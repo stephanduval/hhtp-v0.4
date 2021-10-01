@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setRenderState, newNBackState, newUserResponseArray } from './actions';
 import { navigationPhaseTypes } from '../renderSwitch/renderSwitch';
 import { Button } from '@material-ui/core';
-
+//
 
 const nBackStateDispatch = (dispatch) => ({
     newNBackState: (users) => dispatch(newNBackState(users)),
