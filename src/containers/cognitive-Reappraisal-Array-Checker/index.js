@@ -3,20 +3,29 @@ import './cognitive-Reappraisal-Array-Checker.css';
 import { checkForEmptyinArray, showMatchesOnly } from './../n-back-image-array/functions';
 import { filesToPhotosObject } from '../../functions.js';
 import * as CRAConstant from './../cognitive-Reappraisal-Array/constants';
+import { useDispatch, useSelector } from 'react-redux';
 
 
-let testCognitiveReappraisalArray = CRAConstant.randomizedCognitiveReappraisalArrayFileNameArray;
+
+
+
+let CognitiveReappraisalArray = CRAConstant.randomizedCognitiveReappraisalArrayFileNameArray;
 
 
 let resultCheckerArray = [
-    {name: "Random Cognitive Reappraisal Array", arrayData: testCognitiveReappraisalArray},
+    {name: "Random Cognitive Reappraisal Array", arrayData: CognitiveReappraisalArray},
     ];
 
 
 
 let CRATableGenerator = (ReduxArray) => {
+
+    const CRAImageState = useSelector(state => state.craNavigation.newCRAViewState);
+
+
     return (
         <div className="resultsChecker">
+        {/* {CRAImageState} */}
       <table>
         <thead>
             

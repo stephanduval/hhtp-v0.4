@@ -5,7 +5,7 @@ import { filesToPhotosObject } from '../../functions.js';
 import * as CRAConstant from './constants';
 
 
-let testCognitiveReappraisalArray = CRAConstant.randomizedCognitiveReappraisalArrayFileNameArray;
+let FinalCognitiveReappraisalArray = CRAConstant.randomizedCognitiveReappraisalArrayFileNameArray;
 
 
 
