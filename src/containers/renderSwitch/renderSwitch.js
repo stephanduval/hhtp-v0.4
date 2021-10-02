@@ -5,13 +5,17 @@ import Settings from '../nBackSettings';
 import ResultChecker from '../ResultChecker';
 import CSVDownloadDiv from '../CSVDownloadDiv';
 import StartTestButton from '../StartTestButton';
+import CognitiveReappraisalArray from '../cognitive-Reappraisal-Array';
+import StartCognitiveReappraisalTestButton from '../StartCognitiveReappraisalTestButton';
+
 
 
 
 export const navigationPhaseTypes = {  
     introductionPage: "Has settings, instructions and a start test button",
     nBackPageTutorial: "nBackTutorialPage, May not be implemented in production version",
-    nBackTest: "The actual nBack Test, recordning data"
+    nBackTest: "The actual nBack Test, recordning data",
+    cognitiveReappraisalTest: "Cognitive Reappraisal Test"
   }
   
 
@@ -20,23 +24,43 @@ export const navigationPhaseTypes = {
       
     switch (navigationPhaseTypesExpression) {
         case navigationPhaseTypes.introductionPage:
+            console.log('Introduction Page')
             return <div>
             <Settings />
                         <StartTestButton/>
-            </div>;
+                        <StartCognitiveReappraisalTestButton/>
+                    </div>
+                    
+            break;
         case navigationPhaseTypes.nBackTest:
+            console.log('navigationPhaseTypes.nBackTest');
             return <div>
                         <Photospace /> 
                         <ExamNavigation />
-                </div>;         
+                    </div>
+                 
         case navigationPhaseTypes.nBackComplete:
+            console.log('case navigationPhaseTypes.nBackComplete');
+            
             return <div>
                         <CSVDownloadDiv/>
                         <ResultChecker />
-                </div>;
+                    </div>
+    
+        case navigationPhaseTypes.cognitiveReappraisalTest:
+            console.log('case navigationPhaseTypes.cog');
+
+            return <div>
+                        <CognitiveReappraisalArray/>
+                    </div>
+            break;
+
         default:
+            console.log('default');
             return <div><Settings />
             <StartTestButton/>
-</div>;            
+            <StartCognitiveReappraisalTestButton/>
+            </div>;            
+            
     }
         };

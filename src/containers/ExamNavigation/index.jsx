@@ -89,7 +89,7 @@ const ExamNavigation = () => {
      });
  
      console.log("Nback State and number of pred Photos",NBackState,numberOfPhotos);
-     if (NBackState > numberOfPhotos) {
+     if (NBackState >= numberOfPhotos) {
         setRenderState(navigationPhaseTypes.nBackComplete);
      }
 
