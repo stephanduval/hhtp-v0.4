@@ -7,7 +7,8 @@ import CSVDownloadDiv from '../CSVDownloadDiv';
 import StartTestButton from '../StartTestButton';
 import CognitiveReappraisalArray from '../cognitive-Reappraisal-Array';
 import StartCognitiveReappraisalTestButton from '../StartCognitiveReappraisalTestButton';
-
+import CognitiveReappraisalArrayChecker from '../cognitive-Reappraisal-Array-Checker';
+import CognitiveReappraisalExamNavigation from '../CognitiveReappraisalNavigation';
 
 
 
@@ -52,6 +53,8 @@ export const navigationPhaseTypes = {
 
             return <div>
                         <CognitiveReappraisalArray/>
+                        <CognitiveReappraisalExamNavigation/>
+                        <CognitiveReappraisalArrayChecker/>
                     </div>
             break;
 

@@ -2,9 +2,11 @@ import React from 'react';
 import './cognitive-Reappraisal-Array.css';
 import { checkForEmptyinArray, showMatchesOnly } from './../n-back-image-array/functions';
 import { filesToPhotosObject } from '../../functions.js';
+import * as CRAConstant from './constants';
 
-const cognitiveReappraisalImageFolder = './../../../public/images/n-back-photos/RandomLot/'
-const images = filesToPhotosObject(require.context('./../../../public/images/n-back-photos/RandomLot/', false, /\.(png|jpe?g|svg)$/));
+
+let testCognitiveReappraisalArray = CRAConstant.randomizedCognitiveReappraisalArrayFileNameArray;
+
 
 
 const CognitiveReappraisalArray =  () => {
@@ -13,6 +15,8 @@ const CognitiveReappraisalArray =  () => {
     return (
         <div className="CognitiveReappraisalArray">
         Cognitive Reappraisal Array
+
+
         </div>
             )
         }

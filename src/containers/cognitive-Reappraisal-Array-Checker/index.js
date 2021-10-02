@@ -1,0 +1,62 @@
+import React from 'react';
+import './cognitive-Reappraisal-Array-Checker.css';
+import { checkForEmptyinArray, showMatchesOnly } from './../n-back-image-array/functions';
+import { filesToPhotosObject } from '../../functions.js';
+import * as CRAConstant from './../cognitive-Reappraisal-Array/constants';
+
+
+let testCognitiveReappraisalArray = CRAConstant.randomizedCognitiveReappraisalArrayFileNameArray;
+
+
+let resultCheckerArray = [
+    {name: "Random Cognitive Reappraisal Array", arrayData: testCognitiveReappraisalArray},
+    ];
+
+
+
+let CRATableGenerator = (ReduxArray) => {
+    return (
+        <div className="resultsChecker">
+      <table>
+        <thead>
+            
+            <tr>
+              {/*ReduxArray.map(column => <th>{column.name}</th>)*/}
+              
+            </tr>
+        </thead>
+        <body>
+
+        {/* Current Image: {imageSetStageThreeFromRedux[NBackState]} */}
+        <p></p> 
+        {/* nBack State: {NBackState} */}
+        <p></p>
+        <tr>  
+        
+        {ReduxArray.map(column => <td><b>{column.name}</b></td>)}
+        </tr>
+        <tr>  
+        {ReduxArray.map(column => <td>{column.arrayData.map(thing => <tr>{thing}</tr>)}</td>)}
+        </tr>
+        
+        </body>
+      </table>
+      </div>
+    )
+    };
+
+
+
+const CognitiveReappraisalArrayChecker =  () => {
+
+
+    return (
+        <div className="CognitiveReappraisalArray">
+        Cognitive Reappraisal Array Checker
+        {CRATableGenerator(resultCheckerArray)}
+
+        </div>
+            )
+        }
+        
+        export default CognitiveReappraisalArrayChecker;

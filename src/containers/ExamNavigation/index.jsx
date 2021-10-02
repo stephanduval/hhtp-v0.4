@@ -62,7 +62,7 @@ const ExamNavigation = () => {
         userResponseArray.push('-');
     }
     
-    const keyStrokeListener = (event) => {
+    const keyStrokeListener = (event) => {      
         /*
         *  Listens for the keystoke and updates the NBackState
         * ISSUE:  IT repeats all previous keystrokes for some reason, making the process increasingly slower

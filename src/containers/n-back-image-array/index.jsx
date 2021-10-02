@@ -271,7 +271,7 @@ function arrayEquals(a, b) {
 // ======= END VALIDATE DATA 
 
 // ======= RESULTS CHECKER DATA
-
+ 
 const createArrayOfIndexes = (ReduxFinalFileNameArray) => {
 
   let arrayOfIndexes = [];
