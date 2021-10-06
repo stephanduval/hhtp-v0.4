@@ -2,7 +2,7 @@
 import { ActionTypes } from "./constants";
 
 const defaultState = {
-    newNBackState: 125,
+    newNBackState: 0,
     userResponseArray: [],
     renderView: "navigationPhaseTypes.introductionPage",
 

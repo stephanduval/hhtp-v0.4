@@ -21,7 +21,7 @@ const StartCognitiveReappraisalTestButton = () => {  // this destructing allows 
     //-------------------- END of functions Fetch and Store Data for the setRenderState
     return (//
         
-<div className="StartCognitiveReappraisalTestButton">
+<div className="testButton">
 
 
 <Button color ="tertiary" variant="contained" stringValue={"Start Cognitive Reappraisal Test"} onClick={()=>{setRenderState(navigationPhaseTypes.cognitiveReappraisalTest);console.log("clicked  cognitive reappraisal test start button")}}>Start Cognitive Reappraisal Test
