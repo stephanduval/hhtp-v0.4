@@ -100,11 +100,13 @@ export const scoringArray = (imageStageTwo,predictiveIndex,nBackIndex) => {
 
   let predictive = [...predictiveIndex];
   let nBack = [...nBackIndex];
+
+  //scorray.map(element=>element+"111");
   //let setStageOne = [...imageSetStageOne];
   let PredictiveIndexValue = 0;
   const iteratePredictiveIndex = () => PredictiveIndexValue++;
-  let PredictiveReduxValue = 0;
-  const iteratePredictiveReduxValue = () => PredictiveReduxValue++;
+  // let PredictiveReduxValue = 0;
+  // const iteratePredictiveReduxValue = () => PredictiveReduxValue++;
   predictive.forEach(element => scorray.splice(predictive[iteratePredictiveIndex()],1,"P"))
 
   let nBackIndexValue = 0;

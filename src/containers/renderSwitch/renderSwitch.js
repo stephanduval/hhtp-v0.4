@@ -48,6 +48,8 @@ export const navigationPhaseTypes = {
             return <div>
                         <Photospace /> 
                         <ExamNavigation />
+                        <ResultChecker />
+
                     </div>
                  
         case navigationPhaseTypes.nBackComplete:
