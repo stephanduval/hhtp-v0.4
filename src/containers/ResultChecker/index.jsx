@@ -24,7 +24,7 @@ const shortenedReduxFinalFileNameArray = ReduxFinalFileNameArray.map(element => 
 const shortenedimageSetStageOne = imageSetStageOneFromRedux.map(element => element.slice(-8,-4));
 const shortenedImageStageTwo = imageStageTwoFromRedux.map(element => element.slice(-8,-4));
 const shortenedImageStageThree = imageSetStageThreeFromRedux.map(element => element);
-const shortenedcorrectScoresrray = correctScoresrray.map(element => element.slice(-1));
+const shortenedcorrectScoresrray = correctScoresrray.map(element => element);
 
 console.log("type for imageSetStageThreeFromRedux", typeof imageSetStageThreeFromRedux,imageSetStageThreeFromRedux)
 console.log("type for ImagesetStageTwo", typeof shortenedImageStageTwo,shortenedImageStageTwo)
