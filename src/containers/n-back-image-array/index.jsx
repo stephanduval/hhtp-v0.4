@@ -230,22 +230,37 @@ setFinalFileNameArray(imageStageThree)
 },[]
 );
 
-const scoringArray = (imageStageTwo,predictiveIndex,nBackIndex) => {
-  let scorray = [...imageStageTwo];
+const scoringArray = (imageStageThree,predictiveIndex,nBackIndex) => {
+  let scorray = [...imageStageThree];
+
 
   let predictive = [...predictiveIndex];
   let nBack = [...nBackIndex];
   //let setStageOne = [...imageSetStageOne];
+
   let PredictiveIndexValue = 0;
   const iteratePredictiveIndex = () => PredictiveIndexValue++;
-  // let PredictiveReduxValue = 0;
-  // const iteratePredictiveReduxValue = () => PredictiveReduxValue++;
+  let PredictiveReduxValue = 0;
+  const iteratePredictiveReduxValue = () => PredictiveReduxValue++;
   predictive.forEach(element => scorray.splice(predictive[iteratePredictiveIndex()],1,"P"))
 
   let nBackIndexValue = 0;
   const iteratenBackIndex = () => nBackIndexValue++;
   let nBackReduxValue = 0;
   nBack.forEach(element => scorray.splice(nBack[iteratenBackIndex()],1,"N"))
+
+
+  let UniqueIndexValue = 0;
+  const iterateUniqueIndex = () => UniqueIndexValue++;
+  let UniqueReduxValue = 0;
+
+  // let uniqueImageArray = predictive.concat(nBack);
+  // uniqueImageArray.sort((a,b) => a-b);
+  // console.log("Unique Image Array",uniqueImageArray,"nback",nBack,"predictive",predictive);
+  // uniqueImageArray.forEach(element => scorray.splice(uniqueImageArray[iterateUniqueIndex()],1,"-"))
+
+  scorray[0] = "TTTT";
+
 
   return scorray;
 }
