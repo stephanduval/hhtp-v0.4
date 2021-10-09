@@ -46,7 +46,18 @@ const ExamNavigation = () => {
     const addSkipToUserResponseArray = () => {
         userResponseArray.push('-');
     }
+
+    const addSkippedToUserResponseArray = () => {
+        userResponseArray.push('S');
+    }
     
+    let timerStart = new Date().getTime();
+
+    const timeTakenToAnswer = (timerStart) => {new Date().getTime() - timerStart;
+        console.log(timerStart)
+
+    }
+
 
     
     let n = 0
@@ -54,6 +65,9 @@ const ExamNavigation = () => {
 
     const interval = () => setInterval(() => {
         newNBackState(n);
+        addSkippedToUserResponseArray();
+        let TimeTaken = timeTakenToAnswer(timerStart);
+        console.log(TimeTaken);
         addN();
         console.log(n)
 
