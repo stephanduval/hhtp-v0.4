@@ -25,11 +25,14 @@ const correctScoresrray = scoringArray(ReduxFinalFileNameArray,predictiveIndexFr
 
   
 const arrayOfIndexes = createArrayOfIndexes(ReduxFinalFileNameArray);
-const shortenedReduxFinalFileNameArray = ReduxFinalFileNameArray.map(element => element.slice(32));
-const shortenedimageSetStageOne = imageSetStageOneFromRedux.map(element => element.slice(32));
-const shortenedImageStageTwo = imageStageTwoFromRedux.map(element => element.slice(32,));
-const shortenedImageStageThree = imageSetStageThreeFromRedux.map(element => element.slice(32));
-const shortenedcorrectScoresrray = correctScoresrray.map(element => element.slice(0,2));
+const shortenedReduxFinalFileNameArray = ReduxFinalFileNameArray.map(element => element);
+const shortenedimageSetStageOne = imageSetStageOneFromRedux.map(element => element.slice(-8,-4));
+const shortenedImageStageTwo = imageStageTwoFromRedux.map(element => element.slice(-8,-4));
+const shortenedImageStageThree = imageSetStageThreeFromRedux.map(element => element);
+const shortenedcorrectScoresrray = correctScoresrray.map(element => element);
+
+
+
 
 //userResponseArray
 
@@ -37,11 +40,12 @@ let resultCheckerArray = [
 {name: "Index", arrayData: arrayOfIndexes},
 {name: "imageSetStageOne", arrayData: shortenedimageSetStageOne},
 {name: "imageStageTwo", arrayData: shortenedImageStageTwo},
-{name: "imageStageThree", arrayData: shortenedImageStageThree},
-{name: "Correct Score", arrayData: shortenedcorrectScoresrray},
+{name: "File Name", arrayData: shortenedImageStageThree},
+{name: "Correct Score", arrayData: shortenedcorrectScoresrray.map(element => element.slice(-1))},
 {name: "User Response", arrayData: userResponseArray},
 {name: "Index", arrayData: arrayOfIndexes},
 ];
+
 
 // {ReduxArray.map(column => <td><b>{column.name}</b></td>)}
 // {ReduxArray.map(column => <td>{column.arrayData.map(thing => <tr>{thing}</tr>)}</td>)}
@@ -60,12 +64,9 @@ const makeCSVString = (initialString) => {
 
   for (let n = 0; n < arrayOfIndexes.length ; n++){
     initialString = initialString.concat(arrayOfIndexes[n]+",");
-    initialString = initialString.concat(shortenedimageSetStageOne[n]+",");
-    initialString = initialString.concat(shortenedImageStageTwo[n]+",");
     initialString = initialString.concat(shortenedImageStageThree[n]+",");
     initialString = initialString.concat(shortenedcorrectScoresrray[n]+",");
     initialString = initialString.concat(userResponseArray[n]+",");
-    initialString = initialString.concat(arrayOfIndexes[n]+",");
     initialString = initialString.concat("\n")
     
     // initialString ..

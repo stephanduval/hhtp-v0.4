@@ -37,8 +37,8 @@ let resultCheckerArray = [
 {name: "Index", arrayData: arrayOfIndexes},
 {name: "imageSetStageOne", arrayData: shortenedimageSetStageOne},
 {name: "imageStageTwo", arrayData: shortenedImageStageTwo},
-{name: "imageStageThree", arrayData: imageSetStageThreeFromRedux},
-{name: "Correct Score", arrayData: shortenedcorrectScoresrray},
+{name: "Image File Name (Stage 3)", arrayData: imageSetStageThreeFromRedux},
+{name: "Correct Score", arrayData: shortenedcorrectScoresrray.map(element => element.slice(-1))},
 {name: "User Response", arrayData: userResponseArray},
 {name: "Index", arrayData: arrayOfIndexes},
 ];
