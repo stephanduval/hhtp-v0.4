@@ -25,10 +25,10 @@ function App() {
 
   (
     <div className="App">
-    <ImageArray></ImageArray> 
+    {/* <ImageArray></ImageArray> 
     
     {renderState(renderViewFromReduxStore)}
-    {console.log(renderViewFromReduxStore)}
+    {console.log(renderViewFromReduxStore)} */}
 
     </div>
   );
