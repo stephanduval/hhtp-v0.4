@@ -81,8 +81,8 @@ return arr;
 let predictiveSetOfImages = predictiveSet()
 
 // CONSOLE TESTING
-console.log("predictiveSetOfImages",predictiveSetOfImages);
-console.log("predictiveSetOfImages: ???",predictiveSetOfImages.length);
+// console.log("predictiveSetOfImages",predictiveSetOfImages);
+// console.log("predictiveSetOfImages: ???",predictiveSetOfImages.length);
 // END OF CONSOLE TESTING
 
 
@@ -107,7 +107,7 @@ function spliceNBacksIntoArray(excluded = []) {
 // Map each index of items that match the predictiveSetOfImages
 predictiveSetOfImages.map(x => excluded.push(slicedRandomizedImageArray.indexOf(x)));
 excluded.sort((a,b)=>a-b);
-console.log(excluded);
+// console.log(excluded);
 
 // adds values that will protect the predictive set of images 
 excluded.map((element) => excluded.push(element+nBackDegree));
@@ -144,8 +144,8 @@ if (!(excluded.includes(num))
    }
 
   excluded.sort((a,b)=>a-b);
-  console.log(excluded);
+  // console.log(excluded);
 }
-console.log(spliceNBacksIntoArray());
-console.log(slicedRandomizedImageArray);
+// console.log(spliceNBacksIntoArray());
+// console.log(slicedRandomizedImageArray);
 

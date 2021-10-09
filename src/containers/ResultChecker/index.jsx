@@ -26,9 +26,9 @@ const shortenedImageStageTwo = imageStageTwoFromRedux.map(element => element.sli
 const shortenedImageStageThree = imageSetStageThreeFromRedux.map(element => element);
 const shortenedcorrectScoresrray = correctScoresrray.map(element => element);
 
-console.log("type for imageSetStageThreeFromRedux", typeof imageSetStageThreeFromRedux,imageSetStageThreeFromRedux)
-console.log("type for ImagesetStageTwo", typeof shortenedImageStageTwo,shortenedImageStageTwo)
-console.log("type for correctScoresrrayFromRedux", typeof correctScoresrrayFromRedux,correctScoresrrayFromRedux)
+// console.log("type for imageSetStageThreeFromRedux", typeof imageSetStageThreeFromRedux,imageSetStageThreeFromRedux)
+// console.log("type for ImagesetStageTwo", typeof shortenedImageStageTwo,shortenedImageStageTwo)
+// console.log("type for correctScoresrrayFromRedux", typeof correctScoresrrayFromRedux,correctScoresrrayFromRedux)
 
 
 //userResponseArray
@@ -38,7 +38,7 @@ let resultCheckerArray = [
 {name: "imageSetStageOne", arrayData: shortenedimageSetStageOne},
 {name: "imageStageTwo", arrayData: shortenedImageStageTwo},
 {name: "Image File Name (Stage 3)", arrayData: imageSetStageThreeFromRedux},
-{name: "Correct Score", arrayData: shortenedcorrectScoresrray.map(element => element.slice(-1))},
+{name: "Correct Score", arrayData: shortenedcorrectScoresrray},
 {name: "User Response", arrayData: userResponseArray},
 {name: "Index", arrayData: arrayOfIndexes},
 ];

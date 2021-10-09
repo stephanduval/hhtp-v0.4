@@ -25,7 +25,7 @@ const Photospace = () => {  // this destructing allows us to use onInputChange i
         
 </div>
     )
-    console.log("the array baby",imageFileNameArray);
+    // console.log("the array baby",imageFileNameArray);
 }
 
 export default Photospace;

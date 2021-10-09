@@ -24,7 +24,7 @@ const StartTestButton = () => {  // this destructing allows us to use onInputCha
 <div className="startTestButton">
     
 
-<Button color ="tertiary" variant="contained" stringValue={"Same as *n* photos Back"} onClick={()=>{setRenderState(navigationPhaseTypes.nBackTest);console.log("clicked start button")}}>Start NBack Test
+<Button color ="tertiary" variant="contained" stringValue={"Same as *n* photos Back"} onClick={()=>{setRenderState(navigationPhaseTypes.nBackTest)}}>Start NBack Test
         </Button>
 
         

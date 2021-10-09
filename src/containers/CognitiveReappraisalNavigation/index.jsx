@@ -63,7 +63,7 @@ const CognitiveReappraisalExamNavigation = () => {
     console.log("Before useEffect()")
     React.useEffect(() => {
     document.addEventListener('keyup', keyStrokeListener);
-    console.log("RAN useEffect()");
+    // console.log("RAN useEffect()");
     
     return function cleanup() {
         document.removeEventListener('keyup', keyStrokeListener);

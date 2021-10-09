@@ -7,7 +7,7 @@ import craNavigation from "./containers/CognitiveReappraisalNavigation/reducers"
 
 
 const reducers = combineReducers({examNavigationReducer: examNavigation, photoSpaceReducer: photoSpace, nBackSettingsReducer: nBackSettings, imageArrayReducer: imageArray, craNavigationReducer: craNavigation, });
-console.log("reducers ran", createStore(reducers))
+// console.log("reducers ran", createStore(reducers))
 export default createStore(reducers);
 
 

@@ -31,7 +31,7 @@ export const navigationPhaseTypes = {
       
     switch (navigationPhaseTypesExpression) {
         case navigationPhaseTypes.introductionPage:
-            console.log('Introduction Page')
+            // console.log('Introduction Page')
             return <div><IntroHeader/>
  
                         <div className="center">
@@ -44,7 +44,7 @@ export const navigationPhaseTypes = {
                     
             break;
         case navigationPhaseTypes.nBackTest:
-            console.log('navigationPhaseTypes.nBackTest');
+            // console.log('navigationPhaseTypes.nBackTest');
             return <div>
                         <Photospace /> 
                         <ExamNavigation />
@@ -53,7 +53,7 @@ export const navigationPhaseTypes = {
                     </div>
                  
         case navigationPhaseTypes.nBackComplete:
-            console.log('case navigationPhaseTypes.nBackComplete');
+            // console.log('case navigationPhaseTypes.nBackComplete');
             
             return <div>
                         <CSVDownloadDiv/>
@@ -61,7 +61,7 @@ export const navigationPhaseTypes = {
                     </div>
     
         case navigationPhaseTypes.cognitiveReappraisalTest:
-            console.log('case navigationPhaseTypes.cognitiveReappraisalTest');
+            // console.log('case navigationPhaseTypes.cognitiveReappraisalTest');
 
             return <div>
                         <CognitiveReappraisalArray/>
@@ -71,7 +71,7 @@ export const navigationPhaseTypes = {
             break;
 
             case navigationPhaseTypes.settings:
-                console.log('case navigationPhaseTypes.settings');
+                // console.log('case navigationPhaseTypes.settings');
     
                 return <div>
                             <Settings/>
@@ -80,7 +80,7 @@ export const navigationPhaseTypes = {
                 break;
 
         default:
-            console.log('default');
+            // console.log('default');
             return <div><IntroHeader/>
  
                         <div className="center">

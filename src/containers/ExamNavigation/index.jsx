@@ -7,6 +7,8 @@ import { navigationPhaseTypes } from '../renderSwitch/renderSwitch';
 import { Button } from '@material-ui/core';
 //
 
+
+
 const nBackStateDispatch = (dispatch) => ({
     newNBackState: (users) => dispatch(newNBackState(users)),
 });
@@ -30,25 +32,8 @@ const ExamNavigation = () => {
     const { setRenderState } = renderViewDispatch(useDispatch());  
     const renderViewFromReduxStore = useSelector(state => state.examNavigationReducer.renderView);
     const numberOfPhotos = useSelector(state => state.nBackSettingsReducer.numberOfPhotos);
-
-       // ==== Creating an Object to determine the different phases (states) the app
+    const timerSeconds = 1000*(useSelector(state => state.nBackSettingsReducer.timerSeconds));
     
-       console.log("state renderview 1", renderViewFromReduxStore);
-       //   let aaa = 11;
-      // renderViewDispatch(useDispatch('hi'));
-
-       //console.log(renderViewDispatch(useDispatch(11)));
-      // let aaa = 11;
-     //  setRenderState(aaa);
-
-    console.log("state renderview 2", renderViewFromReduxStore);
-
-
-    //case ActionTypes.ADVANCE_IMAGE:
-    //    return { ...state, newNBackState: action.payload };
-
-    
-    //let navigationState = 
 
     const addPredictiveToUserResponseArray = () => {
         userResponseArray.push('P');
@@ -62,6 +47,28 @@ const ExamNavigation = () => {
         userResponseArray.push('-');
     }
     
+
+    
+    let n = 0
+    const addN = () => {n++};    
+
+    const interval = () => setInterval(() => {
+        newNBackState(n);
+        addN();
+        console.log(n)
+
+       }, timerSeconds);
+
+       
+
+     useEffect(() => {interval()
+        
+        return () => clearInterval(interval);
+      }, []);
+
+
+
+
     const keyStrokeListener = (event) => {      
         /*
         *  Listens for the keystoke and updates the NBackState
@@ -71,33 +78,34 @@ const ExamNavigation = () => {
         const buttonNBackState = NBackState;
            switch (event.keyCode) {
             case 87:
-                return console.log('W key, Log the Result, Run Next Image Function',newNBackState(NBackState),addNBackToUserResponseArray());
+                return console.log('W key, Log the Result, Run Next Image Function',newNBackState(NBackState),addNBackToUserResponseArray(),clearInterval(interval));
             case 79:
-                return console.log('O Key, Log the Result, Run Next Image Function',newNBackState(NBackState),addPredictiveToUserResponseArray());
+                return console.log('O Key, Log the Result, Run Next Image Function',newNBackState(NBackState),addPredictiveToUserResponseArray(),clearInterval(interval));
             case 83:
-                return console.log('S Key, Log the Result, Run Next Image Function',newNBackState(NBackState),addSkipToUserResponseArray());
+                return console.log('S Key, Log the Result, Run Next Image Function',newNBackState(NBackState),addSkipToUserResponseArray(),clearInterval(interval));
         }
     }
-    console.log("Before useEffect()")
+    // console.log("Before useEffect()")
+ 
+    let localNBackState = NBackState;
+
+
+    
+
     React.useEffect(() => {
     document.addEventListener('keyup', keyStrokeListener);
-    console.log("RAN useEffect()");
     
     return function cleanup() {
         document.removeEventListener('keyup', keyStrokeListener);
     };
      });
  
-     console.log("Nback State and number of pred Photos",NBackState,numberOfPhotos);
-     if (NBackState >= numberOfPhotos) {
-        setRenderState(navigationPhaseTypes.nBackComplete);
-     }
-
 
     return (
+        
             
         <div className="buttonSpace">
-           
+
     <Button color ="primary" variant="contained" stringValue={"Same as *n* photos Back"} onClick={()=>{newNBackState(NBackState);addNBackToUserResponseArray()}}>"W" - Same as {nBackDegree} photos Back
         </Button>
 
@@ -106,6 +114,9 @@ const ExamNavigation = () => {
 
         <Button color ="secondary" variant="contained" stringValue={"S - Unique Image"} onClick={()=>{newNBackState(NBackState);addSkipToUserResponseArray()}}>"S" - Unique Image
         </Button>
+
+   
+
 
         </div>
 

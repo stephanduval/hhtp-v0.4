@@ -28,7 +28,7 @@ function App() {
     <ImageArray></ImageArray> 
     
     {renderState(renderViewFromReduxStore)}
-    {console.log(renderViewFromReduxStore)}
+    {/* {console.log(renderViewFromReduxStore)} */}
 
     </div>
   );
