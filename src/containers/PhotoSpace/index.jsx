@@ -1,6 +1,6 @@
 import React from 'react';
 import './PhotoSpace.css';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 
      
@@ -11,9 +11,9 @@ const Photospace = () => {  // this destructing allows us to use onInputChange i
 
     //-------------------- Functions Fetch and Store Data for the PhotoSpace:
 
-    const imageFileNameArray = useSelector(state => state.imageArrayReducer.imageFileNameArray);
+    //const imageFileNameArray = useSelector(state => state.imageArrayReducer.imageFileNameArray);
     const NBackState = useSelector(state => state.examNavigationReducer.newNBackState); // gets the NBack state from the store
-    const finalFileNameArray = useSelector(state => state.imageArrayReducer.finalFileNameArray);
+    //const finalFileNameArray = useSelector(state => state.imageArrayReducer.finalFileNameArray);
     const imageSetStageThreeFromRedux = useSelector(state => state.imageArrayReducer.imageSetStageThree);
 
     //-------------------- END of functions Fetch and Store Data for the PhotoSpace

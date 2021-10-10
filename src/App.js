@@ -1,11 +1,9 @@
 import './App.css';
 import React from 'react';
 import ImageArray from './containers/n-back-image-array/';
-import store from "./store";
-import { navigationPhaseTypes, renderState } from "./containers/renderSwitch/renderSwitch.js";
-import RenderSwitch from './containers/renderSwitch';
-import { useDispatch, useSelector } from 'react-redux';
-import ExamNavigation from './containers/ExamNavigation';
+//import store from "./store";
+import { renderState } from "./containers/renderSwitch/renderSwitch.js";
+import { useSelector } from 'react-redux';
 
 function App() {
 

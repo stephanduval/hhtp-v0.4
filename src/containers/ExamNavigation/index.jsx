@@ -2,8 +2,8 @@ import './ExamNavigation.css';
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setRenderState, newNBackState, newUserResponseArray } from './actions';
-import { navigationPhaseTypes } from '../renderSwitch/renderSwitch';
+import { setRenderState, newNBackState, newUserResponseArray, newUserAnswerTimeArray} from './actions';
+//import { navigationPhaseTypes } from '../renderSwitch/renderSwitch';
 import { Button } from '@material-ui/core';
 //
 
@@ -21,20 +21,25 @@ const renderViewDispatch = (dispatch) => ({
     setRenderState: (nameState) => dispatch(setRenderState(nameState)),
 });
 
+const userAnswerTimeArrayDispatch = (dispatch) => ({
+    newUserAnswerTimeArray: (array) => dispatch(newUserAnswerTimeArray(array)),
+});
+
 
 const ExamNavigation = () => {
  
     const NBackState = useSelector(state => state.examNavigationReducer.newNBackState);
     const { newNBackState } = nBackStateDispatch(useDispatch());
     const userResponseArray = useSelector(state => state.examNavigationReducer.userResponseArray);
-    const { newUserResponseArray } = userResponseArrayDispatch(useDispatch());
+    const userAnswerTimeArray = useSelector(state => state.examNavigationReducer.answerTimeArray);
+    //const { newUserResponseArray } = userResponseArrayDispatch(useDispatch());
     const nBackDegree = useSelector(state => state.nBackSettingsReducer.nBackDegree);
-    const { setRenderState } = renderViewDispatch(useDispatch());  
-    const renderViewFromReduxStore = useSelector(state => state.examNavigationReducer.renderView);
-    const numberOfPhotos = useSelector(state => state.nBackSettingsReducer.numberOfPhotos);
+    //const { setRenderState } = renderViewDispatch(useDispatch());  
+    //const renderViewFromReduxStore = useSelector(state => state.examNavigationReducer.renderView);
+    //const numberOfPhotos = useSelector(state => state.nBackSettingsReducer.numberOfPhotos);
     const timerSeconds = 1000*(useSelector(state => state.nBackSettingsReducer.timerSeconds));
+   
     
-
     const addPredictiveToUserResponseArray = () => {
         userResponseArray.push('P');
     }
@@ -50,35 +55,46 @@ const ExamNavigation = () => {
     const addSkippedToUserResponseArray = () => {
         userResponseArray.push('S');
     }
+
+    const addTimeToUserAnswerTimeArray = (time) => {
+        userAnswerTimeArray.push(time);
+    }
     
     let timerStart = new Date().getTime();
 
-    const timeTakenToAnswer = (timerStart) => {new Date().getTime() - timerStart;
-        console.log(timerStart)
-
+    const timeTakenToAnswer = (timerStart) => {
+        
+        console.log("Timer Start", timerStart);
+        return (new Date().getTime() - timerStart)
     }
 
 
     
     let n = 0
     const addN = () => {n++};    
-
-    const interval = () => setInterval(() => {
+  
+    const switchPhotosOnInterval = () => {
+       
+    setInterval(() => {
+        /*
+        *  Logs a answer as skipped if a certain amount of time passes
+        */
         newNBackState(n);
         addSkippedToUserResponseArray();
         let TimeTaken = timeTakenToAnswer(timerStart);
-        console.log(TimeTaken);
+        console.log("Time Taken",TimeTaken);
         addN();
         console.log(n)
-
+  
        }, timerSeconds);
 
-       
+    }
 
-     useEffect(() => {interval()
+     useEffect(() => {switchPhotosOnInterval(NBackState,timerSeconds)
         
-        return () => clearInterval(interval);
+        return () => clearInterval(switchPhotosOnInterval);
       }, []);
+    
 
 
 
@@ -86,22 +102,21 @@ const ExamNavigation = () => {
     const keyStrokeListener = (event) => {      
         /*
         *  Listens for the keystoke and updates the NBackState
-        * ISSUE:  IT repeats all previous keystrokes for some reason, making the process increasingly slower
         */
         console.log('HIT',event.keyCode)
         const buttonNBackState = NBackState;
            switch (event.keyCode) {
             case 87:
-                return console.log('W key, Log the Result, Run Next Image Function',newNBackState(NBackState),addNBackToUserResponseArray(),clearInterval(interval));
+                return console.log('W key, Log the Result, Run Next Image Function',newNBackState(NBackState),addNBackToUserResponseArray(),clearInterval(switchPhotosOnInterval),addTimeToUserAnswerTimeArray(timeTakenToAnswer(timerStart)));
             case 79:
-                return console.log('O Key, Log the Result, Run Next Image Function',newNBackState(NBackState),addPredictiveToUserResponseArray(),clearInterval(interval));
+                return console.log('O Key, Log the Result, Run Next Image Function',newNBackState(NBackState),addPredictiveToUserResponseArray(),clearInterval(switchPhotosOnInterval),addTimeToUserAnswerTimeArray(timeTakenToAnswer(timerStart)));
             case 83:
-                return console.log('S Key, Log the Result, Run Next Image Function',newNBackState(NBackState),addSkipToUserResponseArray(),clearInterval(interval));
+                return console.log('S Key, Log the Result, Run Next Image Function',newNBackState(NBackState),addSkipToUserResponseArray(),clearInterval(switchPhotosOnInterval),addTimeToUserAnswerTimeArray(timeTakenToAnswer(timerStart)));
         }
     }
     // console.log("Before useEffect()")
  
-    let localNBackState = NBackState;
+    //let localNBackState = NBackState;
 
 
     
@@ -120,13 +135,13 @@ const ExamNavigation = () => {
             
         <div className="buttonSpace">
 
-    <Button color ="primary" variant="contained" stringValue={"Same as *n* photos Back"} onClick={()=>{newNBackState(NBackState);addNBackToUserResponseArray()}}>"W" - Same as {nBackDegree} photos Back
+    <Button color ="primary" variant="contained" stringvalue={"Same as *n* photos Back"} onClick={()=>{newNBackState(NBackState);addNBackToUserResponseArray();addTimeToUserAnswerTimeArray(timeTakenToAnswer(timerStart))}}>"W" - Same as {nBackDegree} photos Back
         </Button>
 
-        <Button color ="quaternary" variant="contained" stringValue={"O - Predictive"} onClick={()=>{newNBackState(NBackState);addPredictiveToUserResponseArray()}}>"O" - Predictive - I was told to remember this
+        <Button color ="default" variant="contained" stringvalue={"O - Predictive"} onClick={()=>{newNBackState(NBackState);addPredictiveToUserResponseArray();addTimeToUserAnswerTimeArray(timeTakenToAnswer(timerStart))}}>"O" - Predictive - I was told to remember this
         </Button>
 
-        <Button color ="secondary" variant="contained" stringValue={"S - Unique Image"} onClick={()=>{newNBackState(NBackState);addSkipToUserResponseArray()}}>"S" - Unique Image
+        <Button color ="secondary" variant="contained" stringvalue={"S - Unique Image"} onClick={()=>{newNBackState(NBackState);addSkipToUserResponseArray();addTimeToUserAnswerTimeArray(timeTakenToAnswer(timerStart))}}>"S" - Unique Image
         </Button>
 
    

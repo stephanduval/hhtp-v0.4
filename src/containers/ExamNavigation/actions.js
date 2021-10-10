@@ -13,3 +13,8 @@ export const setRenderState = (renderView) => ({
     type: ActionTypes.RENDER_VIEW,  // from the constants file
     payload: renderView
 })
+
+export const newUserAnswerTimeArray = (answerTimeArray) => ({
+    type: ActionTypes.USER_ANSWER_TIME,  // from the constants file
+    payload: answerTimeArray
+})

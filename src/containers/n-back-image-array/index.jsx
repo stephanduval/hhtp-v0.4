@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import './imageArray.css';
-import { checkForEmptyinArray, showMatchesOnly } from './functions'
+import { /*checkForEmptyinArray, showMatchesOnly */ } from './functions'
 import { filesToPhotosObject } from '../../functions.js';
-import { useSelector, useDispatch, connect } from 'react-redux';
-import { setCorrectResponseArray, setUserResponseArray, setImageFileNameArray, setImageFileNameLength, setPredictiveImageFileNameArray, setPredictiveImageFileNameLength, setImageSet, setScoringArray, setFinalFileNameArray, setImageSetStageOne, setImageSetStageTwo, setImageSetStageThree, setCorrectScoresrray, setNBackIndex, setPredictiveIndex} from './actions';
-import { randomizeArray, arrayLength } from './../../functions'; 
-import { validateNumberOfPhotos, validateNumberOfPredictivePhotos, validatesetNumberofnBackMatches, validatesetnBackDegree, validatesetTimerSeconds } from './../../functions';
+import { useSelector, useDispatch/*, connect*/ } from 'react-redux';
+import { /*setCorrectResponseArray, setUserResponseArray,*/ setImageFileNameArray, setImageFileNameLength, setPredictiveImageFileNameArray, setPredictiveImageFileNameLength, setImageSet, setScoringArray, setFinalFileNameArray, setImageSetStageOne, setImageSetStageTwo, setImageSetStageThree, setCorrectScoresrray, setNBackIndex, setPredictiveIndex} from './actions';
+import { /*randomizeArray,*/ arrayLength } from './../../functions'; 
+import { /*validateNumberOfPhotos, validateNumberOfPredictivePhotos, validatesetNumberofnBackMatches, validatesetnBackDegree, validatesetTimerSeconds*/ } from './../../functions';
 // ======== Constants:
 //
 
@@ -20,7 +20,7 @@ import { validateNumberOfPhotos, validateNumberOfPredictivePhotos, validatesetNu
    // const predictiveFileNameArray = Object.keys(predictiveFullFolderLocation);
     const predictiveFileNameArray = Object.keys(predictiveImages);
     const predictiveFullFileNameArray = predictiveFileNameArray.map(e => './images/n-back-photos/Predictive/' + e)
-    const randomizedPredictiveImageArray = randomizeArray(predictiveFullFileNameArray);
+    //const randomizedPredictiveImageArray = randomizeArray(predictiveFullFileNameArray);
 
 
 //--------------------  Create an object of the photo file names
@@ -78,42 +78,47 @@ const ImageArray =  () => {
   const { setImageFileNameLength } = imageFileNameLengthDispatch(useDispatch());
   const { setPredictiveImageFileNameArray } = PredictveImageArrayDispatch(useDispatch()); // how does this work?  It creates an object
   const { setPredictiveImageFileNameLength } = PredictiveImageFileNameLengthDispatch(useDispatch());
-  const { setImageSet } = imageSetDispatch(useDispatch());
-  const { setScoringArray } = scoringArrayDispatch(useDispatch());
+  //const { setImageSet } = imageSetDispatch(useDispatch());
+  //const { setScoringArray } = scoringArrayDispatch(useDispatch());
   const { setFinalFileNameArray } = finalFileNameArrayDispatch(useDispatch());
 
 
   const ReduxStorefileNameArray = useSelector(state => state.imageArrayReducer.imageFileNameArray);
-  const ReduxFinalFileNameArray = useSelector(state => state.imageArrayReducer.finalFileNameArray);
+  //const ReduxFinalFileNameArray = useSelector(state => state.imageArrayReducer.finalFileNameArray);
   const imageFileNameLength = arrayLength(ReduxStorefileNameArray)
   const PredictiveFullFileNameArrayLength = arrayLength(predictiveFullFileNameArray)
-  const userResponseArray = useSelector(state => state.examNavigationReducer.userResponseArray);
+  //const userResponseArray = useSelector(state => state.examNavigationReducer.userResponseArray);
 
   setImageFileNameArray(randomizedFullFileNameArray);
   setImageFileNameLength(imageFileNameLength);
   setPredictiveImageFileNameArray(predictiveFullFileNameArray);
   setPredictiveImageFileNameLength(PredictiveFullFileNameArrayLength);
   
+    /*
     const ReduxStorefileNameArrayLength = ReduxStorefileNameArray.length;
     const ReduxStorePredictiveFileNameArray = useSelector(state => state.imageArrayReducer.PredictiveImageFileNameArray);
     const numberOfPhotosAlt = useSelector(state => state.nBackSettingsReducer.numberOfPhotosAlt);
+    */
     const numberOfPhotos = useSelector(state => state.nBackSettingsReducer.numberOfPhotos);
     const numberOfPredictivePhotos = useSelector(state => state.nBackSettingsReducer.numberOfPredictivePhotos);
     const NumberofnBackMatches = useSelector(state => state.nBackSettingsReducer.NumberofnBackMatches);
     const nBackDegree = useSelector(state => state.nBackSettingsReducer.nBackDegree);
+    /*
     const timerSeconds = useSelector(state => state.nBackSettingsReducer.timerSeconds);
     const finalFileNameArray = useSelector(state => state.imageArrayReducer.finalFileNameArray);
-
+    */
     
-    const validPhotos = validateNumberOfPhotos(numberOfPhotos);
+    //const validPhotos = validateNumberOfPhotos(numberOfPhotos);
     const imageSetStageOne = randomizedFullFileNameArray.slice(0, numberOfPhotos);  // when number of photos is removed from here then it works
     
     
     // const imageSetStageOneLength =  imageSetStageOne.length;
     // const randomizedPredictiveImageArrayLength = arrayLength(ReduxStorePredictiveFileNameArray);
+    /*
     const ReduxPredictiveFileNameArrayLength = useSelector(state => state.imageArrayReducer.predictiveImageFileNameLength)
     const imagesFolder = './images/n-back-photos/RandomLot/';
     const predictiveImagesFolder = './images/n-back-photos/Predictive/';
+    */
 
     const predictiveIndexes = () => {
         /*
@@ -144,14 +149,14 @@ const ImageArray =  () => {
       setPredictiveIndex(predictiveIndex);
  
           
-    const earlyPredictiveIndex = [];//[...predictiveIndex];
+    //const earlyPredictiveIndex = [];//[...predictiveIndex];
     const imageSetStageTwo = (imageSetStageOne,predictiveIndex,PredictiveFullFileNameArray) => {
       /*
       *  This Function takes an array and adds the predictive images into it
       * at the places where the result of the predictiveIndexes() function defines it
       *
       */
-      let reduxPredictive = PredictiveFullFileNameArray;
+      //let reduxPredictive = PredictiveFullFileNameArray;
       
       let predictive = [...predictiveIndex];
       let setStageOne = [...imageSetStageOne];
@@ -166,7 +171,7 @@ const ImageArray =  () => {
     
   const imageStageTwo = imageSetStageTwo(imageSetStageOne,predictiveIndex,predictiveFullFileNameArray)
   
-  const predictiveMatchesEarly = showMatchesOnly(imageStageTwo,predictiveIndex);
+  //const predictiveMatchesEarly = showMatchesOnly(imageStageTwo,predictiveIndex);
   
   const nBackIndexes = (predictiveIndex,NumberofnBackMatches,nBackDegree, numberOfPhotos) => {
     /*
@@ -177,7 +182,7 @@ const ImageArray =  () => {
 
     let nBackIndex = [];
 
-    let i = 0;
+   // let i = 0;
   while (nBackIndex.length < NumberofnBackMatches) {
   let num = Math.floor(Math.random() * (numberOfPhotos - nBackDegree) + nBackDegree,);
   
@@ -193,7 +198,7 @@ const ImageArray =  () => {
           nBackIndex.push(num);
           //nBackIndex.push(num+nBackDegree)
         }
-     i++   
+     //i++   
     }
    nBackIndex.sort((a,b)=>a-b);
     return nBackIndex;
@@ -240,19 +245,19 @@ const scoringArray = (imageStageThree,predictiveIndex,nBackIndex) => {
 
   let PredictiveIndexValue = 0;
   const iteratePredictiveIndex = () => PredictiveIndexValue++;
-  let PredictiveReduxValue = 0;
-  const iteratePredictiveReduxValue = () => PredictiveReduxValue++;
+  //let PredictiveReduxValue = 0;
+  //const iteratePredictiveReduxValue = () => PredictiveReduxValue++;
   predictive.forEach(element => scorray.splice(predictive[iteratePredictiveIndex()],1,"P"))
 
   let nBackIndexValue = 0;
   const iteratenBackIndex = () => nBackIndexValue++;
-  let nBackReduxValue = 0;
+  //let nBackReduxValue = 0;
   nBack.forEach(element => scorray.splice(nBack[iteratenBackIndex()],1,"N"))
 
 
-  let UniqueIndexValue = 0;
-  const iterateUniqueIndex = () => UniqueIndexValue++;
-  let UniqueReduxValue = 0;
+  //let UniqueIndexValue = 0;
+  //const iterateUniqueIndex = () => UniqueIndexValue++;
+//  let UniqueReduxValue = 0;
 
   // let uniqueImageArray = predictive.concat(nBack);
   // uniqueImageArray.sort((a,b) => a-b);
@@ -267,12 +272,12 @@ const scoringArray = (imageStageThree,predictiveIndex,nBackIndex) => {
 
 const correctScoresrray = scoringArray(imageStageThree,predictiveIndex,nBackIndex);
 
-
+/*
 const nBackMatches2 = showMatchesOnly(imageStageTwo,nBackIndex);
 const predictiveMatches2 = showMatchesOnly(imageStageTwo,predictiveIndex);
 const nBackMatches3 = showMatchesOnly(imageStageThree,nBackIndex);
 const predictiveMatches3 = showMatchesOnly(imageStageThree,predictiveIndex);
-
+*/
 
 
  

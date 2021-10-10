@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector} from 'react-redux';
 import {scoringArray, createArrayOfIndexes} from './../../functions.js'
 import './ResultChecker.css';
@@ -9,21 +9,24 @@ const ReduxFinalFileNameArray = useSelector(state => state.imageArrayReducer.fin
 const imageSetStageOneFromRedux = useSelector(state => state.imageArrayReducer.imageSetStageOne);
 const imageStageTwoFromRedux = useSelector(state => state.imageArrayReducer.imageSetStageTwo);
 const imageSetStageThreeFromRedux = useSelector(state => state.imageArrayReducer.imageSetStageThree);
-const correctScoresrrayFromRedux = useSelector(state => state.imageArrayReducer.correctScoresrray);
+//const correctScoresrrayFromRedux = useSelector(state => state.imageArrayReducer.correctScoresrray);
 const userResponseArray = useSelector(state => state.examNavigationReducer.userResponseArray);
 const nBackIndexFromReduxStore = useSelector(state => state.imageArrayReducer.nBackIndex);
 const predictiveIndexFromReduxStore = useSelector(state => state.imageArrayReducer.predictiveIndex);
 const NBackState = useSelector(state => state.examNavigationReducer.newNBackState);
+const userAnswerTimeArray = useSelector(state => state.examNavigationReducer.answerTimeArray);
+
+
 
 
 const correctScoresrray = scoringArray(ReduxFinalFileNameArray,predictiveIndexFromReduxStore,nBackIndexFromReduxStore);
 
   
 const arrayOfIndexes = createArrayOfIndexes(ReduxFinalFileNameArray);
-const shortenedReduxFinalFileNameArray = ReduxFinalFileNameArray.map(element => element);
+//const shortenedReduxFinalFileNameArray = ReduxFinalFileNameArray.map(element => element);
 const shortenedimageSetStageOne = imageSetStageOneFromRedux.map(element => element.slice(-8,-4));
 const shortenedImageStageTwo = imageStageTwoFromRedux.map(element => element.slice(-8,-4));
-const shortenedImageStageThree = imageSetStageThreeFromRedux.map(element => element);
+//const shortenedImageStageThree = imageSetStageThreeFromRedux.map(element => element);
 const shortenedcorrectScoresrray = correctScoresrray.map(element => element);
 
 // console.log("type for imageSetStageThreeFromRedux", typeof imageSetStageThreeFromRedux,imageSetStageThreeFromRedux)
@@ -40,6 +43,7 @@ let resultCheckerArray = [
 {name: "Image File Name (Stage 3)", arrayData: imageSetStageThreeFromRedux},
 {name: "Correct Score", arrayData: shortenedcorrectScoresrray},
 {name: "User Response", arrayData: userResponseArray},
+{name: "User Response Time in ms", arrayData: userAnswerTimeArray},
 {name: "Index", arrayData: arrayOfIndexes},
 ];
 

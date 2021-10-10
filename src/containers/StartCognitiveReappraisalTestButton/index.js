@@ -24,7 +24,7 @@ const StartCognitiveReappraisalTestButton = () => {  // this destructing allows 
 <div className="testButton">
 
 
-<Button color ="tertiary" variant="contained" stringValue={"Start Cognitive Reappraisal Test"} onClick={()=>{setRenderState(navigationPhaseTypes.cognitiveReappraisalTest);console.log("clicked  cognitive reappraisal test start button")}}>Start Cognitive Reappraisal Test
+<Button color ="secondary" variant="contained" stringvalue={"Start Cognitive Reappraisal Test"} onClick={()=>{setRenderState(navigationPhaseTypes.cognitiveReappraisalTest);console.log("clicked  cognitive reappraisal test start button")}}>Start Cognitive Reappraisal Test
         </Button>
 
         

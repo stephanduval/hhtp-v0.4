@@ -1,11 +1,11 @@
 import React from 'react';
 import './cognitive-Reappraisal-Array.css';
-import { checkForEmptyinArray, showMatchesOnly } from './../n-back-image-array/functions';
-import { filesToPhotosObject } from '../../functions.js';
-import * as CRAConstant from './constants';
+//import { checkForEmptyinArray, showMatchesOnly } from './../n-back-image-array/functions';
+//import { filesToPhotosObject } from '../../functions.js';
+//import * as CRAConstant from './constants';
 
 
-let FinalCognitiveReappraisalArray = CRAConstant.randomizedCognitiveReappraisalArrayFileNameArray;
+//let FinalCognitiveReappraisalArray = CRAConstant.randomizedCognitiveReappraisalArrayFileNameArray;
 
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import './Settings.css';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setRenderState } from '../ExamNavigation/actions';
 import { navigationPhaseTypes } from '../renderSwitch/renderSwitch';
 import { Button } from '@material-ui/core';
@@ -24,7 +24,7 @@ const MainPage = () => {  // this destructing allows us to use onInputChange ins
 <div className="settings">
 
 
-<Button color ="tertiary" variant="contained" stringValue={"Start Cognitive Reappraisal Test"} onClick={()=>{setRenderState(navigationPhaseTypes.introductionPage);console.log("clicked  cognitive reappraisal test start button")}}>Back
+<Button color ="tertiary" variant="contained" stringvalue={"Start Cognitive Reappraisal Test"} onClick={()=>{setRenderState(navigationPhaseTypes.introductionPage);console.log("clicked  cognitive reappraisal test start button")}}>Back
         </Button>
 
         

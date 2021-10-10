@@ -24,7 +24,7 @@ const SettingsButton = () => {  // this destructing allows us to use onInputChan
 <div className="settings">
 
 
-<Button color ="tertiary" variant="contained" stringValue={"Start Cognitive Reappraisal Test"} onClick={()=>{setRenderState(navigationPhaseTypes.settings)}}>Settings
+<Button color ="secondary" variant="contained" stringvalue={"Start Cognitive Reappraisal Test"} onClick={()=>{setRenderState(navigationPhaseTypes.settings)}}>Settings
         </Button>
 
         

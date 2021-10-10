@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector} from 'react-redux';
 import {scoringArray, createArrayOfIndexes} from './../../functions.js'
 import { CSVLink } from 'react-csv';
-import { ExpansionPanelDetails } from '@material-ui/core';
+//import { ExpansionPanelDetails } from '@material-ui/core';
 
 
 const CSVDownloadDiv = () => {
@@ -14,18 +14,18 @@ const ReduxFinalFileNameArray = useSelector(state => state.imageArrayReducer.fin
 const imageSetStageOneFromRedux = useSelector(state => state.imageArrayReducer.imageSetStageOne);
 const imageStageTwoFromRedux = useSelector(state => state.imageArrayReducer.imageSetStageTwo);
 const imageSetStageThreeFromRedux = useSelector(state => state.imageArrayReducer.imageSetStageThree);
-const correctScoresrrayFromRedux = useSelector(state => state.imageArrayReducer.correctScoresrray);
+//const correctScoresrrayFromRedux = useSelector(state => state.imageArrayReducer.correctScoresrray);
 const userResponseArray = useSelector(state => state.examNavigationReducer.userResponseArray);
 const nBackIndexFromReduxStore = useSelector(state => state.imageArrayReducer.nBackIndex);
 const predictiveIndexFromReduxStore = useSelector(state => state.imageArrayReducer.predictiveIndex);
-const NBackState = useSelector(state => state.examNavigationReducer.newNBackState);
+//const NBackState = useSelector(state => state.examNavigationReducer.newNBackState);
 
 
 const correctScoresrray = scoringArray(ReduxFinalFileNameArray,predictiveIndexFromReduxStore,nBackIndexFromReduxStore);
 
   
 const arrayOfIndexes = createArrayOfIndexes(ReduxFinalFileNameArray);
-const shortenedReduxFinalFileNameArray = ReduxFinalFileNameArray.map(element => element);
+//const shortenedReduxFinalFileNameArray = ReduxFinalFileNameArray.map(element => element);
 const shortenedimageSetStageOne = imageSetStageOneFromRedux.map(element => element.slice(-8,-4));
 const shortenedImageStageTwo = imageStageTwoFromRedux.map(element => element.slice(-8,-4));
 const shortenedImageStageThree = imageSetStageThreeFromRedux.map(element => element);
@@ -82,7 +82,7 @@ const makeCSVString = (initialString) => {
 const csvData = makeCSVString(csvString);
 
 
-let canvas = 's';
+//let canvas = 's';
  
 
 

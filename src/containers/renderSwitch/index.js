@@ -1,5 +1,5 @@
 
-import React, { connect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch,} from 'react-redux';
 import { setRenderState } from './actions';
 import { newNBackState } from '../ExamNavigation/actions';
