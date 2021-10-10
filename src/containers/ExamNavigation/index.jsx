@@ -70,8 +70,8 @@ const ExamNavigation = () => {
 
 
     
-    let n = 0
-    const addN = () => {n++};    
+ 
+    
   
     const switchPhotosOnInterval = () => {
        
@@ -79,25 +79,29 @@ const ExamNavigation = () => {
         /*
         *  Logs a answer as skipped if a certain amount of time passes
         */
-        newNBackState(n);
+        newNBackState(NBackState);
         addSkippedToUserResponseArray();
         let TimeTaken = timeTakenToAnswer(timerStart);
         console.log("Time Taken",TimeTaken);
-        addN();
-        console.log(n)
+        
+        console.log(NBackState)
   
        }, timerSeconds);
 
     }
 
-     useEffect(() => {switchPhotosOnInterval(NBackState,timerSeconds)
+     useEffect(() => {switchPhotosOnInterval()
         
         return () => clearInterval(switchPhotosOnInterval);
-      }, []);
+      }, [NBackState]);
     
+    // const runSwitchPhotosOnInterval = (NBackState) => {
+    // switchPhotosOnInterval(NBackState)
+        
+    //  return () => clearInterval(switchPhotosOnInterval);
 
 
-
+    // }
 
     const keyStrokeListener = (event) => {      
         /*

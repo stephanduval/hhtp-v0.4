@@ -43,7 +43,7 @@ let resultCheckerArray = [
 {name: "Image File Name (Stage 3)", arrayData: imageSetStageThreeFromRedux},
 {name: "Correct Score", arrayData: shortenedcorrectScoresrray},
 {name: "User Response", arrayData: userResponseArray},
-{name: "User Response Time in ms", arrayData: userAnswerTimeArray},
+{name: "Response Time ms", arrayData: userAnswerTimeArray},
 {name: "Index", arrayData: arrayOfIndexes},
 ];
 
