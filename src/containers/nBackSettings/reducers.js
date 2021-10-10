@@ -14,7 +14,7 @@ const defaultState = {
     numberOfPredictivePhotos: 12,
     NumberofnBackMatches: 26,
     nBackDegree: 2,
-    timerSeconds: 15,
+    timerSeconds: 5,
 };
 
 export default function nBackSettings(state = defaultState, action) { 

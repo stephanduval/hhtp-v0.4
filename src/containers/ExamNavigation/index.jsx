@@ -1,6 +1,6 @@
 import './ExamNavigation.css';
 import React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setRenderState, newNBackState, newUserResponseArray, newUserAnswerTimeArray} from './actions';
 //import { navigationPhaseTypes } from '../renderSwitch/renderSwitch';
@@ -27,6 +27,7 @@ const userAnswerTimeArrayDispatch = (dispatch) => ({
 
 
 const ExamNavigation = () => {
+
  
     const NBackState = useSelector(state => state.examNavigationReducer.newNBackState);
     const { newNBackState } = nBackStateDispatch(useDispatch());
@@ -39,6 +40,13 @@ const ExamNavigation = () => {
     //const numberOfPhotos = useSelector(state => state.nBackSettingsReducer.numberOfPhotos);
     const timerSeconds = 1000*(useSelector(state => state.nBackSettingsReducer.timerSeconds));
    
+/*
+    https://stackoverflow.com/questions/53633698/referencing-outdated-state-in-react-useeffect-hook
+    Refs don't give you the closure issue mentioned above because refs is an object with a current field
+    and multiple calls to useRef will return you the same object. As long as you mutate the .current
+    b value, your useEffect can always (only) read the most updated value.
+
+*/
     
     const addPredictiveToUserResponseArray = () => {
         userResponseArray.push('P');
@@ -59,6 +67,8 @@ const ExamNavigation = () => {
     const addTimeToUserAnswerTimeArray = (time) => {
         userAnswerTimeArray.push(time);
     }
+
+    //const NBackState = userAnswerTimeArray.length
     
     let timerStart = new Date().getTime();
 
@@ -67,33 +77,28 @@ const ExamNavigation = () => {
         console.log("Timer Start", timerStart);
         return (new Date().getTime() - timerStart)
     }
-
-
     
- 
-    
-  
     const switchPhotosOnInterval = () => {
        
     setInterval(() => {
         /*
         *  Logs a answer as skipped if a certain amount of time passes
         */
-        newNBackState(NBackState);
+        newNBackState(NBackState)
         addSkippedToUserResponseArray();
         let TimeTaken = timeTakenToAnswer(timerStart);
+        addTimeToUserAnswerTimeArray(timeTakenToAnswer(timerStart))
         console.log("Time Taken",TimeTaken);
-        
-        console.log(NBackState)
+
   
        }, timerSeconds);
 
     }
 
-     useEffect(() => {switchPhotosOnInterval()
+     useEffect(() => {switchPhotosOnInterval();
         
         return () => clearInterval(switchPhotosOnInterval);
-      }, [NBackState]);
+      }, []);
     
     // const runSwitchPhotosOnInterval = (NBackState) => {
     // switchPhotosOnInterval(NBackState)
