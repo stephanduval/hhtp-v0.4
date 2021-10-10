@@ -95,11 +95,41 @@ const ExamNavigation = () => {
 
     }
 
-     useEffect(() => {switchPhotosOnInterval();
+    //  useEffect(() => {switchPhotosOnInterval(NBackState,timerSeconds);
         
-        return () => clearInterval(switchPhotosOnInterval);
-      }, []);
+    //     return () => clearInterval(switchPhotosOnInterval);
+    //   }, []);
     
+
+//==============================
+
+// let n = 0
+// const addN = () => {n++};    
+
+// const switchPhotosOnInterval = () => {
+   
+// setInterval(() => {
+//     /*
+//     *  Logs a answer as skipped if a certain amount of time passes
+//     */
+//     newNBackState(n);
+//     addSkippedToUserResponseArray();
+//     let TimeTaken = timeTakenToAnswer(timerStart);
+//     console.log("Time Taken",TimeTaken);
+//     addN();
+//     console.log(n)
+
+//    }, timerSeconds);
+
+// }
+
+//  useEffect(() => {switchPhotosOnInterval(NBackState,timerSeconds)
+    
+//     return () => clearInterval(switchPhotosOnInterval);
+//   }, []);
+
+//==============================
+
     // const runSwitchPhotosOnInterval = (NBackState) => {
     // switchPhotosOnInterval(NBackState)
         
