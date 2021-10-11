@@ -30,6 +30,7 @@ const shortenedimageSetStageOne = imageSetStageOneFromRedux.map(element => eleme
 const shortenedImageStageTwo = imageStageTwoFromRedux.map(element => element.slice(-8,-4));
 const shortenedImageStageThree = imageSetStageThreeFromRedux.map(element => element);
 const shortenedcorrectScoresrray = correctScoresrray.map(element => element);
+const userAnswerTimeArray = useSelector(state => state.examNavigationReducer.answerTimeArray);
 
 
 
@@ -37,14 +38,15 @@ const shortenedcorrectScoresrray = correctScoresrray.map(element => element);
 //userResponseArray
 
 let resultCheckerArray = [
-{name: "Index", arrayData: arrayOfIndexes},
-{name: "imageSetStageOne", arrayData: shortenedimageSetStageOne},
-{name: "imageStageTwo", arrayData: shortenedImageStageTwo},
-{name: "File Name", arrayData: shortenedImageStageThree},
-{name: "Correct Score", arrayData: shortenedcorrectScoresrray},
-{name: "User Response", arrayData: userResponseArray},
-{name: "Index", arrayData: arrayOfIndexes},
-];
+  {name: "Index", arrayData: arrayOfIndexes},
+  {name: "imageSetStageOne", arrayData: shortenedimageSetStageOne},
+  {name: "imageStageTwo", arrayData: shortenedImageStageTwo},
+  {name: "Image File Name (Stage 3)", arrayData: imageSetStageThreeFromRedux},
+  {name: "Correct Score", arrayData: shortenedcorrectScoresrray},
+  {name: "User Response", arrayData: userResponseArray},
+  {name: "Response Time ms", arrayData: userAnswerTimeArray},
+  {name: "Index", arrayData: arrayOfIndexes},
+  ];
 
 
 // {ReduxArray.map(column => <td><b>{column.name}</b></td>)}
@@ -67,6 +69,7 @@ const makeCSVString = (initialString) => {
     initialString = initialString.concat(shortenedImageStageThree[n]+",");
     initialString = initialString.concat(shortenedcorrectScoresrray[n]+",");
     initialString = initialString.concat(userResponseArray[n]+",");
+    initialString = initialString.concat(userAnswerTimeArray[n]+",");
     initialString = initialString.concat("\n")
     
     // initialString ..

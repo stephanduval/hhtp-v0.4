@@ -11,7 +11,6 @@ const renderViewDispatch = (dispatch) => ({
 
 
 
-
 const StartCognitiveReappraisalTestButton = () => {  // this destructing allows us to use onInputChange instead of props.onInputChange
 
     //-------------------- Functions Fetch and Store Data for the setRenderState:

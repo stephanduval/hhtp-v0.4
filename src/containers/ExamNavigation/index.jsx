@@ -3,10 +3,10 @@ import React from 'react';
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setRenderState, newNBackState, newUserResponseArray, newUserAnswerTimeArray} from './actions';
-//import { navigationPhaseTypes } from '../renderSwitch/renderSwitch';
+import { navigationPhaseTypes } from '../renderSwitch/renderSwitch';
 import { Button } from '@material-ui/core';
-//
 
+//
 
 
 const nBackStateDispatch = (dispatch) => ({
@@ -28,25 +28,25 @@ const userAnswerTimeArrayDispatch = (dispatch) => ({
 
 const ExamNavigation = () => {
 
- 
+    
     const NBackState = useSelector(state => state.examNavigationReducer.newNBackState);
     const { newNBackState } = nBackStateDispatch(useDispatch());
     const userResponseArray = useSelector(state => state.examNavigationReducer.userResponseArray);
     const userAnswerTimeArray = useSelector(state => state.examNavigationReducer.answerTimeArray);
     //const { newUserResponseArray } = userResponseArrayDispatch(useDispatch());
     const nBackDegree = useSelector(state => state.nBackSettingsReducer.nBackDegree);
-    //const { setRenderState } = renderViewDispatch(useDispatch());  
+    const { setRenderState } = renderViewDispatch(useDispatch());  
     //const renderViewFromReduxStore = useSelector(state => state.examNavigationReducer.renderView);
     //const numberOfPhotos = useSelector(state => state.nBackSettingsReducer.numberOfPhotos);
     const timerSeconds = 1000*(useSelector(state => state.nBackSettingsReducer.timerSeconds));
-   
-/*
-    https://stackoverflow.com/questions/53633698/referencing-outdated-state-in-react-useeffect-hook
-    Refs don't give you the closure issue mentioned above because refs is an object with a current field
-    and multiple calls to useRef will return you the same object. As long as you mutate the .current
-    b value, your useEffect can always (only) read the most updated value.
+    const imageSetStageThreeFromRedux = useSelector(state => state.imageArrayReducer.imageSetStageThree);
 
-*/
+
+    const checkIfTestIsComplete = () => {
+    if (NBackState > imageSetStageThreeFromRedux.length) {
+        setRenderState(navigationPhaseTypes.nBackComplete)
+    }
+}
     
     const addPredictiveToUserResponseArray = () => {
         userResponseArray.push('P');
@@ -68,6 +68,16 @@ const ExamNavigation = () => {
         userAnswerTimeArray.push(time);
     }
 
+
+
+       
+/*
+    https://stackoverflow.com/questions/53633698/referencing-outdated-state-in-react-useeffect-hook
+    Refs don't give you the closure issue mentioned above because refs is an object with a current field
+    and multiple calls to useRef will return you the same object. As long as you mutate the .current
+    b value, your useEffect can always (only) read the most updated value.
+
+*/
     //const NBackState = userAnswerTimeArray.length
     
     let timerStart = new Date().getTime();
@@ -146,11 +156,11 @@ const ExamNavigation = () => {
         const buttonNBackState = NBackState;
            switch (event.keyCode) {
             case 87:
-                return console.log('W key, Log the Result, Run Next Image Function',newNBackState(NBackState),addNBackToUserResponseArray(),clearInterval(switchPhotosOnInterval),addTimeToUserAnswerTimeArray(timeTakenToAnswer(timerStart)));
+                return (newNBackState(NBackState),addNBackToUserResponseArray(),clearInterval(switchPhotosOnInterval),addTimeToUserAnswerTimeArray(timeTakenToAnswer(timerStart)),checkIfTestIsComplete());
             case 79:
-                return console.log('O Key, Log the Result, Run Next Image Function',newNBackState(NBackState),addPredictiveToUserResponseArray(),clearInterval(switchPhotosOnInterval),addTimeToUserAnswerTimeArray(timeTakenToAnswer(timerStart)));
+                return (newNBackState(NBackState),addPredictiveToUserResponseArray(),clearInterval(switchPhotosOnInterval),addTimeToUserAnswerTimeArray(timeTakenToAnswer(timerStart)));
             case 83:
-                return console.log('S Key, Log the Result, Run Next Image Function',newNBackState(NBackState),addSkipToUserResponseArray(),clearInterval(switchPhotosOnInterval),addTimeToUserAnswerTimeArray(timeTakenToAnswer(timerStart)));
+                return (newNBackState(NBackState),addSkipToUserResponseArray(),clearInterval(switchPhotosOnInterval),addTimeToUserAnswerTimeArray(timeTakenToAnswer(timerStart)));
         }
     }
     // console.log("Before useEffect()")
@@ -183,7 +193,6 @@ const ExamNavigation = () => {
         <Button color ="secondary" variant="contained" stringvalue={"S - Unique Image"} onClick={()=>{newNBackState(NBackState);addSkipToUserResponseArray();addTimeToUserAnswerTimeArray(timeTakenToAnswer(timerStart))}}>"S" - Unique Image
         </Button>
 
-   
 
 
         </div>
