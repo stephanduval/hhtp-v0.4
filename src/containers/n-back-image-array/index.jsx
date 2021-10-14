@@ -160,13 +160,16 @@ const ImageArray =  () => {
       
       let predictive = [...predictiveIndex];
       let setStageOne = [...imageSetStageOne];
-      let PredictiveIndexValue = 0;
-      const iteratePredictiveIndex = () => PredictiveIndexValue++;
+      let PredictiveIndexValueOne = 0;
+      let PredictiveIndexValueTwo = 0;
+      const iteratePredictiveIndexOne = () => PredictiveIndexValueOne++;
+      const iteratePredictiveIndexTwo = () => PredictiveIndexValueTwo++;
       let PredictiveReduxValue = 0;
       const iteratePredictiveReduxValue = () => PredictiveReduxValue++;
 
-      predictive.forEach(element => setStageOne.splice(predictiveIndex[iteratePredictiveIndex()],1,PredictiveFullFileNameArray[iteratePredictiveReduxValue()]))
-    return setStageOne;
+      predictive.forEach(element => setStageOne.push(setStageOne[iteratePredictiveIndexOne()]));
+      predictive.forEach(element => setStageOne.splice(predictiveIndex[iteratePredictiveIndexTwo()],1,PredictiveFullFileNameArray[iteratePredictiveReduxValue()]))
+    return setStageOne.slice(0,numberOfPhotos);
     } 
     
   const imageStageTwo = imageSetStageTwo(imageSetStageOne,predictiveIndex,predictiveFullFileNameArray)
@@ -222,7 +225,7 @@ const ImageArray =  () => {
 
     nBackIndex.forEach(element => stage2.splice(element-nBackDegree,1,stage2[element]));
    
-    return stage2;
+    return stage2.slice(0,numberOfPhotos);
   }
 
  const imageStageThree = imageSetStageThree(nBackIndex, nBackDegree, imageStageTwo);
