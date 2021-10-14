@@ -62,11 +62,11 @@ export const navigationPhaseTypes = {
     
         case navigationPhaseTypes.cognitiveReappraisalTest:
             // console.log('case navigationPhaseTypes.cognitiveReappraisalTest');
-
+            
             return <div>
-                        <CognitiveReappraisalArray/>
-                        <CognitiveReappraisalExamNavigation/>
-                        <CognitiveReappraisalArrayChecker/>
+                        <CognitiveReappraisalArray className="photospace2" />
+                        <CognitiveReappraisalExamNavigation className="navigationSpace"/>
+                        {/* <CognitiveReappraisalArrayChecker/> */}
                     </div>
             break;
 
