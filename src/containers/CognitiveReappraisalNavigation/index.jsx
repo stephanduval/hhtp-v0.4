@@ -2,7 +2,7 @@ import './CognitiveReappraisalNavigation.css';
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setRenderState, newNBackState, newUserResponseArray } from './actions';
+import { newCRAViewState, newCRAUserResponseArray, setRenderState } from './actions';
 import { navigationPhaseTypes } from '../renderSwitch/renderSwitch';
 import { Button, Radio, RadioGroup, FormControl, FormLabel, FormControlLabel } from '@material-ui/core';
 //

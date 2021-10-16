@@ -1,11 +1,10 @@
 import { ActionTypes } from "./constants";
 
-
-export const newCRAViewState = (cRBackState) => ({
+export const newNBackState = (nBackState) => ({
     type: ActionTypes.ADVANCE_IMAGE,  // from the constants file
-    payload: cRBackState+1
+    payload: nBackState+1
 })
-export const newCRAUserResponseArray = (userResponseArray) => ({
+export const newUserResponseArray = (userResponseArray) => ({
     type: ActionTypes.USER_RESPONSE_ARRAY,  // from the constants file
     payload: userResponseArray
 })
@@ -13,4 +12,9 @@ export const newCRAUserResponseArray = (userResponseArray) => ({
 export const setRenderState = (renderView) => ({
     type: ActionTypes.RENDER_VIEW,  // from the constants file
     payload: renderView
+})
+
+export const newUserAnswerTimeArray = (answerTimeArray) => ({
+    type: ActionTypes.USER_ANSWER_TIME,  // from the constants file
+    payload: answerTimeArray
 })

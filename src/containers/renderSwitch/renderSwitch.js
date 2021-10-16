@@ -8,10 +8,13 @@ import StartTestButton from '../StartNBackTestButton';
 import CognitiveReappraisalArray from '../cognitive-Reappraisal-Array';
 import StartCognitiveReappraisalTestButton from '../StartCognitiveReappraisalTestButton';
 import CognitiveReappraisalArrayChecker from '../cognitive-Reappraisal-Array-Checker';
-import CognitiveReappraisalExamNavigation from '../CognitiveReappraisalNavigation';
 import SettingsButton from '../settingsButton';
 import IntroHeader from '../introductionHeader';
 import MainPage from '../ReturntoMainPageButton';
+import StartPracticeTestButton from '../StartPracticeNBackTestButton';
+import PracticeExamNavigation from '../PracticeExamNavigation';
+import PracticePhotospace from '../PhotoSpace';
+import PracticeImageArray from '../Practice-n-back-image-array';
 import './renderSwitch.css';
 
 
@@ -20,8 +23,10 @@ export const navigationPhaseTypes = {
     introductionPage: "Has settings, instructions and a start test button",
     nBackPageTutorial: "nBackTutorialPage, May not be implemented in production version",
     nBackTest: "The actual nBack Test, recordning data",
+    practiceNBackTest: "Practice nBack Test",
     cognitiveReappraisalTest: "Cognitive Reappraisal Test",
     settings: "The Settings Page"
+
   }
   
 
@@ -36,6 +41,7 @@ export const navigationPhaseTypes = {
  
                         <div className="center">
                         <StartTestButton/>
+                        <StartPracticeTestButton/>
                         <SettingsButton/>
                         <StartCognitiveReappraisalTestButton/>
 
@@ -65,7 +71,6 @@ export const navigationPhaseTypes = {
             
             return <div>
                         <CognitiveReappraisalArray className="photospace2" />
-                        <CognitiveReappraisalExamNavigation className="navigationSpace"/>
                         {/* <CognitiveReappraisalArrayChecker/> */}
                     </div>
             break;
@@ -79,12 +84,24 @@ export const navigationPhaseTypes = {
                         </div>
                 break;
 
+                case navigationPhaseTypes.practiceNBackTest:
+                // console.log('case navigationPhaseTypes.settings');
+    
+                return <div>
+                            <PracticePhotospace/>
+                            <PracticeImageArray/>
+                            <PracticeExamNavigation/>
+                        </div>
+                break;
+
+
         default:
             // console.log('default');
             return <div><IntroHeader/>
  
                         <div className="center">
                         <StartTestButton/>
+                        <StartPracticeTestButton/>
                         <SettingsButton/>
                         <StartCognitiveReappraisalTestButton/>
 

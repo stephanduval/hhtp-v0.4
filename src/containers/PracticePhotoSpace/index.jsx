@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 
 
 
-const PracticePhotospace = () => {  // this destructing allows us to use onInputChange instead of props.onInputChange
+const Photospace = () => {  // this destructing allows us to use onInputChange instead of props.onInputChange
 
     //-------------------- Functions Fetch and Store Data for the PhotoSpace:
 
@@ -28,5 +28,5 @@ const PracticePhotospace = () => {  // this destructing allows us to use onInput
     // console.log("the array baby",imageFileNameArray);
 }
 
-export default PracticePhotospace;
+export default Photospace;
 
