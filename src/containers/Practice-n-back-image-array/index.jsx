@@ -3,9 +3,11 @@ import './imageArray.css';
 import { /*checkForEmptyinArray, showMatchesOnly */ } from './functions'
 import { filesToPhotosObject } from '../../functions.js';
 import { useSelector, useDispatch/*, connect*/ } from 'react-redux';
-import { /*setCorrectResponseArray, setUserResponseArray,*/ setImageFileNameArray, setImageFileNameLength, setPredictiveImageFileNameArray, setPredictiveImageFileNameLength, setImageSet, setScoringArray, setFinalFileNameArray, setImageSetStageOne, setImageSetStageTwo, setImageSetStageThree, setCorrectScoresrray, setNBackIndex, setPredictiveIndex} from './actions';
+import { setPracticeImageArray } from './actions';
 import { /*randomizeArray,*/ arrayLength } from './../../functions'; 
 import { /*validateNumberOfPhotos, validateNumberOfPredictivePhotos, validatesetNumberofnBackMatches, validatesetnBackDegree, validatesetTimerSeconds*/ } from './../../functions';
+
+
 // ======== Constants:
 //
 
@@ -19,6 +21,8 @@ import { /*validateNumberOfPhotos, validateNumberOfPredictivePhotos, validateset
     const practiceNBackImages = filesToPhotosObject(require.context('./../../../public/images/practice-n-back-photos/Two-Back-Hits', false, /\.(png|jpe?g|svg)$/));
     const practiceNBackImageFileNameArray = Object.keys(practiceNBackImages);
     const practiceNBackFullFileNameArray = practiceNBackImageFileNameArray.map(e => './images/practice-n-back-photos/Two-Back-Hits' + e);
+
+    const numberOfPhotos = practiceImageFullFileNameArray.length + practiceNBackFullFileNameArray.length*2;
     //const predictiveFullFolderLocation = predictiveImages.map((x) => { + 'x' });
    // const predictiveFileNameArray = Object.keys(predictiveFullFolderLocation);
     //const practiceNBackFileNameArray = Object.keys(practiceNbackImages);
@@ -114,7 +118,7 @@ const PracticeImageArray =  () => {
     */
     
     //const validPhotos = validateNumberOfPhotos(numberOfPhotos);
-    //const imageSetStageOne = randomizedFullFileNameArray.slice(0, numberOfPhotos);  // when number of photos is removed from here then it works
+    const imageSetStageOne = practiceImageFullFileNameArray.slice(0, numberOfPhotos);  // when number of photos is removed from here then it works
     
     
     // const imageSetStageOneLength =  imageSetStageOne.length;
@@ -155,75 +159,97 @@ const PracticeImageArray =  () => {
  
           
     //const earlyPredictiveIndex = [];//[...predictiveIndex];
-    const imageSetStageTwo = (imageSetStageOne,predictiveIndex,PredictiveFullFileNameArray) => {
+    const imageSetStageTwo = (imageSetStageOne,practiceNBackFullFileNameArray,numberOfPhotos) => {
       /*
       *  This Function takes an array and adds the predictive images into it
       * at the places where the result of the predictiveIndexes() function defines it
       *
       */
       //let reduxPredictive = PredictiveFullFileNameArray;
-      
-      let predictive = [...predictiveIndex];
       let setStageOne = [...imageSetStageOne];
-      let PredictiveIndexValueOne = 0;
-      let PredictiveIndexValueTwo = 0;
-      const iteratePredictiveIndexOne = () => PredictiveIndexValueOne++;
-      const iteratePredictiveIndexTwo = () => PredictiveIndexValueTwo++;
-      let PredictiveReduxValue = 0;
-      const iteratePredictiveReduxValue = () => PredictiveReduxValue++;
+      let predictive = [];
+      let n = (setStageOne.length / practiceNBackFullFileNameArray.length)
+      let e = 0
+      for (let element in practiceNBackFullFileNameArray) {
+        setStageOne.splice(n,0, practiceNBackFullFileNameArray[e]);
+        setStageOne.splice(n+2,0, practiceNBackFullFileNameArray[e]);
+        n = n +(setStageOne.length / practiceNBackFullFileNameArray.length);
+        e++
+      }
 
-      predictive.forEach(element => setStageOne.push(setStageOne[iteratePredictiveIndexOne()]));
-      predictive.forEach(element => setStageOne.splice(predictiveIndex[iteratePredictiveIndexTwo()],1,PredictiveFullFileNameArray[iteratePredictiveReduxValue()]))
-    return setStageOne.slice(0,20);
+      
+      // let PredictiveIndexValueOne = 0;
+      // let PredictiveIndexValueTwo = 0;
+      // const iteratePredictiveIndexOne = () => PredictiveIndexValueOne++;
+      // const iteratePredictiveIndexTwo = () => PredictiveIndexValueTwo++;
+      // let PredictiveReduxValue = 0;
+      // const iteratePredictiveReduxValue = () => PredictiveReduxValue++;
+
+      // predictive.forEach(element => setStageOne.push(setStageOne[iteratePredictiveIndexOne()]));
+      // predictive.forEach(element => setStageOne.splice(predictive[iteratePredictiveIndexTwo()],1,practiceNBackFullFileNameArray[iteratePredictiveReduxValue()]))
+    return setStageOne.slice(0,numberOfPhotos);
     } 
     
-  //const imageStageTwo = imageSetStageTwo(imageSetStageOne,predictiveIndex,predictiveFullFileNameArray)
+  const imageStageTwo = imageSetStageTwo(imageSetStageOne,practiceNBackFullFileNameArray,numberOfPhotos)
   
+
+  
+//-------------------- CONTSTANTS FOR REDUX TO DISPATCH ACTIONS: 
+
+const practiceImageArrayDispatch = (dispatch) => ({
+  setPracticeImageArray: (array) => dispatch(setPracticeImageArray(array)),
+});
+
+const { setPracticeImageArray } = practiceImageArrayDispatch(useDispatch()); // how does this work?  It creates an object
+
+const practiceImageArray = useSelector(state => state.practiceImageArrayReducer.practiceImageArray);
+
+
   //const predictiveMatchesEarly = showMatchesOnly(imageStageTwo,predictiveIndex);
   
-  const nBackIndexes = (NumberofnBackMatches,nBackDegree, numberOfPhotos) => {
-    /*
-    *  Takes the Image Array called ImageSetStageTwo and returns an array of the indexes where the nback values
-    * Will replace the array values
-    * 
-    */
+  // const nBackIndexes = (NumberofnBackMatches,nBackDegree, numberOfPhotos) => {
+  //   /*
+  //   *  Takes the Image Array called ImageSetStageTwo and returns an array of the indexes where the nback values
+  //   * Will replace the array values
+  //   * 
+  //   */
 
-    let nBackIndex = [];
+  //   let nBackIndex = [];
 
-   // let i = 0;
-  while (nBackIndex.length < NumberofnBackMatches) {
-  let num = Math.floor(Math.random() * (numberOfPhotos - nBackDegree) + nBackDegree,);
+  //  // let i = 0;
+  // while (nBackIndex.length < NumberofnBackMatches) {
+  // let num = Math.floor(Math.random() * (numberOfPhotos - nBackDegree) + nBackDegree,);
 
-          nBackIndex.push(num);
+  //         nBackIndex.push(num);
 
-    }
-   nBackIndex.sort((a,b)=>a-b);
-    return nBackIndex;
-  }
+  //   }
+  //  nBackIndex.sort((a,b)=>a-b);
+  //   return nBackIndex;
+  // }
 
-  const nBackIndex = nBackIndexes(4,2,20);
+  // const nBackIndex = nBackIndexes(4,2,20);
  // const { setNBackIndex } = nBackIndexDispatch(useDispatch()); // how does this work?  It creates an object
 
 
    // setNBackIndex(nBackIndex);
 
 
-  const imageSetStageThree = (nBackIndex, nBackDegree, genericPhotos, TwoBackHits) => {
-    /*
-      *  This Function takes an array and adds the nback images into it
-      * at the places where the result of the predictiveIndexes() and nBackIndexes() functions define it
-      *
-      */
+//   const imageSetStageThree = (nBackIndex, nBackDegree, genericPhotos, TwoBackHits) => {
+//     /*
+//       *  This Function takes an array and adds the nback images into it
+//       * at the places where the result of the predictiveIndexes() and nBackIndexes() functions define it
+//       *
+//       */
 
-    let stage2 = [...genericPhotos];
+//     let stage2 = [...genericPhotos];
 
-    nBackIndex.forEach(element => stage2.splice(element-nBackDegree,1,TwoBackHits[element]));
+//     nBackIndex.forEach(element => stage2.splice(element-nBackDegree,1,TwoBackHits[element]));
    
-    return stage2.slice(0,20);
-  }
+//     return stage2.slice(0,20);
+//   }
 
- const imageStageThree = imageSetStageThree(nBackIndex, 2, practiceImageFullFileNameArray,practiceNBackImages);
-//practiceNBackImages 
+//  const imageStageThree = imageSetStageThree(nBackIndex, 2, practiceImageFullFileNameArray,practiceNBackImages);
+// //practiceNBackImages 
 //practiceImageFullFileNameArray
 //  //const imageStageFour = imageSetStageFour(imageStageThree,predictiveIndex,PredictiveFileNameArray)
 //  //setImageSet(imageStageThree);
@@ -316,9 +342,52 @@ setCorrectScoresrray(correctScoresrray);
 setImageSetStageTwo(imageStageTwo);
 setImageSetStageThree(imageStageThree);
 */
-    return (
-<div className="imageArray">{imageStageThree}
 
+
+let resultCheckerArray = [
+  {name: "Index", arrayData: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]},
+  {name: "imageSetStageOne", arrayData: imageSetStageOne.map(element => element.slice(-25,-4))},
+  {name: "imageStageTwo", arrayData: imageStageTwo.map(element => element.slice(-21,-4))},
+  
+  ];
+  
+  
+  const tableGenerator = (ReduxArray) => {
+      return (
+          <div className="resultsChecker">
+        <table>
+          <thead>
+              
+              <tr>
+                {/*ReduxArray.map(column => <th>{column.name}</th>)*/}
+                
+              </tr>
+          </thead>
+          <body>
+  
+          Current Image: 
+          <p></p> 
+          nBack State:
+          <p></p>
+          <tr>  
+          
+          {ReduxArray.map(column => <td><b>{column.name}</b></td>)}
+          </tr>
+          <tr>  
+          {ReduxArray.map(column => <td>{column.arrayData.map(thing => <tr>{thing}</tr>)}</td>)}
+          </tr>
+          
+          </body>
+        </table>
+        </div>
+          )
+          };
+      
+
+    return (
+<div className="imageArray">
+{tableGenerator(resultCheckerArray)}
+{practiceImageArray}
 </div>
     )
 

@@ -2,23 +2,18 @@
 import { ActionTypes } from "./constants";
 
 const defaultState = {
-    newNBackState: 0,
-    userResponseArray: [],
-    renderView: "navigationPhaseTypes.introductionPage",
-    answerTimeArray: [],
+    newPracticeNBackState: 0,
+    renderView: "navigationPhaseTypes.practiceNBackExamPage",
 
 };
 
-export default function examNavigation(state = defaultState, action) { 
+export default function practiceExamNavigation(state = defaultState, action) { 
     switch (action.type) {
         case ActionTypes.ADVANCE_IMAGE:
-            return { ...state, newNBackState: action.payload };
-        case ActionTypes.USER_RESPONSE_ARRAY:
-            return { ...state, userResponseArray: action.payload };
+            return { ...state, newPracticeNBackState: action.payload };
+
         case ActionTypes.RENDER_VIEW:
             return { ...state, renderView: action.payload };
-        case ActionTypes.USER_ANSWER_TIME_ARRAY:
-            return {...state, answerTimeArray: action.payload}
         default:
             return state;
     }

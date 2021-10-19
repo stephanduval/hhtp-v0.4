@@ -25,7 +25,8 @@ export const navigationPhaseTypes = {
     nBackTest: "The actual nBack Test, recordning data",
     practiceNBackTest: "Practice nBack Test",
     cognitiveReappraisalTest: "Cognitive Reappraisal Test",
-    settings: "The Settings Page"
+    settings: "The Settings Page",
+    practiceNBackExamPage: "The NavigationPhasePage",
 
   }
   
