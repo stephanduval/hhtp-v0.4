@@ -1,6 +1,5 @@
 import React from 'react';
 import './imageArray.css';
-import { /*checkForEmptyinArray, showMatchesOnly */ } from './functions'
 import { filesToPhotosObject } from '../../functions.js';
 import { useSelector, useDispatch/*, connect*/ } from 'react-redux';
 import { setPracticeImageArray } from './actions'
@@ -20,7 +19,8 @@ import { /*validateNumberOfPhotos, validateNumberOfPredictivePhotos, validateset
     const practiceNBackFullFileNameArray = practiceNBackImageFileNameArray.map(e => './images/practice-n-back-photos/Two-Back-Hits' + e);
 
     const numberOfPhotos = practiceImageFullFileNameArray.length + practiceNBackFullFileNameArray.length*2;
-    
+    //-------------------- CONTSTANTS FOR REDUX TO DISPATCH ACTIONS: 
+
 
     const practiceImageArrayDispatch = (dispatch) => ({
     setPracticeImageArray: (array) => dispatch(setPracticeImageArray(array)),
@@ -61,8 +61,8 @@ const PracticeImageArray =  () => {
   const imageStageTwo = imageSetStageTwo(imageSetStageOne,practiceNBackFullFileNameArray,numberOfPhotos)
 
 
-  setPracticeImageArray(imageStageTwo);
-    
+  setPracticeImageArray([1,2,3,4]);
+
 //-------------------- CONTSTANTS FOR REDUX TO DISPATCH ACTIONS: 
 
 

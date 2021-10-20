@@ -2,7 +2,6 @@ import './PracticeExamNavigation.css';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { newPracticeNBackState, setPracticeRenderState } from './actions';
-import { setRenderState } from '../ExamNavigation/actions';
 import { navigationPhaseTypes } from '../renderSwitch/renderSwitch';
 import { Button } from '@material-ui/core';
 
@@ -12,9 +11,14 @@ const newPracticeNBackStateDispatch = (dispatch) => ({
     newPracticeNBackState: (users) => dispatch(newPracticeNBackState(users)),
 });
 
+// const setPracticeRenderStateDispatch = (dispatch) => ({
+//     setPracticeRenderState: (array) => dispatch(setPracticeRenderState(array)),
+// });
+
 const setPracticeRenderStateDispatch = (dispatch) => ({
-    setPracticeRenderState: (array) => dispatch(setPracticeRenderState(array)),
+    setPracticeRenderState: (nameState) => dispatch(setPracticeRenderState(nameState)),
 });
+
 
 
 
@@ -30,7 +34,6 @@ const PracticeExamNavigation = () => {
     const { newPracticeNBackState } = newPracticeNBackStateDispatch(useDispatch());
     const { setPracticeRenderState } = setPracticeRenderStateDispatch(useDispatch());  
 
-
     //const practiceImageArray = useSelector(state => state.practiceImageArrayReducer.practiceImageArray);
 
 
@@ -40,7 +43,7 @@ const PracticeExamNavigation = () => {
 
     const checkIfTestIsComplete = () => {
         if (NBackState > practiceImageArrayFromRedux.length) {
-            setRenderState(navigationPhaseTypes.nBackComplete)
+            setPracticeRenderState(navigationPhaseTypes.nBackComplete)
         }
     }
     

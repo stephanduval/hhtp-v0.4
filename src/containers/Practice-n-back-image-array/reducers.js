@@ -2,7 +2,7 @@
 import { ActionTypes } from "./constants";
 
 const defaultState = {
-    practiceImageArray: [],
+    practiceImageArray: [1,2,3,4,5,6,7],
 };
 
 export default function practiceImageArrayRedux(state = defaultState, action) { 

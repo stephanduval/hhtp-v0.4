@@ -2,11 +2,6 @@ import React from 'react';
 import './PhotoSpace.css';
 import { useSelector } from 'react-redux';
 
-
-     
-
-
-
 const PracticePhotospace = () => {  // this destructing allows us to use onInputChange instead of props.onInputChange
 
     //-------------------- Functions Fetch and Store Data for the PhotoSpace:

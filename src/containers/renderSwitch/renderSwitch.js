@@ -7,14 +7,12 @@ import CSVDownloadDiv from '../CSVDownloadDiv';
 import StartTestButton from '../StartNBackTestButton';
 import CognitiveReappraisalArray from '../cognitive-Reappraisal-Array';
 import StartCognitiveReappraisalTestButton from '../StartCognitiveReappraisalTestButton';
-import CognitiveReappraisalArrayChecker from '../cognitive-Reappraisal-Array-Checker';
 import SettingsButton from '../settingsButton';
 import IntroHeader from '../introductionHeader';
 import MainPage from '../ReturntoMainPageButton';
 import StartPracticeTestButton from '../StartPracticeNBackTestButton';
 import PracticeExamNavigation from '../PracticeExamNavigation';
-import PracticePhotospace from '../PhotoSpace';
-import PracticeImageArray from '../Practice-n-back-image-array';
+import PracticePhotospace from '../PracticePhotoSpace';
 import './renderSwitch.css';
 
 
