@@ -2,18 +2,13 @@
 import { ActionTypes } from "./constants";
 
 const defaultState = {
-    correctResponseArray: [],
-    userResponseArray: [],
-    imageFileNameArray: [],
-    imageFileNameArrayLength: 0,
-    finalFileNameArray: [],
+    practiceImageArray: [],
 };
 
-export default function practiceImageArray(state = defaultState, action) { 
+export default function practiceImageArrayRedux(state = defaultState, action) { 
     switch (action.type) {
         case ActionTypes.PRACTICE_IMAGE_ARRAY:
             return { ...state, practiceImageArray: action.payload };
-                   
         
         default:
             return state;

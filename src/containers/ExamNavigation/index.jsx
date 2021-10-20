@@ -158,9 +158,9 @@ const ExamNavigation = () => {
             case 87:
                 return (newNBackState(NBackState),addNBackToUserResponseArray(),clearInterval(switchPhotosOnInterval),addTimeToUserAnswerTimeArray(timeTakenToAnswer(timerStart)),checkIfTestIsComplete());
             case 79:
-                return (newNBackState(NBackState),addPredictiveToUserResponseArray(),clearInterval(switchPhotosOnInterval),addTimeToUserAnswerTimeArray(timeTakenToAnswer(timerStart)));
+                return (newNBackState(NBackState),addPredictiveToUserResponseArray(),clearInterval(switchPhotosOnInterval),addTimeToUserAnswerTimeArray(timeTakenToAnswer(timerStart)),checkIfTestIsComplete());
             case 83:
-                return (newNBackState(NBackState),addSkipToUserResponseArray(),clearInterval(switchPhotosOnInterval),addTimeToUserAnswerTimeArray(timeTakenToAnswer(timerStart)));
+                return (newNBackState(NBackState),addSkipToUserResponseArray(),clearInterval(switchPhotosOnInterval),addTimeToUserAnswerTimeArray(timeTakenToAnswer(timerStart)),checkIfTestIsComplete());
         }
     }
     // console.log("Before useEffect()")
@@ -184,13 +184,13 @@ const ExamNavigation = () => {
             
         <div className="buttonSpace">
 
-    <Button color ="primary" variant="contained" stringvalue={"Same as *n* photos Back"} onClick={()=>{newNBackState(NBackState);addNBackToUserResponseArray();addTimeToUserAnswerTimeArray(timeTakenToAnswer(timerStart))}}>"W" - Same as {nBackDegree} photos Back
+    <Button color ="primary" variant="contained" stringvalue={"Same as *n* photos Back"} onClick={()=>{newNBackState(NBackState);addNBackToUserResponseArray();addTimeToUserAnswerTimeArray(timeTakenToAnswer(timerStart));checkIfTestIsComplete()}}>"W" - Same as {nBackDegree} photos Back
         </Button>
 
-        <Button color ="default" variant="contained" stringvalue={"O - Predictive"} onClick={()=>{newNBackState(NBackState);addPredictiveToUserResponseArray();addTimeToUserAnswerTimeArray(timeTakenToAnswer(timerStart))}}>"O" - Predictive - I was told to remember this
+        <Button color ="default" variant="contained" stringvalue={"O - Predictive"} onClick={()=>{newNBackState(NBackState);addPredictiveToUserResponseArray();addTimeToUserAnswerTimeArray(timeTakenToAnswer(timerStart));checkIfTestIsComplete()}}>"O" - Predictive - I was told to remember this
         </Button>
 
-        <Button color ="secondary" variant="contained" stringvalue={"S - Unique Image"} onClick={()=>{newNBackState(NBackState);addSkipToUserResponseArray();addTimeToUserAnswerTimeArray(timeTakenToAnswer(timerStart))}}>"S" - Unique Image
+        <Button color ="secondary" variant="contained" stringvalue={"S - Unique Image"} onClick={()=>{newNBackState(NBackState);addSkipToUserResponseArray();addTimeToUserAnswerTimeArray(timeTakenToAnswer(timerStart));checkIfTestIsComplete()}}>"S" - Unique Image
         </Button>
 
 

@@ -90,7 +90,7 @@ export const navigationPhaseTypes = {
     
                 return <div>
                             <PracticePhotospace/>
-                            <PracticeImageArray/>
+                        
                             <PracticeExamNavigation/>
                         </div>
                 break;
