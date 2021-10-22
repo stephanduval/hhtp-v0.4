@@ -2,21 +2,21 @@ import React from 'react';
 import './imageArray.css';
 import { filesToPhotosObject } from '../../functions.js';
 import { useSelector, useDispatch/*, connect*/ } from 'react-redux';
-import { setPracticeImageArray } from './actions'
+import { setPracticeImageArray, setTestPracticeStateArray } from './actions'
 import { /*validateNumberOfPhotos, validateNumberOfPredictivePhotos, validatesetNumberofnBackMatches, validatesetnBackDegree, validatesetTimerSeconds*/ } from './../../functions';
 // ======== Constants:
 //
 
-    const practiceImages = filesToPhotosObject(require.context('./../../../public/images/practice-n-back-photos/RemainingPictures', false, /\.(png|jpe?g|svg)$/));
+    const practiceImages = filesToPhotosObject(require.context('./../../../public/images/practice-n-back-photos/RemainingPictures/', false, /\.(png|jpe?g|svg)$/));
     const practiceImageFileNameArray = Object.keys(practiceImages);
-    const practiceImageFullFileNameArray = practiceImageFileNameArray.map(e => './images/practice-n-back-photos/RemainingPictures' + e);
+    const practiceImageFullFileNameArray = practiceImageFileNameArray.map(e => './images/practice-n-back-photos/RemainingPictures/' + e);
     
     //-------------------- End of Create an object of the photo file names
     //const randomizedFullFileNameArray = imageFullFileNameArray.sort(()=> 0.5 - Math.random())
     
-    const practiceNBackImages = filesToPhotosObject(require.context('./../../../public/images/practice-n-back-photos/Two-Back-Hits', false, /\.(png|jpe?g|svg)$/));
+    const practiceNBackImages = filesToPhotosObject(require.context('./../../../public/images/practice-n-back-photos/Two-Back-Hits/', false, /\.(png|jpe?g|svg)$/));
     const practiceNBackImageFileNameArray = Object.keys(practiceNBackImages);
-    const practiceNBackFullFileNameArray = practiceNBackImageFileNameArray.map(e => './images/practice-n-back-photos/Two-Back-Hits' + e);
+    const practiceNBackFullFileNameArray = practiceNBackImageFileNameArray.map(e => './images/practice-n-back-photos/Two-Back-Hits/' + e);
 
     const numberOfPhotos = practiceImageFullFileNameArray.length + practiceNBackFullFileNameArray.length*2;
     //-------------------- CONTSTANTS FOR REDUX TO DISPATCH ACTIONS: 
@@ -25,6 +25,14 @@ import { /*validateNumberOfPhotos, validateNumberOfPredictivePhotos, validateset
     const practiceImageArrayDispatch = (dispatch) => ({
     setPracticeImageArray: (array) => dispatch(setPracticeImageArray(array)),
 });
+
+const testPracticeStateArrayDispatch = (dispatch) => ({
+  setTestPracticeStateArray: (array) => dispatch(setTestPracticeStateArray(array)),
+});
+
+
+
+
 //-------------------- Function that will render the ImageArray Page:
 const PracticeImageArray =  () => {
 
@@ -32,11 +40,15 @@ const PracticeImageArray =  () => {
 
 
   const { setPracticeImageArray } = practiceImageArrayDispatch(useDispatch()); // how does this work?  It creates an object
+  const { setTestPracticeStateArray } = testPracticeStateArrayDispatch(useDispatch());
+  
+  setTestPracticeStateArray(11);
+  //const setTestPracticeStateArrayFromRedux = useSelector(state => state.practiceImageArrayRedux.testPracticeStateArray);
 
-     
+  
+  //console.log("setTestPracticeStateArrayFromRedux",)
 
     const imageSetStageOne = practiceImageFullFileNameArray.slice(0, numberOfPhotos);  // when number of photos is removed from here then it works
- 
     const imageSetStageTwo = (imageSetStageOne,practiceNBackFullFileNameArray,numberOfPhotos) => {
       /*
       *  This Function takes an array and adds the predictive images into it
@@ -61,7 +73,7 @@ const PracticeImageArray =  () => {
   const imageStageTwo = imageSetStageTwo(imageSetStageOne,practiceNBackFullFileNameArray,numberOfPhotos)
 
 
-  setPracticeImageArray([1,2,3,4]);
+  setPracticeImageArray(imageStageTwo);
 
 //-------------------- CONTSTANTS FOR REDUX TO DISPATCH ACTIONS: 
 

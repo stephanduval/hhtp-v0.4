@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react';
 import ImageArray from './containers/n-back-image-array/';
+import PracticeImageArray from './containers/Practice-n-back-image-array';
 //import store from "./store";
 import { renderState } from "./containers/renderSwitch/renderSwitch.js";
 import { useSelector } from 'react-redux';
@@ -23,7 +24,9 @@ function App() {
 
   (
     <div className="App">
-    <ImageArray></ImageArray> 
+    <ImageArray></ImageArray>
+    <PracticeImageArray></PracticeImageArray>
+    
     
     {renderState(renderViewFromReduxStore)}
     {/* {console.log(renderViewFromReduxStore)} */}

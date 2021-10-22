@@ -5,3 +5,10 @@ export const setPracticeImageArray = (practiceImageArray) => ({
     payload: practiceImageArray
 });
 
+export const setTestPracticeStateArray = (testPracticeStateArrayParam) => ({
+    type: ActionTypes.TEST_PRACTICE_STATE_ARRAY,  // from the constants file
+    payload: testPracticeStateArrayParam
+});
+
+
+

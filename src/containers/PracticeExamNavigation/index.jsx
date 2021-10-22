@@ -100,7 +100,11 @@ const PracticeExamNavigation = () => {
         };
          });
      
-    
+//const setTestPracticeStateArrayFromRedux = useSelector(state => state.practiceImageArrayRedux.testPracticeStateArray);
+
+
+//console.log("setTestPracticeStateArrayFromRedux",setTestPracticeStateArrayFromRedux)
+        
 console.log("REDUX STATE:",practiceImageArrayFromRedux)
 
         return (

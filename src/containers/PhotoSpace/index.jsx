@@ -15,7 +15,7 @@ const PracticePhotospace = () => {  // this destructing allows us to use onInput
     return (//
         
 <div className="photospace">
-    
+
        <img src={process.env.PUBLIC_URL + imageSetStageThreeFromRedux[NBackState]} alt='Current nBack'/>
         
 </div>

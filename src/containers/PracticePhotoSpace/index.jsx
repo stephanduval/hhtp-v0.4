@@ -19,11 +19,21 @@ const PracticePhotospace = () => {  // this destructing allows us to use onInput
     console.log("the array baby",practiceImageArrayFromRedux,NBackState);
 
     //-------------------- END of functions Fetch and Store Data for the PhotoSpace
+
+    /*  troubleshooting the image not showing up:
+
+<img src={'./images/1026.jpg'} alt='Current nBack'/>
+<img src={'./images/Sad face 1.jpg'} alt='Current nBack'/>
+<img src={'./images/cognitive-reappraisal/decrease/Sad face 1.jpg'} alt='Current nBack'/>
+<img src={'./images/practice-n-back-photos/RemainingPictures/1026.jpg'} alt='Current nBack'/>
+
+    */
     return (//
         
 <div className="photospace">
-    
-       <img src={process.env.PUBLIC_URL + practiceImageArrayFromRedux[NBackState]} alt='Current nBack'/>
+
+<img src={process.env.PUBLIC_URL + practiceImageArrayFromRedux[NBackState]} alt='Current nBack'/>
+
 
 </div>
     )
