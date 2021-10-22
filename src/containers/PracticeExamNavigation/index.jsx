@@ -1,10 +1,10 @@
 import './PracticeExamNavigation.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { newPracticeNBackState, setPracticeRenderState } from './actions';
 import { navigationPhaseTypes } from '../renderSwitch/renderSwitch';
 import { Button } from '@material-ui/core';
-
+import GenericModal from '../Generic_Modal';
 //
 
 const newPracticeNBackStateDispatch = (dispatch) => ({
@@ -105,24 +105,78 @@ const PracticeExamNavigation = () => {
 
 //console.log("setTestPracticeStateArrayFromRedux",setTestPracticeStateArrayFromRedux)
         
-console.log("REDUX STATE:",practiceImageArrayFromRedux)
+//Modal logic Control:
+
+const [show, setShow] = useState(false)
+
+
+// Modal Message Logic
+
+let practiceExamResponse = ""
+
+const setResponse = (responseParameter) => {
+
+    practiceExamResponse = responseParameter
+    return practiceExamResponse
+
+}
+
+let modalMessage = {title: "Titlerror", body: "Bodyerror"};
+
+
+let testSlice = practiceImageArrayFromRedux[NBackState].slice(32,-9);
+
+const practiceCheckResult = (practiceExamResponseParam,imageSourceStringParam) => {
+    let modalTitle = "func Titlerror";
+    let modalMessage = "func Bodyerror";
+
+    if (/*imageSourceStringParam == 'Two-Back-Hits' && */ practiceExamResponseParam == 'N') {     
+        setShow(true)
+        //modalMessage = {title: "CORRECT!", message: "You got the correct answer. Brilliant"};
+        modalTitle = "CORRECT!";
+        modalMessage = "You got the correct answer. Brilliant";
+        return {modalTitle, modalMessage};
+    } else {
+        return {modalTitle, modalMessage};
+    }
+
+};
+
+practiceCheckResult()
+let modalCheckResult = practiceCheckResult();
+let word = modalCheckResult.modalTitle;
+
+// Has to export for the Modal Message
+// Modal Title
+//
+
+
+//Two-Back-Hits
+
+//RemainingPictures
 
         return (
             
-                
-            <div className="buttonSpace">
-    
-        <Button color ="primary" variant="contained" stringvalue={"Same as *n* photos Back"} onClick={()=>{newPracticeNBackState(NBackState);checkIfTestIsComplete()}}>"W" - Same as 2 photos Back
-            </Button>
-    
-            <Button color ="default" variant="contained" stringvalue={"O - Predictive"} onClick={()=>{newPracticeNBackState(NBackState);checkIfTestIsComplete()}}>"O" - Predictive - I was told to remember this
-            </Button>
-    
-            <Button color ="secondary" variant="contained" stringvalue={"S - Unique Image"} onClick={()=>{newPracticeNBackState(NBackState);checkIfTestIsComplete()}}>"S" - Unique Image
-            </Button>
-    
+            <div className="container">    
+                <div className="buttonSpace">
+        
+            <Button color ="primary" variant="contained" stringvalue={"Same as *n* photos Back"} onClick={()=>{practiceCheckResult(setResponse('N'),testSlice);newPracticeNBackState(NBackState);checkIfTestIsComplete();}}>"W" - Same as 2 photos Back
+                </Button>
+        
+                <Button color ="default" variant="contained" stringvalue={"O - Predictive"} onClick={()=>{setResponse('P');newPracticeNBackState(NBackState);checkIfTestIsComplete()}}>"O" - Predictive - I was told to remember this
+                </Button>
+        
+                <Button color ="secondary" variant="contained" stringvalue={"S - Unique Image"} onClick={()=>{setResponse('U');newPracticeNBackState(NBackState);checkIfTestIsComplete()}}>"S" - Unique Image
+                </Button>
+        
+                </div>
+                <div className="Modal">
+                    <button onClick={() => setShow(true) }>Show Modal</button>
+                    <GenericModal title={word} onClose={() => setShow(false)} show={show} >
+                    <p> {modalMessage.body} </p>
+                    </GenericModal> {testSlice}, {modalMessage.title}, {modalMessage.body}
+                </div>
             </div>
-    
             )
     }
 
