@@ -112,39 +112,42 @@ const [show, setShow] = useState(false)
 
 // Modal Message Logic
 
-let practiceExamResponse = ""
 
-const setResponse = (responseParameter) => {
-
-    practiceExamResponse = responseParameter
-    return practiceExamResponse
-
-}
-
-let modalMessage = {title: "Titlerror", body: "Bodyerror"};
-
-
-let testSlice = practiceImageArrayFromRedux[NBackState].slice(32,-9);
+let practiceArraySourceSlice = practiceImageArrayFromRedux[NBackState].slice(32,-9);
 
 const practiceCheckResult = (practiceExamResponseParam,imageSourceStringParam) => {
-    let modalTitle = "func Titlerror";
-    let modalMessage = "func Bodyerror";
-
-    if (/*imageSourceStringParam == 'Two-Back-Hits' && */ practiceExamResponseParam == 'N') {     
-        setShow(true)
-        //modalMessage = {title: "CORRECT!", message: "You got the correct answer. Brilliant"};
-        modalTitle = "CORRECT!";
-        modalMessage = "You got the correct answer. Brilliant";
-        return {modalTitle, modalMessage};
+        if (practiceExamResponseParam === 1 && imageSourceStringParam.includes("Two-Back-Hits",0) && practiceImageArrayFromRedux[NBackState] == practiceImageArrayFromRedux[NBackState-2] ) {     
+            return {modalTitle: "CORRECT!", modalMessage: "The image you are looking at appeared two images prior to this one. You're getting it"};
+        }
+        if (practiceExamResponseParam === 1 && imageSourceStringParam.includes("Two-Back-Hits",0) && practiceImageArrayFromRedux[NBackState] !== practiceImageArrayFromRedux[NBackState-2] ) {     
+            return {modalTitle: "Wrong Answer!", modalMessage: "You have not seen this image before.  However you may see it repeated later."};
+        }
+        if (practiceExamResponseParam === 1 && imageSourceStringParam.includes("RemainingPictures",0)) {     
+            return {modalTitle: "Wrong Answer!", modalMessage: "The image you are looking at is a unique Image. You have not seen it before"};
+        }
+        if (practiceExamResponseParam === 2 && imageSourceStringParam.includes("RemainingPictures",0)) {     
+            return {modalTitle: "Wrong Answer!", modalMessage: "Click this button if the image is the same as one if the images you were asked to remember.  You were not asked to remember any images in this practice exam."};
+        }
+        if (practiceExamResponseParam === 3 && imageSourceStringParam.includes("RemainingPictures",0)) {     
+            return {modalTitle: "CORRECT!", modalMessage: "This is a unique image.  You have not seen it before."};
+        }
+        if (practiceExamResponseParam === 2 && imageSourceStringParam.includes("Two-Back-Hits",0) && practiceImageArrayFromRedux[NBackState] == practiceImageArrayFromRedux[NBackState-2] ) {     
+            return {modalTitle: "Wrong Answer!", modalMessage: "This image appeared two images ago.  When you see an image repreat with one image in between click the \"Same As 2 Photos Back\" button"};
+        }
+        if (practiceExamResponseParam === 3 && imageSourceStringParam.includes("Two-Back-Hits",0) && practiceImageArrayFromRedux[NBackState] == practiceImageArrayFromRedux[NBackState-2] ) {     
+            return {modalTitle: "Wrong Answer!", modalMessage: "This image appeared two images ago.  When you see an image repreat with one image in between click the \"Same As 2 Photos Back\" button"};
     } else {
-        return {modalTitle, modalMessage};
+        return {modalTitle: "NoTitle", modalMessage: "No Message"}
     }
 
 };
+let modalCheckResult = practiceCheckResult('a',practiceArraySourceSlice);
 
-practiceCheckResult()
-let modalCheckResult = practiceCheckResult();
-let word = modalCheckResult.modalTitle;
+
+// we are object destructuring the result
+
+
+
 
 // Has to export for the Modal Message
 // Modal Title
@@ -160,21 +163,21 @@ let word = modalCheckResult.modalTitle;
             <div className="container">    
                 <div className="buttonSpace">
         
-            <Button color ="primary" variant="contained" stringvalue={"Same as *n* photos Back"} onClick={()=>{practiceCheckResult(setResponse('N'),testSlice);newPracticeNBackState(NBackState);checkIfTestIsComplete();}}>"W" - Same as 2 photos Back
+            <Button color ="primary" variant="contained" stringvalue={"Same as *n* photos Back"} onClick={()=>{practiceCheckResult(11,practiceArraySourceSlice);newPracticeNBackState(NBackState);checkIfTestIsComplete();}}>"W" - Same as 2 photos Back
                 </Button>
         
-                <Button color ="default" variant="contained" stringvalue={"O - Predictive"} onClick={()=>{setResponse('P');newPracticeNBackState(NBackState);checkIfTestIsComplete()}}>"O" - Predictive - I was told to remember this
+                <Button color ="default" variant="contained" stringvalue={"O - Predictive"} onClick={()=>{practiceCheckResult(22,practiceArraySourceSlice);newPracticeNBackState(NBackState);checkIfTestIsComplete()}}>"O" - Predictive - I was told to remember this
                 </Button>
         
-                <Button color ="secondary" variant="contained" stringvalue={"S - Unique Image"} onClick={()=>{setResponse('U');newPracticeNBackState(NBackState);checkIfTestIsComplete()}}>"S" - Unique Image
+                <Button color ="secondary" variant="contained" stringvalue={"S - Unique Image"} onClick={()=>{practiceCheckResult(33,practiceArraySourceSlice);newPracticeNBackState(NBackState);checkIfTestIsComplete()}}>"S" - Unique Image
                 </Button>
         
                 </div>
                 <div className="Modal">
                     <button onClick={() => setShow(true) }>Show Modal</button>
-                    <GenericModal title={word} onClose={() => setShow(false)} show={show} >
-                    <p> {modalMessage.body} </p>
-                    </GenericModal> {testSlice}, {modalMessage.title}, {modalMessage.body}
+                    <GenericModal title={modalCheckResult.modalTitle} onClose={() => setShow(false)} show={show} >
+                    <p> {modalCheckResult.modalMessage} </p>
+                    </GenericModal> {practiceArraySourceSlice}, {modalCheckResult.modalTitle}, {modalCheckResult.modalMessage}
                 </div>
             </div>
             )
