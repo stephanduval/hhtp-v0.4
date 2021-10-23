@@ -16,7 +16,7 @@ const PracticePhotospace = () => {  // this destructing allows us to use onInput
     //const finalFileNameArray = useSelector(state => state.imageArrayReducer.finalFileNameArray);
     const practiceImageArrayFromRedux = useSelector(state => state.practiceImageArrayReducer.practiceImageArray);
     
-    console.log("the array baby",practiceImageArrayFromRedux,NBackState);
+   // console.log("the array baby",practiceImageArrayFromRedux,NBackState);
 
     //-------------------- END of functions Fetch and Store Data for the PhotoSpace
 

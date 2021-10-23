@@ -1,5 +1,5 @@
 import './PracticeExamNavigation.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { newPracticeNBackState, setPracticeRenderState } from './actions';
 import { navigationPhaseTypes } from '../renderSwitch/renderSwitch';
@@ -19,6 +19,7 @@ const setPracticeRenderStateDispatch = (dispatch) => ({
     setPracticeRenderState: (nameState) => dispatch(setPracticeRenderState(nameState)),
 });
 
+let modalCheckResult = "";
 
 
 
@@ -115,6 +116,7 @@ const [show, setShow] = useState(false)
 
 let practiceArraySourceSlice = practiceImageArrayFromRedux[NBackState].slice(32,-9);
 
+const [modalObject, setModalObject] = useState({modalTitle: "error", modalMessage: "error"});
 
 const checkLogic = (aParam,Bparam) => {
 if (aParam == 1){
@@ -128,47 +130,64 @@ if (aParam == 1){
 }
 
 
-const practiceTwoBackCheckResult = (imageSourceStringParam) => {
-    console.log("TwoBackCheckResultRan")
-    if (imageSourceStringParam.includes("Two-Back-Hits",0) && practiceImageArrayFromRedux[NBackState] == practiceImageArrayFromRedux[NBackState-2] ) {     
-        return {modalTitle: "CORRECT!", modalMessage: "The image you are looking at appeared two images prior to this one. You're getting it"};
-    }
-    if (imageSourceStringParam.includes("Two-Back-Hits",0) && practiceImageArrayFromRedux[NBackState] !== practiceImageArrayFromRedux[NBackState-2] ) {     
-        return {modalTitle: "Wrong Answer!", modalMessage: "You have not seen this image before.  However you may see it repeated later."};
-} else {
-    return {modalTitle: Error, modalMessage: Error }
-}
 
-}
 
-const practiceCheckResult = (practiceExamResponseParam,imageSourceStringParam) => {
-        if (practiceExamResponseParam > 0 && imageSourceStringParam.includes("Two-Back-Hits",0) && practiceImageArrayFromRedux[NBackState] == practiceImageArrayFromRedux[NBackState-2] ) {     
-            return {modalTitle: "CORRECT!", modalMessage: "The image you are looking at appeared two images prior to this one. You're getting it"};
-        }
-        if (practiceExamResponseParam > 0 && imageSourceStringParam.includes("Two-Back-Hits",0) && practiceImageArrayFromRedux[NBackState] !== practiceImageArrayFromRedux[NBackState-2] ) {     
-            return {modalTitle: "Wrong Answer!", modalMessage: "You have not seen this image before.  However you may see it repeated later."};
-        }
-        if (practiceExamResponseParam > 1 && imageSourceStringParam.includes("RemainingPictures",0)) {     
-            return {modalTitle: "Wrong Answer!", modalMessage: "The image you are looking at is a unique Image. You have not seen it before"};
-        }
-        if (practiceExamResponseParam == 0 && imageSourceStringParam.includes("RemainingPictures",0)) {     
-            return {modalTitle: "Wrong Answer!", modalMessage: "Click this button if the image is the same as one if the images you were asked to remember.  You were not asked to remember any images in this practice exam."};
-        }
-        if (practiceExamResponseParam < 0 && imageSourceStringParam.includes("RemainingPictures",0)) {     
-            return {modalTitle: "CORRECT!", modalMessage: "This is a unique image.  You have not seen it before."};
-        }
-        if (practiceExamResponseParam == 0 && imageSourceStringParam.includes("Two-Back-Hits",0) && practiceImageArrayFromRedux[NBackState] == practiceImageArrayFromRedux[NBackState-2] ) {     
-            return {modalTitle: "Wrong Answer!", modalMessage: "This image appeared two images ago.  When you see an image repreat with one image in between click the \"Same As 2 Photos Back\" button"};
-        }
-        if (practiceExamResponseParam < 0 && imageSourceStringParam.includes("Two-Back-Hits",0) && practiceImageArrayFromRedux[NBackState] == practiceImageArrayFromRedux[NBackState-2] ) {     
-            return {modalTitle: "Wrong Answer!", modalMessage: "This image appeared two images ago.  When you see an image repreat with one image in between click the \"Same As 2 Photos Back\" button"};
-    } else {
-        return {modalTitle: practiceExamResponseParam, modalMessage: imageSourceStringParam }
-    }
+const practiceCheckResult = (buttonSwitchParam,imageSourceStringParam) => {
+        switch (buttonSwitchParam) {
+            case 'nBackButton':    
+            console.log("Two Back Route");
+                if (imageSourceStringParam.includes("Two-Back-Hits",0) && practiceImageArrayFromRedux[NBackState] == practiceImageArrayFromRedux[NBackState-2] ) {     
+                    return {modalTitle: "CORRECT!", modalMessage: "The image you are looking at appeared two images prior to this one. You're getting it"};
+                }
+                if (imageSourceStringParam.includes("Two-Back-Hits",0) && practiceImageArrayFromRedux[NBackState] !== practiceImageArrayFromRedux[NBackState-2] ) {     
+                    return {modalTitle: "Wrong Answer!", modalMessage: "You have not seen this image before.  However you may see it repeated later."};
+                }
+                if (imageSourceStringParam.includes("RemainingPictures",0)) {     
+                    return {modalTitle: "Wrong Answer!", modalMessage: "The image you are looking at is a unique Image. You have not seen it before"};
+                } else {
+                    return {modalTitle: "Wrong Answer!", modalMessage: "The image you are looking at is a unique Image. You have not seen it before"};
+                }
 
+            break;
+
+            case 'predictiveButton':
+                console.log("Predictive Route");
+                                if (imageSourceStringParam.includes("Two-Back-Hits",0) && practiceImageArrayFromRedux[NBackState] == practiceImageArrayFromRedux[NBackState-2] ) {     
+                    return {modalTitle: "Wrong Answer!", modalMessage: "This image appeared two images ago.  When you see an image repreat with one image in between click the \"Same As 2 Photos Back\" button"};
+                }
+                if (imageSourceStringParam.includes("RemainingPictures",0)) {     
+                    return {modalTitle: "Wrong Answer!", modalMessage: "Click this button if the image is the same as one if the images you were asked to remember.  You were not asked to remember any images in this practice exam."};
+                } else {
+                    return {modalTitle: "Wrong Answer!", modalMessage: "The image you are looking at is a unique Image. You have not seen it before"};
+                }
+            break;
+
+            case 'uniqueButton':
+                console.log("Unique Route");
+                if (imageSourceStringParam.includes("RemainingPictures",0)) {     
+                    return {modalTitle: "CORRECT!", modalMessage: "This is a unique image.  You have not seen it before."}; 
+                }
+                if (imageSourceStringParam.includes("Two-Back-Hits",0) && practiceImageArrayFromRedux[NBackState] !== practiceImageArrayFromRedux[NBackState-2] ) {     
+                    return {modalTitle: "CORRECT!", modalMessage: "This is a unique image.  You have not seen it before."};
+                } else {
+                    return {modalTitle: "Wrong Answer!", modalMessage: "The image you are looking at is a unique Image. You have not seen it before"};
+                }
+                break;
+        default:
+        return {modalTitle: "error", modalMessage: "error" }      
+    } 
+    
 };
-let modalCheckResult = practiceTwoBackCheckResult(practiceArraySourceSlice);
 
+
+
+
+useEffect(() => {
+   return () => {
+    modalCheckResult = {modalTitle: "error", modalMessage: "error" }
+
+    }
+}, [])
 
 // we are object destructuring the result
 
@@ -189,13 +208,13 @@ let modalCheckResult = practiceTwoBackCheckResult(practiceArraySourceSlice);
             <div className="container">    
                 <div className="buttonSpace">
         
-            <Button color ="primary" variant="contained" stringvalue={"Same as *n* photos Back"} onClick={()=>{let modalCheckResult=practiceTwoBackCheckResult(practiceArraySourceSlice);newPracticeNBackState(NBackState);checkIfTestIsComplete();}}>"W" - Same as 2 photos Back
+            <Button color ="primary" variant="contained" stringvalue={"Same as *n* photos Back"} onClick={()=>{modalCheckResult=practiceCheckResult("nBackButton",practiceArraySourceSlice);newPracticeNBackState(NBackState);checkIfTestIsComplete();}}>"W" - Same as 2 photos Back
                 </Button>
         
-                <Button color ="default" variant="contained" stringvalue={"O - Predictive"} onClick={()=>{practiceCheckResult(0,practiceArraySourceSlice);newPracticeNBackState(NBackState);checkIfTestIsComplete()}}>"O" - Predictive - I was told to remember this
+                <Button color ="default" variant="contained" stringvalue={"O - Predictive"} onClick={()=>{modalCheckResult=practiceCheckResult("predictiveButton",practiceArraySourceSlice);newPracticeNBackState(NBackState);checkIfTestIsComplete()}}>"O" - Predictive - I was told to remember this
                 </Button>
         
-                <Button color ="secondary" variant="contained" stringvalue={"S - Unique Image"} onClick={()=>{practiceCheckResult(-1,practiceArraySourceSlice);newPracticeNBackState(NBackState);checkIfTestIsComplete()}}>"S" - Unique Image
+                <Button color ="secondary" variant="contained" stringvalue={"S - Unique Image"} onClick={()=>{modalCheckResult=practiceCheckResult("uniqueButton",practiceArraySourceSlice);newPracticeNBackState(NBackState);checkIfTestIsComplete()}}>"S" - Unique Image
                 </Button>
         
                 </div>
@@ -203,7 +222,7 @@ let modalCheckResult = practiceTwoBackCheckResult(practiceArraySourceSlice);
                     <button onClick={() => setShow(true) }>Show Modal</button>
                     <GenericModal title={modalCheckResult.modalTitle} onClose={() => setShow(false)} show={show} >
                     <p> {modalCheckResult.modalMessage} </p>
-                    </GenericModal> {practiceArraySourceSlice}, {modalCheckResult.modalTitle}, {modalCheckResult.modalMessage}
+                    </GenericModal> {practiceArraySourceSlice}, {modalCheckResult.modalTitle}, {modalCheckResult.modalMessage}  ||{modalObject.modalMessage}  {modalObject.modalTitle}
                 </div>
             </div>
             )
