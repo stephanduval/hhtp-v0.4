@@ -80,11 +80,13 @@ const PracticeExamNavigation = () => {
             const buttonNBackState = NBackState;
                switch (event.keyCode) {
                 case 87:
-                    return (newPracticeNBackState(NBackState),checkIfTestIsComplete());
+                    return (modalCheckResult=practiceCheckResult("nBackButton",practiceArraySourceSlice),setShow(true));
                 case 79:
-                    return (newPracticeNBackState(NBackState),checkIfTestIsComplete());
+                    return (modalCheckResult=practiceCheckResult("predictiveButton",practiceArraySourceSlice),setShow(true));
                 case 83:
-                    return (newPracticeNBackState(NBackState),checkIfTestIsComplete());
+                    return (modalCheckResult=practiceCheckResult("uniqueButton",practiceArraySourceSlice),setShow(true));
+                case 27:
+                return (onCloseWrapperFunction());
             }
         }
         // console.log("Before useEffect()")
@@ -214,8 +216,7 @@ const onCloseWrapperFunction = () => {
         
                 </div>
                 <div className="Modal">
-                <Button color ="secondary" variant="contained" stringvalue={"S - Unique Image"} onClick={()=>{setShowEndofExamModal(true)}}>"S" - Unique Image
-                </Button>
+                
                     <GenericModal title={modalCheckResult.modalTitle} onClose={() => onCloseWrapperFunction()} show={show} >
                     <p> {modalCheckResult.modalMessage} </p>
                     </GenericModal> 

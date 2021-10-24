@@ -1,7 +1,8 @@
 import React from 'react';
-import './cognitive-Reappraisal-Array.css';
+import './Cognitive-Reappraisal-Array.css';
 import { randomizedCombinedCognitiveImagesArray } from './create-cognitive-Reappraisal-Array';
 import CognitiveReappraisalExamNavigation from '../CognitiveReappraisalNavigation';
+import CognitivePhotospace from '../Cognitive-Reappraisal-PhotoSpace';
 //import { checkForEmptyinArray, showMatchesOnly } from './../n-back-image-array/functions';
 //import { filesToPhotosObject } from '../../functions.js';
 //import * as CRAConstant from './constants';
@@ -19,7 +20,7 @@ const CognitiveReappraisalArray =  () => {
         Cognitive Reappraisal Array
 
         {randomizedCombinedCognitiveImagesArray}
-
+        <CognitivePhotospace />
         <CognitiveReappraisalExamNavigation className="navigationSpace"/>
 
         </div>

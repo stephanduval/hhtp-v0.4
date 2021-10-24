@@ -8,6 +8,7 @@ export const ActionTypes = {
     CR_USER_RESPONSE_ARRAY: "app/containers/cognitive-Reappraisal-Array/USER_RESPONSE_ARRAY",
     CR_RENDER_VIEW: "app/containers/cognitive-Reappraisal-Array/RENDER_VIEW",
     CR_USER_ANSWER_TIME_ARRAY: "app/containers/cognitive-Reappraisal-Array/USER_ANSWER_TIME",
+    CR_IMAGE_ARRAY: "app/containers/cognitive-Reappraisal-Array/CR_IMAGE_ARRAY",
 }
 
 const decreaseImagesObject = filesToPhotosObject(require.context('./../../../public/images/cognitive-reappraisal/decrease/', false, /\.(png|jpe?g|svg)$/));

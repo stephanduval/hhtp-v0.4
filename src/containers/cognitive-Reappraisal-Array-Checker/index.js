@@ -1,8 +1,8 @@
 import React from 'react';
-import './cognitive-Reappraisal-Array-Checker.css';
-import { checkForEmptyinArray, showMatchesOnly } from './../n-back-image-array/functions';
+import './Cognitive-Reappraisal-Array-Checker.css';
+import { checkForEmptyinArray, showMatchesOnly } from '../n-back-image-array/functions';
 import { filesToPhotosObject } from '../../functions.js';
-import * as CRAConstant from './../cognitive-Reappraisal-Array/constants';
+import * as CRAConstant from '../cognitive-Reappraisal-Array/constants';
 import { useDispatch, useSelector } from 'react-redux';
 
 

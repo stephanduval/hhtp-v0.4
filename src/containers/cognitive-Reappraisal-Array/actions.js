@@ -1,5 +1,9 @@
 import { ActionTypes } from "./constants";
 
+export const setCRImageArray = (cRImageArray) => ({
+    type: ActionTypes.CR_IMAGE_ARRAY,  // from the constants file
+    payload: cRImageArray
+
 export const newCRState = (newCRState) => ({
     type: ActionTypes.CR_ADVANCE_IMAGE,  // from the constants file
     payload: newCRState+1
