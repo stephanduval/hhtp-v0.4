@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import './modal.css'
+import './genericModal.css'
 
 const GenericModal = props => {
 

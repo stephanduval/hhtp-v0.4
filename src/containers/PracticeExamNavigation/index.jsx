@@ -5,7 +5,6 @@ import { newPracticeNBackState, setPracticeRenderState } from './actions';
 import { navigationPhaseTypes } from '../renderSwitch/renderSwitch';
 import { Button } from '@material-ui/core';
 import GenericModal from '../Generic_Modal';
-//
 
 const newPracticeNBackStateDispatch = (dispatch) => ({
     newPracticeNBackState: (users) => dispatch(newPracticeNBackState(users)),
@@ -24,6 +23,8 @@ let modalCheckResult = "";
 
 
 const PracticeExamNavigation = () => {
+    const [show, setShow] = useState(false)
+    const [showEndofExamModal, setShowEndofExamModal] = useState(false)
 
 
     
@@ -43,8 +44,8 @@ const PracticeExamNavigation = () => {
     
 
     const checkIfTestIsComplete = () => {
-        if (NBackState > practiceImageArrayFromRedux.length) {
-            setPracticeRenderState(navigationPhaseTypes.nBackComplete)
+        if (NBackState == practiceImageArrayFromRedux.length-1) {
+            setPracticeRenderState(navigationPhaseTypes.introductionPage)
         }
     }
     
@@ -108,28 +109,12 @@ const PracticeExamNavigation = () => {
         
 //Modal logic Control:
 
-const [show, setShow] = useState(false)
 
 
 // Modal Message Logic
 
 
 let practiceArraySourceSlice = practiceImageArrayFromRedux[NBackState].slice(32,-9);
-
-const [modalObject, setModalObject] = useState({modalTitle: "error", modalMessage: "error"});
-
-const checkLogic = (aParam,Bparam) => {
-if (aParam == 1){
-    console.log("aParam",aParam)
-    return
-
-}else{
-    console.log("Testing the Logic",aParam,Bparam)
-    return
-}
-}
-
-
 
 
 const practiceCheckResult = (buttonSwitchParam,imageSourceStringParam) => {
@@ -169,6 +154,9 @@ const practiceCheckResult = (buttonSwitchParam,imageSourceStringParam) => {
                 }
                 if (imageSourceStringParam.includes("Two-Back-Hits",0) && practiceImageArrayFromRedux[NBackState] !== practiceImageArrayFromRedux[NBackState-2] ) {     
                     return {modalTitle: "CORRECT!", modalMessage: "This is a unique image.  You have not seen it before."};
+                }
+                if (imageSourceStringParam.includes("Two-Back-Hits",0) && practiceImageArrayFromRedux[NBackState] == practiceImageArrayFromRedux[NBackState-2] ) {     
+                    return {modalTitle: "Wrong Answer!!", modalMessage: "The image you are looking at appeared two images prior to this one"};
                 } else {
                     return {modalTitle: "Wrong Answer!", modalMessage: "The image you are looking at is a unique Image. You have not seen it before"};
                 }
@@ -189,6 +177,13 @@ useEffect(() => {
     }
 }, [])
 
+
+const onCloseWrapperFunction = () => {
+    setShow(false);
+    newPracticeNBackState(NBackState);
+    checkIfTestIsComplete();
+}
+
 // we are object destructuring the result
 
 
@@ -208,21 +203,25 @@ useEffect(() => {
             <div className="container">    
                 <div className="buttonSpace">
         
-            <Button color ="primary" variant="contained" stringvalue={"Same as *n* photos Back"} onClick={()=>{modalCheckResult=practiceCheckResult("nBackButton",practiceArraySourceSlice);newPracticeNBackState(NBackState);checkIfTestIsComplete();}}>"W" - Same as 2 photos Back
+            <Button color ="primary" variant="contained" stringvalue={"Same as *n* photos Back"} onClick={()=>{modalCheckResult=practiceCheckResult("nBackButton",practiceArraySourceSlice);setShow(true)}}>"W" - Same as 2 photos Back
                 </Button>
         
-                <Button color ="default" variant="contained" stringvalue={"O - Predictive"} onClick={()=>{modalCheckResult=practiceCheckResult("predictiveButton",practiceArraySourceSlice);newPracticeNBackState(NBackState);checkIfTestIsComplete()}}>"O" - Predictive - I was told to remember this
+                <Button color ="default" variant="contained" stringvalue={"O - Predictive"} onClick={()=>{modalCheckResult=practiceCheckResult("predictiveButton",practiceArraySourceSlice);setShow(true)}}>"O" - Predictive - I was told to remember this
                 </Button>
         
-                <Button color ="secondary" variant="contained" stringvalue={"S - Unique Image"} onClick={()=>{modalCheckResult=practiceCheckResult("uniqueButton",practiceArraySourceSlice);newPracticeNBackState(NBackState);checkIfTestIsComplete()}}>"S" - Unique Image
+                <Button color ="secondary" variant="contained" stringvalue={"S - Unique Image"} onClick={()=>{modalCheckResult=practiceCheckResult("uniqueButton",practiceArraySourceSlice);setShow(true)}}>"S" - Unique Image
                 </Button>
         
                 </div>
                 <div className="Modal">
-                    <button onClick={() => setShow(true) }>Show Modal</button>
-                    <GenericModal title={modalCheckResult.modalTitle} onClose={() => setShow(false)} show={show} >
+                <Button color ="secondary" variant="contained" stringvalue={"S - Unique Image"} onClick={()=>{setShowEndofExamModal(true)}}>"S" - Unique Image
+                </Button>
+                    <GenericModal title={modalCheckResult.modalTitle} onClose={() => onCloseWrapperFunction()} show={show} >
                     <p> {modalCheckResult.modalMessage} </p>
-                    </GenericModal> {practiceArraySourceSlice}, {modalCheckResult.modalTitle}, {modalCheckResult.modalMessage}  ||{modalObject.modalMessage}  {modalObject.modalTitle}
+                    </GenericModal> 
+
+                  
+
                 </div>
             </div>
             )

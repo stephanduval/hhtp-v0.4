@@ -37,15 +37,15 @@ export const navigationPhaseTypes = {
         case navigationPhaseTypes.introductionPage:
             // console.log('Introduction Page')
             return <div><IntroHeader/>
- 
+            
                         <div className="center">
                         <StartTestButton/>
                         <StartPracticeTestButton/>
                         <SettingsButton/>
                         <StartCognitiveReappraisalTestButton/>
 
-                         </div>
-                    </div>
+                        </div>
+                                </div>
                     
             break;
         case navigationPhaseTypes.nBackTest:
