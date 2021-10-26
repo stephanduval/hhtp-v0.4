@@ -2,23 +2,34 @@ import './CognitiveReappraisalNavigation.css';
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { newCRAViewState, newCRAUserResponseArray, setRenderState } from './actions';
+import { newCRAViewState, setRenderState, } from './actions';
 import { navigationPhaseTypes } from '../renderSwitch/renderSwitch';
 import { Button, Radio, RadioGroup, FormControl, FormLabel, FormControlLabel } from '@material-ui/core';
 //
 
+const newCRAViewStateDispatch = (dispatch) => ({
+    newCRAViewState: (users) => dispatch(newCRAViewState(users)),
+});
+
+
 const CognitiveReappraisalExamNavigation = () => {
+
+    const CRAViewState = useSelector(state => state.craNavigationReducer.CRAViewState);
+    const { newCRAViewState } = newCRAViewStateDispatch(useDispatch());
+
+
+
  
     const keyStrokeListener = (event) => {
         /*
         *  Listens for the keystoke and updates the NBackState
-        * ISSUE:  IT repeats all previous keystrokes for some reason, making the process increasingly slower
+        * 
         */
         console.log('HIT',event.keyCode)
 
         switch (event.keyCode) {
             case 49:
-                return console.log('1 key, Log the Result, Run Next Image Function,newNBackState(NBackState),addNBackToUserResponseArray()');
+                return console.log('1 key, Log the Result, Run Next Image Function',newCRAViewState(CRAViewState),'addNBackToUserResponseArray()');
             case 50:
                 return console.log('2 Key, Log the Result, Run Next Image Function,newNBackState(NBackState),addPredictiveToUserResponseArray()');
             case 51:
@@ -101,6 +112,7 @@ const CognitiveReappraisalExamNavigation = () => {
         </Button>
         
            </FormControl>
+           {CRAViewState}
    
         </div>
 

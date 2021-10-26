@@ -2,7 +2,7 @@
 import { ActionTypes } from "./constants";
 
 const defaultState = {
-    newCRAViewState: [],
+    newCRAViewState: 0,
     userResponseArray: [],
     renderView: "navigationPhaseTypes.introductionPage",
 

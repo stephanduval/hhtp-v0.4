@@ -13,6 +13,8 @@ import MainPage from '../ReturntoMainPageButton';
 import StartPracticeTestButton from '../StartPracticeNBackTestButton';
 import PracticeExamNavigation from '../PracticeExamNavigation';
 import PracticePhotospace from '../PracticePhotoSpace';
+import CognitivePhotospace from '../Cognitive-Reappraisal-PhotoSpace';
+import CognitiveReappraisalExamNavigation from '../CognitiveReappraisalNavigation';
 import './renderSwitch.css';
 
 
@@ -69,8 +71,12 @@ export const navigationPhaseTypes = {
             // console.log('case navigationPhaseTypes.cognitiveReappraisalTest');
             
             return <div>
+                        <CognitivePhotospace/>
                         <CognitiveReappraisalArray className="photospace2" />
                         {/* <CognitiveReappraisalArrayChecker/> */}
+                        <CognitiveReappraisalExamNavigation className="navigationSpace"/>
+
+
                     </div>
             break;
 

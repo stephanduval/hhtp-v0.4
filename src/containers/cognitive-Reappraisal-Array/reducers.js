@@ -2,14 +2,10 @@
 import { ActionTypes } from "./constants";
 
 const defaultState = {
-    newCRState: 0,
-    cRUserResponseArray: [],
-    cRRenderView: "navigationPhaseTypes.introductionPage",
-    cRAnswerTimeArray: [],
-
+    cRImageArray: [1,2,3,4,5,],
 };
 
-export default function examNavigation(state = defaultState, action) { 
+export default function crImageArrayToStore(state = defaultState, action) { 
     switch (action.type) {
         case ActionTypes.ADVANCE_IMAGE:
             return { ...state, newNBackState: action.payload };
@@ -17,9 +13,12 @@ export default function examNavigation(state = defaultState, action) {
             return { ...state, userResponseArray: action.payload };
         case ActionTypes.RENDER_VIEW:
             return { ...state, renderView: action.payload };
-        case ActionTypes.USER_ANSWER_TIME_ARRAY:
-            return {...state, answerTimeArray: action.payload}
+        case ActionTypes.CR_IMAGE_ARRAY:
+            return {...state, cRImageArray: action.payload}
         default:
             return state;
+
+
+            
     }
 }

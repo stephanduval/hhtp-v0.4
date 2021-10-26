@@ -3,6 +3,7 @@ import { ActionTypes } from "./constants";
 export const setCRImageArray = (cRImageArray) => ({
     type: ActionTypes.CR_IMAGE_ARRAY,  // from the constants file
     payload: cRImageArray
+})
 
 export const newCRState = (newCRState) => ({
     type: ActionTypes.CR_ADVANCE_IMAGE,  // from the constants file
@@ -14,12 +15,12 @@ export const newCRUserResponseArray = (cRUserResponseArray) => ({
     payload: cRUserResponseArray
 })
 
-export const setCRRenderState = (cRrenderView) => ({
+export const setCRRenderState = (cRRenderView) => ({
     type: ActionTypes.CR_RENDER_VIEW,  // from the constants file
     payload: cRRenderView
 })
 
-export const newCRUserAnswerTimeArray = (cRanswerTimeArray) => ({
+export const newCRUserAnswerTimeArray = (cRAnswerTimeArray) => ({
     type: ActionTypes.CR_USER_ANSWER_TIME,  // from the constants file
     payload: cRAnswerTimeArray
 })

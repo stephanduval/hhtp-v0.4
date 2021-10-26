@@ -1,8 +1,8 @@
 import React from 'react';
 import './Cognitive-Reappraisal-Array.css';
-import { randomizedCombinedCognitiveImagesArray } from './create-cognitive-Reappraisal-Array';
-import CognitiveReappraisalExamNavigation from '../CognitiveReappraisalNavigation';
-import CognitivePhotospace from '../Cognitive-Reappraisal-PhotoSpace';
+import { finalRandomizedCombinedCognitiveImagesArray } from './create-cognitive-Reappraisal-Array';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCRImageArray } from './actions';
 //import { checkForEmptyinArray, showMatchesOnly } from './../n-back-image-array/functions';
 //import { filesToPhotosObject } from '../../functions.js';
 //import * as CRAConstant from './constants';
@@ -12,16 +12,30 @@ import CognitivePhotospace from '../Cognitive-Reappraisal-PhotoSpace';
 
 
 
+
+const CRIImageArrayDispatch = (dispatch) => ({
+    setCRImageArray: (array) => dispatch(setCRImageArray(array)),
+});
+
+
+
+
 const CognitiveReappraisalArray =  () => {
+
+
+    
+
+  const { setCRImageArray } = CRIImageArrayDispatch(useDispatch()); // how does this work?  It creates an object
+
+  setCRImageArray(finalRandomizedCombinedCognitiveImagesArray);
+
+  const CRImageArrayFromRedux = useSelector(state => state.cRImageArrayReducer.cRImageArray);
+
 
 
     return (
         <div className="CognitiveReappraisalArray">
         Cognitive Reappraisal Array
-
-        {randomizedCombinedCognitiveImagesArray}
-        <CognitivePhotospace />
-        <CognitiveReappraisalExamNavigation className="navigationSpace"/>
 
         </div>
 

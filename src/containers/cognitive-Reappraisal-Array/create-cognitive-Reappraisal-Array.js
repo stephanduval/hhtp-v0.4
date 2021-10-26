@@ -17,8 +17,9 @@ import { filesToPhotosObject } from "../../functions";
     const lookNeutralImagesFullFileNameArray = lookNeutralImagesFileNameArray.map(e => './public/images/cognitive-reappraisal/look-neutral/' + e)
 
     const combinedCognitiveImagesArray = decreaseFullFileNameArray.concat(lookNegativeFullFileNameArray).concat(lookNeutralImagesFullFileNameArray);
-    export const randomizedCombinedCognitiveImagesArray = combinedCognitiveImagesArray.sort(()=> 0.5 - Math.random())
-
+    const randomizedCombinedCognitiveImagesArray = combinedCognitiveImagesArray.sort(()=> 0.5 - Math.random())
+    export const finalRandomizedCombinedCognitiveImagesArray = randomizedCombinedCognitiveImagesArray.map(x => './' + x.slice(8));
+    
     
 
 

@@ -13,7 +13,7 @@ import { /*validateNumberOfPhotos, validateNumberOfPredictivePhotos, validateset
     const images = filesToPhotosObject(require.context('./../../../public/images/n-back-photos/RandomLot/', false, /\.(png|jpe?g|svg)$/));
     const imageFileNameArray = Object.keys(images);
     const imageFullFileNameArray = imageFileNameArray.map(e => './images/n-back-photos/RandomLot/' + e)
-    console.log('imageFullFileNameArray',imageFullFileNameArray.sort());
+    //console.log('imageFullFileNameArray',imageFullFileNameArray.sort());
     //-------------------- End of Create an object of the photo file names
     const randomizedFullFileNameArray = imageFullFileNameArray.sort(()=> 0.5 - Math.random())
     const predictiveImages = filesToPhotosObject(require.context('./../../../public/images/n-back-photos/Predictive/', false, /\.(png|jpe?g|svg)$/));

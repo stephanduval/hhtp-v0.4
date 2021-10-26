@@ -12,9 +12,9 @@ const CognitivePhotospace = () => {  // this destructing allows us to use onInpu
     //-------------------- Functions Fetch and Store Data for the PhotoSpace:
 
     //const imageFileNameArray = useSelector(state => state.imageArrayReducer.imageFileNameArray);
-    const NBackState = useSelector(state => state.craNavigationReducer.newCRState);
+    const newCRAViewState = useSelector(state => state.craNavigationReducer.newCRState);
     //const finalFileNameArray = useSelector(state => state.imageArrayReducer.finalFileNameArray);
-    const CRImageArrayFromRedux = useSelector(state => state.craNavigationReducer.cRImageArray);
+    const CRImageArrayFromRedux = useSelector(state => state.cRImageArrayReducer.cRImageArray);
     
    // console.log("the array baby",practiceImageArrayFromRedux,NBackState);
 
@@ -25,14 +25,16 @@ const CognitivePhotospace = () => {  // this destructing allows us to use onInpu
 <img src={'./images/1026.jpg'} alt='Current nBack'/>
 <img src={'./images/Sad face 1.jpg'} alt='Current nBack'/>
 <img src={'./images/cognitive-reappraisal/decrease/Sad face 1.jpg'} alt='Current nBack'/>
-<img src={'./images/practice-n-back-photos/RemainingPictures/1026.jpg'} alt='Current nBack'/>
 
     */
+
+
+console.log("newCRAViewState",newCRAViewState);
     return (//
         
 <div className="photospace">
+<img src={process.env.PUBLIC_URL + CRImageArrayFromRedux[11]} alt='Current nBack'/>
 
-<img src={process.env.PUBLIC_URL + practiceImageArrayFromRedux[NBackState]} alt='Current nBack'/>
 
 
 </div>

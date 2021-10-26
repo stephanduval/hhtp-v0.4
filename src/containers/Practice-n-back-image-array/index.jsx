@@ -72,6 +72,7 @@ const PracticeImageArray =  () => {
     
   const imageStageTwo = imageSetStageTwo(imageSetStageOne,practiceNBackFullFileNameArray,numberOfPhotos)
 
+  
 
   setPracticeImageArray(imageStageTwo);
 

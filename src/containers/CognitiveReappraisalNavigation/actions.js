@@ -1,9 +1,9 @@
 import { ActionTypes } from "./constants";
 
 
-export const newCRAViewState = (cRBackState) => ({
+export const newCRAViewState = (cRViewState) => ({
     type: ActionTypes.ADVANCE_IMAGE,  // from the constants file
-    payload: cRBackState+1
+    payload: cRViewState+1
 })
 export const newCRAUserResponseArray = (userResponseArray) => ({
     type: ActionTypes.USER_RESPONSE_ARRAY,  // from the constants file
