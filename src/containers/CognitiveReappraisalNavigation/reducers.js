@@ -2,7 +2,7 @@
 import { ActionTypes } from "./constants";
 
 const defaultState = {
-    newCRAViewState: 0,
+    CRAViewState: 0,
     userResponseArray: [],
     renderView: "navigationPhaseTypes.introductionPage",
 
@@ -11,9 +11,9 @@ const defaultState = {
 export default function craNavigation(state = defaultState, action) { 
     switch (action.type) {
         case ActionTypes.ADVANCE_IMAGE:
-            return { ...state, newCRAViewState: action.payload };
+            return { ...state, CRAViewState: action.payload };
         case ActionTypes.USER_RESPONSE_ARRAY:
-            return { ...state, newCRAUserResponseArray: action.payload };
+            return { ...state, userResponseArray: action.payload };
         case ActionTypes.RENDER_VIEW:
             return { ...state, setRenderState: action.payload };
         default:

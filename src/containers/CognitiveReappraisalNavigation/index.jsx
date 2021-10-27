@@ -8,28 +8,44 @@ import { Button, Radio, RadioGroup, FormControl, FormLabel, FormControlLabel } f
 //
 
 const newCRAViewStateDispatch = (dispatch) => ({
-    newCRAViewState: (users) => dispatch(newCRAViewState(users)),
+    newCRAViewState: (photoState) => dispatch(newCRAViewState(photoState)),
 });
+
+const setRenderStateDispatch = (dispatch) => ({
+    setRenderState: (photoState) => dispatch(setRenderState(photoState)),
+});
+
+
 
 
 const CognitiveReappraisalExamNavigation = () => {
 
     const CRAViewState = useSelector(state => state.craNavigationReducer.CRAViewState);
+    const { setRenderState } = setRenderStateDispatch(useDispatch());
     const { newCRAViewState } = newCRAViewStateDispatch(useDispatch());
+    const a = useSelector(state => state.craNavigationReducer);
+    const CRImageArrayFromRedux = useSelector(state => state.cRImageArrayReducer.cRImageArray);
 
 
 
- 
+    const checkIfTestIsComplete = () => {
+        if (CRAViewState == CRImageArrayFromRedux.length-1) {
+            setRenderState(navigationPhaseTypes.introductionPage)
+        }
+    }
+
+
+
     const keyStrokeListener = (event) => {
         /*
         *  Listens for the keystoke and updates the NBackState
         * 
         */
         console.log('HIT',event.keyCode)
-
+        console.log('CRAViewState',CRAViewState);
         switch (event.keyCode) {
             case 49:
-                return console.log('1 key, Log the Result, Run Next Image Function',newCRAViewState(CRAViewState),'addNBackToUserResponseArray()');
+                return (111);console.log('1 key, Log the Result, Run Next Image Function addNBackToUserResponseArray()');
             case 50:
                 return console.log('2 Key, Log the Result, Run Next Image Function,newNBackState(NBackState),addPredictiveToUserResponseArray()');
             case 51:
@@ -71,7 +87,7 @@ const CognitiveReappraisalExamNavigation = () => {
                     
     }
 }
-    console.log("Before useEffect()")
+
     React.useEffect(() => {
     document.addEventListener('keyup', keyStrokeListener);
     // console.log("RAN useEffect()");
@@ -107,7 +123,7 @@ const CognitiveReappraisalExamNavigation = () => {
                    <FormControlLabel value="10" control={<Radio />} label="10" />
                 </RadioGroup>
 
-                <Button sx={{ mt: 1, mr: 1 }} type="submit" variant="contained">
+                <Button sx={{ mt: 1, mr: 1 }} type="submit" variant="contained" onClick={()=>{newCRAViewState(CRAViewState);checkIfTestIsComplete();console.log("State",CRAViewState)}}>
           Submit Answer
         </Button>
         

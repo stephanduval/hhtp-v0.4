@@ -12,7 +12,7 @@ const CognitivePhotospace = () => {  // this destructing allows us to use onInpu
     //-------------------- Functions Fetch and Store Data for the PhotoSpace:
 
     //const imageFileNameArray = useSelector(state => state.imageArrayReducer.imageFileNameArray);
-    const newCRAViewState = useSelector(state => state.craNavigationReducer.newCRState);
+    const newCRAViewState = useSelector(state => state.craNavigationReducer.CRAViewState);
     //const finalFileNameArray = useSelector(state => state.imageArrayReducer.finalFileNameArray);
     const CRImageArrayFromRedux = useSelector(state => state.cRImageArrayReducer.cRImageArray);
     
@@ -33,7 +33,7 @@ console.log("newCRAViewState",newCRAViewState);
     return (//
         
 <div className="photospace">
-<img src={process.env.PUBLIC_URL + CRImageArrayFromRedux[11]} alt='Current nBack'/>
+<img src={process.env.PUBLIC_URL + CRImageArrayFromRedux[newCRAViewState]} alt='Current nBack'/>
 
 
 
