@@ -8,3 +8,9 @@
     padding: 10px;
     
   }
+
+  .field {
+    marginTop: 20;
+    marginBotton: 20;
+    display: 'block';
+  }

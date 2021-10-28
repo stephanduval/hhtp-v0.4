@@ -25,9 +25,7 @@ const userAnswerTimeArrayDispatch = (dispatch) => ({
     newUserAnswerTimeArray: (array) => dispatch(newUserAnswerTimeArray(array)),
 });
 
-
 const ExamNavigation = () => {
-
     
     const NBackState = useSelector(state => state.examNavigationReducer.newNBackState);
     const { newNBackState } = nBackStateDispatch(useDispatch());
@@ -67,9 +65,6 @@ const ExamNavigation = () => {
     const addTimeToUserAnswerTimeArray = (time) => {
         userAnswerTimeArray.push(time);
     }
-
-
-
        
 /*
     https://stackoverflow.com/questions/53633698/referencing-outdated-state-in-react-useeffect-hook
