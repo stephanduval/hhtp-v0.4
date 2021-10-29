@@ -9,8 +9,6 @@ import CRCSVDownloadDiv from '../CRCSVDownloadDiv';
 import { updatedArrayChecker } from '../Cognitive-Reappraisal-Array/create-cognitive-Reappraisal-Array';
 
 
-
-
      
 const renderViewDispatch = (dispatch) => ({
     setRenderState: (nameState) => dispatch(setRenderState(nameState)),
