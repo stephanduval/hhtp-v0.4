@@ -20,14 +20,43 @@ import { filesToPhotosObject } from "../../functions";
     const randomizedCombinedCognitiveImagesArray = combinedCognitiveImagesArray.sort(()=> 0.5 - Math.random())
     export const finalRandomizedCombinedCognitiveImagesArray = randomizedCombinedCognitiveImagesArray.map(x => './' + x.slice(8));
     
-    
-    // export const instructionsWithFinalArray = (array) => {
-    //     array.map(element => [element
-    // }
 
     const returnLookOrDecrease = (elementParam) => {
-
-
+        if (elementParam.map(e => e.slice(32,40)).includes('look')) {
+            return 'look'
+        }else{
+            return 'decrease'
+        }
     }
+
+    const returnPictureSRC = (elementParam) => {
+        return elementParam
+    }
+
+    const returnRelax = () => {
+        return 'relax'
+    }
+
+
+    //Not finished:
+    // const instructionsWithFinalArray = (array) => {
+    //     instructionsArray = [];
+    //     holderArray = [];
+    //     array.map(element => holderArray.push([element]);
+    //     holderArray.unshift(returnLookOrDecrease(element));
+    //     holderArray.push(returnRelax())
+
+
+    //     array.map(element) => instructionsArray.element.unShift(returnLookOrDecrease(element))
+               
+    // }
+
+    
+
+    
+
+    let updatedArrayChecker = finalRandomizedCombinedCognitiveImagesArray.map(e => e.slice(32,40));
+
+    export {updatedArrayChecker}
 
 

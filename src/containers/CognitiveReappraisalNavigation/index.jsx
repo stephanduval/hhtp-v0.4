@@ -6,6 +6,7 @@ import { newCRAViewState, setRenderState, newCRAUserResponseArray, setCSVDownloa
 import { navigationPhaseTypes } from '../renderSwitch/renderSwitch';
 import { Button, Radio, RadioGroup, FormControl, FormLabel, FormControlLabel, makeStyles } from '@material-ui/core';
 import CRCSVDownloadDiv from '../CRCSVDownloadDiv';
+import { updatedArrayChecker } from '../Cognitive-Reappraisal-Array/create-cognitive-Reappraisal-Array';
 
 
 
@@ -195,6 +196,9 @@ const CognitiveReappraisalExamNavigation = () => {
     const listItems = userResponseArray.map((number => <p><li>{number}</li></p>));
      console.log('CSVDownloadStateRedux',CSVDownloadStateRedux)
 
+    const listItemsFunction = (arrayParam) => arrayParam.map((element => <p><li>{element}</li></p>));
+
+
      const stopRenderSubmitButtonIfTestIsFinished = (finishedMessage) => {
         if (CRAViewState == CRImageArrayFromRedux.length) {
             return (
@@ -264,7 +268,10 @@ const CognitiveReappraisalExamNavigation = () => {
 
         {stopRenderSubmitButtonIfTestIsFinished('You\'re All Done!  Take a Hike!')}
         <div>  State: {CRAViewState}  User Response Array: {listItems} </div>
-        <div>{CRImageArrayFromRedux}</div>
+        <div>{listItemsFunction(CRImageArrayFromRedux)}</div>
+        
+        <div>{listItemsFunction(updatedArrayChecker)}</div>
+        
         </div>
 
         )
