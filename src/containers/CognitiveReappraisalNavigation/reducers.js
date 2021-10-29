@@ -5,6 +5,7 @@ const defaultState = {
     CRAViewState: 0,
     userResponseArray: [],
     renderView: "navigationPhaseTypes.introductionPage",
+    CSVDownloaded: false,
 
 };
 
@@ -16,6 +17,8 @@ export default function craNavigation(state = defaultState, action) {
             return { ...state, userResponseArray: action.payload };
         case ActionTypes.RENDER_VIEW:
             return { ...state, setRenderState: action.payload };
+        case ActionTypes.CSVSTATE:
+            return { ...state, CSVDownloaded: action.payload };
         default:
             return state;
     }

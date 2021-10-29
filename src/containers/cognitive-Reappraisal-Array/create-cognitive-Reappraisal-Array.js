@@ -21,5 +21,13 @@ import { filesToPhotosObject } from "../../functions";
     export const finalRandomizedCombinedCognitiveImagesArray = randomizedCombinedCognitiveImagesArray.map(x => './' + x.slice(8));
     
     
+    // export const instructionsWithFinalArray = (array) => {
+    //     array.map(element => [element
+    // }
+
+    const returnLookOrDecrease = (elementParam) => {
+
+
+    }
 
 

@@ -131,5 +131,3 @@ export const createArrayOfIndexes = (ReduxFinalFileNameArray) => {
 }
 
 // ======= RESULTS CHECKER DATA END
-
-

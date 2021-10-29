@@ -12,7 +12,7 @@ const renderViewDispatch = (dispatch) => ({
 
 
 
-const MainPage = () => {  // this destructing allows us to use onInputChange instead of props.onInputChange
+const ReturnToMainPageButton = () => {  // this destructing allows us to use onInputChange instead of props.onInputChange
 
     //-------------------- Functions Fetch and Store Data for the setRenderState:
 
@@ -34,5 +34,5 @@ const MainPage = () => {  // this destructing allows us to use onInputChange ins
    
 }
 
-export default MainPage;
+export default ReturnToMainPageButton;
 

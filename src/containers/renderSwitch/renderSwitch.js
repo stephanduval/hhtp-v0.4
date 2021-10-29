@@ -9,13 +9,14 @@ import CognitiveReappraisalArray from '../Cognitive-Reappraisal-Array';
 import StartCognitiveReappraisalTestButton from '../StartCognitiveReappraisalTestButton';
 import SettingsButton from '../settingsButton';
 import IntroHeader from '../introductionHeader';
-import MainPage from '../ReturntoMainPageButton';
+import ReturntoMainPageButton from '../ReturntoMainPageButton';
 import StartPracticeTestButton from '../StartPracticeNBackTestButton';
 import PracticeExamNavigation from '../PracticeExamNavigation';
 import PracticePhotospace from '../PracticePhotoSpace';
 import CognitivePhotospace from '../Cognitive-Reappraisal-PhotoSpace';
 import CognitiveReappraisalExamNavigation from '../CognitiveReappraisalNavigation';
 import './renderSwitch.css';
+import ReturnToMainPageButton from '../ReturntoMainPageButton';
 
 
 
@@ -85,7 +86,7 @@ export const navigationPhaseTypes = {
     
                 return <div>
                             <Settings/>
-                            <MainPage/>
+                            <ReturnToMainPageButton/>
                         </div>
                 break;
 

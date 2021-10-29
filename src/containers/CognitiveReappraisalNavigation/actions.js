@@ -14,3 +14,8 @@ export const setRenderState = (renderView) => ({
     type: ActionTypes.RENDER_VIEW,  // from the constants file
     payload: renderView
 })
+
+export const setCSVDownloadState = (aBooleanValue) => ({
+    type: ActionTypes.CSVSTATE,  // from the constants file
+    payload: aBooleanValue
+})

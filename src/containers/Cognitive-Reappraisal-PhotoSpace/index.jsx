@@ -15,6 +15,9 @@ const CognitivePhotospace = () => {  // this destructing allows us to use onInpu
     const newCRAViewState = useSelector(state => state.craNavigationReducer.CRAViewState);
     //const finalFileNameArray = useSelector(state => state.imageArrayReducer.finalFileNameArray);
     const CRImageArrayFromRedux = useSelector(state => state.cRImageArrayReducer.cRImageArray);
+    const CRAViewState = useSelector(state => state.craNavigationReducer.CRAViewState);
+    const userResponseArrayFromRedux = useSelector(state => state.craNavigationReducer.userResponseArray);
+
     
    // console.log("the array baby",practiceImageArrayFromRedux,NBackState);
 
@@ -30,11 +33,31 @@ const CognitivePhotospace = () => {  // this destructing allows us to use onInpu
 
 
 console.log("newCRAViewState",newCRAViewState);
-    return (//
+
+
+const stopRenderSubmitButtonIfTestIsFinished = (finishedMessage) => {
+    if (CRAViewState == CRImageArrayFromRedux.length) {
+        return (
+            <div>
+               
+                {finishedMessage}
+                </div>
+                )
+        
+    
+            
+    } else {
+return (
+<img src={process.env.PUBLIC_URL + CRImageArrayFromRedux[newCRAViewState]} alt='Current nBack'/>
+)
+    }
+}
+
+    return (
         
 <div className="photospace">
-<img src={process.env.PUBLIC_URL + CRImageArrayFromRedux[newCRAViewState]} alt='Current nBack'/>
 
+{stopRenderSubmitButtonIfTestIsFinished('END OF EXAM')}
 
 
 </div>
