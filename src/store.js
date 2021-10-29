@@ -9,7 +9,7 @@ import practiceExamNavigation from "./containers/PracticeExamNavigation/reducers
 import crImageArrayToStore from "./containers/Cognitive-Reappraisal-Array/reducers";
 
 const reducers = combineReducers({examNavigationReducer: examNavigation, photoSpaceReducer: photoSpace, nBackSettingsReducer: nBackSettings, imageArrayReducer: imageArray, craNavigationReducer: craNavigation, practiceImageArrayReducer: practiceImageArrayRedux, practiceExamNavigationReducer: practiceExamNavigation, cRImageArrayReducer: crImageArrayToStore});
-// console.log("reducers ran", createStore(reducers))
+// console.log("reducers ran", createStore(reducers)) //
 export default createStore(reducers);
 
 
