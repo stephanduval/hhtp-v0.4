@@ -6,9 +6,7 @@ import { newCRAViewState, setRenderState, newCRAUserResponseArray, setCSVDownloa
 import { navigationPhaseTypes } from '../renderSwitch/renderSwitch';
 import { Button, Radio, RadioGroup, FormControl, FormLabel, FormControlLabel, makeStyles } from '@material-ui/core';
 import CRCSVDownloadDiv from '../CRCSVDownloadDiv';
-import { updatedArrayChecker } from '../Cognitive-Reappraisal-Array/create-cognitive-Reappraisal-Array';
-
-
+import { updatedArrayChecker } from '../cognitive-Reappraisal-Array/create-cognitive-Reappraisal-Array';
 
 
      
