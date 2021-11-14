@@ -1,5 +1,5 @@
 import React from 'react';
-import './cognitive-Reappraisal-Array.css';
+import './Cognitive-Reappraisal-Array.css';
 import { finalRandomizedCombinedCognitiveImagesArray } from './create-cognitive-Reappraisal-Array';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCRImageArray } from './actions';

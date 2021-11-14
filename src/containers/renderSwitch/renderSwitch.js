@@ -5,7 +5,7 @@ import Settings from '../nBackSettings';
 import ResultChecker from '../ResultChecker';
 import CSVDownloadDiv from '../CSVDownloadDiv';
 import StartTestButton from '../StartNBackTestButton';
-import CognitiveReappraisalArray from '../cognitive-Reappraisal-Array';
+import CognitiveReappraisalArray from '../Cognitive-Reappraisal-Array';
 import StartCognitiveReappraisalTestButton from '../StartCognitiveReappraisalTestButton';
 import SettingsButton from '../settingsButton';
 import IntroHeader from '../introductionHeader';

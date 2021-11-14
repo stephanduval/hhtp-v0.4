@@ -9,8 +9,8 @@ let imageFileNameArrayLength = imageFileNameArray.length
 
 
 const defaultState = {
-    numberOfPhotosAlt: 106,
-    numberOfPhotos: 106,  // does not take number below 50
+    numberOfPhotosAlt: 132,
+    numberOfPhotos: 132,  // does not take number below 50
     numberOfPredictivePhotos: 12,
     NumberofnBackMatches: 26,
     nBackDegree: 2,

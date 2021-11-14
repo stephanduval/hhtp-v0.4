@@ -143,7 +143,7 @@ const practiceCheckResult = (buttonSwitchParam,imageSourceStringParam) => {
                     return {modalTitle: "Wrong Answer!", modalMessage: "This image appeared two images ago.  When you see an image repreat with one image in between click the \"Same As 2 Photos Back\" button"};
                 }
                 if (imageSourceStringParam.includes("RemainingPictures",0)) {     
-                    return {modalTitle: "Wrong Answer!", modalMessage: "Click this button if the image is the same as one if the images you were asked to remember.  You were not asked to remember any images in this practice exam."};
+                    return {modalTitle: "Wrong Answer!", modalMessage: "This task will be introduced later. For now, please only identify whether you are seeing a unique or 2-back picture."};
                 } else {
                     return {modalTitle: "Wrong Answer!", modalMessage: "The image you are looking at is a unique Image. You have not seen it before"};
                 }
