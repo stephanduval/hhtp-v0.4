@@ -38,7 +38,7 @@ import { filesToPhotosObject } from "../../functions";
     }
 
 
-    //Not finished:
+    // Not finished: 
     // const instructionsWithFinalArray = (array) => {
     //     instructionsArray = [];
     //     holderArray = [];
