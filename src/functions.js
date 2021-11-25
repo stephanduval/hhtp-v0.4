@@ -114,6 +114,8 @@ export const scoringArray = (imageStageTwo,predictiveIndex,nBackIndex) => {
   let nBackReduxValue = 0;
   nBack.forEach(element => scorray.splice(nBack[iteratenBackIndex()],1,"N"))
 
+  
+
   return scorray;
 }
 

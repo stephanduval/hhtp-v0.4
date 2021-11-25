@@ -9,7 +9,7 @@ const ReduxFinalFileNameArray = useSelector(state => state.imageArrayReducer.fin
 const imageSetStageOneFromRedux = useSelector(state => state.imageArrayReducer.imageSetStageOne);
 const imageStageTwoFromRedux = useSelector(state => state.imageArrayReducer.imageSetStageTwo);
 const imageSetStageThreeFromRedux = useSelector(state => state.imageArrayReducer.imageSetStageThree);
-//const correctScoresrrayFromRedux = useSelector(state => state.imageArrayReducer.correctScoresrray);
+const correctScoresrrayFromRedux = useSelector(state => state.imageArrayReducer.correctScoresrray);
 const userResponseArray = useSelector(state => state.examNavigationReducer.userResponseArray);
 const nBackIndexFromReduxStore = useSelector(state => state.imageArrayReducer.nBackIndex);
 const predictiveIndexFromReduxStore = useSelector(state => state.imageArrayReducer.predictiveIndex);
@@ -27,7 +27,7 @@ const arrayOfIndexes = createArrayOfIndexes(ReduxFinalFileNameArray);
 const shortenedimageSetStageOne = imageSetStageOneFromRedux.map(element => element.slice(-8,-4));
 const shortenedImageStageTwo = imageStageTwoFromRedux.map(element => element.slice(-8,-4));
 //const shortenedImageStageThree = imageSetStageThreeFromRedux.map(element => element);
-const shortenedcorrectScoresrray = correctScoresrray.map(element => element);
+const shortenedcorrectScoresrray = correctScoresrrayFromRedux.map(element => element);
 
 // console.log("type for imageSetStageThreeFromRedux", typeof imageSetStageThreeFromRedux,imageSetStageThreeFromRedux)
 // console.log("type for ImagesetStageTwo", typeof shortenedImageStageTwo,shortenedImageStageTwo)
@@ -41,13 +41,13 @@ let resultCheckerArray = [
 {name: "imageSetStageOne", arrayData: shortenedimageSetStageOne},
 {name: "imageStageTwo", arrayData: shortenedImageStageTwo},
 {name: "Image File Name (Stage 3)", arrayData: imageSetStageThreeFromRedux},
-{name: "Correct Score", arrayData: shortenedcorrectScoresrray},
+{name: "Correct Score", arrayData: correctScoresrrayFromRedux},
 {name: "User Response", arrayData: userResponseArray},
 {name: "Response Time ms", arrayData: userAnswerTimeArray},
 {name: "Index", arrayData: arrayOfIndexes},
 ];
 
-
+console.log("correctScoresrrayFromRedux",correctScoresrrayFromRedux)
 const tableGenerator = (ReduxArray) => {
     return (
         <div className="resultsChecker">

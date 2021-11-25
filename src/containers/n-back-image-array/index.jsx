@@ -248,7 +248,7 @@ const ImageArray =  () => {
   const stageThreeSafeShuffleIndexFunction = (inputArray,stageThreeSafeShuffleIndex) => {
 
     stageThreeSafeShuffleIndex.forEach(element => inputArray.splice(element,0,inputArray.pop()) );
-    console.log("stageThreeSafeShuffleIndex",stageThreeSafeShuffleIndex)
+
     return inputArray;
 
   }
@@ -294,35 +294,13 @@ let  imageStageThreeSafeShuffleIndex = createStageThreeSafeShuffleIndexFunction(
 
 let imageStageThree = imageSetStageThree(nBackIndex, nBackDegree, imageStageTwo,);
 let imageStageThreeForScoringArray = imageSetStageThree(nBackIndex, nBackDegree, imageStageTwo,);
+console.log("imageStageThree",imageStageThree)
 
 
-imageStageThree = stageThreeSafeShuffleIndexFunction(imageStageThree,imageStageThreeSafeShuffleIndex);
 
 
-
-  //const imageStageFour = imageSetStageFour(imageStageThree,predictiveIndex,PredictiveFileNameArray)
-//  //setImageSet(imageStageThree);
-// useEffect prevents it from looping forever
-useEffect (() => {
-setFinalFileNameArray(imageStageThree)
-},[]
-);
-
-// const scoringArrayFunction = (imageStageThree, nBackDegree) => {
-//   scorringArray.map(element => 
-//     switch(element){
-
-//     case 1: element ===  scorringArray[index - nBackDegree]
-//       scorringArray[index] = "p"
-//       break;
-      
-//   }
-  
-
-// }
-
-// testScoredArray = scoringArrayFunction(imageStageThree, nBackDegree) 
-// console.log("testScoredArray",testScoredArray)
+//testScoredArray = scoringArrayFunction(imageStageThree, nBackDegree) 
+//console.log("testScoredArray",testScoredArray)
 
 
 //let correctScoresrray = scoringArrayFunction(imageStageThree, nBackDegree);
@@ -331,43 +309,49 @@ setFinalFileNameArray(imageStageThree)
 const scoringArray = (imageStageThree,predictiveIndex,nBackIndex) => {
   let scorray = [...imageStageThree];
 
-
   let predictive = [...predictiveIndex];
   let nBack = [...nBackIndex];
-  //let setStageOne = [...imageSetStageOne];
 
+  //scorray.map(element=>element+"111");
+  //let setStageOne = [...imageSetStageOne];
   let PredictiveIndexValue = 0;
   const iteratePredictiveIndex = () => PredictiveIndexValue++;
-  //let PredictiveReduxValue = 0;
-  //const iteratePredictiveReduxValue = () => PredictiveReduxValue++;
-  predictive.forEach(element => scorray.splice(predictive[iteratePredictiveIndex()],1,"P"))
+  // let PredictiveReduxValue = 0;
+  // const iteratePredictiveReduxValue = () => PredictiveReduxValue++;
+  let scoreLength = scorray.length;
+  let scoreArray =  Array.apply("null", Array(scoreLength)).map(function () {})
+  scoreArray.fill("-")
+  console.log("Newarray",scoreArray)
+
+  predictive.forEach(element => scoreArray.splice(predictive[iteratePredictiveIndex()],1,"P"))
 
   let nBackIndexValue = 0;
   const iteratenBackIndex = () => nBackIndexValue++;
-  //let nBackReduxValue = 0;
-  nBack.forEach(element => scorray.splice(nBack[iteratenBackIndex()],1,"N"))
+  let nBackReduxValue = 0;
+  nBack.forEach(element => scoreArray.splice(nBack[iteratenBackIndex()],1,"N"))
 
+  
 
-  //let UniqueIndexValue = 0;
-  //const iterateUniqueIndex = () => UniqueIndexValue++;
-//  let UniqueReduxValue = 0;
-
-  // let uniqueImageArray = predictive.concat(nBack);
-  // uniqueImageArray.sort((a,b) => a-b);
-  // console.log("Unique Image Array",uniqueImageArray,"nback",nBack,"predictive",predictive);
-  // uniqueImageArray.forEach(element => scorray.splice(uniqueImageArray[iterateUniqueIndex()],1,"-"))
-
-  scorray[0] = "TTTT";
-
-
-  return scorray;
+  return scoreArray;
 }
 
 
 
-let correctScoresrray = scoringArray(imageStageThreeForScoringArray,predictiveIndex,nBackIndex);
+imageStageThree = stageThreeSafeShuffleIndexFunction(imageStageThree,imageStageThreeSafeShuffleIndex);
+let correctScoresrray = scoringArray(imageStageThree,predictiveIndex,nBackIndex);
 
-correctScoresrray = stageThreeSafeShuffleIndexFunction(correctScoresrray,imageStageThreeSafeShuffleIndex);
+correctScoresrray = stageThreeSafeShuffleIndexFunction(correctScoresrray,imageStageThreeSafeShuffleIndex)
+
+
+  //const imageStageFour = imageSetStageFour(imageStageThree,predictiveIndex,PredictiveFileNameArray)
+//  //setImageSet(imageStageThree);
+// useEffect prevents it from looping forever
+useEffect (() => {
+  setFinalFileNameArray(imageStageThree)
+  },[]
+  );
+
+
 
 /*
 const nBackMatches2 = showMatchesOnly(imageStageTwo,nBackIndex);
@@ -410,6 +394,7 @@ setImageSetStageOne(imageSetStageOne);
 setCorrectScoresrray(correctScoresrray);
 setImageSetStageTwo(imageStageTwo);
 setImageSetStageThree(imageStageThree);
+
 
     return (
 <div className="imageArray">
