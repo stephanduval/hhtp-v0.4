@@ -47,7 +47,6 @@ let resultCheckerArray = [
 {name: "Index", arrayData: arrayOfIndexes},
 ];
 
-console.log("correctScoresrrayFromRedux",correctScoresrrayFromRedux)
 const tableGenerator = (ReduxArray) => {
     return (
         <div className="resultsChecker">
