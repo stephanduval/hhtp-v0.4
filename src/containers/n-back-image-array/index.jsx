@@ -133,7 +133,7 @@ const ImageArray =  () => {
         //while(indexOfPredictivePhotos.length < numberOfPredictivePhotos){
         while(indexOfPredictivePhotos.length < numberOfPredictivePhotos){
        // var r = Math.floor(Math.random() * (imageSetStageOneLength - nBackDegree) + 0);
-        var r = Math.floor(Math.random() * (numberOfPhotos - nBackDegree) + 0); // a number needs to be imageSetStageOne.length;
+        var r = Math.floor(Math.random() * ((numberOfPhotos-NumberofnBackMatches-numberOfPredictivePhotos) - nBackDegree) + 0); // a number needs to be imageSetStageOne.length;
 
        // if (!indexOfPredictivePhotos.includes(r)) {indexOfPredictivePhotos.push(r)}; 
       if (!indexOfPredictivePhotos.includes(r)) {indexOfPredictivePhotos.push(r)}; 
@@ -150,7 +150,7 @@ const ImageArray =  () => {
 
       setPredictiveIndex(predictiveIndex);
  
-          
+          console.log("predictiveIndex",predictiveIndex)
     //const earlyPredictiveIndex = [];//[...predictiveIndex];
     const imageSetStageTwo = (imageSetStageOne,predictiveIndex,PredictiveFullFileNameArray) => {
       /*
@@ -171,7 +171,7 @@ const ImageArray =  () => {
 
       predictive.forEach(element => setStageOne.push(setStageOne[iteratePredictiveIndexOne()]));
       predictive.forEach(element => setStageOne.splice(predictiveIndex[iteratePredictiveIndexTwo()],1,PredictiveFullFileNameArray[iteratePredictiveReduxValue()]))
-    return setStageOne.slice(0,numberOfPhotos);
+    return setStageOne//.slice(0,numberOfPhotos);
     } 
     
   const imageStageTwo = imageSetStageTwo(imageSetStageOne,predictiveIndex,predictiveFullFileNameArray)
@@ -189,7 +189,7 @@ const ImageArray =  () => {
 
    // let i = 0;
   while (nBackIndex.length < NumberofnBackMatches) {
-  let num = Math.floor(Math.random() * (numberOfPhotos - nBackDegree) + nBackDegree,);
+  let num = Math.floor(Math.random() * (numberOfPhotos - NumberofnBackMatches - numberOfPredictivePhotos) + nBackDegree,);
   
   if (!(predictiveIndex.includes(num))
       && !(predictiveIndex.includes(num-nBackDegree))
@@ -209,6 +209,52 @@ const ImageArray =  () => {
     return nBackIndex;
   }
 
+  
+  const createStageThreeSafeShuffleIndexFunction = (predictiveIndex,nBackIndex,nBackDegree,NumberofnBackMatches) => {
+    /*
+    *  Takes the Image Array called ImageSetStageTwo and returns an array of the indexes where the nback values
+    * Will replace the array values
+    * 
+    */
+
+    let stageThreeSafeShuffleIndex = [];
+
+   // let i = 0;
+  while (stageThreeSafeShuffleIndex.length < NumberofnBackMatches) {
+  let num = Math.floor(Math.random() * (numberOfPhotos - NumberofnBackMatches - numberOfPredictivePhotos));
+  
+  if (!(predictiveIndex.includes(num))
+      && !(predictiveIndex.includes(num-nBackDegree))
+      && !(predictiveIndex.includes(num+nBackDegree))
+      && !(nBackIndex.includes(num))
+      && !(nBackIndex.includes(num-nBackDegree))
+      && !(nBackIndex.includes(num+nBackDegree))
+        ) 
+        {
+          //console.log["Match",num];
+          stageThreeSafeShuffleIndex.push(num);
+          //nBackIndex.push(num+nBackDegree)
+        }
+     //i++   
+    }
+    stageThreeSafeShuffleIndex.sort((a,b)=>a-b);
+
+    return stageThreeSafeShuffleIndex;
+
+
+    ;
+  }
+
+  const stageThreeSafeShuffleIndexFunction = (inputArray,stageThreeSafeShuffleIndex) => {
+
+    stageThreeSafeShuffleIndex.forEach(element => inputArray.splice(element,0,inputArray.pop()) );
+    console.log("stageThreeSafeShuffleIndex",stageThreeSafeShuffleIndex)
+    return inputArray;
+
+  }
+
+
+
   const nBackIndex = nBackIndexes(predictiveIndex,NumberofnBackMatches,nBackDegree,numberOfPhotos);
   const { setNBackIndex } = nBackIndexDispatch(useDispatch()); // how does this work?  It creates an object
 
@@ -224,21 +270,63 @@ const ImageArray =  () => {
       */
 
     let stage2 = [...imageStageTwo];
+    let stageTwoCopy = [...imageStageTwo];
 
+
+    nBackIndex.forEach(element => stage2.push(stageTwoCopy[element-nBackDegree])
+    );
+
+    
     nBackIndex.forEach(element => stage2.splice(element-nBackDegree,1,stage2[element]));
-   
-    return stage2.slice(0,numberOfPhotos);
+
+   // stageThreeSafeShuffleIndex.forEach(element => stage2.splice(element,0,(stage2.pop())));
+
+
+    
+      //(stageTwoCopy[element-nBackDegree]));
+
+
+    return stage2//.slice(0,numberOfPhotos);
   }
 
- const imageStageThree = imageSetStageThree(nBackIndex, nBackDegree, imageStageTwo);
 
-//  //const imageStageFour = imageSetStageFour(imageStageThree,predictiveIndex,PredictiveFileNameArray)
+let  imageStageThreeSafeShuffleIndex = createStageThreeSafeShuffleIndexFunction(predictiveIndex,nBackIndex,nBackDegree,NumberofnBackMatches)
+
+let imageStageThree = imageSetStageThree(nBackIndex, nBackDegree, imageStageTwo,);
+let imageStageThreeForScoringArray = imageSetStageThree(nBackIndex, nBackDegree, imageStageTwo,);
+
+
+imageStageThree = stageThreeSafeShuffleIndexFunction(imageStageThree,imageStageThreeSafeShuffleIndex);
+
+
+
+  //const imageStageFour = imageSetStageFour(imageStageThree,predictiveIndex,PredictiveFileNameArray)
 //  //setImageSet(imageStageThree);
 // useEffect prevents it from looping forever
 useEffect (() => {
 setFinalFileNameArray(imageStageThree)
 },[]
 );
+
+// const scoringArrayFunction = (imageStageThree, nBackDegree) => {
+//   scorringArray.map(element => 
+//     switch(element){
+
+//     case 1: element ===  scorringArray[index - nBackDegree]
+//       scorringArray[index] = "p"
+//       break;
+      
+//   }
+  
+
+// }
+
+// testScoredArray = scoringArrayFunction(imageStageThree, nBackDegree) 
+// console.log("testScoredArray",testScoredArray)
+
+
+//let correctScoresrray = scoringArrayFunction(imageStageThree, nBackDegree);
+
 
 const scoringArray = (imageStageThree,predictiveIndex,nBackIndex) => {
   let scorray = [...imageStageThree];
@@ -275,7 +363,11 @@ const scoringArray = (imageStageThree,predictiveIndex,nBackIndex) => {
   return scorray;
 }
 
-const correctScoresrray = scoringArray(imageStageThree,predictiveIndex,nBackIndex);
+
+
+let correctScoresrray = scoringArray(imageStageThreeForScoringArray,predictiveIndex,nBackIndex);
+
+correctScoresrray = stageThreeSafeShuffleIndexFunction(correctScoresrray,imageStageThreeSafeShuffleIndex);
 
 /*
 const nBackMatches2 = showMatchesOnly(imageStageTwo,nBackIndex);

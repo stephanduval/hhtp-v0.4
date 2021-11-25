@@ -70,6 +70,7 @@ const tableGenerator = (ReduxArray) => {
         {ReduxArray.map(column => <td><b>{column.name}</b></td>)}
         </tr>
         <tr>  
+        
         {ReduxArray.map(column => <td>{column.arrayData.map(thing => <tr>{thing}</tr>)}</td>)}
         </tr>
         
