@@ -39,7 +39,7 @@ const ExamNavigation = () => {
     const timerSeconds = 1000*(useSelector(state => state.nBackSettingsReducer.timerSeconds));
     const imageSetStageThreeFromRedux = useSelector(state => state.imageArrayReducer.imageSetStageThree);
 
-
+console.log("imageSetStageThreeFromRedux doll",imageSetStageThreeFromRedux.length,NBackState)
     const checkIfTestIsComplete = () => {
     if (NBackState > imageSetStageThreeFromRedux.length) {
         setRenderState(navigationPhaseTypes.nBackComplete)
