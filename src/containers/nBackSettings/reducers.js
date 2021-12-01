@@ -12,7 +12,7 @@ const defaultState = {
     numberOfPhotosAlt: 132,
     numberOfPhotos: 132,  // does not take number below 50
     numberOfPredictivePhotos: 12,
-    NumberofnBackMatches: 13,
+    NumberofnBackMatches: 26,
     nBackDegree: 2,
     timerSeconds: 5,
 };

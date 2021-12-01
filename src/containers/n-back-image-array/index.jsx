@@ -11,27 +11,45 @@ import { /*validateNumberOfPhotos, validateNumberOfPredictivePhotos, validateset
 
 
     //const images = filesToPhotosObject(require.context('./../../../public/images/n-back-photos/RandomLot/', false, /\.(png|jpe?g|svg)$/));
-    const randomImagesSetOne = filesToPhotosObject(require.context('./../../../public/images/n-back-photos/Remaining Pictures Negative (34 Total)/', false, /\.(png|jpe?g|svg)$/));
-    const randomImagesSetTwo = filesToPhotosObject(require.context('./../../../public/images/n-back-photos/Remaining Pictures Neutral (34 Total)/', false, /\.(png|jpe?g|svg)$/));
-    const imageFileNameArrayOne = Object.keys(randomImagesSetOne);
-    const imageFileNameArrayTwo = Object.keys(randomImagesSetTwo);
+    const randomImagesNegative = filesToPhotosObject(require.context('./../../../public/images/n-back-photos/Remaining Pictures Negative (34 Total)/', false, /\.(png|jpe?g|svg)$/));
+    const randomImagesNeutral = filesToPhotosObject(require.context('./../../../public/images/n-back-photos/Remaining Pictures Neutral (34 Total)/', false, /\.(png|jpe?g|svg)$/));
+    const imageFileNamerandomImagesNegative = Object.keys(randomImagesNegative);
+    const imageFileNamerandomImagesNeutral = Object.keys(randomImagesNeutral);
 
-    const imageFileNameArray = imageFileNameArrayOne.concat(imageFileNameArrayTwo);
-    const imageFullFileNameArray = imageFileNameArray.map(e => './images/n-back-photos/RandomLot/' + e)
+    const imageFileNamerandomImagesNegativeFullFileNameArray = imageFileNamerandomImagesNegative.map(e => './images/n-back-photos/Remaining Pictures Negative (34 Total)/' + e)
+    const imageFileNamerandomImagesNeutralFullFileNameArray = imageFileNamerandomImagesNeutral.map(e => './images/n-back-photos/Remaining Pictures Neutral (34 Total)/' + e)
+    const imageFullFileNameArray = imageFileNamerandomImagesNegativeFullFileNameArray.concat(imageFileNamerandomImagesNeutralFullFileNameArray);
+    
     //console.log('imageFullFileNameArray',imageFullFileNameArray.sort());
     //-------------------- End of Create an object of the photo file names
     const randomizedFullFileNameArray = imageFullFileNameArray//.sort(()=> 0.5 - Math.random())
     const predictiveImagesNegative = filesToPhotosObject(require.context('./../../../public/images/n-back-photos/Prospective Memory Hits (12 Total)/Negative Prospective Memory Hits (6 Total)/', false, /\.(png|jpe?g|svg)$/));
     const predictiveImagesNeutral = filesToPhotosObject(require.context('./../../../public/images/n-back-photos/Prospective Memory Hits (12 Total)/Neutral Prospective Memory Hits (6 Total)/', false, /\.(png|jpe?g|svg)$/));
     
+    // N Back Array Creation
+    const nBackImagesNegative = filesToPhotosObject(require.context('./../../../public/images/n-back-photos/Negative N-Back Hits (13 Total)/', false, /\.(png|jpe?g|svg)$/));
+    const nBackImagesNeutral = filesToPhotosObject(require.context('./../../../public/images/n-back-photos/Neutral N-Back Hits (13 Total)/', false, /\.(png|jpe?g|svg)$/));
+    const imageFileNamenBackImagesNegative = Object.keys(nBackImagesNegative);
+    const imageFileNamenBackImagesNeutral = Object.keys(nBackImagesNeutral);
+
+    const imageFileNamenBackImagesNegativeFullFileNameArray = imageFileNamenBackImagesNegative.map(e => './images/n-back-photos/Negative N-Back Hits (13 Total)/' + e)
+    const imageFileNamenBackImagesNeutralFullFileNameArray = imageFileNamenBackImagesNeutral.map(e => './images/n-back-photos/Neutral N-Back Hits (13 Total)/' + e)
+    const nBackFullFileNameArray = imageFileNamenBackImagesNegativeFullFileNameArray.concat(imageFileNamenBackImagesNeutralFullFileNameArray);
+    //
+
+
+
+
     //const predictiveFullFolderLocation = predictiveImages.map((x) => { + 'x' });
    // const predictiveFileNameArray = Object.keys(predictiveFullFolderLocation);
-    const predictiveImagesNegativeFileNameArray = Object.keys(predictiveImagesNegative);
-    const predictiveImagesNeutralFileNameArray = Object.keys(predictiveImagesNeutral);
+    let predictiveImagesNegativeFileNameArray = Object.keys(predictiveImagesNegative);
+    let predictiveImagesNeutralFileNameArray = Object.keys(predictiveImagesNeutral);
+    predictiveImagesNegativeFileNameArray = predictiveImagesNegativeFileNameArray.map(e => './images/n-back-photos/Prospective Memory Hits (12 Total)/Negative Prospective Memory Hits (6 Total)/' + e)
+    predictiveImagesNeutralFileNameArray = predictiveImagesNeutralFileNameArray.map(e => './images/n-back-photos/Prospective Memory Hits (12 Total)/Neutral Prospective Memory Hits (6 Total)/' + e)
 
-    const predictiveFileNameArray = predictiveImagesNegativeFileNameArray.concat(predictiveImagesNeutralFileNameArray);
-
-    const predictiveFullFileNameArray = predictiveFileNameArray.map(e => './images/n-back-photos/Predictive/' + e)
+    const predictiveFullFileNameArray = predictiveImagesNegativeFileNameArray.concat(predictiveImagesNeutralFileNameArray);
+    console.log("predictiveFullFileNameArray",predictiveFullFileNameArray);
+    //const predictiveFullFileNameArray = predictiveFileNameArray.map(e => './images/n-back-photos/Predictive/' + e)
     //const randomizedPredictiveImageArray = randomizeArray(predictiveFullFileNameArray);
 
 
@@ -140,11 +158,12 @@ const ImageArray =  () => {
         */
 
         let indexOfPredictivePhotos = [];
+        //indexOfPredictivePhotos.apply(null, Array(numberOfPhotos)).map(function () {})
 
         //while(indexOfPredictivePhotos.length < numberOfPredictivePhotos){
         while(indexOfPredictivePhotos.length < numberOfPredictivePhotos){
        // var r = Math.floor(Math.random() * (imageSetStageOneLength - nBackDegree) + 0);
-        var r = Math.floor(Math.random() * ((numberOfPhotos-NumberofnBackMatches-numberOfPredictivePhotos) - nBackDegree) + 0); // a number needs to be imageSetStageOne.length;
+        var r = Math.floor(Math.random() * ((numberOfPhotos-NumberofnBackMatches*2-numberOfPredictivePhotos) - nBackDegree) + 0); // a number needs to be imageSetStageOne.length;
 
        // if (!indexOfPredictivePhotos.includes(r)) {indexOfPredictivePhotos.push(r)}; 
       if (!indexOfPredictivePhotos.includes(r)) {indexOfPredictivePhotos.push(r)}; 
@@ -180,15 +199,16 @@ const ImageArray =  () => {
       let PredictiveReduxValue = 0;
       const iteratePredictiveReduxValue = () => PredictiveReduxValue++;
 
-      predictive.forEach(element => setStageOne.push(setStageOne[iteratePredictiveIndexOne()]));
+        predictive.forEach(element => setStageOne.push(setStageOne[iteratePredictiveIndexOne()]));
       predictive.forEach(element => setStageOne.splice(predictiveIndex[iteratePredictiveIndexTwo()],1,PredictiveFullFileNameArray[iteratePredictiveReduxValue()]))
     return setStageOne//.slice(0,numberOfPhotos);
     } 
-    
+    console.log("imageSetStageOne,predictiveIndex,predictiveFullFileNameArray",imageSetStageOne,predictiveIndex,predictiveFullFileNameArray);
   const imageStageTwo = imageSetStageTwo(imageSetStageOne,predictiveIndex,predictiveFullFileNameArray)
-  
+  console.log("imageStageTwo",imageStageTwo);
+
   //const predictiveMatchesEarly = showMatchesOnly(imageStageTwo,predictiveIndex);
-  
+  console.log("NumberofnBackMatches",NumberofnBackMatches)
   const nBackIndexes = (predictiveIndex,NumberofnBackMatches,nBackDegree, numberOfPhotos) => {
     /*
     *  Takes the Image Array called ImageSetStageTwo and returns an array of the indexes where the nback values
@@ -268,12 +288,12 @@ const ImageArray =  () => {
 
   const nBackIndex = nBackIndexes(predictiveIndex,NumberofnBackMatches,nBackDegree,numberOfPhotos);
   const { setNBackIndex } = nBackIndexDispatch(useDispatch()); // how does this work?  It creates an object
-
+  console.log("nBackIndex",nBackIndex)
 
     setNBackIndex(nBackIndex);
 
 
-  const imageSetStageThree = (nBackIndex, nBackDegree, imageStageTwo) => {
+  const imageSetStageThree = (nBackIndex, nBackDegree, imageStageTwo,nBackFullFileNameArray) => {
     /*
       *  This Function takes an array and adds the nback images into it
       * at the places where the result of the predictiveIndexes() and nBackIndexes() functions define it
@@ -282,14 +302,28 @@ const ImageArray =  () => {
 
     let stage2 = [...imageStageTwo];
     let stageTwoCopy = [...imageStageTwo];
+    let n = 0;
+    let x = 0;
 
-
-    nBackIndex.forEach(element => stage2.push(stageTwoCopy[element-nBackDegree])
+    nBackIndex.forEach(element => 
+      stage2.push(stage2[element-nBackDegree])
+      //{n++}
+      //stage2.push(stageTwoCopy[element-nBackDegree])
+        //stage2.push(stageTwoCopy[element])
+    );
+    nBackIndex.forEach(element => 
+      stage2.push(stage2[element])
+      //{n++}
+      //stage2.push(stageTwoCopy[element-nBackDegree])
+        //stage2.push(stageTwoCopy[element])
     );
 
-    
-    nBackIndex.forEach(element => stage2.splice(element-nBackDegree,1,stage2[element]));
 
+    
+    nBackIndex.forEach(element => stage2.splice(element,1,nBackFullFileNameArray[element]));
+    nBackIndex.forEach(element => stage2.splice(element-nBackDegree,1,nBackFullFileNameArray[element]));
+
+    
    // stageThreeSafeShuffleIndex.forEach(element => stage2.splice(element,0,(stage2.pop())));
 
 
@@ -299,12 +333,12 @@ const ImageArray =  () => {
 
     return stage2//.slice(0,numberOfPhotos);
   }
-
+console.log("nBackFullFileNameArray",nBackFullFileNameArray[11])
 
 let  imageStageThreeSafeShuffleIndex = createStageThreeSafeShuffleIndexFunction(predictiveIndex,nBackIndex,nBackDegree,NumberofnBackMatches)
 
-let imageStageThree = imageSetStageThree(nBackIndex, nBackDegree, imageStageTwo,);
-let imageStageThreeForScoringArray = imageSetStageThree(nBackIndex, nBackDegree, imageStageTwo,);
+let imageStageThree = imageSetStageThree(nBackIndex, nBackDegree, imageStageTwo, nBackFullFileNameArray);
+let imageStageThreeForScoringArray = imageSetStageThree(nBackIndex, nBackDegree, imageStageTwo, nBackFullFileNameArray);
 console.log("imageStageThree",imageStageThree)
 
 
@@ -348,10 +382,10 @@ const scoringArray = (imageStageThree,predictiveIndex,nBackIndex) => {
 
 
 
-imageStageThree = stageThreeSafeShuffleIndexFunction(imageStageThree,imageStageThreeSafeShuffleIndex);
+//imageStageThree = stageThreeSafeShuffleIndexFunction(imageStageThree,imageStageThreeSafeShuffleIndex);
 let correctScoresrray = scoringArray(imageStageThree,predictiveIndex,nBackIndex);
 
-correctScoresrray = stageThreeSafeShuffleIndexFunction(correctScoresrray,imageStageThreeSafeShuffleIndex)
+//correctScoresrray = stageThreeSafeShuffleIndexFunction(correctScoresrray,imageStageThreeSafeShuffleIndex)
 
 
   //const imageStageFour = imageSetStageFour(imageStageThree,predictiveIndex,PredictiveFileNameArray)
