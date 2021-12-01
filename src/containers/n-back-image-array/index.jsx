@@ -10,16 +10,27 @@ import { /*validateNumberOfPhotos, validateNumberOfPredictivePhotos, validateset
 //
 
 
-    const images = filesToPhotosObject(require.context('./../../../public/images/n-back-photos/RandomLot/', false, /\.(png|jpe?g|svg)$/));
-    const imageFileNameArray = Object.keys(images);
+    //const images = filesToPhotosObject(require.context('./../../../public/images/n-back-photos/RandomLot/', false, /\.(png|jpe?g|svg)$/));
+    const randomImagesSetOne = filesToPhotosObject(require.context('./../../../public/images/n-back-photos/Remaining Pictures Negative (34 Total)/', false, /\.(png|jpe?g|svg)$/));
+    const randomImagesSetTwo = filesToPhotosObject(require.context('./../../../public/images/n-back-photos/Remaining Pictures Neutral (34 Total)/', false, /\.(png|jpe?g|svg)$/));
+    const imageFileNameArrayOne = Object.keys(randomImagesSetOne);
+    const imageFileNameArrayTwo = Object.keys(randomImagesSetTwo);
+
+    const imageFileNameArray = imageFileNameArrayOne.concat(imageFileNameArrayTwo);
     const imageFullFileNameArray = imageFileNameArray.map(e => './images/n-back-photos/RandomLot/' + e)
     //console.log('imageFullFileNameArray',imageFullFileNameArray.sort());
     //-------------------- End of Create an object of the photo file names
-    const randomizedFullFileNameArray = imageFullFileNameArray.sort(()=> 0.5 - Math.random())
-    const predictiveImages = filesToPhotosObject(require.context('./../../../public/images/n-back-photos/Predictive/', false, /\.(png|jpe?g|svg)$/));
+    const randomizedFullFileNameArray = imageFullFileNameArray//.sort(()=> 0.5 - Math.random())
+    const predictiveImagesNegative = filesToPhotosObject(require.context('./../../../public/images/n-back-photos/Prospective Memory Hits (12 Total)/Negative Prospective Memory Hits (6 Total)/', false, /\.(png|jpe?g|svg)$/));
+    const predictiveImagesNeutral = filesToPhotosObject(require.context('./../../../public/images/n-back-photos/Prospective Memory Hits (12 Total)/Neutral Prospective Memory Hits (6 Total)/', false, /\.(png|jpe?g|svg)$/));
+    
     //const predictiveFullFolderLocation = predictiveImages.map((x) => { + 'x' });
    // const predictiveFileNameArray = Object.keys(predictiveFullFolderLocation);
-    const predictiveFileNameArray = Object.keys(predictiveImages);
+    const predictiveImagesNegativeFileNameArray = Object.keys(predictiveImagesNegative);
+    const predictiveImagesNeutralFileNameArray = Object.keys(predictiveImagesNeutral);
+
+    const predictiveFileNameArray = predictiveImagesNegativeFileNameArray.concat(predictiveImagesNeutralFileNameArray);
+
     const predictiveFullFileNameArray = predictiveFileNameArray.map(e => './images/n-back-photos/Predictive/' + e)
     //const randomizedPredictiveImageArray = randomizeArray(predictiveFullFileNameArray);
 

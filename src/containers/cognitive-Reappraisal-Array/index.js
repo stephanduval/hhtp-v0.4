@@ -32,6 +32,9 @@ const CognitiveReappraisalArray =  () => {
   const CRImageArrayFromRedux = useSelector(state => state.cRImageArrayReducer.cRImageArray);
 
 
+  // Create 
+
+
 
     return (
         <div className="CognitiveReappraisalArray">

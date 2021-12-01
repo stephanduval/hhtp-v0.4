@@ -45,8 +45,20 @@ const useStyles = makeStyles ({
 })
 
 
+const stateOfCognitiveReappraisal = 0
 
+export const renderCognitiveReappraisalView = (stateOfCognitiveReappraisal) => {
+    switch (stateOfCognitiveReappraisal) {
+        case 1:
+            return <div>THE TEST WORKED</div>
+            break;
+        case undefined:
+            break;
+    }
 
+}
+
+ 
 
 const CognitiveReappraisalExamNavigation = () => {
 
@@ -216,7 +228,9 @@ const CognitiveReappraisalExamNavigation = () => {
                 
         } else {
             return (
-                <div>                
+                <div>
+                                {renderCognitiveReappraisalView(1)}
+                
                    <FormControl className={classes.field} component="fieldset">
                        <FormLabel component="legend">Feeling Score</FormLabel>
                             <RadioGroup
