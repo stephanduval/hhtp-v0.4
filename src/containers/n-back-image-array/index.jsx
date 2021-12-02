@@ -209,6 +209,7 @@ const ImageArray =  () => {
 
   //const predictiveMatchesEarly = showMatchesOnly(imageStageTwo,predictiveIndex);
   console.log("NumberofnBackMatches",NumberofnBackMatches)
+
   const nBackIndexes = (predictiveIndex,NumberofnBackMatches,nBackDegree, numberOfPhotos) => {
     /*
     *  Takes the Image Array called ImageSetStageTwo and returns an array of the indexes where the nback values
@@ -220,21 +221,22 @@ const ImageArray =  () => {
 
    // let i = 0;
   while (nBackIndex.length < NumberofnBackMatches) {
-  let num = Math.floor(Math.random() * (numberOfPhotos - NumberofnBackMatches - numberOfPredictivePhotos) + nBackDegree,);
+    let num = Math.floor(Math.random() * 80);
+    //let num = Math.floor(Math.random() * (numberOfPhotos - NumberofnBackMatches - NumberofnBackMatches - numberOfPredictivePhotos + 10) + nBackDegree);
   
-  if (!(predictiveIndex.includes(num))
-      && !(predictiveIndex.includes(num-nBackDegree))
-      && !(predictiveIndex.includes(num+nBackDegree))
-      && !(nBackIndex.includes(num))
-      && !(nBackIndex.includes(num-nBackDegree))
-      && !(nBackIndex.includes(num+nBackDegree))
-        ) 
-        {
+   if (
+         !(predictiveIndex.includes(num))
+        /* && !(predictiveIndex.includes(num-nBackDegree))
+         && !(predictiveIndex.includes(num+nBackDegree))
+         && !(nBackIndex.includes(num))
+         && !(nBackIndex.includes(num-nBackDegree)) */
+         && !(nBackIndex.includes(num+nBackDegree))
+         ) 
+  //       {
           //console.log["Match",num];
           nBackIndex.push(num);
           //nBackIndex.push(num+nBackDegree)
-        }
-     //i++   
+   //i++   
     }
    nBackIndex.sort((a,b)=>a-b);
     return nBackIndex;
@@ -283,8 +285,9 @@ const ImageArray =  () => {
     return inputArray;
 
   }
-
-
+  let SUM = 0
+  SUM = (numberOfPhotos - NumberofnBackMatches - NumberofnBackMatches - numberOfPredictivePhotos + 10) + nBackDegree
+  console.log("numberOfPhotos,NumberofnBackMatches,numberOfPredictivePhotos,SUM",numberOfPhotos,NumberofnBackMatches,numberOfPredictivePhotos, SUM)
 
   const nBackIndex = nBackIndexes(predictiveIndex,NumberofnBackMatches,nBackDegree,numberOfPhotos);
   const { setNBackIndex } = nBackIndexDispatch(useDispatch()); // how does this work?  It creates an object
@@ -305,23 +308,27 @@ const ImageArray =  () => {
     let n = 0;
     let x = 0;
 
+
+    
     nBackIndex.forEach(element => 
-      stage2.push(stage2[element-nBackDegree])
+      stage2.push(stage2[element-nBackDegree]+"moved")
       //{n++}
       //stage2.push(stageTwoCopy[element-nBackDegree])
         //stage2.push(stageTwoCopy[element])
     );
+    
+    
     nBackIndex.forEach(element => 
       stage2.push(stage2[element])
       //{n++}
       //stage2.push(stageTwoCopy[element-nBackDegree])
         //stage2.push(stageTwoCopy[element])
     );
-
-
     
-    nBackIndex.forEach(element => stage2.splice(element,1,nBackFullFileNameArray[element]));
-    nBackIndex.forEach(element => stage2.splice(element-nBackDegree,1,nBackFullFileNameArray[element]));
+
+
+    //nBackIndex.forEach(element => stage2.splice(element-nBackDegree,1,nBackFullFileNameArray[element]+"7777"));  
+    //nBackIndex.forEach(element => stage2.splice(element,1,nBackFullFileNameArray[element]));
 
     
    // stageThreeSafeShuffleIndex.forEach(element => stage2.splice(element,0,(stage2.pop())));
