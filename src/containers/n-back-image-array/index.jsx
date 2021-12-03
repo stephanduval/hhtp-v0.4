@@ -217,7 +217,7 @@ const ImageArray =  () => {
 
    // let i = 0;
   while (nBackIndex.length < NumberofnBackMatches) {
-    let num = Math.floor(Math.random() * numberOfPhotos - nBackDegree);
+    let num = Math.floor(Math.random() * (numberOfPhotos - nBackDegree) + nBackDegree);
     //let num = Math.floor(Math.random() * (numberOfPhotos - NumberofnBackMatches - NumberofnBackMatches - numberOfPredictivePhotos + 10) + nBackDegree);
   
    if (
