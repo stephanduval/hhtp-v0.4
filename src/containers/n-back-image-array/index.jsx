@@ -18,11 +18,13 @@ import { /*validateNumberOfPhotos, validateNumberOfPredictivePhotos, validateset
 
     const imageFileNamerandomImagesNegativeFullFileNameArray = imageFileNamerandomImagesNegative.map(e => './images/n-back-photos/Remaining Pictures Negative (34 Total)/' + e)
     const imageFileNamerandomImagesNeutralFullFileNameArray = imageFileNamerandomImagesNeutral.map(e => './images/n-back-photos/Remaining Pictures Neutral (34 Total)/' + e)
-    const imageRemainingFileNameArray = imageFileNamerandomImagesNegativeFullFileNameArray.concat(imageFileNamerandomImagesNeutralFullFileNameArray);
-    
+    let imageRemainingFileNameArray = imageFileNamerandomImagesNegativeFullFileNameArray.concat(imageFileNamerandomImagesNeutralFullFileNameArray);
+    //imageRemainingFileNameArray = ["a","b","c","d","e","f","g","h","i","j","empty","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+    let randomizedRemainingFileNameArray = imageRemainingFileNameArray.sort(()=> 0.5 - Math.random())
+
     //console.log('imageFullFileNameArray',imageFullFileNameArray.sort());
     //-------------------- End of Create an object of the photo file names
-    const randomizedRemainingFileNameArray = imageRemainingFileNameArray.sort(()=> 0.5 - Math.random())
+    
     const predictiveImagesNegative = filesToPhotosObject(require.context('./../../../public/images/n-back-photos/Prospective Memory Hits (12 Total)/Negative Prospective Memory Hits (6 Total)/', false, /\.(png|jpe?g|svg)$/));
     const predictiveImagesNeutral = filesToPhotosObject(require.context('./../../../public/images/n-back-photos/Prospective Memory Hits (12 Total)/Neutral Prospective Memory Hits (6 Total)/', false, /\.(png|jpe?g|svg)$/));
     
@@ -290,7 +292,7 @@ const ImageArray =  () => {
     setNBackIndex(nBackIndex);
 
 
-  const imageSetStageThree = (nBackIndex, nBackDegree, masterImageSet,nBackFullFileNameArray) => {
+  const imageSetStageThree = (nBackIndex, nBackDegree, masterImageSet,nBackFullFileNameArray,randomizedRemainingFileNameArray) => {
     /*
       *  This Function takes an array and adds the nback images into it
       * at the places where the result of the predictiveIndexes() and nBackIndexes() functions define it
@@ -299,8 +301,7 @@ const ImageArray =  () => {
 
     let stage2 = [...masterImageSet];
     let stageTwoCopy = [...masterImageSet];
-    let n = 0;
-    let x = 0;
+
 
 
     
@@ -321,8 +322,8 @@ const ImageArray =  () => {
     
 
 
-    nBackIndex.forEach(element => stage2.splice(element-nBackDegree,1,nBackFullFileNameArray[nBackIndex.indexOf(element)]+"Dragging"));  
-    nBackIndex.forEach(element => stage2.splice(element,1,nBackFullFileNameArray[nBackIndex.indexOf(element)]+"Leading"));
+    nBackIndex.forEach(element => stage2.splice(element-nBackDegree,1,nBackFullFileNameArray[nBackIndex.indexOf(element)]));  
+    nBackIndex.forEach(element => stage2.splice(element,1,nBackFullFileNameArray[nBackIndex.indexOf(element)]));
 
     
    // stageThreeSafeShuffleIndex.forEach(element => stage2.splice(element,0,(stage2.pop())));
@@ -330,19 +331,73 @@ const ImageArray =  () => {
 
     
       //(stageTwoCopy[element-nBackDegree]));
+      let n = 0
+//a.forEach(function(item, i) { if (item == 3452) a[i] = 1010; });
 
+   
+// masterImageSet.forEach(function(item, n)
+//  { 
+//   //  if (item == "empty"){
+//   // imageRemainingFileNameArray[n] ? undefined: "VALUE"
+//   console.log("POP",imageRemainingFileNameArray[n])
+//   // item = imageRemainingFileNameArray[n]
+//    n++
+// // }
+
+const alphabet = ["a","b","c","d","e","f","g","h","i","j","empty","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+
+
+const find = (needle, haystack) => {
+  var results = [];
+  var idx = haystack.indexOf(needle);
+  while (idx != -1) {
+      results.push(idx);
+      idx = haystack.indexOf(needle, idx + 1);
+  }
+
+  return results;
+}
+
+books = [1,2,3,"empty",5,6,7]
+
+let randomizedEmptyIndex = find("empty",stage2)
+console.log("randomizedEmptyIndex",randomizedEmptyIndex);
+
+randomizedEmptyIndex.forEach(element => stage2.splice(element,1,imageRemainingFileNameArray[randomizedEmptyIndex.indexOf(element)]));  
+//randomizedEmptyIndex.forEach(element => stage2.splice(element,1,alphabet[randomizedEmptyIndex.indexOf(element)]));  
+//randomizedEmptyIndex.forEach(element => stage2.splice(element,1,"Full"));  
+  
+
+// let RandomArray = [...randomizedRemainingFileNameArray];
+
+
+// randomizedRemainingFileNameArray
+//       // for (let element of stage2) {
+//       //   if (element == "empty") {
+//       //     element = "full"
+//       //     console.log("empty")
+//       //   }
+//       // }
 
     return stage2//.slice(0,numberOfPhotos);
   }
 console.log("nBackFullFileNameArray",nBackFullFileNameArray[11])
 console.log("nBackIndex",nBackIndex)
+console.log("randomizedRemainingFileNameArray TYPE",predictiveFullFileNameArray)
+//randomizedRemainingFileNameArray.type)
+
 
 let  imageStageThreeSafeShuffleIndex = createStageThreeSafeShuffleIndexFunction(predictiveIndex,nBackIndex,nBackDegree,NumberofnBackMatches)
 
-let imageStageThree = imageSetStageThree(nBackIndex, nBackDegree, imageStageTwo, nBackFullFileNameArray);
+
+  
+  
+let books = [1,2,3,4]
+
+let imageStageThree = imageSetStageThree(nBackIndex, nBackDegree, imageStageTwo, nBackFullFileNameArray,randomizedRemainingFileNameArray);
 let imageStageThreeForScoringArray = imageSetStageThree(nBackIndex, nBackDegree, imageStageTwo, nBackFullFileNameArray);
 console.log("imageStageThree",imageStageThree)
-
+   
 
 
 //testScoredArray = scoringArrayFunction(imageStageThree, nBackDegree) 
@@ -380,14 +435,6 @@ const scoringArray = (imageStageThree,predictiveIndex,nBackIndex) => {
 
   return scoreArray;
 }
-
-const addRemainingImagesToArray = (masterImageSet) => {
-masterImageSet.forEach(element =>  element + "full") 
-return masterImageSet
-}
-
-masterImageSet = addRemainingImagesToArray(masterImageSet)
-
 //imageStageThree = stageThreeSafeShuffleIndexFunction(imageStageThree,imageStageThreeSafeShuffleIndex);
 let correctScoresrray = scoringArray(imageStageThree,predictiveIndex,nBackIndex);
 
