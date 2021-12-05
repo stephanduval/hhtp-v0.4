@@ -26,7 +26,7 @@ const arrayOfIndexes = createArrayOfIndexes(ReduxFinalFileNameArray);
 //const shortenedReduxFinalFileNameArray = ReduxFinalFileNameArray.map(element => element);
 const shortenedimageSetStageOne = imageSetStageOneFromRedux.map(element => element.slice(-8,-4));
 const shortenedImageStageTwo = imageStageTwoFromRedux.map(element => element.slice(-8,-4));
-//const shortenedImageStageThree = imageSetStageThreeFromRedux.map(element => element);
+const shortenedImageStageThree = imageSetStageThreeFromRedux.map(element => element.slice(-54,-4));
 const shortenedcorrectScoresrray = correctScoresrrayFromRedux.map(element => element);
 
 // console.log("type for imageSetStageThreeFromRedux", typeof imageSetStageThreeFromRedux,imageSetStageThreeFromRedux)
@@ -40,7 +40,7 @@ let resultCheckerArray = [
 {name: "Index", arrayData: arrayOfIndexes},
 {name: "imageSetStageOne", arrayData: shortenedimageSetStageOne},
 {name: "imageStageTwo", arrayData: shortenedImageStageTwo},
-{name: "Image File Name (Stage 3)", arrayData: imageSetStageThreeFromRedux},
+{name: "Image File Name (Stage 3)", arrayData: shortenedImageStageThree},
 {name: "Correct Score", arrayData: correctScoresrrayFromRedux},
 {name: "User Response", arrayData: userResponseArray},
 {name: "Response Time ms", arrayData: userAnswerTimeArray},
