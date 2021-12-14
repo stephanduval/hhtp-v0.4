@@ -50,7 +50,7 @@ const stateOfCognitiveReappraisal = 0
 export const renderCognitiveReappraisalView = (stateOfCognitiveReappraisal) => {
     switch (stateOfCognitiveReappraisal) {
         case 1:
-            return <div>THE TEST WORKED</div>
+            return <div>How Negative Do You Feel?</div>
             break;
         case undefined:
             break;

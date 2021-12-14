@@ -41,7 +41,7 @@ const ExamNavigation = () => {
 
 console.log("imageSetStageThreeFromRedux doll",imageSetStageThreeFromRedux.length,NBackState)
     const checkIfTestIsComplete = () => {
-    if (NBackState > imageSetStageThreeFromRedux.length) {
+    if (NBackState > imageSetStageThreeFromRedux.length-2) {
         setRenderState(navigationPhaseTypes.nBackComplete)
     }
 }

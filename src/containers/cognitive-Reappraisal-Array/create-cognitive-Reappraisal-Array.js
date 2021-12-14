@@ -16,26 +16,55 @@ import { filesToPhotosObject } from "../../functions";
     const lookNeutralImagesFileNameArray = Object.keys(lookNeutralImages);
     const lookNeutralImagesFullFileNameArray = lookNeutralImagesFileNameArray.map(e => './public/images/cognitive-reappraisal/look-neutral/' + e)
 
-    const combinedCognitiveImagesArray = decreaseFullFileNameArray.concat(lookNegativeFullFileNameArray).concat(lookNeutralImagesFullFileNameArray);
-    const randomizedCombinedCognitiveImagesArray = combinedCognitiveImagesArray.sort(()=> 0.5 - Math.random())
-    export const finalRandomizedCombinedCognitiveImagesArray = randomizedCombinedCognitiveImagesArray.map(x => './' + x.slice(8));
+    
+    const titleCardImages = filesToPhotosObject(require.context('./../../../public/images/cognitive-reappraisal/titlecards/', false, /\.(png|jpe?g|svg)$/));
+    const titleCardImagesFileNameArray = Object.keys(titleCardImages);
+    const titleCardImagesFullFileNameArray = titleCardImagesFileNameArray.map(e => './public/images/cognitive-reappraisal/titlecards/' + e)
+
     
 
-    const returnLookOrDecrease = (elementParam) => {
-        if (elementParam.map(e => e.slice(32,40)).includes('look')) {
-            return 'look'
-        }else{
-            return 'decrease'
-        }
-    }
+    function addTitleCardsToCognitiveImagesArray(arrayParam) {
+        let originalArray = [...arrayParam];
+        let cognitiveImagesArrayWithTitleCards = [];
+        //cognitiveImagesArrayWithTitleCards.fill("empty");
+        let decreaseString = "decrease";
+        let newIndex = 0;
+        arrayParam.forEach((x,index)=> {
+             if (x.includes(decreaseString)) {
+                cognitiveImagesArrayWithTitleCards.push(titleCardImagesFullFileNameArray[0])
+                cognitiveImagesArrayWithTitleCards.push(arrayParam[index])
+                cognitiveImagesArrayWithTitleCards.push(titleCardImagesFullFileNameArray[2])
+                //arrayParam.splice(index,0,aa.index,)
 
-    const returnPictureSRC = (elementParam) => {
-        return elementParam
-    }
+                console.log(x,"PizzaParty",index)
+             
+             } else {
+               cognitiveImagesArrayWithTitleCards.push(titleCardImagesFullFileNameArray[1])
+               cognitiveImagesArrayWithTitleCards.push(arrayParam[index])
+               cognitiveImagesArrayWithTitleCards.push(titleCardImagesFullFileNameArray[2])
+                console.log(x,"noPizza")
 
-    const returnRelax = () => {
-        return 'relax'
-    }
+             }
+            })
+            return cognitiveImagesArrayWithTitleCards
+             }
+
+
+   // addTitleCardsToCognitiveImagesArray(updatedArrayChecker);
+
+
+
+    const combinedCognitiveImagesArray = decreaseFullFileNameArray.concat(lookNegativeFullFileNameArray).concat(lookNeutralImagesFullFileNameArray);
+    const randomizedCombinedCognitiveImagesArray = combinedCognitiveImagesArray.sort(()=> 0.5 - Math.random())
+    const randomizedCombinedCognitiveImagesArrayWithTitleCards = addTitleCardsToCognitiveImagesArray(randomizedCombinedCognitiveImagesArray);
+    export const finalRandomizedCombinedCognitiveImagesArray = randomizedCombinedCognitiveImagesArrayWithTitleCards.map(x => './' + x.slice(8));
+    /*
+    ./public/images/cognitive-reappraisal/titlecards/decrease.jpg
+    .//images/cognitive-reappraisal/look-negative/Destruction 9.jpg
+    */
+   // addTitleCardsToCognitiveImagesArray
+    
+
 
 
     // Not finished: 
@@ -51,11 +80,12 @@ import { filesToPhotosObject } from "../../functions";
                
     // }
 
-    
+    //finalRandomizedCombinedCognitiveImagesArray
 
     
+    let updatedArrayChecker = finalRandomizedCombinedCognitiveImagesArray ;    
+    //let updatedArrayChecker = finalRandomizedCombinedCognitiveImagesArray.map(e => e.slice(32,40));
 
-    let updatedArrayChecker = finalRandomizedCombinedCognitiveImagesArray.map(e => e.slice(32,40));
 
     export {updatedArrayChecker}
 
