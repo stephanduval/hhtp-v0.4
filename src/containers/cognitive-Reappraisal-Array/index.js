@@ -1,6 +1,6 @@
 import React from 'react';
 import './cognitive-Reappraisal-Array.css';
-import { finalRandomizedCombinedCognitiveImagesArray } from './create-cognitive-Reappraisal-Array';
+import { finalRandomizedCombinedCognitiveImagesArray} from './create-cognitive-Reappraisal-Array';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCRImageArray } from './actions';
 //import { checkForEmptyinArray, showMatchesOnly } from './../n-back-image-array/functions';

@@ -58,7 +58,6 @@ export const renderCognitiveReappraisalView = (stateOfCognitiveReappraisal) => {
 
 }
 
- 
 
 const CognitiveReappraisalExamNavigation = () => {
 
@@ -226,7 +225,7 @@ const CognitiveReappraisalExamNavigation = () => {
             
         
                 
-        } else {
+        } else if (!CRImageArrayFromRedux[CRAViewState].includes("titlecards")) {
             return (
                 <div>
                                 {renderCognitiveReappraisalView(1)}
@@ -269,22 +268,64 @@ const CognitiveReappraisalExamNavigation = () => {
                    </div>
             )
           
+        } else {
+            return (
+                
+                <div className="NextButton">
+                <Button sx={{ mt: 1, mr: 1 }} type="submit" variant="contained" onClick={()=>{newCRAViewState(CRAViewState);checkIfTestIsComplete();console.log("State",CRAViewState)}}>
+                                Next Step 
+                                </Button>
+                        </div>)
         }
     
     }
 
+    
+
+
+    function createScoringArrayFromfinalRandomizedCombinedCognitiveImagesArray (arrayParam) {
+        let newArray = [];
+        let originalArray = [...arrayParam];
+        originalArray.forEach((x,index) => {
+
+            if (!x.includes("titlecards")) {
+                newArray.push(x);
+            };
+
+           
+        })
+            return newArray
+        
+        }
+     
+
+        
+      
+        let ScoringArray = createScoringArrayFromfinalRandomizedCombinedCognitiveImagesArray(CRImageArrayFromRedux)
+      
+
+
+
 
 
     return (
-        <div className="buttonSpace">
-                  
+        <div className="container">
+        <div>{stopRenderSubmitButtonIfTestIsFinished('You\'re All Done!  Take a Hike!')}</div>          
 
-        {stopRenderSubmitButtonIfTestIsFinished('You\'re All Done!  Take a Hike!')}
-        <div>  State: {CRAViewState}  User Response Array: {listItems} </div>
+        <div className="buttonSpace">
+
+        
         <div>{listItemsFunction(CRImageArrayFromRedux)}</div>
         
         <div>{listItemsFunction(updatedArrayChecker)}</div>
+
         
+        <div>{listItemsFunction(ScoringArray)}</div>
+        <div>{listItemsFunction(userResponseArray)}</div>
+        {/* <div>  State: {CRAViewState}  User Response Array: {listItems} </div> */}
+
+        
+        </div>
         </div>
 
         )

@@ -8,19 +8,20 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 
-
 let CognitiveReappraisalArray = CRAConstant.randomizedCognitiveReappraisalArrayFileNameArray;
+
 
 
 let resultCheckerArray = [
     {name: "Random Cognitive Reappraisal Array", arrayData: CognitiveReappraisalArray},
+    {name: "ScoringArray", arrayData: ScoringArray},
     ];
 
 
 
 let CRATableGenerator = (ReduxArray) => {
 
-    const CRAImageState = useSelector(state => state.craNavigation.newCRAViewState);
+    //const CRAImageState = useSelector(state => state.craNavigation.newCRAViewState);
 
 
     return (
