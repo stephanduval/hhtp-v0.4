@@ -38,7 +38,7 @@ const CognitiveReappraisalArray =  () => {
 
     return (
         <div className="CognitiveReappraisalArray">
-        Cognitive Reappraisal Array
+
 
         </div>
 

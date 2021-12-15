@@ -103,52 +103,55 @@ const CognitiveReappraisalExamNavigation = () => {
         *  Listens for the keystoke and updates the NBackState
         * 
         */
+
+        if (!CRImageArrayFromRedux[CRAViewState].includes("titlecards")) {
+      
+
+
         console.log('HIT',event.keyCode)
         console.log('CRAViewState',CRAViewState);
         console.log('userResponseArray',userResponseArray)
         switch (event.keyCode) {
             case 49:
-                return console.log('1 key, Log the Result, Run Next Image Function addNBackToUserResponseArray()');
+                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("1");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
             case 50:
-                return console.log('2 Key, Log the Result, Run Next Image Function,newNBackState(NBackState),addPredictiveToUserResponseArray()');
+                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("2");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
             case 51:
-                return console.log('3 Key, Log the Result, Run Next Image Function,newNBackState(NBackState),addSkipToUserResponseArray()');
+                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("3");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState)
             case 52:
-                return console.log('4 Key, Log the Result, Run Next Image Function,newNBackState(NBackState),addSkipToUserResponseArray()');
+                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("4");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
             case 53:
-                return console.log('5 Key, Log the Result, Run Next Image Function,newNBackState(NBackState),addSkipToUserResponseArray()');
+                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("5");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
             case 54:
-                return console.log('6 Key, Log the Result, Run Next Image Function,newNBackState(NBackState),addSkipToUserResponseArray()');
+                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("6");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
             case 55:
-                 return console.log('7 Key, Log the Result, Run Next Image Function,newNBackState(NBackState),addSkipToUserResponseArray()');
+                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("7");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
             case 56:
-                 return console.log('8 Key, Log the Result, Run Next Image Function,newNBackState(NBackState),addSkipToUserResponseArray()');
+                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("8");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
             case 57:
-                  return console.log('9 Key, Log the Result, Run Next Image Function,newNBackState(NBackState),addSkipToUserResponseArray()');
-            case 48:
-                 return console.log('0 Key, Log the Result, Run Next Image Function,mnewNBackState(NBackState),addSkipToUserResponseArray()');
+                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("9");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
             case 97:
-                return console.log('keypad 1 key, Log the Result, Run Next Image Function,newNBackState(NBackState),addNBackToUserResponseArray()');
+                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("1");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
             case 98:
-                return console.log('keypad 2 Key, Log the Result, Run Next Image Function,newNBackState(NBackState),addPredictiveToUserResponseArray()');
+                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("2");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
             case 99:
-                return console.log('keypad 3 Key, Log the Result, Run Next Image Function,newNBackState(NBackState),addSkipToUserResponseArray()');
+                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("3");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState)
             case 100:
-                return console.log('keypad 4 Key, Log the Result, Run Next Image Function,newNBackState(NBackState),addSkipToUserResponseArray()');
+                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("4");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
             case 101:
-                return console.log('keypad 5 Key, Log the Result, Run Next Image Function,newNBackState(NBackState),addSkipToUserResponseArray()');
+                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("5");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
             case 102:
-                return console.log('keypad 6 Key, Log the Result, Run Next Image Function,newNBackState(NBackState),addSkipToUserResponseArray()');
+                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("6");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
             case 103:
-                    return console.log('keypad 7 Key, Log the Result, Run Next Image Function,newNBackState(NBackState),addSkipToUserResponseArray()');
+                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("7");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
             case 104:
-                    return console.log('keypad 8 Key, Log the Result, Run Next Image Function,newNBackState(NBackState),addSkipToUserResponseArray()');
+                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("8");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
             case 105:
-                    return console.log('keypad 9 Key, Log the Result, Run Next Image Function,newNBackState(NBackState),addSkipToUserResponseArray()');
-            case 96:
-                    return console.log('keypad 0 Key, Log the Result, Run Next Image Function,mnewNBackState(NBackState),addSkipToUserResponseArray()');
+                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("9");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
                     
     }
+};
+
 }
 
     React.useEffect(() => {
@@ -212,7 +215,7 @@ const CognitiveReappraisalExamNavigation = () => {
      const stopRenderSubmitButtonIfTestIsFinished = (finishedMessage) => {
         if (CRAViewState == CRImageArrayFromRedux.length) {
             return (
-                <div>         
+                <div className="navigationButtonSpace">         
                    
                     {finishedMessage}
                     {CSVDownloadStateRedux}
@@ -227,10 +230,10 @@ const CognitiveReappraisalExamNavigation = () => {
                 
         } else if (!CRImageArrayFromRedux[CRAViewState].includes("titlecards")) {
             return (
-                <div>
+                <div className="navigationButtonSpace">
                                 {renderCognitiveReappraisalView(1)}
                 
-                   <FormControl className={classes.field} component="fieldset">
+                   <FormControl className="navigationButtonSpace" component="fieldset" container justify = "center">
                        <FormLabel component="legend">Feeling Score</FormLabel>
                             <RadioGroup
                             value={category}
@@ -271,7 +274,7 @@ const CognitiveReappraisalExamNavigation = () => {
         } else {
             return (
                 
-                <div className="NextButton">
+                <div className="navigationButtonSpace">
                 <Button sx={{ mt: 1, mr: 1 }} type="submit" variant="contained" onClick={()=>{newCRAViewState(CRAViewState);checkIfTestIsComplete();console.log("State",CRAViewState)}}>
                                 Next Step 
                                 </Button>
@@ -305,7 +308,7 @@ const CognitiveReappraisalExamNavigation = () => {
       
 
 
-
+     
 
 
     return (

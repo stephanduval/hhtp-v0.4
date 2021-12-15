@@ -12,5 +12,16 @@
   .field {
     marginTop: 20;
     marginBotton: 20;
-    display: 'block';
+    text-align: center;
+    witdth: 80%;
+  }
+
+
+  .navigationButtonSpace {
+    display: grid;
+    justify-items: center;
+    height: 150px;
+    witdth: 80%;
+
+
   }
