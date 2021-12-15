@@ -1,4 +1,4 @@
-import './PracticeExamNavigation.css';
+import '../../App.css';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { newPracticeNBackState, setPracticeRenderState } from './actions';

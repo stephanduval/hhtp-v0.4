@@ -1,9 +1,0 @@
-.photospace {
-    display: flex;
-    flex-wrap:nowrap;
-    height: 650px;
-    width: 100%;
-    background-color: var(--grey5);
-    justify-content: center;
-    padding-top: 20px;
-    }

@@ -56,7 +56,7 @@ export const navigationPhaseTypes = {
             return <div>
                         <Photospace /> 
                         <ExamNavigation />
-                        <ResultChecker />
+                        {/* <ResultChecker /> */}
 
                     </div>
                  
@@ -93,7 +93,7 @@ export const navigationPhaseTypes = {
                 case navigationPhaseTypes.practiceNBackTest:
                 // console.log('case navigationPhaseTypes.settings');
     
-                return <div className="testSpace">
+                return <div >
                             <PracticePhotospace/>
                         
                             <PracticeExamNavigation/>

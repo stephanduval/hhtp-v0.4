@@ -100,40 +100,29 @@ H1 {
       display: flex;
       justify-content: space-evenly;
       list-style: square;
-      max-width: 600px;
-      margin: 0 auto;    
+      max-width: 960px;
+      margin: 0 auto;  
+      padding: 20px;  
 
       margin-top: -13px;
   }
 
-.photoSpace {
-  display: flex;
-  flex-wrap:nowrap;
-  height: 300px;
-  width: 100%;
-  background-color: var(--grey5);
-  justify-content: center;
-  padding-top: 20px;
-  }
+
 
 .buttonSpace {
   display: flex;
-  height: 50px;
-  width: 100%;
+  height: auto;
+  width: 80%;
   background-color: var(--grey4);
   justify-content: space-evenly;
   align-content: space-between;
   padding: 10px;
+
+  border-style: solid;
+  border-color: blue;
   
 }
 
-
-
-img {
-    max-width: 100%;
-    height: auto;
-
-    }
 
 
     .center {
@@ -147,12 +136,35 @@ img {
   
   .testSpace {
       display: grid;
-      height: 12em;
-      width: 100%;
-      background-color: #FFFFFF;
+      background-color: #000000;
       justify-content: center;
-      padding-top: 10px;
-      padding-bottom: 10px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      border-style: solid;
+      border-color: coral;
+      overflow: auto;
   
   }
+
+  .photoSpace {
+    display: grid;
+
+    background-color: #FFFFFF;
+    border-style: solid;
+    border-color: blue;
+    justify-content: center;
+    overflow: auto;
+
+    }
+
+    img {
+      max-height: 400px;
+      max-width: 100%;
+      height: auto;
+      object-fit: scale-down;
+      border-style: solid;
+      border-color: red;
+      display:inline-block
+  
+      }
   

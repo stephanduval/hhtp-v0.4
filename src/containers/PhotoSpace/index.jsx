@@ -1,5 +1,5 @@
 import React from 'react';
-import './PhotoSpace.css';
+import '../../App.css';
 import { useSelector } from 'react-redux';
 
 const PracticePhotospace = () => {  // this destructing allows us to use onInputChange instead of props.onInputChange
