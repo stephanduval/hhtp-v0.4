@@ -234,7 +234,7 @@ const CognitiveReappraisalExamNavigation = () => {
                                 {renderCognitiveReappraisalView(1)}
                 
                    <FormControl className="navigationButtonSpace" component="fieldset" container justify = "center">
-                       <FormLabel component="legend">Feeling Score</FormLabel>
+                       <FormLabel component="legend"></FormLabel>
                             <RadioGroup
                             value={category}
                             onChange={(e) => setCategory(e.target.value)}
@@ -314,7 +314,7 @@ const CognitiveReappraisalExamNavigation = () => {
     return (
         <div className="container">
         <div>{stopRenderSubmitButtonIfTestIsFinished('You\'re All Done!  Take a Hike!')}</div>          
-
+{/* 
         <div className="buttonSpace">
 
         
@@ -325,10 +325,10 @@ const CognitiveReappraisalExamNavigation = () => {
         
         <div>{listItemsFunction(ScoringArray)}</div>
         <div>{listItemsFunction(userResponseArray)}</div>
-        {/* <div>  State: {CRAViewState}  User Response Array: {listItems} </div> */}
+         <div>  State: {CRAViewState}  User Response Array: {listItems} </div> 
 
         
-        </div>
+        </div> */}
         </div>
 
         )

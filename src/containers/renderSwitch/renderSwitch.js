@@ -15,7 +15,7 @@ import PracticeExamNavigation from '../PracticeExamNavigation';
 import PracticePhotospace from '../PracticePhotoSpace';
 import CognitivePhotospace from '../Cognitive-Reappraisal-PhotoSpace';
 import CognitiveReappraisalExamNavigation from '../CognitiveReappraisalNavigation';
-import './renderSwitch.css';
+import '../../App.css';
 import ReturnToMainPageButton from '../ReturntoMainPageButton';
 
 
@@ -93,7 +93,7 @@ export const navigationPhaseTypes = {
                 case navigationPhaseTypes.practiceNBackTest:
                 // console.log('case navigationPhaseTypes.settings');
     
-                return <div>
+                return <div className="testSpace">
                             <PracticePhotospace/>
                         
                             <PracticeExamNavigation/>
