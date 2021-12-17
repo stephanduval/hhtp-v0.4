@@ -56,7 +56,7 @@ export const navigationPhaseTypes = {
             return <div>
                         <Photospace /> 
                         <ExamNavigation />
-                        {/* <ResultChecker /> */}
+                        <ResultChecker />
 
                     </div>
                  
