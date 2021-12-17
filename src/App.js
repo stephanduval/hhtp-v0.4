@@ -29,7 +29,6 @@ function App() {
     
     
     {renderState(renderViewFromReduxStore)}
-    {/* {console.log(renderViewFromReduxStore)} */}
 
     </div>
   );

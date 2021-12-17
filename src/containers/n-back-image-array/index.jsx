@@ -38,10 +38,11 @@ import { /*validateNumberOfPhotos, validateNumberOfPredictivePhotos, validateset
     const imageFileNamenBackImagesNeutralFullFileNameArray = imageFileNamenBackImagesNeutral.map(e => './images/n-back-photos/Neutral N-Back Hits (13 Total)/' + e)
     const nBackFullFileNameArray = imageFileNamenBackImagesNegativeFullFileNameArray.concat(imageFileNamenBackImagesNeutralFullFileNameArray);
     //
-    console.log("nBackFullFileNameArray",nBackFullFileNameArray)
+    // console.log("nBackFullFileNameArray",nBackFullFileNameArray)
 
 
-
+      // run code for dirHandle
+    
     //const predictiveFullFolderLocation = predictiveImages.map((x) => { + 'x' });
    // const predictiveFileNameArray = Object.keys(predictiveFullFolderLocation);
     let predictiveImagesNegativeFileNameArray = Object.keys(predictiveImagesNegative);
@@ -50,7 +51,6 @@ import { /*validateNumberOfPhotos, validateNumberOfPredictivePhotos, validateset
     predictiveImagesNeutralFileNameArray = predictiveImagesNeutralFileNameArray.map(e => './images/n-back-photos/Prospective Memory Hits (12 Total)/Neutral Prospective Memory Hits (6 Total)/' + e)
 
     const predictiveFullFileNameArray = predictiveImagesNegativeFileNameArray.concat(predictiveImagesNeutralFileNameArray);
-    console.log("predictiveFullFileNameArray",predictiveFullFileNameArray);
     //const predictiveFullFileNameArray = predictiveFileNameArray.map(e => './images/n-back-photos/Predictive/' + e)
     //const randomizedPredictiveImageArray = randomizeArray(predictiveFullFileNameArray);
 
@@ -137,10 +137,8 @@ const ImageArray =  () => {
     
     
     let masterImageSet = Array.apply("null", Array(numberOfPhotos)).map(function () {})
-    console.log("masterImageSet",masterImageSet)
     let imageSetStageOne = masterImageSet
     masterImageSet.fill("empty");
-    console.log("masterImageSet",masterImageSet)
     
 
     const predictiveIndexes = (masterImageSet,numberOfPredictivePhotos) => {
@@ -166,13 +164,11 @@ const ImageArray =  () => {
     } 
 
     const predictiveIndex = predictiveIndexes(masterImageSet,numberOfPredictivePhotos);
-    console.log("predictiveIndex",predictiveIndex);
 
     const { setPredictiveIndex } = predictiveIndexDispatch(useDispatch());
 
     setPredictiveIndex(predictiveIndex);
  
-    console.log("predictiveIndex",predictiveIndex)
     
 
     const imageSetStageTwo = (masterImageSet,predictiveIndex,PredictiveFullFileNameArray) => {
@@ -196,13 +192,13 @@ const ImageArray =  () => {
       predictive.forEach(element => masterImageSet.splice(predictiveIndex[iteratePredictiveIndexTwo()],1,PredictiveFullFileNameArray[iteratePredictiveReduxValue()]))
     return masterImageSet//.slice(0,numberOfPhotos);
     } 
-    console.log("masterImageSet,predictiveIndex,predictiveFullFileNameArray",masterImageSet,predictiveIndex,predictiveFullFileNameArray);
+  
   const imageStageTwo = imageSetStageTwo(masterImageSet,predictiveIndex,predictiveFullFileNameArray)
   masterImageSet = imageSetStageTwo(masterImageSet,predictiveIndex,predictiveFullFileNameArray)
-  console.log("imageStageTwo",imageStageTwo);
+
 
   //const predictiveMatchesEarly = showMatchesOnly(imageStageTwo,predictiveIndex);
-  console.log("NumberofnBackMatches",NumberofnBackMatches)
+
 
 
 
@@ -283,11 +279,9 @@ const ImageArray =  () => {
   }
   let SUM = 0
   SUM = (numberOfPhotos - NumberofnBackMatches - NumberofnBackMatches - numberOfPredictivePhotos + 10) + nBackDegree
-  console.log("numberOfPhotos,NumberofnBackMatches,numberOfPredictivePhotos,SUM",numberOfPhotos,NumberofnBackMatches,numberOfPredictivePhotos, SUM)
 
   const nBackIndex = nBackIndexes(predictiveIndex,NumberofnBackMatches,nBackDegree,numberOfPhotos);
   const { setNBackIndex } = nBackIndexDispatch(useDispatch()); // how does this work?  It creates an object
-  console.log("nBackIndex",nBackIndex)
 
     setNBackIndex(nBackIndex);
 
@@ -361,7 +355,7 @@ const find = (needle, haystack) => {
 books = [1,2,3,"empty",5,6,7]
 
 let randomizedEmptyIndex = find("empty",stage2)
-console.log("randomizedEmptyIndex",randomizedEmptyIndex);
+
 
 randomizedEmptyIndex.forEach(element => stage2.splice(element,1,imageRemainingFileNameArray[randomizedEmptyIndex.indexOf(element)]));  
 //randomizedEmptyIndex.forEach(element => stage2.splice(element,1,alphabet[randomizedEmptyIndex.indexOf(element)]));  
@@ -381,9 +375,7 @@ randomizedEmptyIndex.forEach(element => stage2.splice(element,1,imageRemainingFi
 
     return stage2//.slice(0,numberOfPhotos);
   }
-console.log("nBackFullFileNameArray",nBackFullFileNameArray[11])
-console.log("nBackIndex",nBackIndex)
-console.log("randomizedRemainingFileNameArray TYPE",predictiveFullFileNameArray)
+
 //randomizedRemainingFileNameArray.type)
 
 
@@ -396,7 +388,6 @@ let books = [1,2,3,4]
 
 let imageStageThree = imageSetStageThree(nBackIndex, nBackDegree, imageStageTwo, nBackFullFileNameArray,randomizedRemainingFileNameArray);
 let imageStageThreeForScoringArray = imageSetStageThree(nBackIndex, nBackDegree, imageStageTwo, nBackFullFileNameArray);
-console.log("imageStageThree",imageStageThree)
    
 
 
@@ -422,7 +413,7 @@ const scoringArray = (imageStageThree,predictiveIndex,nBackIndex) => {
   let scoreLength = scorray.length;
   let scoreArray =  Array.apply("null", Array(scoreLength)).map(function () {})
   scoreArray.fill("-")
-  console.log("Newarray",scoreArray)
+
 
   predictive.forEach(element => scoreArray.splice(predictive[iteratePredictiveIndex()],1,"P"))
 

@@ -10,7 +10,7 @@ const PracticePhotospace = () => {  // this destructing allows us to use onInput
     const NBackState = useSelector(state => state.examNavigationReducer.newNBackState); // gets the NBack state from the store
     //const finalFileNameArray = useSelector(state => state.imageArrayReducer.finalFileNameArray);
     const imageSetStageThreeFromRedux = useSelector(state => state.imageArrayReducer.imageSetStageThree);
-    console.log("the array baby",imageSetStageThreeFromRedux.length);
+
 
 
     //-------------------- END of functions Fetch and Store Data for the PhotoSpace

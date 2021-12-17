@@ -39,7 +39,6 @@ const ExamNavigation = () => {
     const timerSeconds = 1000*(useSelector(state => state.nBackSettingsReducer.timerSeconds));
     const imageSetStageThreeFromRedux = useSelector(state => state.imageArrayReducer.imageSetStageThree);
 
-console.log("imageSetStageThreeFromRedux doll",imageSetStageThreeFromRedux.length,NBackState)
     const checkIfTestIsComplete = () => {
     if (NBackState > imageSetStageThreeFromRedux.length-2) {
         setRenderState(navigationPhaseTypes.nBackComplete)
@@ -79,7 +78,6 @@ console.log("imageSetStageThreeFromRedux doll",imageSetStageThreeFromRedux.lengt
 
     const timeTakenToAnswer = (timerStart) => {
         
-        console.log("Timer Start", timerStart);
         return (new Date().getTime() - timerStart)
     }
     

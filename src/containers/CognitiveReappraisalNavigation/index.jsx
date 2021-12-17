@@ -8,17 +8,12 @@ import { Button, Radio, RadioGroup, FormControl, FormLabel, FormControlLabel, ma
 import CRCSVDownloadDiv from '../CRCSVDownloadDiv';
 import { updatedArrayChecker } from '../cognitive-Reappraisal-Array/create-cognitive-Reappraisal-Array';
 //import { updatedArrayChecker } from '../cognitive-Reappraisal-Array/create-cognitive-Reappraisal-Array';
-
-
-     
+   
 const renderViewDispatch = (dispatch) => ({
     setRenderState: (nameState) => dispatch(setRenderState(nameState)),
 });
 
-
-
 //
-
 const newCRAViewStateDispatch = (dispatch) => ({
     newCRAViewState: (photoState) => dispatch(newCRAViewState(photoState)),
 });
@@ -81,7 +76,6 @@ const CognitiveReappraisalExamNavigation = () => {
 
      */
     const userResponseArray = userResponseArrayFromRedux;
-    console.log('userResponseArray',userResponseArray)
 
     const addToUserResponseArray = (value) => {
         userResponseArray.push(value);
@@ -97,7 +91,6 @@ const CognitiveReappraisalExamNavigation = () => {
     }
 
 
-
     const keyStrokeListener = (event) => {
         /*
         *  Listens for the keystoke and updates the NBackState
@@ -108,9 +101,6 @@ const CognitiveReappraisalExamNavigation = () => {
       
 
 
-        console.log('HIT',event.keyCode)
-        console.log('CRAViewState',CRAViewState);
-        console.log('userResponseArray',userResponseArray)
         switch (event.keyCode) {
             case 49:
                 newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("1");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
@@ -210,6 +200,8 @@ const CognitiveReappraisalExamNavigation = () => {
      console.log('CSVDownloadStateRedux',CSVDownloadStateRedux)
 
     const listItemsFunction = (arrayParam) => arrayParam.map((element => <p><li>{element}</li></p>));
+    
+
 
 
      const stopRenderSubmitButtonIfTestIsFinished = (finishedMessage) => {
@@ -272,8 +264,20 @@ const CognitiveReappraisalExamNavigation = () => {
             )
           
         } else {
+          
+            const switchPhotosOnInterval = () => {
+
+                newCRAViewState(CRAViewState)
+
+            }
+
+            //setTimeout(switchPhotosOnInterval(){},3000);
+        
             return (
                 
+            
+
+
                 <div className="navigationButtonSpace">
                 <Button sx={{ mt: 1, mr: 1 }} type="submit" variant="contained" onClick={()=>{newCRAViewState(CRAViewState);checkIfTestIsComplete();console.log("State",CRAViewState)}}>
                                 Next Step 
@@ -308,8 +312,15 @@ const CognitiveReappraisalExamNavigation = () => {
       
 
 
-     
-
+        useEffect(() => {
+            if (CRImageArrayFromRedux[CRAViewState].includes("titlecards")) { 
+            const timer = setTimeout(() => {
+              console.log('Advancing Card After 7 Seconds')
+              newCRAViewState(CRAViewState)
+            }, 7000);
+            
+        }
+          }, [CRAViewState]);
 
     return (
         <div className="container">

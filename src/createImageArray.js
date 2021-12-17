@@ -29,13 +29,6 @@ returns an array consisting of filenames.
 const testFolder = './images/FeeliePhotos/';
 var files = fs.readdirSync(testFolder);
 
-// CONSOLE TESTING
-/*
-console.log("first item in the array",files[0]);
-console.log("second item in the",files[1]);
-console.log("all files",files);
-*/
-// END OF CONSOLE TESTING
 
 /* Shuffle the array function (randomizes it) by using the array.sort(compareFunction)
 to create a random relationship between each value as the sort() fucntion crawls across
@@ -47,11 +40,6 @@ console.log(files.sort(function(){return 0.5 - Math.random()}));
 */
 let randomizedImageArray = files.sort(()=> 0.5 - Math.random())
 
-// CONSOLE TESTING
-/*
-console.log("randomizedImageArray",randomizedImageArray)
-*/
-// END OF CONSOLE TESTING
 
 
 // Get sub-array of the selected test photo size
@@ -112,7 +100,6 @@ excluded.sort((a,b)=>a-b);
 // adds values that will protect the predictive set of images 
 excluded.map((element) => excluded.push(element+nBackDegree));
 excluded.sort((a,b)=>a-b);
-console.log(excluded);
 
 let i = 0;
 while (i < NumberofnBackMatches) {

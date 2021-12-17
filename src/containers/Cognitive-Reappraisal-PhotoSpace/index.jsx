@@ -32,7 +32,7 @@ const CognitivePhotospace = () => {  // this destructing allows us to use onInpu
     */
 
 
-console.log("newCRAViewState",newCRAViewState);
+// console.log("newCRAViewState",newCRAViewState);
 
 
 const stopRenderSubmitButtonIfTestIsFinished = (finishedMessage) => {

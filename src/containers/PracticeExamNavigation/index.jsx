@@ -66,7 +66,7 @@ const PracticeExamNavigation = () => {
     
         const timeTakenToAnswer = (timerStart) => {
             
-            console.log("Timer Start", timerStart);
+
             return (new Date().getTime() - timerStart)
         }
         
@@ -122,7 +122,7 @@ let practiceArraySourceSlice = practiceImageArrayFromRedux[NBackState].slice(32,
 const practiceCheckResult = (buttonSwitchParam,imageSourceStringParam) => {
         switch (buttonSwitchParam) {
             case 'nBackButton':    
-            console.log("Two Back Route");
+
                 if (imageSourceStringParam.includes("Two-Back-Hits",0) && practiceImageArrayFromRedux[NBackState] == practiceImageArrayFromRedux[NBackState-2] ) {     
                     return {modalTitle: "CORRECT!", modalMessage: "The image you are looking at appeared two images prior to this one. You're getting it"};
                 }
@@ -150,7 +150,7 @@ const practiceCheckResult = (buttonSwitchParam,imageSourceStringParam) => {
             break;
 
             case 'uniqueButton':
-                console.log("Unique Route");
+
                 if (imageSourceStringParam.includes("RemainingPictures",0)) {     
                     return {modalTitle: "CORRECT!", modalMessage: "This is a unique image.  You have not seen it before."}; 
                 }

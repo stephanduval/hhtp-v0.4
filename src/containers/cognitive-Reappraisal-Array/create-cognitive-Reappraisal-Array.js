@@ -36,13 +36,11 @@ import { filesToPhotosObject } from "../../functions";
                 cognitiveImagesArrayWithTitleCards.push(titleCardImagesFullFileNameArray[2])
                 //arrayParam.splice(index,0,aa.index,)
 
-                console.log(x,"PizzaParty",index)
              
              } else {
                cognitiveImagesArrayWithTitleCards.push(titleCardImagesFullFileNameArray[1])
                cognitiveImagesArrayWithTitleCards.push(arrayParam[index])
                cognitiveImagesArrayWithTitleCards.push(titleCardImagesFullFileNameArray[2])
-                console.log(x,"noPizza")
 
              }
             })
