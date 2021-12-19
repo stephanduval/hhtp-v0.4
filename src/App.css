@@ -162,6 +162,7 @@ H1 {
       max-width: 100%;
       height: auto;
       object-fit: scale-down;
+      border: 5px;
       border-style: solid;
       border-color: red;
       display:inline-block

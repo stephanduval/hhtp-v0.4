@@ -19,28 +19,32 @@ import { filesToPhotosObject } from "../../functions";
     
     const titleCardImages = filesToPhotosObject(require.context('./../../../public/images/cognitive-reappraisal/titlecards/', false, /\.(png|jpe?g|svg)$/));
     const titleCardImagesFileNameArray = Object.keys(titleCardImages);
-    const titleCardImagesFullFileNameArray = titleCardImagesFileNameArray.map(e => './public/images/cognitive-reappraisal/titlecards/' + e)
+    export const titleCardImagesFullFileNameArray = titleCardImagesFileNameArray.map(e => './public/images/cognitive-reappraisal/titlecards/' + e)
 
     
 
     function addTitleCardsToCognitiveImagesArray(arrayParam) {
         let originalArray = [...arrayParam];
         let cognitiveImagesArrayWithTitleCards = [];
+        cognitiveImagesArrayWithTitleCards.push(titleCardImagesFullFileNameArray[2]);
         //cognitiveImagesArrayWithTitleCards.fill("empty");
         let decreaseString = "decrease";
         let newIndex = 0;
+        let decreaseCard = titleCardImagesFullFileNameArray[0];
+        let relaxCard = titleCardImagesFullFileNameArray[2];
+        let lookCard = titleCardImagesFullFileNameArray[1];
         arrayParam.forEach((x,index)=> {
              if (x.includes(decreaseString)) {
-                cognitiveImagesArrayWithTitleCards.push(titleCardImagesFullFileNameArray[0])
+                cognitiveImagesArrayWithTitleCards.push(decreaseCard)
                 cognitiveImagesArrayWithTitleCards.push(arrayParam[index])
-                cognitiveImagesArrayWithTitleCards.push(titleCardImagesFullFileNameArray[2])
+                cognitiveImagesArrayWithTitleCards.push(relaxCard)
                 //arrayParam.splice(index,0,aa.index,)
 
              
              } else {
-               cognitiveImagesArrayWithTitleCards.push(titleCardImagesFullFileNameArray[1])
+               cognitiveImagesArrayWithTitleCards.push(lookCard)
                cognitiveImagesArrayWithTitleCards.push(arrayParam[index])
-               cognitiveImagesArrayWithTitleCards.push(titleCardImagesFullFileNameArray[2])
+               cognitiveImagesArrayWithTitleCards.push(relaxCard)
 
              }
             })

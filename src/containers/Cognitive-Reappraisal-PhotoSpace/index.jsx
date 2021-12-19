@@ -1,6 +1,8 @@
 import React from 'react';
 import './PhotoSpace.css';
 import { useSelector } from 'react-redux';
+import { titleCardImagesFullFileNameArray, finalRandomizedCombinedCognitiveImagesArray} from '../cognitive-Reappraisal-Array/create-cognitive-Reappraisal-Array'
+import { blue } from '@material-ui/core/colors';
 
 
      
@@ -35,6 +37,36 @@ const CognitivePhotospace = () => {  // this destructing allows us to use onInpu
 // console.log("newCRAViewState",newCRAViewState);
 
 
+function setPhotoBorderColour(arrayParam) {
+    let borderColour = 'black'
+    let originalArray = [...arrayParam];
+    let cognitiveImagesArrayWithTitleCards = [];
+    //cognitiveImagesArrayWithTitleCards.fill("empty");
+    let decreaseString = "decrease";
+    let lookString = "look"
+    let newIndex = 0;
+    let decreaseCard = titleCardImagesFullFileNameArray[0];
+    let relaxCard = titleCardImagesFullFileNameArray[2];
+    let lookCard = titleCardImagesFullFileNameArray[1];
+    
+         if (arrayParam[CRAViewState].includes(decreaseString)) {
+            borderColour = 'green'
+            //arrayParam.splice(index,0,aa.index,)
+
+         
+         } else if (arrayParam[CRAViewState].includes(lookString)){
+            borderColour = 'blue'
+
+         } else {
+            borderColour = 'black'
+         }
+        
+        return borderColour
+         }
+
+         console.log("CRAViewState",CRAViewState)
+         console.log("titleCardImagesFullFileNameArray",titleCardImagesFullFileNameArray)
+               
 const stopRenderSubmitButtonIfTestIsFinished = (finishedMessage) => {
     if (CRAViewState == CRImageArrayFromRedux.length) {
         return (
@@ -44,11 +76,11 @@ const stopRenderSubmitButtonIfTestIsFinished = (finishedMessage) => {
                 </div>
                 )
         
-    
+                
             
     } else {
 return (
-<img src={process.env.PUBLIC_URL + CRImageArrayFromRedux[newCRAViewState]} alt='Current nBack'/>
+<img src={process.env.PUBLIC_URL + CRImageArrayFromRedux[newCRAViewState]} alt='Current nBack' style={{borderColor: setPhotoBorderColour(finalRandomizedCombinedCognitiveImagesArray)}}/>
 )
     }
 }
