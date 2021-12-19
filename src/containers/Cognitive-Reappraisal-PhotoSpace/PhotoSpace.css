@@ -1,9 +1,0 @@
-.photospace {
-    display: grid;
-    height: 25em;
-    width: 100%;
-    background-color: var(--grey5);
-    justify-content: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    }

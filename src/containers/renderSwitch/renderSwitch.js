@@ -87,6 +87,7 @@ export const navigationPhaseTypes = {
                 return <div>
                             <Settings/>
                             <ReturnToMainPageButton/>
+                            
                         </div>
                 break;
 
@@ -95,8 +96,10 @@ export const navigationPhaseTypes = {
     
                 return <div >
                             <PracticePhotospace/>
+
+                            <PracticeExamNavigation/>  
+
                         
-                            <PracticeExamNavigation/>
                         </div>
                 break;
 
@@ -105,7 +108,7 @@ export const navigationPhaseTypes = {
             // console.log('default');
             return <div><IntroHeader/>
  
-                        <div className="center">
+                        <div className="navigationBar">
                         <StartTestButton/>
                         <StartPracticeTestButton/>
                         <SettingsButton/>

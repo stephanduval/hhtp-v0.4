@@ -1,5 +1,4 @@
 import React from 'react';
-import './Settings.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { setRenderState } from '../ExamNavigation/actions';
 import { navigationPhaseTypes } from '../renderSwitch/renderSwitch';

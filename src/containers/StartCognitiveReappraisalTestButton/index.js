@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../App.css';
 import './StartCognitiveReappraisalTestButton.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { setRenderState } from '../ExamNavigation/actions';
@@ -20,7 +21,7 @@ const StartCognitiveReappraisalTestButton = () => {  // this destructing allows 
     //-------------------- END of functions Fetch and Store Data for the setRenderState
     return (//
         
-<div className="testButton">
+<div className="mainPageButtons">
 
 
 <Button color ="secondary" variant="contained" stringvalue={"Start Cognitive Reappraisal Test"} onClick={()=>{setRenderState(navigationPhaseTypes.cognitiveReappraisalTest);console.log("clicked  cognitive reappraisal test start button")}}>Start Cognitive Reappraisal Test

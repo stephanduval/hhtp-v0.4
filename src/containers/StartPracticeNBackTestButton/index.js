@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../App.css';
 import './StartPracticeNBackTestButton.css';
 import { useDispatch } from 'react-redux';
 import { setRenderState } from '../ExamNavigation/actions';
@@ -21,7 +22,7 @@ const StartPracticeTestButton = () => {  // this destructing allows us to use on
     //-------------------- END of functions Fetch and Store Data for the setRenderState
     return (//
         
-<div className="StartPracticeTestButton">
+<div className="mainPageButtons">
     
 
 <Button color ="secondary" variant="contained" stringvalue={"Same as *n* photos Back"} onClick={()=>{setRenderState(navigationPhaseTypes.practiceNBackTest)}}>Start Practice NBack Test

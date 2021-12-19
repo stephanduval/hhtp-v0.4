@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../App.css';
 import './StartTestButton.css';
 import { useDispatch } from 'react-redux';
 import { setRenderState } from '../ExamNavigation/actions';
@@ -21,7 +22,7 @@ const StartTestButton = () => {  // this destructing allows us to use onInputCha
     //-------------------- END of functions Fetch and Store Data for the setRenderState
     return (//
         
-<div className="startTestButton">
+<div className="mainPageButtons">
     
 
 <Button color ="secondary" variant="contained" stringvalue={"Same as *n* photos Back"} onClick={()=>{setRenderState(navigationPhaseTypes.nBackTest)}}>Start NBack Test

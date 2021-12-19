@@ -23,7 +23,7 @@ function App() {
   <h1>Loading</h1> :
 
   (
-    <div className="App">
+    <div className="appWrapper">
     <ImageArray></ImageArray>
     <PracticeImageArray></PracticeImageArray>
     

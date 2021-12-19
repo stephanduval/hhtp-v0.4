@@ -1,5 +1,4 @@
 import React from 'react';
-import './PhotoSpace.css';
 import { useSelector } from 'react-redux';
 import { titleCardImagesFullFileNameArray, finalRandomizedCombinedCognitiveImagesArray} from '../cognitive-Reappraisal-Array/create-cognitive-Reappraisal-Array'
 import { blue } from '@material-ui/core/colors';
