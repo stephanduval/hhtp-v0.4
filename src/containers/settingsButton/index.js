@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../App.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { setRenderState } from '../ExamNavigation/actions';
 import { navigationPhaseTypes } from '../renderSwitch/renderSwitch';
@@ -20,7 +21,7 @@ const SettingsButton = () => {  // this destructing allows us to use onInputChan
     //-------------------- END of functions Fetch and Store Data for the setRenderState
     return (//
         
-<div className="settings">
+<div className="mainPageButtons">
 
 
 <Button color ="secondary" variant="contained" stringvalue={"Start Cognitive Reappraisal Test"} onClick={()=>{setRenderState(navigationPhaseTypes.settings)}}>Settings
