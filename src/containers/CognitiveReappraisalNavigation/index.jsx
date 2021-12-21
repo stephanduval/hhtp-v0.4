@@ -212,7 +212,6 @@ const CognitiveReappraisalExamNavigation = () => {
                     {CSVDownloadStateRedux}
                     {/* CREATE A CONDITION THAT THE RETURN BUTTON ONLY APPEARS AFTER THE CSV is DOWNLOADED */}
                     <CRCSVDownloadDiv/>
-                    {ReturnToMainPageButton()}
 
                 </div>
                     )
