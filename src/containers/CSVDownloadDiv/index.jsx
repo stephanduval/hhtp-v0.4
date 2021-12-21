@@ -80,9 +80,13 @@ const makeCSVString = (initialString) => {
 
 };
 
-
- 
 const csvData = makeCSVString(csvString);
+
+const dateAndTimeOfCSVCreation = new Date();
+console.log("dateAndTimeOfCSVCreation",dateAndTimeOfCSVCreation)
+console.log("dateAndTimeOfCSVCreation",dateAndTimeOfCSVCreation.getDate())
+const dateForCSVFileName =  '_' + dateAndTimeOfCSVCreation.getFullYear() + '-' + dateAndTimeOfCSVCreation.getMonth() + '-' + dateAndTimeOfCSVCreation.getDate()+ '_' + dateAndTimeOfCSVCreation.getHours() + 'h' + dateAndTimeOfCSVCreation.getMinutes() + 'm' 
+const CSVFileNameString = 'ID_nBack_CSV'  + dateForCSVFileName + '..csv';
 
 
 //let canvas = 's';
@@ -92,7 +96,7 @@ const csvData = makeCSVString(csvString);
     return (
             
         <div>
-               <CSVLink filename='ID_nBack_CSV..csv' data={csvData}>Download CSV</CSVLink>
+               <CSVLink filename={CSVFileNameString} data={csvData}>Download CSV</CSVLink>
             
   
         </div>

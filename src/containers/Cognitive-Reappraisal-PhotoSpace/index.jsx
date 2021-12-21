@@ -63,8 +63,6 @@ function setPhotoBorderColour(arrayParam) {
         return borderColour
          }
 
-         console.log("CRAViewState",CRAViewState)
-         console.log("titleCardImagesFullFileNameArray",titleCardImagesFullFileNameArray)
                
 const stopRenderSubmitButtonIfTestIsFinished = (finishedMessage) => {
     if (CRAViewState == CRImageArrayFromRedux.length) {

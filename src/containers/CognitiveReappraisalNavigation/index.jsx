@@ -197,7 +197,6 @@ const CognitiveReappraisalExamNavigation = () => {
  
 
     const listItems = userResponseArray.map((number => <p><li>{number}</li></p>));
-     console.log('CSVDownloadStateRedux',CSVDownloadStateRedux)
 
     const listItemsFunction = (arrayParam) => arrayParam.map((element => <p><li>{element}</li></p>));
     
@@ -312,9 +311,11 @@ const CognitiveReappraisalExamNavigation = () => {
 
 
         useEffect(() => {
-            if (CRImageArrayFromRedux[CRAViewState].includes("titlecards")) { 
+            if (CRAViewState == CRImageArrayFromRedux.length) {
+                
+
+            } else if (CRImageArrayFromRedux[CRAViewState].includes("titlecards")) { 
             const timer = setTimeout(() => {
-              console.log('Advancing Card After 7 Seconds')
               newCRAViewState(CRAViewState)
             }, 7000);
             
