@@ -2,10 +2,11 @@
 import { ActionTypes } from "./constants";
 
 const defaultState = {
-    CRAViewState: 0,
+    CRAViewState: 133,
     userResponseArray: [],
     renderView: "navigationPhaseTypes.introductionPage",
     CSVDownloaded: false,
+    scoringArray: [],
 
 };
 
@@ -19,6 +20,8 @@ export default function craNavigation(state = defaultState, action) {
             return { ...state, setRenderState: action.payload };
         case ActionTypes.CSVSTATE:
             return { ...state, CSVDownloaded: action.payload };
+            case ActionTypes.SCORING_ARRAY:
+                return { ...state, scoringArray: action.payload };
         default:
             return state;
     }

@@ -11,10 +11,8 @@ import { useDispatch, useSelector } from 'react-redux';
 let CognitiveReappraisalArray = CRAConstant.randomizedCognitiveReappraisalArrayFileNameArray;
 
 
-
 let resultCheckerArray = [
     {name: "Random Cognitive Reappraisal Array", arrayData: CognitiveReappraisalArray},
-    {name: "ScoringArray", arrayData: ScoringArray},
     ];
 
 

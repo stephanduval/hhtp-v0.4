@@ -19,3 +19,7 @@ export const setCSVDownloadState = (aBooleanValue) => ({
     type: ActionTypes.CSVSTATE,  // from the constants file
     payload: aBooleanValue
 })
+export const newCSVScoringArray = (scoringArray) => ({
+    type: ActionTypes.SCORING_ARRAY,  // from the constants file
+    payload: scoringArray
+})

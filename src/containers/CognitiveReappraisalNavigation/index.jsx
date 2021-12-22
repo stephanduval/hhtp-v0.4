@@ -2,11 +2,12 @@ import '../../App.css';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { newCRAViewState, setRenderState, newCRAUserResponseArray, setCSVDownloadState } from './actions';
+import { newCRAViewState, setRenderState, newCRAUserResponseArray, setCSVDownloadState, newCSVScoringArray } from './actions';
 import { navigationPhaseTypes } from '../renderSwitch/renderSwitch';
 import { Button, Radio, RadioGroup, FormControl, FormLabel, FormControlLabel, makeStyles } from '@material-ui/core';
 import CRCSVDownloadDiv from '../CRCSVDownloadDiv';
 import { updatedArrayChecker } from '../cognitive-Reappraisal-Array/create-cognitive-Reappraisal-Array';
+import { scoringArray } from '../../functions';
 //import { updatedArrayChecker } from '../cognitive-Reappraisal-Array/create-cognitive-Reappraisal-Array';
    
 const renderViewDispatch = (dispatch) => ({
@@ -29,6 +30,10 @@ const setCRAUserResponseArrayDispatch = (dispatch) => ({
 
 const cSVDownloadStateDispatch = (dispatch) => ({
     setCSVDownloadState: (aboolean) => dispatch(setCSVDownloadState(aboolean)),
+});
+
+const newCSVScoringDispatch = (dispatch) => ({
+    newCSVScoringArray: (scoringArray) => dispatch(newCSVScoringArray(scoringArray)),
 });
 
 const useStyles = makeStyles ({
@@ -63,6 +68,7 @@ const CognitiveReappraisalExamNavigation = () => {
     const { newCRAViewState } = newCRAViewStateDispatch(useDispatch());
     const { newCRAUserResponseArray } = setCRAUserResponseArrayDispatch(useDispatch());
     const { setCSVDownloadState } = cSVDownloadStateDispatch(useDispatch());
+    //const { newCSVScoringArray } = newCSVScoringDispatch(useDispatch());
 
     const a = useSelector(state => state.craNavigationReducer);
     const CRImageArrayFromRedux = useSelector(state => state.cRImageArrayReducer.cRImageArray);
@@ -308,6 +314,15 @@ const CognitiveReappraisalExamNavigation = () => {
         let ScoringArray = createScoringArrayFromfinalRandomizedCombinedCognitiveImagesArray(CRImageArrayFromRedux)
       
 
+        const newCSVScoringDispatch = (dispatch) => ({
+            newCSVScoringArray: (scoringArray) => dispatch(newCSVScoringArray(scoringArray)),
+                });
+
+            newCSVScoringArray(ScoringArray);
+
+        let ScoringArrayFromRedux = useSelector(state => state.cRImageArrayReducer.scoringArray);
+        console.log("ScoringArrayFromRedux",ScoringArrayFromRedux)
+
 
         useEffect(() => {
             if (CRAViewState == CRImageArrayFromRedux.length) {
@@ -324,7 +339,7 @@ const CognitiveReappraisalExamNavigation = () => {
     return (
         <div className="container">
         <div>{stopRenderSubmitButtonIfTestIsFinished('You\'re All Done!  Take a Hike!')}</div>          
-{/* 
+
         <div className="buttonSpace">
 
         
@@ -335,13 +350,14 @@ const CognitiveReappraisalExamNavigation = () => {
         
         <div>{listItemsFunction(ScoringArray)}</div>
         <div>{listItemsFunction(userResponseArray)}</div>
-         <div>  State: {CRAViewState}  User Response Array: {listItems} </div> 
+         <div> {listItems} </div> 
 
         
-        </div> */}
+        </div>
         </div>
 
         )
 };
 
 export default CognitiveReappraisalExamNavigation;
+export { scoringArray }

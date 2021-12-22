@@ -17,7 +17,7 @@ import CognitivePhotospace from '../Cognitive-Reappraisal-PhotoSpace';
 import CognitiveReappraisalExamNavigation from '../CognitiveReappraisalNavigation';
 import '../../App.css';
 import ReturnToMainPageButton from '../ReturntoMainPageButton';
-
+import CognitiveReappraisalArrayChecker from '../Cognitive-Reappraisal-Array-Checker';
 
 
 export const navigationPhaseTypes = {  

@@ -1,7 +1,7 @@
 import './CSVDownload.css';
 import React from 'react';
 import { useSelector, useDispatch} from 'react-redux';
-import {scoringArray, createArrayOfIndexes} from '../../functions.js'
+import { scoringArray } from '../'
 import { CSVLink } from 'react-csv';
 import { setCSVDownloadState } from '../CognitiveReappraisalNavigation/actions';
 //import { ExpansionPanelDetails } from '@material-ui/core';
@@ -22,6 +22,7 @@ const CRCSVDownloadDiv = () => {
 
   
 const userResponseArrayFromRedux = useSelector(state => state.craNavigationReducer.userResponseArray);
+const CRImageArrayFromRedux = useSelector(state => state.cRImageArrayReducer.cRImageArray);
 
 
 
@@ -50,7 +51,9 @@ const makeCSVString = (initialString) => {
 
   for (let n = 0; n < userResponseArrayFromRedux.length ; n++){
     initialString = initialString.concat(userResponseArrayFromRedux[n]+",");
+    initialString = initialString.concat(CRImageArrayFromRedux[n]+",");
     initialString = initialString.concat("\n")
+    
     
     // initialString ..
   }
