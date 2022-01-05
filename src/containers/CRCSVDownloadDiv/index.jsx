@@ -1,7 +1,6 @@
 import './CSVDownload.css';
 import React from 'react';
 import { useSelector, useDispatch} from 'react-redux';
-import { scoringArray } from '../'
 import { CSVLink } from 'react-csv';
 import { setCSVDownloadState } from '../CognitiveReappraisalNavigation/actions';
 //import { ExpansionPanelDetails } from '@material-ui/core';

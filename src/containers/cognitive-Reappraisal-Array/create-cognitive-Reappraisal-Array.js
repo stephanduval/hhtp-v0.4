@@ -29,6 +29,7 @@ import { filesToPhotosObject } from "../../functions";
         cognitiveImagesArrayWithTitleCards.push(titleCardImagesFullFileNameArray[2]);
         //cognitiveImagesArrayWithTitleCards.fill("empty");
         let decreaseString = "decrease";
+        let ratingString = "rating"
         let newIndex = 0;
         let decreaseCard = titleCardImagesFullFileNameArray[0];
         let relaxCard = titleCardImagesFullFileNameArray[2];
@@ -37,6 +38,7 @@ import { filesToPhotosObject } from "../../functions";
              if (x.includes(decreaseString)) {
                 cognitiveImagesArrayWithTitleCards.push(decreaseCard)
                 cognitiveImagesArrayWithTitleCards.push(arrayParam[index])
+                cognitiveImagesArrayWithTitleCards.push(ratingString)
                 cognitiveImagesArrayWithTitleCards.push(relaxCard)
                 //arrayParam.splice(index,0,aa.index,)
 
@@ -44,6 +46,7 @@ import { filesToPhotosObject } from "../../functions";
              } else {
                cognitiveImagesArrayWithTitleCards.push(lookCard)
                cognitiveImagesArrayWithTitleCards.push(arrayParam[index])
+               cognitiveImagesArrayWithTitleCards.push(ratingString)
                cognitiveImagesArrayWithTitleCards.push(relaxCard)
 
              }

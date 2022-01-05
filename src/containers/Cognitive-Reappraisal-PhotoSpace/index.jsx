@@ -2,8 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { titleCardImagesFullFileNameArray, finalRandomizedCombinedCognitiveImagesArray} from '../cognitive-Reappraisal-Array/create-cognitive-Reappraisal-Array'
 import { blue } from '@material-ui/core/colors';
-
-
+import CognitiveReappraisalExamNavigation from '../CognitiveReappraisalNavigation';
      
 
 
@@ -62,6 +61,7 @@ function setPhotoBorderColour(arrayParam) {
         
         return borderColour
          }
+console.log("CRImageArrayFromRedux[newCRAViewState]",CRImageArrayFromRedux[newCRAViewState])
 
                
 const stopRenderSubmitButtonIfTestIsFinished = (finishedMessage) => {
@@ -75,7 +75,16 @@ const stopRenderSubmitButtonIfTestIsFinished = (finishedMessage) => {
         
                 
             
-    } else {
+    } else if (CRImageArrayFromRedux[newCRAViewState] === './') {
+        console.log("navigate")
+        return( 
+           
+            <div>
+            <CognitiveReappraisalExamNavigation className="navigationSpace"/>
+            </div>
+        )
+
+    }else {
 return (
 <img src={process.env.PUBLIC_URL + CRImageArrayFromRedux[newCRAViewState]} alt='Current nBack' style={{borderColor: setPhotoBorderColour(finalRandomizedCombinedCognitiveImagesArray)}}/>
 )
@@ -83,7 +92,7 @@ return (
 }
 
     return (
-        
+
 <div className="photospace">
 
 {stopRenderSubmitButtonIfTestIsFinished('END OF EXAM')}
