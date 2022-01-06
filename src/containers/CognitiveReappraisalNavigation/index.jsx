@@ -225,7 +225,7 @@ const CognitiveReappraisalExamNavigation = () => {
             
         
                 
-        } else if (!CRImageArrayFromRedux[CRAViewState].includes("titlecards")) {
+        } else if (CRImageArrayFromRedux[CRAViewState].includes("hownegative")) {
             return (
                 <div className="navigationButtonSpace">
                                 {renderCognitiveReappraisalView(1)}
@@ -328,7 +328,7 @@ const CognitiveReappraisalExamNavigation = () => {
         useEffect(() => {
             if (CRAViewState == CRImageArrayFromRedux.length) {
             } else if (!CRImageArrayFromRedux[CRAViewState].includes("hownegative")) { 
-                console.log("Navigation Timer ON",CRImageArrayFromRedux[CRAViewState],titleCardImagesFullFileNameArray[1]);
+                console.log("Navigation Timer ON",CRImageArrayFromRedux[CRAViewState]);
                 console.log(typeof CRImageArrayFromRedux[CRAViewState]);
             const timer = setTimeout(() => {
               newCRAViewState(CRAViewState)

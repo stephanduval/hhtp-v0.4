@@ -26,7 +26,6 @@ import { filesToPhotosObject } from "../../functions";
     function addTitleCardsToCognitiveImagesArray(arrayParam) {
         let originalArray = [...arrayParam];
         let cognitiveImagesArrayWithTitleCards = [];
-        cognitiveImagesArrayWithTitleCards.push(titleCardImagesFullFileNameArray[3]);
         //cognitiveImagesArrayWithTitleCards.fill("empty");
         let decreaseString = "decrease";
         let ratingString = "rating"
@@ -35,6 +34,7 @@ import { filesToPhotosObject } from "../../functions";
         let relaxCard = titleCardImagesFullFileNameArray[3];  //3
         let lookCard = titleCardImagesFullFileNameArray[2]; //2
         let howNegativeCard = titleCardImagesFullFileNameArray[1]; //1
+        cognitiveImagesArrayWithTitleCards.push(relaxCard);
         arrayParam.forEach((x,index)=> {
              if (x.includes(decreaseString)) {
                 cognitiveImagesArrayWithTitleCards.push(decreaseCard)
