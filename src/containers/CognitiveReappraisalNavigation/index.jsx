@@ -6,10 +6,11 @@ import { newCRAViewState, setRenderState, newCRAUserResponseArray, setCSVDownloa
 import { navigationPhaseTypes } from '../renderSwitch/renderSwitch';
 import { Button, Radio, RadioGroup, FormControl, FormLabel, FormControlLabel, makeStyles } from '@material-ui/core';
 import CRCSVDownloadDiv from '../CRCSVDownloadDiv';
-import { updatedArrayChecker } from '../cognitive-Reappraisal-Array/create-cognitive-Reappraisal-Array';
+import { updatedArrayChecker, titleCardImagesFullFileNameArray } from '../cognitive-Reappraisal-Array/create-cognitive-Reappraisal-Array';
 import { scoringArray } from '../../functions';
 //import { updatedArrayChecker } from '../cognitive-Reappraisal-Array/create-cognitive-Reappraisal-Array';
-   
+
+
 const renderViewDispatch = (dispatch) => ({
     setRenderState: (nameState) => dispatch(setRenderState(nameState)),
 });
@@ -298,7 +299,7 @@ const CognitiveReappraisalExamNavigation = () => {
         let originalArray = [...arrayParam];
         originalArray.forEach((x,index) => {
 
-            if (!x.includes("titlecards")) {
+            if (!x.includes("titlecards") && x.length > 3) {
                 newArray.push(x);
             };
 
@@ -326,9 +327,9 @@ const CognitiveReappraisalExamNavigation = () => {
 
         useEffect(() => {
             if (CRAViewState == CRImageArrayFromRedux.length) {
-                
-
-            } else if (CRImageArrayFromRedux[CRAViewState].includes("titlecards")) { 
+            } else if (!CRImageArrayFromRedux[CRAViewState].includes("hownegative")) { 
+                console.log("Navigation Timer ON",CRImageArrayFromRedux[CRAViewState],titleCardImagesFullFileNameArray[1]);
+                console.log(typeof CRImageArrayFromRedux[CRAViewState]);
             const timer = setTimeout(() => {
               newCRAViewState(CRAViewState)
             }, 7000);

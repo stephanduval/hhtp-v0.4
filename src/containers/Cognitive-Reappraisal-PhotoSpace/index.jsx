@@ -42,10 +42,11 @@ function setPhotoBorderColour(arrayParam) {
     //cognitiveImagesArrayWithTitleCards.fill("empty");
     let decreaseString = "decrease";
     let lookString = "look"
-    let newIndex = 0;
-    let decreaseCard = titleCardImagesFullFileNameArray[0];
-    let relaxCard = titleCardImagesFullFileNameArray[2];
-    let lookCard = titleCardImagesFullFileNameArray[1];
+    let newIndex = 0;        
+    let decreaseCard = titleCardImagesFullFileNameArray[0]; //0
+    let relaxCard = titleCardImagesFullFileNameArray[3];  //3
+    let lookCard = titleCardImagesFullFileNameArray[2]; //2
+    let howNegativeCard = titleCardImagesFullFileNameArray[1]; //1
     
          if (arrayParam[CRAViewState].includes(decreaseString)) {
             borderColour = 'green'
@@ -75,7 +76,7 @@ const stopRenderSubmitButtonIfTestIsFinished = (finishedMessage) => {
         
                 
             
-    } else if (CRImageArrayFromRedux[newCRAViewState] === './') {
+    } else if (CRImageArrayFromRedux[newCRAViewState] === titleCardImagesFullFileNameArray[1]) {
         console.log("navigate")
         return( 
            
