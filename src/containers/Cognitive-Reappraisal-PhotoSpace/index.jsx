@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { titleCardImagesFullFileNameArray, finalRandomizedCombinedCognitiveImagesArray} from '../cognitive-Reappraisal-Array/create-cognitive-Reappraisal-Array'
+import { titleCardImagesFullFileNameArray, finalRandomizedCombinedCognitiveImagesArray, randomizedCombinedCognitiveImagesArray} from '../cognitive-Reappraisal-Array/create-cognitive-Reappraisal-Array'
 import { blue } from '@material-ui/core/colors';
 import CognitiveReappraisalExamNavigation from '../CognitiveReappraisalNavigation';
      

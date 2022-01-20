@@ -5,7 +5,6 @@ import {scoringArray, createArrayOfIndexes} from './../../functions.js'
 import { CSVLink } from 'react-csv';
 //import { ExpansionPanelDetails } from '@material-ui/core';
 
-
 const CSVDownloadDiv = () => {
 
 

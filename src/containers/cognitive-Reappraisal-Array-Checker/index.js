@@ -4,6 +4,8 @@ import { checkForEmptyinArray, showMatchesOnly } from '../n-back-image-array/fun
 import { filesToPhotosObject } from '../../functions.js';
 import * as CRAConstant from '../cognitive-Reappraisal-Array/constants';
 import { useDispatch, useSelector } from 'react-redux';
+import { randomizedCombinedCognitiveImagesArray } from '../cognitive-Reappraisal-Array/create-cognitive-Reappraisal-Array';
+
 
 
 

@@ -2,7 +2,7 @@
 import { ActionTypes } from "./constants";
 
 const defaultState = {
-    cRImageArray: [1,2,3,4,5,],
+    cRImageArray: [],
 };
 
 export default function crImageArrayToStore(state = defaultState, action) { 

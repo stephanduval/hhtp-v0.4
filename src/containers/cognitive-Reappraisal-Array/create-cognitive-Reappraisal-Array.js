@@ -97,6 +97,6 @@ import { filesToPhotosObject } from "../../functions";
     //let updatedArrayChecker = finalRandomizedCombinedCognitiveImagesArray.map(e => e.slice(32,40));
 
 
-    export {updatedArrayChecker}
+    export {updatedArrayChecker, randomizedCombinedCognitiveImagesArray}
 
 

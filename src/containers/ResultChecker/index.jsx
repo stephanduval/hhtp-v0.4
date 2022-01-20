@@ -1,5 +1,5 @@
-import React from 'react';
-import { useSelector} from 'react-redux';
+import React, { useEffect, useLayoutEffect } from 'react';
+import { useSelector, connect} from 'react-redux';
 import {scoringArray, createArrayOfIndexes} from './../../functions.js'
 import './ResultChecker.css';
 
@@ -47,7 +47,11 @@ let resultCheckerArray = [
 {name: "Index", arrayData: arrayOfIndexes},
 ];
 
+
+
 const tableGenerator = (ReduxArray) => {
+
+
     return (
         <div className="resultsChecker">
       <table>
@@ -83,8 +87,6 @@ const tableGenerator = (ReduxArray) => {
 // ======= END OF RESULTS CHECKER DATA
 
 
-
-
 return (
 
 
@@ -92,7 +94,7 @@ return (
 <h2> These are the results of a single examination</h2>
 <h2>You can download the results in CSV format above.</h2>
 <h2>Only columns 4,5 and 6 are relevant to the research, the rest are temporary troubleshooting the program</h2>
-
+<div elementId="resultCheckerTable"></div>
 {tableGenerator(resultCheckerArray)}
 <p></p>
 
