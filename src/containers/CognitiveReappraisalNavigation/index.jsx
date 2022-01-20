@@ -333,7 +333,7 @@ const CognitiveReappraisalExamNavigation = () => {
             const timer = setTimeout(() => {
               newCRAViewState(CRAViewState)
             }, 7000);
-            
+            // add conditionals:  2000ms for the "Look" and "decrease" sections
         }
           }, [CRAViewState]);
 

@@ -38,8 +38,6 @@ const userAnswerTimeArray = useSelector(state => state.examNavigationReducer.ans
 
 let resultCheckerArray = [
   {name: "Index", arrayData: arrayOfIndexes},
-  {name: "imageSetStageOne", arrayData: shortenedimageSetStageOne},
-  {name: "imageStageTwo", arrayData: shortenedImageStageTwo},
   {name: "Image File Name (Stage 3)", arrayData: imageSetStageThreeFromRedux},
   {name: "Correct Score", arrayData: shortenedcorrectScoresrray},
   {name: "User Response", arrayData: userResponseArray},
