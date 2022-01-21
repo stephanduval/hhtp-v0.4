@@ -8,6 +8,8 @@ const defaultState = {
     CSVDownloaded: false,
     scoringArray: [],
 
+
+
 };
 
 export default function craNavigation(state = defaultState, action) { 

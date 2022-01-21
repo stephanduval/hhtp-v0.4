@@ -6,6 +6,7 @@ const defaultState = {
     userResponseArray: [],
     renderView: "navigationPhaseTypes.introductionPage",
     answerTimeArray: [],
+    duplicateImageArray: [],
 
 };
 
@@ -19,6 +20,8 @@ export default function examNavigation(state = defaultState, action) {
             return { ...state, renderView: action.payload };
         case ActionTypes.USER_ANSWER_TIME_ARRAY:
             return {...state, answerTimeArray: action.payload}
+        case ActionTypes.DUPLICATE_IMAGE_ARRAY:
+            return { ...state, duplicateImageArray: action.payload };
         default:
             return state;
     }

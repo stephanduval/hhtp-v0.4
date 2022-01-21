@@ -5,6 +5,7 @@ import {scoringArray, createArrayOfIndexes} from './../../functions.js'
 import { CSVLink } from 'react-csv';
 //import { ExpansionPanelDetails } from '@material-ui/core';
 
+
 const CSVDownloadDiv = () => {
 
 
@@ -18,10 +19,12 @@ const userResponseArray = useSelector(state => state.examNavigationReducer.userR
 const nBackIndexFromReduxStore = useSelector(state => state.imageArrayReducer.nBackIndex);
 const predictiveIndexFromReduxStore = useSelector(state => state.imageArrayReducer.predictiveIndex);
 //const NBackState = useSelector(state => state.examNavigationReducer.newNBackState);
+const duplicatedImageArray = useSelector(state => state.examNavigationReducer.duplicateImageArray);
 
 
 const correctScoresrray = scoringArray(ReduxFinalFileNameArray,predictiveIndexFromReduxStore,nBackIndexFromReduxStore);
-
+console.log("imageSetStageThreeFromRedux",imageSetStageThreeFromRedux);
+console.log("duplicatedImageArray",duplicatedImageArray);
   
 const arrayOfIndexes = createArrayOfIndexes(ReduxFinalFileNameArray);
 //const shortenedReduxFinalFileNameArray = ReduxFinalFileNameArray.map(element => element);
@@ -38,7 +41,7 @@ const userAnswerTimeArray = useSelector(state => state.examNavigationReducer.ans
 
 let resultCheckerArray = [
   {name: "Index", arrayData: arrayOfIndexes},
-  {name: "Image File Name (Stage 3)", arrayData: imageSetStageThreeFromRedux},
+  {name: "Image File Name (Stage 3)", arrayData: duplicatedImageArray},
   {name: "Correct Score", arrayData: shortenedcorrectScoresrray},
   {name: "User Response", arrayData: userResponseArray},
   {name: "Response Time ms", arrayData: userAnswerTimeArray},
@@ -63,7 +66,7 @@ const makeCSVString = (initialString) => {
 
   for (let n = 0; n < arrayOfIndexes.length ; n++){
     initialString = initialString.concat(arrayOfIndexes[n]+",");
-    initialString = initialString.concat(shortenedImageStageThree[n]+",");
+    initialString = initialString.concat(imageSetStageThreeFromRedux[n]+",");
     initialString = initialString.concat(shortenedcorrectScoresrray[n]+",");
     initialString = initialString.concat(userResponseArray[n]+",");
     initialString = initialString.concat(userAnswerTimeArray[n]+",");

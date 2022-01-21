@@ -17,6 +17,7 @@ import CognitivePhotospace from '../Cognitive-Reappraisal-PhotoSpace';
 import CognitiveReappraisalExamNavigation from '../CognitiveReappraisalNavigation';
 import '../../App.css';
 import ReturnToMainPageButton from '../ReturntoMainPageButton';
+import ImageArray from '../n-back-image-array';
 
 
 export const navigationPhaseTypes = {  
@@ -53,6 +54,7 @@ export const navigationPhaseTypes = {
         case navigationPhaseTypes.nBackTest:
             // console.log('navigationPhaseTypes.nBackTest');
             return <div>
+                        <ImageArray />
                         <Photospace /> 
                         <ExamNavigation />
                         <ResultChecker />

@@ -2,7 +2,7 @@ import '../../App.css';
 import React from 'react';
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setRenderState, newNBackState, newUserResponseArray, newUserAnswerTimeArray} from './actions';
+import { setRenderState, newNBackState, newUserResponseArray, newUserAnswerTimeArray, duplicateTheImageArray} from './actions';
 import { navigationPhaseTypes } from '../renderSwitch/renderSwitch';
 import { Button } from '@material-ui/core';
 
@@ -25,8 +25,13 @@ const userAnswerTimeArrayDispatch = (dispatch) => ({
     newUserAnswerTimeArray: (array) => dispatch(newUserAnswerTimeArray(array)),
 });
 
+const duplicateTheImageArrayDispatch = (dispatch) => ({
+    duplicateTheImageArray: (duplicateImageArray) => dispatch(duplicateTheImageArray(duplicateImageArray)),
+});
+
+
 const ExamNavigation = () => {
-    
+        
     const NBackState = useSelector(state => state.examNavigationReducer.newNBackState);
     const { newNBackState } = nBackStateDispatch(useDispatch());
     const userResponseArray = useSelector(state => state.examNavigationReducer.userResponseArray);
@@ -38,9 +43,18 @@ const ExamNavigation = () => {
     //const numberOfPhotos = useSelector(state => state.nBackSettingsReducer.numberOfPhotos);
     const timerSeconds = 1000*(useSelector(state => state.nBackSettingsReducer.timerSeconds));
     const imageSetStageThreeFromRedux = useSelector(state => state.imageArrayReducer.imageSetStageThree);
+    const { duplicateTheImageArray } = duplicateTheImageArrayDispatch(useDispatch());
+    const duplicatedImageArray = useSelector(state => state.examNavigationReducer.duplicateImageArray);
 
+
+
+    console.log("imageSetStageThreeFromRedux from navigation log",imageSetStageThreeFromRedux);
+
+    
     const checkIfTestIsComplete = () => {
     if (NBackState > imageSetStageThreeFromRedux.length-2) {
+        duplicateTheImageArray(imageSetStageThreeFromRedux);
+        console.log("duplicated it!",duplicatedImageArray);
         setRenderState(navigationPhaseTypes.nBackComplete)
     }
 }

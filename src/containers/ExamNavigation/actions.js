@@ -18,3 +18,7 @@ export const newUserAnswerTimeArray = (answerTimeArray) => ({
     type: ActionTypes.USER_ANSWER_TIME,  // from the constants file
     payload: answerTimeArray
 })
+export const duplicateTheImageArray = (duplicateImageArray) => ({
+    type: ActionTypes.DUPLICATE_IMAGE_ARRAY,  // from the constants file
+    payload: duplicateImageArray
+})

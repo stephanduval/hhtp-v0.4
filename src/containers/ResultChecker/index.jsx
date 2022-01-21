@@ -38,9 +38,7 @@ const shortenedcorrectScoresrray = correctScoresrrayFromRedux.map(element => ele
 
 let resultCheckerArray = [
 {name: "Index", arrayData: arrayOfIndexes},
-{name: "imageSetStageOne", arrayData: shortenedimageSetStageOne},
-{name: "imageStageTwo", arrayData: shortenedImageStageTwo},
-{name: "Image File Name (Stage 3)", arrayData: shortenedImageStageThree},
+{name: "Image File Name (Stage 3)", arrayData: imageSetStageThreeFromRedux},
 {name: "Correct Score", arrayData: correctScoresrrayFromRedux},
 {name: "User Response", arrayData: userResponseArray},
 {name: "Response Time ms", arrayData: userAnswerTimeArray},
