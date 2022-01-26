@@ -327,6 +327,12 @@ const CognitiveReappraisalExamNavigation = () => {
 
         useEffect(() => {
             if (CRAViewState == CRImageArrayFromRedux.length) {
+            } if (CRImageArrayFromRedux[CRAViewState].slice(-8,-4) == "look" || CRImageArrayFromRedux[CRAViewState].slice(-12,-4) == "decrease") {
+                console.log("decrease or look",CRImageArrayFromRedux[CRAViewState]);
+                const timer = setTimeout(() => {
+                    newCRAViewState(CRAViewState)
+                  }, 2000);
+
             } else if (!CRImageArrayFromRedux[CRAViewState].includes("hownegative")) { 
                 console.log("Navigation Timer ON",CRImageArrayFromRedux[CRAViewState]);
                 console.log(typeof CRImageArrayFromRedux[CRAViewState]);
