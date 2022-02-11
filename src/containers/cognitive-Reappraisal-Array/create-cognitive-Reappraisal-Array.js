@@ -67,6 +67,7 @@ import { filesToPhotosObject } from "../../functions";
     const randomizedCombinedCognitiveImagesArray = combinedCognitiveImagesArray.sort(()=> 0.5 - Math.random())
     const randomizedCombinedCognitiveImagesArrayWithTitleCards = addTitleCardsToCognitiveImagesArray(randomizedCombinedCognitiveImagesArray);
     export const finalRandomizedCombinedCognitiveImagesArray = randomizedCombinedCognitiveImagesArrayWithTitleCards.map(x => './' + x.slice(8));
+    
     //const cognitiveScoringArray = createScoringArrayFromfinalRandomizedCombinedCognitiveImagesArray(finalRandomizedCombinedCognitiveImagesArray)
     /*
     ./public/images/cognitive-reappraisal/titlecards/decrease.jpg

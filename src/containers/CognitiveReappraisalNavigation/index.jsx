@@ -11,6 +11,7 @@ import { scoringArray } from '../../functions';
 //import { updatedArrayChecker } from '../cognitive-Reappraisal-Array/create-cognitive-Reappraisal-Array';
 
 
+
 const renderViewDispatch = (dispatch) => ({
     setRenderState: (nameState) => dispatch(setRenderState(nameState)),
 });
@@ -87,7 +88,6 @@ const CognitiveReappraisalExamNavigation = () => {
     const addToUserResponseArray = (value) => {
         userResponseArray.push(value);
     }
-
 
 
 
@@ -327,7 +327,8 @@ const CognitiveReappraisalExamNavigation = () => {
 
         useEffect(() => {
             if (CRAViewState == CRImageArrayFromRedux.length) {
-            } if (CRImageArrayFromRedux[CRAViewState].slice(-8,-4) == "look" || CRImageArrayFromRedux[CRAViewState].slice(-12,-4) == "decrease") {
+                
+            } else if (CRImageArrayFromRedux[CRAViewState].slice(-8,-4) == "look" || CRImageArrayFromRedux[CRAViewState].slice(-12,-4) == "decrease") {
                 console.log("decrease or look",CRImageArrayFromRedux[CRAViewState]);
                 const timer = setTimeout(() => {
                     newCRAViewState(CRAViewState)
@@ -342,6 +343,11 @@ const CognitiveReappraisalExamNavigation = () => {
             // add conditionals:  2000ms for the "Look" and "decrease" sections
         }
           }, [CRAViewState]);
+
+          
+    console.log("current state", CRImageArrayFromRedux[CRAViewState],"Current CRI Index",CRAViewState);
+
+
 
     return (
         <div className="container">
