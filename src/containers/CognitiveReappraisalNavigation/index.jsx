@@ -62,6 +62,8 @@ export const renderCognitiveReappraisalView = (stateOfCognitiveReappraisal) => {
 
 
 const CognitiveReappraisalExamNavigation = () => {
+    
+    const [defaultRadioValue, setDefaultRadioValue] = useState(true);
 
 
     const classes = useStyles();
@@ -104,47 +106,65 @@ const CognitiveReappraisalExamNavigation = () => {
         * 
         */
 
-        if (!CRImageArrayFromRedux[CRAViewState].includes("titlecards")) {
+        if (CRImageArrayFromRedux[CRAViewState].includes("hownegative")) {
       
 
 
         switch (event.keyCode) {
             case 49:
                 newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("1");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                break;
             case 50:
                 newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("2");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                break;
             case 51:
-                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("3");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState)
+                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("3");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                break;
             case 52:
                 newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("4");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                break;
             case 53:
                 newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("5");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                break;
             case 54:
                 newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("6");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                break;
             case 55:
                 newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("7");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                break;
             case 56:
                 newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("8");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                break;
             case 57:
                 newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("9");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                break;
             case 97:
                 newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("1");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                break;
             case 98:
                 newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("2");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                break;
             case 99:
                 newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("3");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState)
+                break;
             case 100:
                 newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("4");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                break;
             case 101:
                 newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("5");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                break;
             case 102:
                 newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("6");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                break;
             case 103:
                 newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("7");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                break;
             case 104:
                 newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("8");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                break;
             case 105:
                 newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("9");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                break;
                     
     }
 };
@@ -207,7 +227,12 @@ const CognitiveReappraisalExamNavigation = () => {
 
     const listItemsFunction = (arrayParam) => arrayParam.map((element => <p><li>{element}</li></p>));
     
+    // const resetHowNegativeButtons = () => {
+    //     document.querySelectorAll('navigationButtonSpace').forEach(el => el.MaterialRadio.checkToggleState());
+    // }
 
+
+    //     const [defaultRadioValue, setDefaultRadioValue] = useState(5);
 
 
      const stopRenderSubmitButtonIfTestIsFinished = (finishedMessage) => {
@@ -241,8 +266,10 @@ const CognitiveReappraisalExamNavigation = () => {
                             */
                             row
                             aria-label="Feeling"
-                            defaultValue="5" 
+                            defaultValue= {defaultRadioValue}
                             name="radio-buttons-group"
+                            id="radio-buttons-group"
+
                             >
                                 <FormControlLabel value="1" control={<Radio />} label="1" />
                                 <FormControlLabel value="2" control={<Radio />} label="2" />
@@ -256,7 +283,8 @@ const CognitiveReappraisalExamNavigation = () => {
                                 </RadioGroup>
                                 
         
-                                <Button sx={{ mt: 1, mr: 1 }} type="submit" variant="contained" onClick={()=>{newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray(category);newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState)}}>
+                                <Button sx={{ mt: 1, mr: 1 }} type="submit" variant="contained" onClick={()=>{newCRAViewState(CRAViewState);
+checkIfTestIsComplete();addToUserResponseArray(category);newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);setCategory(5)}}>
                                 Submit Answer 
                                 </Button>
                 
