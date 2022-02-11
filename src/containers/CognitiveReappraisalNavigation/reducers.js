@@ -2,7 +2,7 @@
 import { ActionTypes } from "./constants";
 
 const defaultState = {
-    CRAViewState: 175,   // total
+    CRAViewState: 0,   // 181 total
     userResponseArray: [],
     renderView: "navigationPhaseTypes.introductionPage",
     CSVDownloaded: false,
