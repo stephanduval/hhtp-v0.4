@@ -79,7 +79,7 @@ const CognitiveReappraisalExamNavigation = () => {
     const userResponseArrayFromRedux = useSelector(state => state.craNavigationReducer.userResponseArray);
     const CSVDownloadStateRedux = useSelector(state => state.craNavigationReducer.CSVDownloaded);
 
-    const [category, setCategory] = useState('5')  
+    const [category, setCategory] = useState();  
     /*
      my first time using the useState hook.  setCategory is the setter and the '' is the
      initial value. category is the variable
