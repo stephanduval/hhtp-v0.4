@@ -63,7 +63,7 @@ export const renderCognitiveReappraisalView = (stateOfCognitiveReappraisal) => {
 
 const CognitiveReappraisalExamNavigation = () => {
     
-    const [defaultRadioValue, setDefaultRadioValue] = useState(true);
+    const [defaultRadioValue, setDefaultRadioValue] = useState("No Answer");
 
 
     const classes = useStyles();
@@ -88,7 +88,12 @@ const CognitiveReappraisalExamNavigation = () => {
     const userResponseArray = userResponseArrayFromRedux;
 
     const addToUserResponseArray = (value) => {
+        if (value == null) {
+            userResponseArray.push("no answer");
+        }
+        else {
         userResponseArray.push(value);
+        }
     }
 
 
@@ -112,7 +117,7 @@ const CognitiveReappraisalExamNavigation = () => {
 
         switch (event.keyCode) {
             case 49:
-                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("1");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                setDefaultRadioValue("4");
                 break;
             case 50:
                 newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("2");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
@@ -255,7 +260,7 @@ const CognitiveReappraisalExamNavigation = () => {
                 <div className="navigationButtonSpace">
                                 {renderCognitiveReappraisalView(1)}
                 
-                   <FormControl className="navigationButtonSpace" component="fieldset" container justify = "center">
+                   <FormControl className="navigationButtonSpace" name="radioButtonsGroup" component="fieldset" container justify = "center">
                        <FormLabel component="legend"></FormLabel>
                             <RadioGroup
                             value={category}
@@ -369,7 +374,21 @@ checkIfTestIsComplete();addToUserResponseArray(category);newCRAUserResponseArray
               newCRAViewState(CRAViewState)
             }, 7000);
             // add conditionals:  2000ms for the "Look" and "decrease" sections
-        }
+        } else if (CRImageArrayFromRedux[CRAViewState].includes("hownegative")) { 
+            console.log("Navigation Timer ON",CRImageArrayFromRedux[CRAViewState]);
+            console.log(typeof CRImageArrayFromRedux[CRAViewState]);
+        const timer = setTimeout(() => {
+            newCRAViewState(CRAViewState);
+            checkIfTestIsComplete();
+            addToUserResponseArray(category);
+            newCRAUserResponseArray(userResponseArray)
+            ;console.log("State",CRAViewState);
+            console.log("RADIO BUTTON SAYS", category);
+            setCategory("no answer");
+
+        }, 7000);
+        // add conditionals:  2000ms for the "Look" and "decrease" sections
+    }
           }, [CRAViewState]);
 
           
