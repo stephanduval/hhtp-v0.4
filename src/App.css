@@ -202,4 +202,24 @@ img {
 
 
 } 
+
+.radio-inline{
+  font-family: system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1.1;
+
+}
+
+.radioButton {
+  border: 0px;
+  transform: scale(1.5);
+  font-size: 2rem;
+
+}
   
+
+.formFlex {
+  flex-direction: row;
+
+}

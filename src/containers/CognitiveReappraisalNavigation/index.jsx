@@ -79,7 +79,8 @@ const CognitiveReappraisalExamNavigation = () => {
     const userResponseArrayFromRedux = useSelector(state => state.craNavigationReducer.userResponseArray);
     const CSVDownloadStateRedux = useSelector(state => state.craNavigationReducer.CSVDownloaded);
 
-    const [category, setCategory] = useState();  
+    const [category, setCategory] = useState();
+    let howNegative = "no answer"  
     /*
      my first time using the useState hook.  setCategory is the setter and the '' is the
      initial value. category is the variable
@@ -89,7 +90,7 @@ const CognitiveReappraisalExamNavigation = () => {
 
     const addToUserResponseArray = (value) => {
         if (value == null) {
-            userResponseArray.push("no answer");
+            userResponseArray.push(category);
         }
         else {
         userResponseArray.push(value);
@@ -117,58 +118,58 @@ const CognitiveReappraisalExamNavigation = () => {
 
         switch (event.keyCode) {
             case 49:
-                setDefaultRadioValue("4");
+                document.getElementById("radioButton1").checked = "true";howNegative="1";
                 break;
             case 50:
-                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("2");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                document.getElementById("radioButton2").checked = "true";howNegative="2";
                 break;
             case 51:
-                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("3");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                document.getElementById("radioButton3").checked = "true";howNegative="3";
                 break;
             case 52:
-                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("4");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                document.getElementById("radioButton4").checked = "true";howNegative="4";
                 break;
             case 53:
-                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("5");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                document.getElementById("radioButton5").checked = "true";howNegative="5";
                 break;
             case 54:
-                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("6");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                document.getElementById("radioButton6").checked = "true";howNegative="6";
                 break;
             case 55:
-                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("7");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                document.getElementById("radioButton7").checked = "true";howNegative="7";
                 break;
             case 56:
-                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("8");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                document.getElementById("radioButton8").checked = "true";howNegative="8";
                 break;
             case 57:
-                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("9");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                document.getElementById("radioButton9").checked = "true";howNegative="9";
                 break;
             case 97:
-                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("1");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                document.getElementById("radioButton1").checked = "true";howNegative="1";
                 break;
             case 98:
-                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("2");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                document.getElementById("radioButton2").checked = "true";howNegative="2";
                 break;
             case 99:
-                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("3");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState)
+                document.getElementById("radioButton3").checked = "true";howNegative="3";
                 break;
             case 100:
-                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("4");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                document.getElementById("radioButton4").checked = "true";howNegative="4";
                 break;
             case 101:
-                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("5");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                document.getElementById("radioButton5").checked = "true";howNegative="5";
                 break;
             case 102:
-                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("6");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                document.getElementById("radioButton6").checked = "true";howNegative="6";
                 break;
             case 103:
-                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("7");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                document.getElementById("radioButton7").checked = "true";howNegative="7";
                 break;
             case 104:
-                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("8");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                document.getElementById("radioButton8").checked = "true";howNegative="8";
                 break;
             case 105:
-                newCRAViewState(CRAViewState);checkIfTestIsComplete();addToUserResponseArray("9");newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);
+                document.getElementById("radioButton9").checked = "true";howNegative="9";
                 break;
                     
     }
@@ -260,41 +261,40 @@ const CognitiveReappraisalExamNavigation = () => {
                 <div className="navigationButtonSpace">
                                 {renderCognitiveReappraisalView(1)}
                 
-                   <FormControl className="navigationButtonSpace" name="radioButtonsGroup" component="fieldset" container justify = "center">
-                       <FormLabel component="legend"></FormLabel>
-                            <RadioGroup
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)}
-                            /*  
-                            Take from this tutorial:
-                            https://www.youtube.com/watch?v=TtJ3eCLYoRQ
-                            */
-                            row
-                            aria-label="Feeling"
-                            defaultValue= {defaultRadioValue}
-                            name="radio-buttons-group"
-                            id="radio-buttons-group"
-
-                            >
-                                <FormControlLabel value="1" control={<Radio />} label="1" />
-                                <FormControlLabel value="2" control={<Radio />} label="2" />
-                                <FormControlLabel value="3" control={<Radio />} label="3" />
-                                <FormControlLabel value="4" control={<Radio />} label="4" />
-                                <FormControlLabel value="5" control={<Radio />} label="5" />
-                                <FormControlLabel value="6" control={<Radio />} label="6" />
-                                <FormControlLabel value="7" control={<Radio />} label="7" />
-                                <FormControlLabel value="8" control={<Radio />} label="8" />
-                                <FormControlLabel value="9" control={<Radio />} label="9" />
-                                </RadioGroup>
+                    
+                        <form class="formFlex">
+                            <label class="radio-inline">
+                                <input class="radioButton" type="radio" name="howNegative" value="1" id="radioButton1"onClick={()=>{howNegative="1";console.log("clicked 1",howNegative)}}/>1
+                            </label>
+                            <label class="radio-inline">
+                                <input class="radioButton" type="radio" name="howNegative" value="2" id="radioButton2" onClick={()=>{howNegative="2";console.log("clicked 2",howNegative)}}/>2
+                            </label>
+                            <label class="radio-inline">
+                                <input class="radioButton" type="radio" name="howNegative" value="3" id="radioButton3" onClick={()=>{howNegative="3";console.log("clicked 2",howNegative)}}/>3
+                            </label>
+                            <label class="radio-inline">                      
+                                <input class="radioButton" type="radio" name="howNegative" value="4" id="radioButton4" onClick={()=>{howNegative="4";console.log("clicked 4",howNegative)}}/>4
+                            </label>
+                            <label class="radio-inline">
+                                <input class="radioButton" type="radio" name="howNegative" value="5" id="radioButton5" onClick={()=>{howNegative="5";console.log("clicked 5",howNegative)}}/>5
+                            </label>
+                            <label class="radio-inline">
+                                <input class="radioButton" type="radio" name="howNegative" value="6" id="radioButton6" onClick={()=>{howNegative="6";console.log("clicked 6",howNegative)}}/>6
+                            </label>
+                            <label class="radio-inline">
+                                <input class="radioButton" type="radio" name="howNegative" value="7" id="radioButton7" onClick={()=>{howNegative="7";console.log("clicked 7",howNegative)}}/>7
+                            </label>
+                            <label class="radio-inline">
+                                <input class="radioButton" type="radio" name="howNegative" value="8" id="radioButton8" onClick={()=>{howNegative="8";console.log("clicked 8",howNegative)}}/>8
+                            </label>
+                            <label class="radio-inline">
+                                <input class="radioButton" type="radio" name="howNegative" value="9" id="radioButton9" onClick={()=>{howNegative="9";console.log("clicked 9",howNegative)}}/>9
+                            </label>
                                 
-        
-                                <Button sx={{ mt: 1, mr: 1 }} type="submit" variant="contained" onClick={()=>{newCRAViewState(CRAViewState);
-checkIfTestIsComplete();addToUserResponseArray(category);newCRAUserResponseArray(userResponseArray);console.log("State",CRAViewState);setCategory(5)}}>
-                                Submit Answer 
-                                </Button>
-                
-                   </FormControl>
-                   
+
+                        </form>
+
+                  
                    <div>
                    </div>
                    </div>
@@ -355,7 +355,6 @@ checkIfTestIsComplete();addToUserResponseArray(category);newCRAUserResponseArray
             newCSVScoringArray(ScoringArray);
 
         let ScoringArrayFromRedux = useSelector(state => state.cRImageArrayReducer.scoringArray);
-        console.log("ScoringArrayFromRedux",ScoringArrayFromRedux)
 
 
         useEffect(() => {
@@ -376,15 +375,15 @@ checkIfTestIsComplete();addToUserResponseArray(category);newCRAUserResponseArray
             // add conditionals:  2000ms for the "Look" and "decrease" sections
         } else if (CRImageArrayFromRedux[CRAViewState].includes("hownegative")) { 
             console.log("Navigation Timer ON",CRImageArrayFromRedux[CRAViewState]);
-            console.log(typeof CRImageArrayFromRedux[CRAViewState]);
         const timer = setTimeout(() => {
             newCRAViewState(CRAViewState);
             checkIfTestIsComplete();
-            addToUserResponseArray(category);
+            addToUserResponseArray(howNegative);
             newCRAUserResponseArray(userResponseArray)
             ;console.log("State",CRAViewState);
-            console.log("RADIO BUTTON SAYS", category);
-            setCategory("no answer");
+            console.log("RADIO BUTTON SAYS", howNegative);
+            setCategory(howNegative);
+            console.log("Radio Button One Status",howNegative);
 
         }, 7000);
         // add conditionals:  2000ms for the "Look" and "decrease" sections
