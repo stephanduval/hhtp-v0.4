@@ -7,6 +7,7 @@ import CSVDownloadDiv from '../CSVDownloadDiv';
 import StartTestButton from '../StartNBackTestButton';
 import CognitiveReappraisalArray from '../cognitive-Reappraisal-Array';
 import StartCognitiveReappraisalTestButton from '../StartCognitiveReappraisalTestButton';
+import PracticeCognitiveReappraisalTestButton from '../StartPracticeCognitiveReappraisalTestButton';
 import SettingsButton from '../settingsButton';
 import IntroHeader from '../introductionHeader';
 import ReturntoMainPageButton from '../ReturntoMainPageButton';
@@ -20,12 +21,14 @@ import ReturnToMainPageButton from '../ReturntoMainPageButton';
 import ImageArray from '../n-back-image-array';
 
 
+
 export const navigationPhaseTypes = {  
     introductionPage: "Has settings, instructions and a start test button",
     nBackPageTutorial: "nBackTutorialPage, May not be implemented in production version",
     nBackTest: "The actual nBack Test, recordning data",
     practiceNBackTest: "Practice nBack Test",
     cognitiveReappraisalTest: "Cognitive Reappraisal Test",
+    practiceCognitiveReappraisalTest: "Practice Cognitive Reappraisal Test",
     settings: "The Settings Page",
     practiceNBackExamPage: "The NavigationPhasePage",
 
@@ -44,7 +47,8 @@ export const navigationPhaseTypes = {
                         <div className="center">
                         <StartTestButton/>
                         <StartPracticeTestButton/>
-                        <SettingsButton/>
+                        {/* <SettingsButton/> */}
+                        <PracticeCognitiveReappraisalTestButton/>
                         <StartCognitiveReappraisalTestButton/>
 
                         </div>
@@ -105,6 +109,21 @@ export const navigationPhaseTypes = {
                 break;
 
 
+                case navigationPhaseTypes.practiceCognitiveReappraisalTest:
+                    // console.log('case navigationPhaseTypes.settings');
+        
+                    return <div >
+                        <CognitivePhotospace/>
+                        <CognitiveReappraisalArray className="photospace2" />
+                        {/* <CognitiveReappraisalArrayChecker/> */}
+                        <CognitiveReappraisalExamNavigation className="navigationSpace"/>
+    
+                            
+                            </div>
+                    break;
+    
+
+
         default:
             // console.log('default');
             return <div><IntroHeader/>
@@ -112,7 +131,8 @@ export const navigationPhaseTypes = {
                         <div className="navigationBar">
                         <StartTestButton/>
                         <StartPracticeTestButton/>
-                        <SettingsButton/>
+                        {/* <SettingsButton/> */}
+                        <PracticeCognitiveReappraisalTestButton/>
                         <StartCognitiveReappraisalTestButton/>
 
                          </div>

@@ -397,7 +397,7 @@ const CognitiveReappraisalExamNavigation = () => {
 
     return (
         <div className="container">
-        <div>{stopRenderSubmitButtonIfTestIsFinished('You\'re All Done!  Take a Hike!')}</div>          
+        <div>{stopRenderSubmitButtonIfTestIsFinished('You\'re All Done!  Please do nothing.  Notify the exam Supervisor and have a nice day!.')}</div>          
 
         <div className="buttonSpace">
 

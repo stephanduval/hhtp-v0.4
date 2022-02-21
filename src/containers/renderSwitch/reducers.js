@@ -7,7 +7,7 @@ const defaultState = {
 
 };
 
-export default function renderView(state = defaultState, action) { 
+export default function renderViewToStore(state = defaultState, action) { 
     switch (action.type) {
         case ActionTypes.RENDER_VIEW:
             return { ...state, renderView: action.payload };

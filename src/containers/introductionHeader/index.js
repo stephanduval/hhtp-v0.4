@@ -1,4 +1,5 @@
 import './introduction.css';
+import './../../App.css';
 import React from 'react';
 
 
@@ -7,18 +8,14 @@ const IntroHeader = () => {
 
     return (
             
-<div className="header">
-<h2>Welcome to a early version of the n-back test</h2>
+<div className="Intro-header">
+<h1>Welcome to Hannes Hepner's Cognitive Reappraisal Test</h1>
 <p></p>
 You will be presented with a number of images.  Follow the instructions given and your responses will be recorded.
 <p></p>
-Following the exam the page will reset and the tester will be able to review the results and download them as a CSV
-<p></p>
-This is an early version for testing and review purposes.
-<p></p>
-This page is designed for the tester to customize the testing parameters.
-<h3>Settings:</h3>
-<h3></h3>
+Once the exam is finished please wait and notify the examiner so they can download the results.
+
+
 
 </div>
 
