@@ -6,16 +6,17 @@ import { filesToPhotosObject } from "../../functions";
     const decreaseImages = filesToPhotosObject(require.context('./../../../public/images/cognitive-reappraisal/decrease/', false, /\.(png|jpe?g|svg)$/));
     const DecreaseImageFileNameArray = Object.keys(decreaseImages);
     const decreaseFullFileNameArray = DecreaseImageFileNameArray.map(e => './public/images/cognitive-reappraisal/decrease/' + e)
+    const randomizedDecreaseFileNameArray = decreaseFullFileNameArray.sort(()=> 0.5 - Math.random());
 
     const lookNegativeImages = filesToPhotosObject(require.context('./../../../public/images/cognitive-reappraisal/look-negative/', false, /\.(png|jpe?g|svg)$/));
     const lookNegativeImagesFileNameArray = Object.keys(lookNegativeImages);
     const lookNegativeFullFileNameArray = lookNegativeImagesFileNameArray.map(e => './public/images/cognitive-reappraisal/look-negative/' + e)
-
+    const randomizedLookNegativeFileNameArray = lookNegativeFullFileNameArray.sort(()=> 0.5 - Math.random());
 
     const lookNeutralImages = filesToPhotosObject(require.context('./../../../public/images/cognitive-reappraisal/look-neutral/', false, /\.(png|jpe?g|svg)$/));
     const lookNeutralImagesFileNameArray = Object.keys(lookNeutralImages);
     const lookNeutralImagesFullFileNameArray = lookNeutralImagesFileNameArray.map(e => './public/images/cognitive-reappraisal/look-neutral/' + e)
-
+    const randomizedlookNeutralFileNameArray = lookNeutralImagesFullFileNameArray.sort(()=> 0.5 - Math.random());
     
     const titleCardImages = filesToPhotosObject(require.context('./../../../public/images/cognitive-reappraisal/titlecards/', false, /\.(png|jpe?g|svg)$/));
     const titleCardImagesFileNameArray = Object.keys(titleCardImages);
@@ -55,17 +56,67 @@ import { filesToPhotosObject } from "../../functions";
             return cognitiveImagesArrayWithTitleCards
              }
 
+      //Shuffle an array into random odd numbered places in another array
 
+      const shuffleArrayAintoArrayB = (arrayA,arrayB) => {
+        const checkIfUnique = (element) => {
+          let randomNumber = Math.floor(Math.random() * arrayB.length);
+          let randomOddNumber = randomNumber + (randomNumber%2 == 0 ? 1 : 0);
 
-    
+          if (!(arrayOfOddNumbers.includes(randomOddNumber))) {
+            arrayOfOddNumbers.push(randomOddNumber)
+            arrayB.splice(randomOddNumber,0,element);
+            
+            } else {
+              checkIfUnique(element);
+            }
+        } 
+        let arrayOfOddNumbers = [];
+        arrayA.forEach (element => {
+          let randomNumber = Math.floor(Math.random() * arrayB.length);
+          console.log(randomNumber);
+          let randomOddNumber = randomNumber + (randomNumber%2 == 0 ? 1 : 0);
+          while (arrayOfOddNumbers.length < arrayA.length) {
+            checkIfUnique(element);
+
+        }
+          
+         // arrayB.splice(randomOddNumber, 0, element)
+        });
+        console.log("ArrayB",arrayB)
+        console.log("arrayA",arrayA);
+        console.log("arrayOfOddNumbers",arrayOfOddNumbers)
+        return arrayB;
+          }
+    /*
+ while (arrayFinished = false) {
+            
+            let randomOddNumber = Math.floor(Math.random() * arrayB.length);
+            randomOddNumber +=(randomOddNumber%2 == 0 ? 1 : 0);
+            console.log("randomOddNumber",randomOddNumber);
+            arrayOfOddNumbers.push(randomOddNumber);
+            if (!(arrayOfOddNumbers.includes(randomOddNumber))) {
+              { 
+            arrayB.splice(randomOddNumber,0,element);
+          } else {
+            console.log("skipping",randomOddNumber);
+          }
+          }
+          
+        } 
+    */
 
    // addTitleCardsToCognitiveImagesArray(updatedArrayChecker);
 
+      
 
 
-    const combinedCognitiveImagesArray = decreaseFullFileNameArray.concat(lookNegativeFullFileNameArray).concat(lookNeutralImagesFullFileNameArray);
-    const randomizedCombinedCognitiveImagesArray = combinedCognitiveImagesArray.sort(()=> 0.5 - Math.random())
-    const randomizedCombinedCognitiveImagesArrayWithTitleCards = addTitleCardsToCognitiveImagesArray(randomizedCombinedCognitiveImagesArray);
+    const combinedNegAndNeutralCognitiveImagesArray = randomizedLookNegativeFileNameArray.concat(randomizedlookNeutralFileNameArray);
+    const randomizedNegAndNeutralCombinedCognitiveImagesArray = combinedNegAndNeutralCognitiveImagesArray.sort(()=> 0.5 - Math.random())
+    const randomizedNegAndNeutralAndDecreaseCombinedCognitiveImagesArray = shuffleArrayAintoArrayB(randomizedDecreaseFileNameArray,randomizedNegAndNeutralCombinedCognitiveImagesArray);
+    
+  
+    const randomizedCombinedCognitiveImagesArrayWithTitleCards = addTitleCardsToCognitiveImagesArray(randomizedNegAndNeutralAndDecreaseCombinedCognitiveImagesArray);
     export const finalRandomizedCombinedCognitiveImagesArray = randomizedCombinedCognitiveImagesArrayWithTitleCards.map(x => './' + x.slice(8));
     
     //const cognitiveScoringArray = createScoringArrayFromfinalRandomizedCombinedCognitiveImagesArray(finalRandomizedCombinedCognitiveImagesArray)
@@ -98,6 +149,6 @@ import { filesToPhotosObject } from "../../functions";
     //let updatedArrayChecker = finalRandomizedCombinedCognitiveImagesArray.map(e => e.slice(32,40));
 
 
-    export {updatedArrayChecker, randomizedCombinedCognitiveImagesArray}
+    export {updatedArrayChecker, randomizedNegAndNeutralAndDecreaseCombinedCognitiveImagesArray}
 
 

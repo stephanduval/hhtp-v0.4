@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector, useDispatch} from 'react-redux';
 import { CSVLink } from 'react-csv';
 import { setCSVDownloadState } from '../CognitiveReappraisalNavigation/actions';
-import { randomizedCombinedCognitiveImagesArray } from '../cognitive-Reappraisal-Array/create-cognitive-Reappraisal-Array';
+import { finalRandomizedCombinedCognitiveImagesArray } from '../cognitive-Reappraisal-Array/create-cognitive-Reappraisal-Array';
 
 //import { ExpansionPanelDetails } from '@material-ui/core';
 
@@ -32,7 +32,7 @@ const CRImageArrayFromRedux = useSelector(state => state.cRImageArrayReducer.cRI
 
 let resultCheckerArray = [
   {name: "User Response Array", arrayData: userResponseArrayFromRedux},
-  {name: "Image", arrayData: randomizedCombinedCognitiveImagesArray},
+  {name: "Image", arrayData: finalRandomizedCombinedCognitiveImagesArray},
   ];
 
   
@@ -55,7 +55,7 @@ const makeCSVString = (initialString) => {
 
   for (let n = 0; n < userResponseArrayFromRedux.length ; n++){
     initialString = initialString.concat(userResponseArrayFromRedux[n]+",");
-    initialString = initialString.concat(randomizedCombinedCognitiveImagesArray[n]+",");
+    initialString = initialString.concat(finalRandomizedCombinedCognitiveImagesArray[n]+",");
     initialString = initialString.concat("\n")
     
     

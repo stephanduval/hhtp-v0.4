@@ -6,7 +6,7 @@ import { newCRAViewState, setRenderState, newCRAUserResponseArray, setCSVDownloa
 import { navigationPhaseTypes } from '../renderSwitch/renderSwitch';
 import { Button, Radio, RadioGroup, FormControl, FormLabel, FormControlLabel, makeStyles } from '@material-ui/core';
 import CRCSVDownloadDiv from '../CRCSVDownloadDiv';
-import { updatedArrayChecker, titleCardImagesFullFileNameArray, randomizedCombinedCognitiveImagesArray } from '../cognitive-Reappraisal-Array/create-cognitive-Reappraisal-Array';
+import { updatedArrayChecker, titleCardImagesFullFileNameArray, finalRandomizedCombinedCognitiveImagesArray } from '../cognitive-Reappraisal-Array/create-cognitive-Reappraisal-Array';
 import { scoringArray } from '../../functions';
 //import { updatedArrayChecker } from '../cognitive-Reappraisal-Array/create-cognitive-Reappraisal-Array';
 
@@ -409,7 +409,7 @@ const CognitiveReappraisalExamNavigation = () => {
         
         <div>{listItemsFunction(ScoringArray)}</div>
         <div>{listItemsFunction(userResponseArray)}</div>
-        <div>{listItemsFunction(randomizedCombinedCognitiveImagesArray)}</div>
+        <div>{listItemsFunction(finalRandomizedCombinedCognitiveImagesArray)}</div>
 
         
         

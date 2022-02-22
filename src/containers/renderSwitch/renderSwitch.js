@@ -7,7 +7,7 @@ import CSVDownloadDiv from '../CSVDownloadDiv';
 import StartTestButton from '../StartNBackTestButton';
 import CognitiveReappraisalArray from '../cognitive-Reappraisal-Array';
 import StartCognitiveReappraisalTestButton from '../StartCognitiveReappraisalTestButton';
-import PracticeCognitiveReappraisalTestButton from '../StartPracticeCognitiveReappraisalTestButton';
+import PracticeCognitiveReappraisalTestButton from '../StartPracticeCognitiveReappraisalTestButton copy';
 import SettingsButton from '../settingsButton';
 import IntroHeader from '../introductionHeader';
 import ReturntoMainPageButton from '../ReturntoMainPageButton';
