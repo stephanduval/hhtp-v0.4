@@ -59,25 +59,25 @@ import { filesToPhotosObject } from "../../functions";
       //Shuffle an array into random odd numbered places in another array
 
       const shuffleArrayAintoArrayB = (arrayA,arrayB) => {
-        const checkIfUnique = (element) => {
+        const checkIfUnique = (arrayA) => {
           let randomNumber = Math.floor(Math.random() * arrayB.length);
           let randomOddNumber = randomNumber + (randomNumber%2 == 0 ? 1 : 0);
 
           if (!(arrayOfOddNumbers.includes(randomOddNumber))) {
             arrayOfOddNumbers.push(randomOddNumber)
-            arrayB.splice(randomOddNumber,0,element);
-            
+            console.log("Check if Unique element is: ",arrayA[0]);   
+            arrayB.splice(randomOddNumber,0,(arrayA.shift()));  
+             
             } else {
-              checkIfUnique(element);
+              console.log("ran CheckifUnique Recursively")
+                checkIfUnique(arrayA);
             }
         } 
         let arrayOfOddNumbers = [];
         arrayA.forEach (element => {
-          let randomNumber = Math.floor(Math.random() * arrayB.length);
-          console.log(randomNumber);
-          let randomOddNumber = randomNumber + (randomNumber%2 == 0 ? 1 : 0);
+          console.log("Initial element is: ",element)    
           while (arrayOfOddNumbers.length < arrayA.length) {
-            checkIfUnique(element);
+            checkIfUnique(arrayA);
 
         }
           
