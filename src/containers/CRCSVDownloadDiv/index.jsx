@@ -93,7 +93,7 @@ console.log("dateAndTimeOfCSVCreation",dateAndTimeOfCSVCreation)
 console.log("dateAndTimeOfCSVCreation",dateAndTimeOfCSVCreation.getDate())
 console.log("scoringArray",ScoringArray)
 const dateForCSVFileName =  '_' + dateAndTimeOfCSVCreation.getFullYear() + '-' + dateAndTimeOfCSVCreation.getMonth() + '-' + dateAndTimeOfCSVCreation.getDate()+ '_' + dateAndTimeOfCSVCreation.getHours() + 'h' + dateAndTimeOfCSVCreation.getMinutes() + 'm' 
-const CSVFileNameString = 'ID_nBack_CSV'  + dateForCSVFileName + '..csv';
+const CSVFileNameString = 'ID_nBack_CSV'  + dateForCSVFileName + '.csv';
 
 
 //let canvas = 's';
