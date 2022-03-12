@@ -4,6 +4,8 @@ import { useSelector, useDispatch} from 'react-redux';
 import { CSVLink } from 'react-csv';
 import { setCSVDownloadState } from '../CognitiveReappraisalNavigation/actions';
 import { finalRandomizedCombinedCognitiveImagesArray } from '../cognitive-Reappraisal-Array/create-cognitive-Reappraisal-Array';
+import ScoringArrayforCSV from '../CognitiveReappraisalNavigation/';
+
 
 //import { ExpansionPanelDetails } from '@material-ui/core';
 
@@ -17,14 +19,30 @@ const CRCSVDownloadDiv = () => {
 
   const CSVDownloadStateRedux = useSelector(state => state.craNavigationReducer.CSVDownloaded);
   const { setCSVDownloadState } = cSVDownloadStateDispatch(useDispatch());
+  let ScoringArrayFromRedux = useSelector(state => state.cRImageArrayReducer.scoringArray);
+
+console.log("ScoringArrayFromRedux",ScoringArrayFromRedux);
 
 
 
+function createScoringArrayFromfinalRandomizedCombinedCognitiveImagesArray (arrayParam) {
+  let newArray = [];
+  let originalArray = [...arrayParam];
+  originalArray.forEach((x,index) => {
 
+      if (!x.includes("titlecards") && x.length > 3) {
+          newArray.push(x);
+      };
+
+     
+  })
+      return newArray
   
+  }
+
 const userResponseArrayFromRedux = useSelector(state => state.craNavigationReducer.userResponseArray);
 const CRImageArrayFromRedux = useSelector(state => state.cRImageArrayReducer.cRImageArray);
-
+let ScoringArray = createScoringArrayFromfinalRandomizedCombinedCognitiveImagesArray(CRImageArrayFromRedux);
 
 
 
@@ -32,7 +50,7 @@ const CRImageArrayFromRedux = useSelector(state => state.cRImageArrayReducer.cRI
 
 let resultCheckerArray = [
   {name: "User Response Array", arrayData: userResponseArrayFromRedux},
-  {name: "Image", arrayData: finalRandomizedCombinedCognitiveImagesArray},
+  {name: "Image", arrayData: ScoringArray},
   ];
 
   
@@ -55,7 +73,7 @@ const makeCSVString = (initialString) => {
 
   for (let n = 0; n < userResponseArrayFromRedux.length ; n++){
     initialString = initialString.concat(userResponseArrayFromRedux[n]+",");
-    initialString = initialString.concat(finalRandomizedCombinedCognitiveImagesArray[n]+",");
+    initialString = initialString.concat(ScoringArray[n]+",");
     initialString = initialString.concat("\n")
     
     
@@ -73,6 +91,7 @@ const csvData = makeCSVString(csvString);
 const dateAndTimeOfCSVCreation = new Date();
 console.log("dateAndTimeOfCSVCreation",dateAndTimeOfCSVCreation)
 console.log("dateAndTimeOfCSVCreation",dateAndTimeOfCSVCreation.getDate())
+console.log("scoringArray",ScoringArray)
 const dateForCSVFileName =  '_' + dateAndTimeOfCSVCreation.getFullYear() + '-' + dateAndTimeOfCSVCreation.getMonth() + '-' + dateAndTimeOfCSVCreation.getDate()+ '_' + dateAndTimeOfCSVCreation.getHours() + 'h' + dateAndTimeOfCSVCreation.getMinutes() + 'm' 
 const CSVFileNameString = 'ID_nBack_CSV'  + dateForCSVFileName + '..csv';
 

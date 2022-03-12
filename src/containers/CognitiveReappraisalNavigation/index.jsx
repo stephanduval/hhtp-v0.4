@@ -78,6 +78,10 @@ const CognitiveReappraisalExamNavigation = () => {
     const CRImageArrayFromRedux = useSelector(state => state.cRImageArrayReducer.cRImageArray);
     const userResponseArrayFromRedux = useSelector(state => state.craNavigationReducer.userResponseArray);
     const CSVDownloadStateRedux = useSelector(state => state.craNavigationReducer.CSVDownloaded);
+    console.log("CRImageArrayFromRedux",CRImageArrayFromRedux);
+    let ScoringArrayFromRedux = useSelector(state => state.cRImageArrayReducer.scoringArray);
+
+
 
     const [category, setCategory] = useState();
     let howNegative = "no answer"  
@@ -176,6 +180,9 @@ const CognitiveReappraisalExamNavigation = () => {
 };
 
 }
+
+
+console.log("CRAViewState",CRAViewState,"CRImageArrayFromRedux.length",CRImageArrayFromRedux.length);
 
     React.useEffect(() => {
     document.addEventListener('keyup', keyStrokeListener);
@@ -345,7 +352,8 @@ const CognitiveReappraisalExamNavigation = () => {
 
         
       
-        let ScoringArray = createScoringArrayFromfinalRandomizedCombinedCognitiveImagesArray(CRImageArrayFromRedux)
+        let ScoringArray = createScoringArrayFromfinalRandomizedCombinedCognitiveImagesArray(CRImageArrayFromRedux);
+
       
 
         const newCSVScoringDispatch = (dispatch) => ({
@@ -354,7 +362,6 @@ const CognitiveReappraisalExamNavigation = () => {
 
             newCSVScoringArray(ScoringArray);
 
-        let ScoringArrayFromRedux = useSelector(state => state.cRImageArrayReducer.scoringArray);
 
 
         useEffect(() => {
