@@ -59,35 +59,56 @@ import { filesToPhotosObject } from "../../functions";
       //Shuffle an array into random odd numbered places in another array
 
       const shuffleArrayAintoArrayB = (arrayA,arrayB) => {
-        const checkIfUnique = (arrayA) => {
+
+        let blockedArray = [];
+        
+        while (blockedArray.length < arrayA.length) {
           let randomNumber = Math.floor(Math.random() * arrayB.length);
           let randomOddNumber = randomNumber + (randomNumber%2 == 0 ? 1 : 0);
-
-          if (!(arrayOfOddNumbers.includes(randomOddNumber))) {
-            arrayOfOddNumbers.push(randomOddNumber)
-            console.log("Check if Unique element is: ",arrayA[0]);   
-            arrayB.splice(randomOddNumber,0,(arrayA.shift()));  
-             
-            } else {
-              console.log("ran CheckifUnique Recursively")
-                checkIfUnique(arrayA);
-            }
-        } 
-        let arrayOfOddNumbers = [];
-        arrayA.forEach (element => {
-          console.log("Initial element is: ",element)    
-          while (arrayOfOddNumbers.length < arrayA.length) {
-            checkIfUnique(arrayA);
-
-        }
-          
-         // arrayB.splice(randomOddNumber, 0, element)
-        });
-        console.log("ArrayB",arrayB)
-        console.log("arrayA",arrayA);
-        console.log("arrayOfOddNumbers",arrayOfOddNumbers)
-        return arrayB;
+          if (!(blockedArray.includes(randomOddNumber))) {
+            blockedArray.push(randomOddNumber);
+          console.log("blockedArray",blockedArray);
           }
+        }
+        blockedArray.forEach((element, index) => {
+          arrayB.splice(element,0,arrayA[index]); 
+
+        })
+        return arrayB;
+      }
+
+
+
+
+        // const checkIfUnique = (arrayA) => {
+        //   let randomNumber = Math.floor(Math.random() * arrayB.length);
+        //   let randomOddNumber = randomNumber + (randomNumber%2 == 0 ? 1 : 0);
+
+        //   if (!(arrayOfOddNumbers.includes(randomOddNumber))) {
+        //     arrayOfOddNumbers.push(randomOddNumber)
+        //     console.log("Check if Unique element is: ",arrayA);   
+        //     arrayB.splice(randomOddNumber,0,(arrayA.shift()));  
+             
+        //     } else {
+        //       console.log("ran CheckifUnique Recursively")
+        //         checkIfUnique(arrayA);
+        //     }
+        // } 
+        // let arrayOfOddNumbers = [];
+        // arrayA.forEach (element => {
+        //   console.log("Initial element is: ",element)    
+        //   while (arrayOfOddNumbers.length < arrayA.length) {
+        //     checkIfUnique(arrayA);
+
+        // }
+          
+        //  // arrayB.splice(randomOddNumber, 0, element)
+        // });
+        // console.log("ArrayB",arrayB)
+        // console.log("arrayA",arrayA);
+        // console.log("arrayOfOddNumbers",arrayOfOddNumbers)
+        // return arrayB;
+          // }
     /*
  while (arrayFinished = false) {
             
