@@ -65,15 +65,22 @@ import { filesToPhotosObject } from "../../functions";
         while (blockedArray.length < arrayA.length) {
           let randomNumber = Math.floor(Math.random() * arrayB.length);
           let randomOddNumber = randomNumber + (randomNumber%2 == 0 ? 1 : 0);
-          if (!(blockedArray.includes(randomOddNumber))) {
+          if (!(blockedArray.includes(randomOddNumber)) 
+          //&& !(blockedArray.includes(randomOddNumber+2))
+          //&& !(blockedArray.includes(randomOddNumber-2))
+          )  {
             blockedArray.push(randomOddNumber);
-          console.log("blockedArray",blockedArray);
+
           }
         }
+        blockedArray = blockedArray.sort(function(a, b) {
+          return a - b;
+        }).reverse();
         blockedArray.forEach((element, index) => {
           arrayB.splice(element,0,arrayA[index]); 
 
         })
+        console.log("BlockedArray Sort Reverse", blockedArray);
         return arrayB;
       }
 
