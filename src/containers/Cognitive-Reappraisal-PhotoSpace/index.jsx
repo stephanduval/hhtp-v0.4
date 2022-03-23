@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { titleCardImagesFullFileNameArray, finalRandomizedCombinedCognitiveImagesArray, randomizedCombinedCognitiveImagesArray} from '../cognitive-Reappraisal-Array/create-cognitive-Reappraisal-Array'
+import { titleCardImagesFullFileNameArray, finalRandomizedCombinedCognitiveImagesArray, updatedArrayChecker, randomizedNegAndNeutralAndDecreaseCombinedCognitiveImagesArray, randomizedCombinedCognitiveImagesArray} from '../cognitive-Reappraisal-Array/create-cognitive-Reappraisal-Array'
 import { blue } from '@material-ui/core/colors';
 import CognitiveReappraisalExamNavigation from '../CognitiveReappraisalNavigation';
      
@@ -87,7 +87,7 @@ const stopRenderSubmitButtonIfTestIsFinished = (finishedMessage) => {
 
     }else {
 return (
-<img src={process.env.PUBLIC_URL + CRImageArrayFromRedux[newCRAViewState]} alt='Current nBack' style={{borderColor: setPhotoBorderColour(finalRandomizedCombinedCognitiveImagesArray)}}/>
+<img src={process.env.PUBLIC_URL + CRImageArrayFromRedux[newCRAViewState]} alt='Current nBack' style={{borderColor: setPhotoBorderColour(updatedArrayChecker)}}/>
 )
     }
 }
