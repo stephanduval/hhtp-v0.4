@@ -1,9 +1,9 @@
 .imageArray {
-    background-color: #000000;
-    min-height: auto;
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-  }
+  background-color: #000000;
+  min-height: auto;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}

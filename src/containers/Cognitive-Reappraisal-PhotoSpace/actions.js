@@ -1,7 +1,5 @@
 import { ActionTypes } from "./constants";
 
-
-
 /*
 //
 export const setCorrectResponseArray = (correctResponseArray) => ({

@@ -1,17 +1,11 @@
-
 .resultsChecker {
-    display: flex;
-    flex-direction: column;
-    flex-wrap:nowrap;
-    background-color: var(--grey2);
-    justify-content: left;
-    
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  background-color: var(--grey2);
+  justify-content: left;
+}
 
-
-    }
-
-    .table {
-    background-color: var(--grey2);
-
-
-    }
+.table {
+  background-color: var(--grey2);
+}
