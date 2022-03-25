@@ -87,7 +87,7 @@ const stopRenderSubmitButtonIfTestIsFinished = (finishedMessage) => {
 
     }else {
 return (
-<img src={process.env.PUBLIC_URL + CRImageArrayFromRedux[newCRAViewState]} alt='Current nBack' style={{borderColor: setPhotoBorderColour(updatedArrayChecker)}}/>
+<img src={process.env.PUBLIC_URL + CRImageArrayFromRedux[newCRAViewState]} alt='Current nBack' style={{borderColor: setPhotoBorderColour(CRImageArrayFromRedux)}}/>
 )
     }
 }
