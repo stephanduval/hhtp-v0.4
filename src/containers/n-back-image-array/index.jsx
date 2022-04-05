@@ -132,7 +132,7 @@ predictiveImagesNeutralFileNameArray = predictiveImagesNeutralFileNameArray.map(
 const predictiveFullFileNameArray =
   predictiveImagesNegativeFileNameArray.concat(
     predictiveImagesNeutralFileNameArray
-  );
+  ).sort(() => Math.random() - 0.5);
 //const predictiveFullFileNameArray = predictiveFileNameArray.map(e => './images/n-back-photos/Predictive/' + e)
 //const randomizedPredictiveImageArray = randomizeArray(predictiveFullFileNameArray);
 
