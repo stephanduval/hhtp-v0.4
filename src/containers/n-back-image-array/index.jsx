@@ -103,9 +103,9 @@ const imageFileNamenBackImagesNeutralFullFileNameArray =
     (e) => "./images/n-back-photos/Neutral N-Back Hits (13 Total)/" + e
   );
 const nBackFullFileNameArray =
-  imageFileNamenBackImagesNegativeFullFileNameArray.concat(
+  (imageFileNamenBackImagesNegativeFullFileNameArray.concat(
     imageFileNamenBackImagesNeutralFullFileNameArray
-  );
+  )).sort(() => Math.random() - 0.5);;
 //
 // console.log("nBackFullFileNameArray",nBackFullFileNameArray)
 
