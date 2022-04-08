@@ -1,4 +1,6 @@
 import "../../App.css";
+import "./CognitiveReappraisalNavigation.css";
+
 import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -518,8 +520,8 @@ const CognitiveReappraisalExamNavigation = () => {
   );
 
   return (
-    <div className="container">
-      <div>
+    <div >
+      <div className="container">
         {stopRenderSubmitButtonIfTestIsFinished(
           "You're All Done!  Please do nothing.  Notify the exam Supervisor and have a nice day!."
         )}

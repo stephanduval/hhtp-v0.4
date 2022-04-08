@@ -18,6 +18,8 @@ import CognitiveReappraisalExamNavigation from "../CognitiveReappraisalNavigatio
 import "../../App.css";
 import ReturnToMainPageButton from "../ReturntoMainPageButton";
 import ImageArray from "../n-back-image-array";
+import "./renderSwitch.css";
+
 
 export const navigationPhaseTypes = {
   introductionPage: "Has settings, instructions and a start test button",
@@ -55,10 +57,12 @@ export const renderState = (navigationPhaseTypesExpression) => {
     case navigationPhaseTypes.nBackTest:
       // console.log('navigationPhaseTypes.nBackTest');
       return (
-        <div>
-          <ImageArray />
-          <Photospace />
-          <ExamNavigation />
+        <div> 
+          <div class="nBackTestVisible">
+            <ImageArray />
+            <Photospace />
+            <ExamNavigation />
+          </div>
           <ResultChecker />
         </div>
       );
