@@ -5,7 +5,7 @@ import React from "react";
 const IntroHeader = () => {
   return (
     <div className="Intro-header">
-      <h1>Welcome to Hannes Hepner's Cognitive Reappraisal Test</h1>
+      <h1>Welcome to Hannes Hepner's Cognitive Reappraisal Test!</h1>
       <p></p>
       You will be presented with a number of images. Follow the instructions
       given and your responses will be recorded.
